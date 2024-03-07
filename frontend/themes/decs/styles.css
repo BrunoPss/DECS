@@ -1,0 +1,61 @@
+@import url('./main-layout.css');
+@import url('./views/job-dashboard-view.css');
+@import url('./views/node-manager-view.css');
+@import url('./views/job-builder-view.css');
+@import url('@fontsource/cousine/index.css');    html {
+      --lumo-shade-5pct: rgba(0, 0, 0, 0.05);
+      --lumo-shade-10pct: rgba(0, 0, 0, 0.1);
+      --lumo-shade-20pct: rgba(0, 0, 0, 0.2);
+      --lumo-shade-30pct: rgba(0, 0, 0, 0.3);
+      --lumo-shade-40pct: rgba(0, 0, 0, 0.4);
+      --lumo-shade-50pct: rgba(0, 0, 0, 0.5);
+      --lumo-shade-60pct: rgba(0, 0, 0, 0.6);
+      --lumo-shade-70pct: rgba(0, 0, 0, 0.7);
+      --lumo-shade-80pct: rgba(0, 0, 0, 0.8);
+      --lumo-shade-90pct: rgba(0, 0, 0, 0.9);
+      --lumo-primary-color-50pct: rgba(141, 107, 72, 0.5);
+      --lumo-primary-color-10pct: rgba(141, 107, 72, 0.1);
+      --lumo-error-color-50pct: rgba(249, 36, 50, 0.5);
+      --lumo-error-color-10pct: rgba(249, 36, 50, 0.1);
+      --lumo-success-color-50pct: rgba(43, 192, 22, 0.5);
+      --lumo-success-color-10pct: rgba(43, 192, 22, 0.1);
+      --lumo-shade: rgb(0, 0, 0);
+      --lumo-primary-color: rgb(141, 107, 72);
+      --lumo-primary-text-color: rgb(127, 85, 57);
+      --lumo-error-color: rgb(249, 36, 50);
+      --lumo-error-text-color: rgb(211, 0, 0);
+      --lumo-success-color: rgb(43, 192, 22);
+      --lumo-success-text-color: rgb(17, 152, 34);
+      --lumo-base-color: rgb(255, 255, 255);
+      --lumo-body-text-color: rgb(0, 0, 0);
+--lumo-font-family: Cousine;
+
+    }
+
+    [theme~="dark"] {
+      --lumo-base-color: rgb(57, 54, 70);
+      --lumo-body-text-color: rgb(244, 238, 224);
+      --lumo-primary-text-color: rgb(234, 198, 150);
+      --lumo-primary-color: rgb(244, 238, 224);
+      --lumo-primary-color-50pct: rgba(244, 238, 224, 0.5);
+      --lumo-primary-color-10pct: rgba(244, 238, 224, 0.1);
+      --lumo-shade: rgb(129, 104, 157);
+      --lumo-shade-5pct: rgba(129, 104, 157, 0.05);
+      --lumo-shade-10pct: rgba(129, 104, 157, 0.1);
+      --lumo-shade-20pct: rgba(129, 104, 157, 0.2);
+      --lumo-shade-30pct: rgba(129, 104, 157, 0.3);
+      --lumo-shade-40pct: rgba(129, 104, 157, 0.4);
+      --lumo-shade-50pct: rgba(129, 104, 157, 0.5);
+      --lumo-shade-60pct: rgba(129, 104, 157, 0.6);
+      --lumo-shade-70pct: rgba(129, 104, 157, 0.7);
+      --lumo-shade-80pct: rgba(129, 104, 157, 0.8);
+      --lumo-shade-90pct: rgba(129, 104, 157, 0.9);
+      --lumo-success-color: rgb(102, 255, 97);
+      --lumo-success-color-50pct: rgba(102, 255, 97, 0.5);
+      --lumo-success-color-10pct: rgba(102, 255, 97, 0.1);
+      --lumo-success-text-color: rgb(166, 255, 150);
+      --lumo-error-color: rgb(210, 19, 18);
+      --lumo-error-color-50pct: rgba(210, 19, 18, 0.5);
+      --lumo-error-color-10pct: rgba(210, 19, 18, 0.1);
+
+    }
