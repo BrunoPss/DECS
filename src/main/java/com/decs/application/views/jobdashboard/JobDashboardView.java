@@ -4,6 +4,11 @@ import com.decs.application.data.Job;
 import com.decs.application.data.Problem;
 import com.decs.application.views.MainLayout;
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.NativeLabel;
@@ -13,11 +18,13 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import jakarta.annotation.security.PermitAll;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 @PageTitle("Job Dashboard")
@@ -81,19 +88,41 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         Grid<Job> jobGrid = new Grid<>(Job.class, false);
         jobGrid.addColumn(Job::getName).setHeader("Name");
         jobGrid.setItems(new Job("Job 1"));
+        jobGrid.setMinWidth("250px");
 
         // Job Information
+        VerticalLayout jobInfoLayout = new VerticalLayout();
+        jobInfoLayout.getStyle().set("border", "1px solid black");
+        jobInfoLayout.setMinWidth("250px");
 
+        H2 titleLabel = new H2("Info");
+        NativeLabel info1 = new NativeLabel("Info 1");
+        NativeLabel info2 = new NativeLabel("Info 2");
+
+        jobInfoLayout.add(titleLabel, info1, info2);
 
         // Start / Stop Buttons
+        VerticalLayout actionBtnGroup = new VerticalLayout();
+        actionBtnGroup.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        actionBtnGroup.setAlignItems(FlexComponent.Alignment.CENTER);
 
+        Button startBtn = new Button("Start");
+        startBtn.setDisableOnClick(true);
+        startBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SUCCESS);
+        Button stopBtn = new Button("Stop");
+        stopBtn.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        stopBtn.setEnabled(false);
+
+        actionBtnGroup.add(startBtn, stopBtn);
 
         // History list
 
-        
+
+        // Lower Widget Group Builder
+        lowerWidgetGroup.add(jobGrid, jobInfoLayout, actionBtnGroup);
 
         // Page Builder
-        mainVerticalLayout.add(availableProblemsGrid, jobProgressBarComp);
+        mainVerticalLayout.add(availableProblemsGrid, jobProgressBarComp, lowerWidgetGroup);
         getContent().add(mainVerticalLayout);
     }
 }
