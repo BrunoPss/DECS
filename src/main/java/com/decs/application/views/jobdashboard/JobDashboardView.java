@@ -4,27 +4,22 @@ import com.decs.application.data.Job;
 import com.decs.application.data.Problem;
 import com.decs.application.views.MainLayout;
 import com.vaadin.flow.component.Composite;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.NativeLabel;
-import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import jakarta.annotation.security.PermitAll;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 @PageTitle("Job Dashboard")
@@ -52,6 +47,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         // Available Problems
         Grid<Problem> availableProblemsGrid = new Grid<>(Problem.class, false);
+        availableProblemsGrid.setMaxHeight("300px");
         availableProblemsGrid.addColumn(Problem::getCode).setHeader("Code");
         availableProblemsGrid.addColumn(Problem::getFullName).setHeader("Name");
         availableProblemsGrid.addColumn(Problem::getType).setHeader("Type");
@@ -62,9 +58,10 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         problemList.add(new Problem("P3", "Problem 3", "GA"));
         problemList.add(new Problem("P4", "Problem 4", "GA"));
         problemList.add(new Problem("P5", "Problem 5", "GP"));
-        problemList.add(new Problem("P6", "Problem 6", "GA"));
+        Problem p6 = new Problem("P6", "Problem 6", "GP");
+        problemList.add(p6);
 
-        availableProblemsGrid.setItems(problemList);
+        GridListDataView<Problem> availableProblemsUpdater = availableProblemsGrid.setItems(problemList);
 
         // Job Progress Bar
         ProgressBar jobProgressBar = new ProgressBar();
@@ -72,7 +69,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         NativeLabel jobProgressBarLabelText = new NativeLabel("Job Progress");
         jobProgressBarLabelText.setId("jpbLabel");
-        jobProgressBar.getElement().setAttribute("aria-labelledby", "pblabel");
+        jobProgressBar.getElement().setAttribute("aria-labelledby", "jpbLabel");
 
         Span jobProgressBarLabelValue = new Span("50%");
 
@@ -83,23 +80,61 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         // Lower Widget Group
         HorizontalLayout lowerWidgetGroup = new HorizontalLayout();
+        lowerWidgetGroup.setWidthFull();
 
-        // Job List
-        Grid<Job> jobGrid = new Grid<>(Job.class, false);
-        jobGrid.addColumn(Job::getName).setHeader("Name");
-        jobGrid.setItems(new Job("Job 1"));
-        jobGrid.setMinWidth("250px");
+        // Job Queue
+        Grid<Job> jobQueueGrid = new Grid<>(Job.class, false);
+        jobQueueGrid.addColumn(Job::getName).setHeader("Name");
+        jobQueueGrid.setItems(new Job("Job 1"));
+        jobQueueGrid.setMinWidth("250px");
 
-        // Job Information
-        VerticalLayout jobInfoLayout = new VerticalLayout();
-        jobInfoLayout.getStyle().set("border", "1px solid black");
-        jobInfoLayout.setMinWidth("250px");
+        Span jobQueueLabel = new Span("Job Queue");
 
-        H2 titleLabel = new H2("Info");
-        NativeLabel info1 = new NativeLabel("Info 1");
-        NativeLabel info2 = new NativeLabel("Info 2");
+        VerticalLayout jobQueue = new VerticalLayout(jobQueueLabel, jobQueueGrid);
 
-        jobInfoLayout.add(titleLabel, info1, info2);
+        // Job History list
+        Grid<Job> jobHistoryGrid = new Grid<>(Job.class, false);
+        jobHistoryGrid.addColumn(Job::getName).setHeader("Name");
+        jobHistoryGrid.setItems(new Job("Job 1"));
+        jobHistoryGrid.setMinWidth("250px");
+
+        Span jobHistoryGridLabel = new Span("Job History");
+
+        VerticalLayout jobHistory = new VerticalLayout(jobHistoryGridLabel, jobHistoryGrid);
+
+        // Vertical Separator
+        Div verticalSeparator = new Div();
+        verticalSeparator.getStyle().set("border", "1px solid black");
+
+        // Job Metrics
+        VerticalLayout jobMetricsLayout = new VerticalLayout();
+        jobMetricsLayout.getStyle().set("border", "1px solid black");
+        jobMetricsLayout.setMinWidth("250px");
+
+        NativeLabel jobMetricsTitleLabel = new NativeLabel("Metrics");
+        Span info1 = new Span("Info 1");
+        Span info2 = new Span("Info 2");
+        Span info3 = new Span("Info 3");
+        Span info4 = new Span("Info 4");
+
+        jobMetricsLayout.add(info1, info2, info3);
+        VerticalLayout jobMetrics = new VerticalLayout(jobMetricsTitleLabel, jobMetricsLayout);
+
+        // Job Results
+        VerticalLayout jobResultsLayout = new VerticalLayout();
+        jobResultsLayout.getStyle().set("border", "1px solid black");
+        jobResultsLayout.setMinWidth("250px");
+
+        NativeLabel jobResultsTitleLabel = new NativeLabel("Results");
+        Span result1 = new Span("Result 1");
+        Span result2 = new Span("Result 2");
+        Span result3 = new Span("Result 3");
+        Span result4 = new Span("Result 4");
+
+        jobResultsLayout.add(result1, result2, result3);
+        VerticalLayout jobResults = new VerticalLayout(jobResultsTitleLabel, jobResultsLayout);
+
+        VerticalLayout metricsResultsGroup = new VerticalLayout(jobMetrics, jobResults);
 
         // Start / Stop Buttons
         VerticalLayout actionBtnGroup = new VerticalLayout();
@@ -107,19 +142,20 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         actionBtnGroup.setAlignItems(FlexComponent.Alignment.CENTER);
 
         Button startBtn = new Button("Start");
-        startBtn.setDisableOnClick(true);
         startBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SUCCESS);
+        startBtn.setWidth("130px");
+        startBtn.setHeight("50px");
+        startBtn.setDisableOnClick(true);
         Button stopBtn = new Button("Stop");
         stopBtn.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        stopBtn.setWidth("100px");
+        stopBtn.setHeight("40px");
         stopBtn.setEnabled(false);
 
         actionBtnGroup.add(startBtn, stopBtn);
 
-        // History list
-
-
         // Lower Widget Group Builder
-        lowerWidgetGroup.add(jobGrid, jobInfoLayout, actionBtnGroup);
+        lowerWidgetGroup.add(jobQueue, jobHistory, verticalSeparator, metricsResultsGroup, actionBtnGroup);
 
         // Page Builder
         mainVerticalLayout.add(availableProblemsGrid, jobProgressBarComp, lowerWidgetGroup);
