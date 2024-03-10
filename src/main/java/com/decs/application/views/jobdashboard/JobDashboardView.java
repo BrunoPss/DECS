@@ -84,8 +84,10 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         // Job Queue
         Grid<Job> jobQueueGrid = new Grid<>(Job.class, false);
+        jobQueueGrid.addColumn(Job::getId).setHeader("ID");
         jobQueueGrid.addColumn(Job::getName).setHeader("Name");
-        jobQueueGrid.setItems(new Job("Job 1"));
+        Job job1 = new Job("Job 1");
+        jobQueueGrid.setItems(job1);
         jobQueueGrid.setMinWidth("250px");
 
         Span jobQueueLabel = new Span("Job Queue");
@@ -94,8 +96,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         // Job History list
         Grid<Job> jobHistoryGrid = new Grid<>(Job.class, false);
+        jobHistoryGrid.addColumn(Job::getId).setHeader("ID");
         jobHistoryGrid.addColumn(Job::getName).setHeader("Name");
-        jobHistoryGrid.setItems(new Job("Job 1"));
+        jobHistoryGrid.setItems(job1);
         jobHistoryGrid.setMinWidth("250px");
 
         Span jobHistoryGridLabel = new Span("Job History");
@@ -115,7 +118,6 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         Span info1 = new Span("Info 1");
         Span info2 = new Span("Info 2");
         Span info3 = new Span("Info 3");
-        Span info4 = new Span("Info 4");
 
         jobMetricsLayout.add(info1, info2, info3);
         VerticalLayout jobMetrics = new VerticalLayout(jobMetricsTitleLabel, jobMetricsLayout);
@@ -129,7 +131,6 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         Span result1 = new Span("Result 1");
         Span result2 = new Span("Result 2");
         Span result3 = new Span("Result 3");
-        Span result4 = new Span("Result 4");
 
         jobResultsLayout.add(result1, result2, result3);
         VerticalLayout jobResults = new VerticalLayout(jobResultsTitleLabel, jobResultsLayout);
