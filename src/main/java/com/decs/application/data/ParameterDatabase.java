@@ -6,11 +6,11 @@ import java.util.List;
 
 public class ParameterDatabase {
     //Internal Data
-    private ArrayList<ParameterGroup> parameterList;
+    private ArrayList<ParameterGroup> parameterGroupList;
 
     //Constructor
     public ParameterDatabase() {
-        this.parameterList = new ArrayList<>();
+        this.parameterGroupList = new ArrayList<>();
     }
 
     //Get Methods
@@ -22,7 +22,7 @@ public class ParameterDatabase {
     //Methods
     public ArrayList<String> getGroupNames() {
         ArrayList<String> groupNames = new ArrayList<>();
-        for (ParameterGroup pg : parameterList) {
+        for (ParameterGroup pg : parameterGroupList) {
             groupNames.add(pg.getName());
         }
         return groupNames;

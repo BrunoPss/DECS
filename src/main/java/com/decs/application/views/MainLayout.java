@@ -2,7 +2,7 @@ package com.decs.application.views;
 
 import com.decs.application.data.User;
 import com.decs.application.security.AuthenticatedUser;
-import com.decs.application.views.jobbuilder.JobBuilderView;
+import com.decs.application.views.ProblemEditor.ProblemEditorView;
 import com.decs.application.views.jobdashboard.JobDashboardView;
 import com.decs.application.views.nodemanager.NodeManagerView;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -80,9 +80,9 @@ public class MainLayout extends AppLayout {
                     LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
 
         }
-        if (accessChecker.hasAccess(JobBuilderView.class)) {
+        if (accessChecker.hasAccess(ProblemEditorView.class)) {
             nav.addItem(
-                    new SideNavItem("Job Builder", JobBuilderView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+                    new SideNavItem("Problem Editor", ProblemEditorView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
 
         }
 
