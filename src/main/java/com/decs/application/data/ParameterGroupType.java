@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum ParameterGroupType {
-    EC, SIMPLE, KOZA;
+    EC, SIMPLE, KOZA, ANT;
 
     @Override
     public String toString() {
@@ -13,6 +13,7 @@ public enum ParameterGroupType {
             case EC -> "EC";
             case SIMPLE -> "Simple";
             case KOZA -> "Koza";
+            case ANT -> "Ant";
         };
     }
 

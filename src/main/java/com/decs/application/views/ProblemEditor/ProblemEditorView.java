@@ -3,7 +3,7 @@ package com.decs.application.views.ProblemEditor;
 import com.decs.application.data.ParameterGroupType;
 import com.decs.application.data.ProblemType;
 import com.decs.application.views.MainLayout;
-import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.Uses;
@@ -25,13 +25,14 @@ import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @PageTitle("Problem Editor")
 @Route(value = "problem-editor", layout = MainLayout.class)
 @PermitAll
 @Uses(Icon.class)
 public class ProblemEditorView extends Composite<VerticalLayout> {
+    private TabSheet tabs;
+    private ArrayList<Tab> tabsList;
 
     public ProblemEditorView() {
         VerticalLayout mainVerticalLayout = new VerticalLayout();
@@ -41,21 +42,24 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         mainVerticalLayout.getStyle().set("flex-grow", "1");
 
         // Tabs
-        TabSheet tabs = new TabSheet();
+        tabs = new TabSheet();
         tabs.setWidth("100%");
 
+        tabsList = new ArrayList<>();
+
         // General Tab
-        Tab generalTab = new Tab("General");
+        Tab generalTab = createTab("General");
         VerticalLayout generalTabLayout = new VerticalLayout();
         generalTabLayout.setSpacing(true);
         generalTabLayout.getThemeList().add("spacing-xl");
 
         // Problem Selector
-        Select<String> problemSelector = new Select<>();
+        Select<ProblemType> problemSelector = new Select<>();
         problemSelector.setLabel("Problem");
         problemSelector.setPlaceholder("Select Problem");
         // Select Values -> .param files available in the folder or ProblemType values
-        problemSelector.setItems(ProblemType.getValueList());
+        problemSelector.setItems(ProblemType.values());
+        problemSelector.addValueChangeListener(this::problemChangeEvent);
 
         // Jobs and Seed Group
         VerticalLayout jobSeedGroupLayout = new VerticalLayout();
@@ -205,7 +209,25 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         mainVerticalLayout.add(tabs);
     }
 
-    private void setTabsSampleData(Tabs tabs) {
+    // Event Listeners
+    private void problemChangeEvent(AbstractField.ComponentValueChangeEvent<Select<ProblemType>, ProblemType> event) {
+        // Delete Current Tabs
+        for (int i=1; i<tabsList.size(); i++) {
+            tabs.remove(tabsList.get(i));
+        }
+        tabsList.subList(1, tabsList.size()).clear();
 
+        // Add Problem Tabs
+        for (ParameterGroupType p : event.getValue().getParameterGroups()) {
+            tabs.add(createTab(p.toString()), new Span("test"));
+        }
     }
+
+    // Private Functions
+    private Tab createTab(String name) {
+        Tab newTab = new Tab(name);
+        tabsList.add(newTab);
+        return newTab;
+    }
+
 }
