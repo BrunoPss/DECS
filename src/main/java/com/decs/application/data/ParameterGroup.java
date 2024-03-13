@@ -4,17 +4,18 @@ import java.util.ArrayList;
 
 public class ParameterGroup {
     //Internal Data
-    private String name;
+    private ParameterGroupType type;
     private ArrayList<Parameter> parameters;
 
     //Constructor
 
 
     //Get Methods
-    public String getName() { return this.name; }
+    public ParameterGroupType getType() { return this.type; }
+    public String getName() { return this.type.toString(); }
 
     //Set Methods
-    public void setName(String name) { this.name = name; }
+    public void setName(ParameterGroupType type) { this.type = type; }
 
     //Methods
 
