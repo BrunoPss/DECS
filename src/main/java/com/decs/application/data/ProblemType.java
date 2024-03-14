@@ -7,16 +7,16 @@ import java.util.stream.Collectors;
 
 public enum ProblemType {
     TWO_BOX (new ParameterGroupType[]{
-            ParameterGroupType.EC, ParameterGroupType.SIMPLE, ParameterGroupType.KOZA
+            ParameterGroupType.SIMPLE, ParameterGroupType.KOZA
     }),
     ARTIFICIAL_ANT_SANTA_FE (new ParameterGroupType[]{
-            ParameterGroupType.EC, ParameterGroupType.SIMPLE, ParameterGroupType.KOZA, ParameterGroupType.ANT
+            ParameterGroupType.SIMPLE, ParameterGroupType.KOZA, ParameterGroupType.ANT
     }),
     LAWN_MOWER_8X8 (new ParameterGroupType[]{
-            ParameterGroupType.EC, ParameterGroupType.SIMPLE, ParameterGroupType.KOZA
+            ParameterGroupType.SIMPLE, ParameterGroupType.KOZA
     }),
     BOOL_11_MULTIPLEXER_FAST (new ParameterGroupType[]{
-            ParameterGroupType.EC, ParameterGroupType.SIMPLE, ParameterGroupType.KOZA
+            ParameterGroupType.SIMPLE, ParameterGroupType.KOZA
     });
 
     private final ParameterGroupType[] parameterGroupList;

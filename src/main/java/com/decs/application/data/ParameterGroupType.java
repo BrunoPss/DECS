@@ -5,12 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum ParameterGroupType {
-    EC, SIMPLE, KOZA, ANT;
+    SIMPLE, KOZA, ANT;
 
     @Override
     public String toString() {
         return switch (this) {
-            case EC -> "EC";
             case SIMPLE -> "Simple";
             case KOZA -> "Koza";
             case ANT -> "Ant";

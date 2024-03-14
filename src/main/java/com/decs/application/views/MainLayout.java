@@ -16,6 +16,7 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
@@ -71,18 +72,21 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         if (accessChecker.hasAccess(JobDashboardView.class)) {
-            nav.addItem(new SideNavItem("Job Dashboard", JobDashboardView.class,
-                    LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+            nav.addItem(
+                    new SideNavItem("Job Dashboard", JobDashboardView.class,
+                            VaadinIcon.HOME.create()));
 
         }
         if (accessChecker.hasAccess(NodeManagerView.class)) {
-            nav.addItem(new SideNavItem("Node Manager", NodeManagerView.class,
-                    LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+            nav.addItem(
+                    new SideNavItem("Node Manager", NodeManagerView.class,
+                            VaadinIcon.CLUSTER.create()));
 
         }
         if (accessChecker.hasAccess(ProblemEditorView.class)) {
             nav.addItem(
-                    new SideNavItem("Problem Editor", ProblemEditorView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+                    new SideNavItem("Problem Editor", ProblemEditorView.class,
+                            VaadinIcon.SLIDERS.create()));
 
         }
 

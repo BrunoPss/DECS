@@ -78,7 +78,6 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
     // Private Functions
     private ParamTab createTab(ParameterGroupType groupType) {
         ParamTab newTab = switch (groupType) {
-            case EC -> new ECTab();
             case SIMPLE -> new SimpleTab();
             case KOZA -> new KozaTab();
             case ANT -> new AntTab();

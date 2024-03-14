@@ -81,12 +81,6 @@ public class GeneralTab extends Tab implements ParamTab {
 
 
     //Methods
-
-
-    //Overrides
-
-
-    //Internal Functions
     public VerticalLayout buildLayout() {
         // General Tab
         generalTabLayout = new VerticalLayout();
@@ -106,6 +100,11 @@ public class GeneralTab extends Tab implements ParamTab {
 
         return generalTabLayout;
     }
+
+    //Overrides
+
+
+    //Internal Functions
     private void createProblemSelector() {
         problemSelector = new Select<>();
         problemSelector.setLabel("Problem");
