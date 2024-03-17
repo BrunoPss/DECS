@@ -3,11 +3,14 @@ package com.decs.application.utils;
 import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import ec.EvolutionState;
 import ec.Evolve;
-import ec.Individual;
 import ec.Statistics;
 import ec.simple.SimpleStatistics;
 import ec.util.Output;
 import ec.util.ParameterDatabase;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +34,8 @@ public class EvolutionEngine {
 
 
     //Methods
-    public void run() {
+    @Async
+    public ListenableFuture<Statistics> startInference() {
         try {
             ParameterDatabase paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
@@ -44,6 +48,8 @@ public class EvolutionEngine {
 
             cleanup(evaluatedState);
         } catch (IOException e) { e.printStackTrace(); }
+
+        return AsyncResult.forValue(results);
     }
     public double getFitness(StatisticsType statType) {
         switch (statType) {
