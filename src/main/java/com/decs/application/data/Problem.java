@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Problem {
     //Internal Data
+    private File paramsFile;
     private String code;
     private String fullName;
     private String type;
@@ -12,7 +13,12 @@ public class Problem {
 
     //Constructor
     public Problem() {}
-    public Problem(String code, String fullName, String type) {
+    public Problem(File paramsFile) {
+        this.paramsFile = paramsFile;
+        this.fullName = paramsFile.getName();
+    }
+    public Problem(File paramsFile, String code, String fullName, String type) {
+        this.paramsFile = paramsFile;
         this.code = code;
         this.fullName = fullName;
         this.type = type;
@@ -21,6 +27,7 @@ public class Problem {
 
 
     //Get Methods
+    public File getParamsFile() { return paramsFile; }
     public String getCode() { return code; }
     public String getFullName() { return fullName; }
     public String getType() { return type; }
