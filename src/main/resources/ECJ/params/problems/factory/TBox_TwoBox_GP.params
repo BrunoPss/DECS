@@ -43,3 +43,6 @@ eval.problem.data = ec.app.twobox.TwoBoxData
 # Define our training set size and range here
 eval.problem.size = 10
 eval.problem.range = 10
+
+# Stat File
+stat.file				../../../stats/out.stats

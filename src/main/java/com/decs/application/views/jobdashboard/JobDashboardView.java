@@ -1,41 +1,51 @@
 package com.decs.application.views.jobdashboard;
 
 import com.decs.application.data.Job;
+import com.decs.application.data.JobStatus;
 import com.decs.application.data.Problem;
 import com.decs.application.utils.EvolutionEngine;
 import com.decs.application.utils.ProblemCreator;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.MainLayout;
-import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.progressbar.ProgressBar;
+import com.vaadin.flow.component.tabs.Tab;
+import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
+import com.vaadin.flow.function.SerializableBiConsumer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import com.vaadin.flow.shared.communication.PushMode;
 import ec.EvolutionState;
-import ec.Evolve;
-import ec.app.majority.func.E;
-import ec.util.Output;
-import ec.util.ParameterDatabase;
+import ec.Statistics;
+import ec.simple.SimpleStatistics;
 import jakarta.annotation.security.PermitAll;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.util.concurrent.ListenableFuture;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
 
 @PageTitle("Job Dashboard")
 @Route(value = "job-dashboard", layout = MainLayout.class)
@@ -71,10 +81,11 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private Span jobQueueLabel;
     private VerticalLayout jobQueue;
     // Job History List
-    private Grid<Job> jobHistoryGrid;
-    private GridListDataView<Job> jobHistoryUpdater;
-    private Span jobHistoryGridLabel;
-    private VerticalLayout jobHistory;
+    private Grid<Job> jobActivityGrid;
+    private GridListDataView<Job> jobActivityUpdater;
+    private Span jobActivityGridLabel;
+    private VerticalLayout jobActivity;
+    private Button jobActivitySolutionBtn;
     // Vertical Separator
     private Div verticalSeparator;
     // Job Metrics
@@ -133,6 +144,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         availableProblemsTitleUpdateBtnIcon.setSize("20px");
         availableProblemsTitleUpdateBtn = new Button(availableProblemsTitleUpdateBtnIcon);
         availableProblemsTitleUpdateBtn.addThemeVariants(ButtonVariant.LUMO_ICON);
+        availableProblemsTitleUpdateBtn.addClickListener(this::updateAvailableProblemsList);
         availableProblemsTitleUpdateBtn.setTooltipText("Refresh");
         availableProblemsTitleUpdateBtn.setWidth("15px");
         availableProblemsTitleUpdateBtn.setHeight("19px");
@@ -146,29 +158,19 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         availableProblemsGrid.addColumn(Problem::getFullName).setHeader("Name");
         availableProblemsGrid.addColumn(Problem::getType).setHeader("Type");
 
-        //problemList = new ArrayList<>();
-        //problemList.add(new Problem("P1", "Problem 1", "GP"));
-        //problemList.add(new Problem("P2", "Problem 2", "GP"));
-        //problemList.add(new Problem("P3", "Problem 3", "GA"));
-        //problemList.add(new Problem("P4", "Problem 4", "GA"));
-        //problemList.add(new Problem("P5", "Problem 5", "GP"));
-        //Problem p6 = new Problem("P6", "Problem 6", "GP");
-        //problemList.add(p6);
-        //availableProblemsUpdater = availableProblemsGrid.setItems(problemList);
-
         // Problems Scan
         factoryProblemsList = ProblemCreator.problemScanner(FilePathConstants.FACTORY_PARAMS_FOLDER);
         userProblemsList = ProblemCreator.problemScanner(FilePathConstants.USER_PARAMS_FOLDER);
 
         // Job Queue
-        jobQueueGrid = new Grid<>(Job.class, false);
-        jobQueueGrid.addColumn(Job::getId).setHeader("ID");
-        jobQueueGrid.addColumn(Job::getName).setHeader("Name");
-        jobQueueUpdater = jobQueueGrid.getListDataView();
+        //jobQueueGrid = new Grid<>(Job.class, false);
+        //jobQueueGrid.addColumn(Job::getId).setHeader("ID");
+        //jobQueueGrid.addColumn(Job::getName).setHeader("Name");
+        //jobQueueUpdater = jobQueueGrid.getListDataView();
 
-        jobQueueLabel = new Span("Job Queue");
+        //jobQueueLabel = new Span("Job Queue");
 
-        jobQueue = new VerticalLayout(jobQueueLabel, jobQueueGrid);
+        //jobQueue = new VerticalLayout(jobQueueLabel, jobQueueGrid);
 
         // Problem List build
         availableProblemsUpdater = availableProblemsGrid.setItems(factoryProblemsList);
@@ -177,7 +179,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         availableProblemsGridLayout.add(availableProblemsUpperGroup, availableProblemsGrid);
 
         // Group Builder
-        availableProblemsLayoutGroup.add(availableProblemsGridLayout, jobQueue);
+        availableProblemsLayoutGroup.add(availableProblemsGridLayout);
     }
 
     private void createJobProgressBar() {
@@ -203,15 +205,17 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         lowerWidgetGroup.setWidthFull();
 
         // Job History list
-        jobHistoryGrid = new Grid<>(Job.class, false);
-        jobHistoryGrid.addColumn(Job::getId).setHeader("ID");
-        jobHistoryGrid.addColumn(Job::getName).setHeader("Name").setSortable(true);
-        jobHistoryGrid.setMinWidth("250px");
-        jobHistoryUpdater = jobHistoryGrid.getListDataView();
+        jobActivityGrid = new Grid<>(Job.class, false);
+        jobActivityGrid.addColumn(Job::getId).setHeader("ID").setSortable(true);
+        jobActivityGrid.addColumn(Job::getName).setHeader("Name");
+        jobActivityGrid.addColumn(createJobActivityStatusRenderer()).setHeader("Status");
+        jobActivityGrid.addColumn(createJobActivitySolutionRenderer()).setHeader("Solution");
+        jobActivityGrid.setMinWidth("250px");
+        jobActivityUpdater = jobActivityGrid.getListDataView();
 
-        jobHistoryGridLabel = new Span("Job History");
+        jobActivityGridLabel = new Span("Job Activity");
 
-        jobHistory = new VerticalLayout(jobHistoryGridLabel, jobHistoryGrid);
+        jobActivity = new VerticalLayout(jobActivityGridLabel, jobActivityGrid);
 
         // Vertical Separator
         verticalSeparator = new Div();
@@ -224,18 +228,20 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobMetricsLayout.setMaxWidth("230px");
 
         jobMetricsTitleLabel = new NativeLabel("Metrics");
-        Span info1 = new Span("Info 1");
-        Span info2 = new Span("Info 2");
-        Span info3 = new Span("Info 3");
+        Span info1 = new Span("Evaluations");
+        Span info2 = new Span("Breed Threads");
+        Span info3 = new Span("Evaluation Threads");
+        Span info4 = new Span("Random Seed");
+        Span info5 = new Span("Connected Slaves");
 
-        jobMetricsLayout.add(info1, info2, info3);
+        jobMetricsLayout.add(info1, info2, info3, info4, info5);
         jobMetrics = new VerticalLayout(jobMetricsTitleLabel, jobMetricsLayout);
 
         // Job Results
-        jobResults = new TextArea();
-        jobResults.setLabel("Results");
-        jobResults.setReadOnly(true);
-        jobResults.setWidthFull();
+        //jobResults = new TextArea();
+        //jobResults.setLabel("Results");
+        //jobResults.setReadOnly(true);
+        //jobResults.setWidthFull();
 
         // Start / Stop Buttons
         actionBtnGroup = new VerticalLayout();
@@ -258,15 +264,15 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         actionBtnGroup.add(startBtn, stopBtn);
 
         // Lower Widget Group Builder
-        lowerWidgetGroup.add(jobHistory, verticalSeparator, jobMetrics, jobResults, actionBtnGroup);
+        lowerWidgetGroup.add(jobActivity, verticalSeparator, jobMetrics, actionBtnGroup);
     }
 
-    private void updateInferenceResults(UI ui, String val) {
+    private void updateInferenceResults(UI ui, EvolutionState evaluatedState) {
         ui.access(() -> {
-            jobQueueUpdater.removeItem(newJob);
-            jobHistoryUpdater.addItem(newJob);
+            newJob.setStatus(JobStatus.FINISHED);
+            jobActivityUpdater.refreshItem(newJob);
             startBtn.setEnabled(true);
-            jobResults.setValue(val);
+            jobActivitySolutionBtn.setEnabled(true);
         });
     }
 
@@ -274,15 +280,75 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private void startProblem(ClickEvent<Button> event) {
         Problem selectedProblem = availableProblemsGrid.getSelectedItems().iterator().next();
         newJob = new Job(selectedProblem.getCode());
-        jobQueueUpdater.addItem(newJob);
+        newJob.setStatus(JobStatus.RUNNING);
 
-        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile());
+        jobActivityUpdater.addItem(newJob);
 
-        UI ui = event.getSource().getUI().orElseThrow();
-        ListenableFuture future = evolutionEngine.startInference();
-        future.addCallback(
-                successResult -> updateInferenceResults(ui, "Success"),
-                failureException -> updateInferenceResults(ui, "Failure")
-        );
+        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this::updateInferenceResults);
+        evolutionEngine.start();
     }
+
+    private void updateAvailableProblemsList(ClickEvent<Button> event) {
+
+    }
+
+    private Dialog buildSolutionsDialog(Job currentJob) {
+        Dialog solutionDialog = new Dialog();
+        solutionDialog.setHeaderTitle("Job Solution");
+        solutionDialog.setMinWidth("60%");
+        solutionDialog.setMaxWidth("60%");
+        solutionDialog.setMinHeight("80%");
+        solutionDialog.setMaxHeight("80%");
+
+        // Upper Tabs
+        TabSheet solutionTabs = new TabSheet();
+        solutionTabs.setWidthFull();
+        solutionTabs.setHeightFull();
+        Tab logTab = new Tab("Short Log");
+        Tab statisticsTab = new Tab("Extended Log");
+
+        // Log Tab
+        Paragraph logText = new Paragraph();
+        logText.setText(currentJob.getJobLog());
+        logText.getElement().getStyle().set("white-space", "pre");
+
+        // Statistics Tab
+        Paragraph statisticsText = new Paragraph();
+        statisticsText.setText(currentJob.getStatisticsLog());
+        statisticsText.getElement().getStyle().set("white-space", "pre");
+
+        // Tabsheet Builder
+        solutionTabs.add(logTab, logText);
+        solutionTabs.add(statisticsTab, statisticsText);
+
+        // Dialog Builder
+        solutionDialog.add(solutionTabs);
+
+        return solutionDialog;
+    }
+
+    // Component Renderers
+    private static ComponentRenderer<Span, Job> createJobActivityStatusRenderer() {
+        return new ComponentRenderer<>(Span::new, jobActivityStatusUpdater);
+    }
+    private static final SerializableBiConsumer<Span, Job> jobActivityStatusUpdater = (
+            span, job) -> {
+        String theme = String.format("badge %s", job.getStatus().getBadgeType());
+        span.getElement().setAttribute("theme", theme);
+        span.setText(job.getStatus().toString());
+    };
+
+    private ComponentRenderer<Button, Job> createJobActivitySolutionRenderer() {
+        return new ComponentRenderer<>(Button::new, jobActivitySolutionButton);
+    }
+    private final SerializableBiConsumer<Button, Job> jobActivitySolutionButton = (
+            button, currentJob) -> {
+        jobActivitySolutionBtn = button;
+        Icon btnIcon = new Icon(VaadinIcon.DASHBOARD);
+        button.setIcon(btnIcon);
+        //button.setEnabled(false);
+        button.addClickListener(event -> {
+            buildSolutionsDialog(currentJob).open();
+        });
+    };
 }

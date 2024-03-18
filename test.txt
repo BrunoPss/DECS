@@ -1,0 +1,130 @@
+
+| ECJ
+| An evolutionary computation system (version 27)
+| By Sean Luke
+| Contributors: E. Scott, L. Panait, G. Balan, S. Paus, Z. Skolicki,
+|               R. Kicinger, E. Popovici, K. Sullivan, J. Harrison, J. Bassett,
+|               R. Hubley, A. Desai, A. Chircop, J. Compton, W. Haddon,
+|               S. Donnelly, B. Jamil, J. Zelibor, E. Kangas, F. Abidi,
+|               H. Mooers, J. O'Beirne, L. Manzoni, K. Talukder, S. McKay,
+|               J. McDermott, J. Zou, A. Rutherford, D. Freelan, E. Wei,
+|               S. Rajendran, A. Dhawan, B. Brumbac, J. Hilty, A. Kabir
+| URL: http://cs.gmu.edu/~eclab/projects/ecj/
+| Mail: ecj-help@cs.gmu.edu
+|       (better: join ECJ-INTEREST at URL above)
+| Date: July 1, 2017
+| Current Java: 20.0.2 / OpenJDK 64-Bit Server VM-20.0.2+9-78
+| Required Minimum Java: 1.5
+
+
+Threads:  breed/1 eval/1
+Seed: 1380426992 
+Setting up
+Processing GP Types
+Processing GP Node Constraints
+Processing GP Function Sets
+Processing GP Tree Constraints
+Initializing Generation 0
+Subpop 0 best fitness of generation Fitness: Standardized=1670.7685330542474 Adjusted=5.981689332153203E-4 Hits=0
+Generation 1	Evaluations So Far 1024
+Subpop 0 best fitness of generation Fitness: Standardized=1405.0039682539682 Adjusted=7.112355459720643E-4 Hits=0
+Generation 2	Evaluations So Far 2048
+Subpop 0 best fitness of generation Fitness: Standardized=1080.1981351981353 Adjusted=9.24899856414148E-4 Hits=0
+Generation 3	Evaluations So Far 3072
+Subpop 0 best fitness of generation Fitness: Standardized=1075.5686507936507 Adjusted=9.288771313030488E-4 Hits=0
+Generation 4	Evaluations So Far 4096
+Subpop 0 best fitness of generation Fitness: Standardized=880.7444444444444 Adjusted=0.0011341154529531108 Hits=0
+Generation 5	Evaluations So Far 5120
+Subpop 0 best fitness of generation Fitness: Standardized=880.9845568783069 Adjusted=0.0011338067001302116 Hits=0
+Generation 6	Evaluations So Far 6144
+Subpop 0 best fitness of generation Fitness: Standardized=847.0 Adjusted=0.0011792452830188679 Hits=1
+Generation 7	Evaluations So Far 7168
+Subpop 0 best fitness of generation Fitness: Standardized=784.6765909627597 Adjusted=0.0012727883349236747 Hits=0
+Generation 8	Evaluations So Far 8192
+Subpop 0 best fitness of generation Fitness: Standardized=657.1981351981352 Adjusted=0.0015192993515531206 Hits=0
+Generation 9	Evaluations So Far 9216
+Subpop 0 best fitness of generation Fitness: Standardized=627.1981351981352 Adjusted=0.0015918544547805725 Hits=0
+Generation 10	Evaluations So Far 10240
+Subpop 0 best fitness of generation Fitness: Standardized=592.1981351981352 Adjusted=0.0016857773830762097 Hits=0
+Generation 11	Evaluations So Far 11264
+Subpop 0 best fitness of generation Fitness: Standardized=459.04428904428914 Adjusted=0.002173703758126054 Hits=0
+Generation 12	Evaluations So Far 12288
+Subpop 0 best fitness of generation Fitness: Standardized=421.81571761571774 Adjusted=0.002365096561781236 Hits=0
+Generation 13	Evaluations So Far 13312
+Subpop 0 best fitness of generation Fitness: Standardized=400.06591625416036 Adjusted=0.0024933557290026304 Hits=0
+Generation 14	Evaluations So Far 14336
+Subpop 0 best fitness of generation Fitness: Standardized=391.2152112146516 Adjusted=0.002549620645520349 Hits=0
+Generation 15	Evaluations So Far 15360
+Subpop 0 best fitness of generation Fitness: Standardized=351.8134920634921 Adjusted=0.0028343587263381658 Hits=0
+Generation 16	Evaluations So Far 16384
+Subpop 0 best fitness of generation Fitness: Standardized=336.1309523809524 Adjusted=0.0029662064338430026 Hits=0
+Generation 17	Evaluations So Far 17408
+Subpop 0 best fitness of generation Fitness: Standardized=321.1531053162006 Adjusted=0.0031041141106446183 Hits=0
+Generation 18	Evaluations So Far 18432
+Subpop 0 best fitness of generation Fitness: Standardized=270.77142857142866 Adjusted=0.003679562657695541 Hits=0
+Generation 19	Evaluations So Far 19456
+Subpop 0 best fitness of generation Fitness: Standardized=251.5776460177477 Adjusted=0.003959178556639702 Hits=0
+Generation 20	Evaluations So Far 20480
+Subpop 0 best fitness of generation Fitness: Standardized=200.36442762890135 Adjusted=0.00496612044031392 Hits=0
+Generation 21	Evaluations So Far 21504
+Subpop 0 best fitness of generation Fitness: Standardized=188.37695735064142 Adjusted=0.005280473474650072 Hits=0
+Generation 22	Evaluations So Far 22528
+Subpop 0 best fitness of generation Fitness: Standardized=181.06487671916864 Adjusted=0.005492547590837521 Hits=0
+Generation 23	Evaluations So Far 23552
+Subpop 0 best fitness of generation Fitness: Standardized=167.19597712229276 Adjusted=0.005945445409035646 Hits=0
+Generation 24	Evaluations So Far 24576
+Subpop 0 best fitness of generation Fitness: Standardized=125.75382022690471 Adjusted=0.007889308568450866 Hits=0
+Generation 25	Evaluations So Far 25600
+Subpop 0 best fitness of generation Fitness: Standardized=118.34306706938283 Adjusted=0.008379204796359282 Hits=0
+Generation 26	Evaluations So Far 26624
+Subpop 0 best fitness of generation Fitness: Standardized=118.34306706938283 Adjusted=0.008379204796359282 Hits=0
+Generation 27	Evaluations So Far 27648
+Subpop 0 best fitness of generation Fitness: Standardized=100.94795659520322 Adjusted=0.009808926371821475 Hits=0
+Generation 28	Evaluations So Far 28672
+Subpop 0 best fitness of generation Fitness: Standardized=91.48830516462097 Adjusted=0.010812177801507864 Hits=0
+Generation 29	Evaluations So Far 29696
+Subpop 0 best fitness of generation Fitness: Standardized=91.48830516462097 Adjusted=0.010812177801507864 Hits=0
+Generation 30	Evaluations So Far 30720
+Subpop 0 best fitness of generation Fitness: Standardized=75.8595454545454 Adjusted=0.013010745693147486 Hits=0
+Generation 31	Evaluations So Far 31744
+Subpop 0 best fitness of generation Fitness: Standardized=66.56509473176135 Adjusted=0.014800541669779009 Hits=0
+Generation 32	Evaluations So Far 32768
+Subpop 0 best fitness of generation Fitness: Standardized=66.56509473176135 Adjusted=0.014800541669779009 Hits=0
+Generation 33	Evaluations So Far 33792
+Subpop 0 best fitness of generation Fitness: Standardized=69.43961608615558 Adjusted=0.014196556647567292 Hits=0
+Generation 34	Evaluations So Far 34816
+Subpop 0 best fitness of generation Fitness: Standardized=63.05483413394598 Adjusted=0.015611624220412245 Hits=0
+Generation 35	Evaluations So Far 35840
+Subpop 0 best fitness of generation Fitness: Standardized=59.05483413394597 Adjusted=0.016651448870370796 Hits=0
+Generation 36	Evaluations So Far 36864
+Subpop 0 best fitness of generation Fitness: Standardized=53.175336547931046 Adjusted=0.018458583992648773 Hits=0
+Generation 37	Evaluations So Far 37888
+Subpop 0 best fitness of generation Fitness: Standardized=43.592197684226655 Adjusted=0.022425447767373086 Hits=0
+Generation 38	Evaluations So Far 38912
+Subpop 0 best fitness of generation Fitness: Standardized=43.530479645153605 Adjusted=0.022456528830783282 Hits=0
+Generation 39	Evaluations So Far 39936
+Subpop 0 best fitness of generation Fitness: Standardized=42.07156084656089 Adjusted=0.023217175796401313 Hits=0
+Generation 40	Evaluations So Far 40960
+Subpop 0 best fitness of generation Fitness: Standardized=40.5671777958162 Adjusted=0.02405744274754808 Hits=0
+Generation 41	Evaluations So Far 41984
+Subpop 0 best fitness of generation Fitness: Standardized=39.34695080017029 Adjusted=0.024785020433211506 Hits=0
+Generation 42	Evaluations So Far 43008
+Subpop 0 best fitness of generation Fitness: Standardized=36.125336547931035 Adjusted=0.026935782756041554 Hits=0
+Generation 43	Evaluations So Far 44032
+Subpop 0 best fitness of generation Fitness: Standardized=36.125336547931035 Adjusted=0.026935782756041554 Hits=0
+Generation 44	Evaluations So Far 45056
+Subpop 0 best fitness of generation Fitness: Standardized=28.929686472562423 Adjusted=0.03341164301593117 Hits=0
+Generation 45	Evaluations So Far 46080
+Subpop 0 best fitness of generation Fitness: Standardized=34.35399831678026 Adjusted=0.028285343882175965 Hits=0
+Generation 46	Evaluations So Far 47104
+Subpop 0 best fitness of generation Fitness: Standardized=34.35399831678026 Adjusted=0.028285343882175965 Hits=0
+Generation 47	Evaluations So Far 48128
+Subpop 0 best fitness of generation Fitness: Standardized=33.89913934630971 Adjusted=0.028654001752789402 Hits=0
+Generation 48	Evaluations So Far 49152
+Subpop 0 best fitness of generation Fitness: Standardized=30.523280423280482 Adjusted=0.03172258681750275 Hits=0
+Generation 49	Evaluations So Far 50176
+Subpop 0 best fitness of generation Fitness: Standardized=30.523280423280482 Adjusted=0.03172258681750275 Hits=0
+Generation 50	Evaluations So Far 51200
+Subpop 0 best fitness of generation Fitness: Standardized=30.523280423280482 Adjusted=0.03172258681750275 Hits=0
+Total Evaluations 52224
+Subpop 0 best fitness of run: Fitness: Standardized=28.929686472562423 Adjusted=0.03341164301593117 Hits=0
