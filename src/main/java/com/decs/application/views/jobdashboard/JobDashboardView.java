@@ -3,6 +3,7 @@ package com.decs.application.views.jobdashboard;
 import com.decs.application.data.Job;
 import com.decs.application.data.JobStatus;
 import com.decs.application.data.Problem;
+import com.decs.application.data.databases.MainDatabase;
 import com.decs.application.utils.EvolutionEngine;
 import com.decs.application.utils.ProblemCreator;
 import com.decs.application.utils.constants.FilePathConstants;
@@ -28,6 +29,7 @@ import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.SerializableBiConsumer;
 import com.vaadin.flow.router.PageTitle;
@@ -173,7 +175,8 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         //jobQueue = new VerticalLayout(jobQueueLabel, jobQueueGrid);
 
         // Problem List build
-        availableProblemsUpdater = availableProblemsGrid.setItems(factoryProblemsList);
+        availableProblemsUpdater = availableProblemsGrid.getListDataView();
+        availableProblemsGrid.setDataProvider(MainDatabase.getAvailableProblemsDataProvider());
 
         // Grid Group Build
         availableProblemsGridLayout.add(availableProblemsUpperGroup, availableProblemsGrid);
@@ -185,7 +188,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private void createJobProgressBar() {
         // Job Progress Bar
         jobProgressBar = new ProgressBar();
-        jobProgressBar.setValue(0.5);
+        jobProgressBar.setValue(0);
 
         jobProgressBarLabelText = new NativeLabel("Job Progress");
         jobProgressBarLabelText.setId("jpbLabel");
@@ -204,7 +207,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         lowerWidgetGroup = new HorizontalLayout();
         lowerWidgetGroup.setWidthFull();
 
-        // Job History list
+        // Job Activity list
         jobActivityGrid = new Grid<>(Job.class, false);
         jobActivityGrid.addColumn(Job::getId).setHeader("ID").setSortable(true);
         jobActivityGrid.addColumn(Job::getName).setHeader("Name");
@@ -212,6 +215,8 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobActivityGrid.addColumn(createJobActivitySolutionRenderer()).setHeader("Solution");
         jobActivityGrid.setMinWidth("250px");
         jobActivityUpdater = jobActivityGrid.getListDataView();
+        jobActivityGrid.setDataProvider(MainDatabase.getJobActivityDataProvider());
+
 
         jobActivityGridLabel = new Span("Job Activity");
 
@@ -267,12 +272,18 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         lowerWidgetGroup.add(jobActivity, verticalSeparator, jobMetrics, actionBtnGroup);
     }
 
-    private void updateInferenceResults(UI ui, EvolutionState evaluatedState) {
+    public void updateInferenceResults(UI ui, EvolutionState evaluatedState) {
         ui.access(() -> {
             newJob.setStatus(JobStatus.FINISHED);
             jobActivityUpdater.refreshItem(newJob);
             startBtn.setEnabled(true);
             jobActivitySolutionBtn.setEnabled(true);
+        });
+    }
+    public void updateProgressBar(UI ui, float progress) {
+        ui.access(() -> {
+            jobProgressBar.setValue(progress);
+            jobProgressBarLabelValue.setText(String.valueOf((int) (progress * 100)));
         });
     }
 
@@ -282,14 +293,15 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         newJob = new Job(selectedProblem.getCode());
         newJob.setStatus(JobStatus.RUNNING);
 
-        jobActivityUpdater.addItem(newJob);
+        MainDatabase.addJobActivity(newJob);
+        jobActivityGrid.getDataProvider().refreshAll();
 
-        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this::updateInferenceResults);
+        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this);
         evolutionEngine.start();
     }
 
     private void updateAvailableProblemsList(ClickEvent<Button> event) {
-
+        availableProblemsGrid.getDataProvider().refreshAll();
     }
 
     private Dialog buildSolutionsDialog(Job currentJob) {
@@ -331,8 +343,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private static ComponentRenderer<Span, Job> createJobActivityStatusRenderer() {
         return new ComponentRenderer<>(Span::new, jobActivityStatusUpdater);
     }
-    private static final SerializableBiConsumer<Span, Job> jobActivityStatusUpdater = (
-            span, job) -> {
+    private static final SerializableBiConsumer<Span, Job> jobActivityStatusUpdater = ( span, job) -> {
         String theme = String.format("badge %s", job.getStatus().getBadgeType());
         span.getElement().setAttribute("theme", theme);
         span.setText(job.getStatus().toString());
@@ -341,8 +352,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private ComponentRenderer<Button, Job> createJobActivitySolutionRenderer() {
         return new ComponentRenderer<>(Button::new, jobActivitySolutionButton);
     }
-    private final SerializableBiConsumer<Button, Job> jobActivitySolutionButton = (
-            button, currentJob) -> {
+    private final SerializableBiConsumer<Button, Job> jobActivitySolutionButton = ( button, currentJob) -> {
         jobActivitySolutionBtn = button;
         Icon btnIcon = new Icon(VaadinIcon.DASHBOARD);
         button.setIcon(btnIcon);

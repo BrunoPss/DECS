@@ -1,0 +1,1754 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=768.0 Adjusted=0.0013003901170351106 Hits=1280
+Tree 0:
+ (if a1 d2 d0)
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=688.0 Adjusted=0.001451378809869376 Hits=1360
+Tree 0:
+ (and (or (if d3 d4 d2) (if a0 d1 d4)) (or
+     (if a2 d5 d1) (and (not a0) (or a2 d1))))
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=672.0 Adjusted=0.0014858841010401188 Hits=1376
+Tree 0:
+ (and (or (if a1 a2 d4) (if a0 d1 d4)) (or
+     (if a2 d5 d1) (and (not a0) (or a2 d1))))
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=640.0 Adjusted=0.0015600624024961 Hits=1408
+Tree 0:
+ (if a0 d7 (if a0 d7 (if a1 d2 d0)))
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=592.0 Adjusted=0.0016863406408094434 Hits=1456
+Tree 0:
+ (if (or (not a0) (if (or (not a0) (and d2
+     (not (if d1 d7 (if (and d1 d1) d3 d2)))))
+     (if a1 d2 d0) (and (and d2 d1) (or d3 a2))))
+     (if a1 d2 d0) (and (if a0 (and (or a1 d1)
+     (or d4 d3)) (or d0 a0)) (or d3 a2)))
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=592.0 Adjusted=0.0016863406408094434 Hits=1456
+Tree 0:
+ (and (or (and a2 d7) (or (if a1 d2 d0) (if
+     d2 d2 (if a1 d2 d0)))) (or (if a2 d5 d1)
+     (and a1 d7)))
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=544.0 Adjusted=0.001834862385321101 Hits=1504
+Tree 0:
+ (if (or (not a0) (and d2 (if a0 d7 (if d2
+     d2 d3)))) (or (and d2 a1) (if a1 a2 d4))
+     (and (if a2 d5 d1) (or (if a2 d5 d1) (and
+         (not a0) (or a2 d1)))))
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=520.0 Adjusted=0.0019193857965451055 Hits=1528
+Tree 0:
+ (and (or (if (if d0 a1 a1) (if a0 (and (or
+     a1 d1) (or d4 d3)) (if d2 d2 (if a1 d2 d0)))
+     (if a0 (if (if a2 d6 a1) d5 d1) d4)) (if
+     a1 d2 d0)) (or (if a2 d5 d1) (and (or (not
+     a2) (if a0 d5 d2)) (or (if a2 d5 d1) (if
+     a2 d6 d3)))))
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=456.0 Adjusted=0.002188183807439825 Hits=1592
+Tree 0:
+ (and (or (or (and a2 d7) (and (or a0 d4)
+     (if (if d0 a1 a1) (and a1 d3) (if a0 (if
+         (if a2 d6 a1) d5 d1) d4)))) (and (not a0)
+     (if a1 d2 d0))) (or (or (if a0 d7 (if a1
+     d2 d0)) (if a1 d2 d0)) (if a0 d1 d4)))
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=440.0 Adjusted=0.0022675736961451248 Hits=1608
+Tree 0:
+ (and (or (or (and a2 d7) (and (or a0 d4)
+     (if (if d0 a1 a1) (and a1 d3) (if a0 (if
+         (if a2 d6 a1) d5 d1) d6)))) (and (not a0)
+     (if a1 d2 d0))) (or (or (if a0 d7 (if a1
+     d2 d0)) (if a1 d2 d0)) (if a0 d1 d4)))
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=352.0 Adjusted=0.0028328611898017 Hits=1696
+Tree 0:
+ (and (or (and (if (or (not a0) (and d2 (not
+     (if d1 d7 (if (and d1 d1) d3 d2))))) (if
+     a1 d2 d0) (if a1 d6 d1)) (not a0)) (and (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (or d0 d1))) (if (if d0 a1 a1)
+     (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4)))) (if a0 (or (if a2 d5 d1) (and (or
+     (if (if (or d6 d2) d3 d5) (and (or d2 a0)
+         d7) (and (if a1 d2 d0) d7)) (if a0 d5 d2))
+     (or (if a2 d5 d1) (if a2 d6 d3)))) (if a0
+     (if a1 d2 d0) (if a1 d2 (if a0 d7 (or a2
+     d0))))))
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=352.0 Adjusted=0.0028328611898017 Hits=1696
+Tree 0:
+ (and (or (and (if (or (not a0) (and d2 (not
+     (if d1 d7 (if (and d1 d1) d3 d2))))) (if
+     a1 d2 d0) (if a1 d6 d1)) (not a0)) (and (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (or d0 d1))) (if (if d0 a1 a1)
+     (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4)))) (if a0 (or (if a2 d5 d1) (and (or
+     (if (if (or d6 d2) d3 d5) (and (or d2 a0)
+         d7) (and (if a1 d2 d0) d7)) (if a0 d5 d2))
+     (or (if a2 d5 (and (if a0 d7 d4) (or (not
+         a0) (and d2 (if a0 d1 d4))))) (if a2 d6 d3))))
+     (if a0 (if a1 d2 d0) (if a1 d2 (if a0 d7
+         (or a2 d0))))))
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=348.0 Adjusted=0.0028653295128939827 Hits=1700
+Tree 0:
+ (and (or (and (if (or (not a0) (and (not
+     a0) (not (if d1 d7 (if (and d1 d1) d3 d2)))))
+     (if a1 d2 d0) (if a1 d6 d1)) (not a0)) (and
+     (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+         (if a2 d6 d3) (or d0 d1))) (if (if d0 a1
+     a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (if (or d6 d2) d3 d5) (and (or d2
+         a0) d7) (and (if (if d0 a1 a1) (and a1 d3)
+         (if a0 (if a2 d5 d1) d4)) d7)) (if a0 d5
+         d2)) (or (if a2 d5 d1) (if a2 d6 d3)))) (if
+     a0 (if a1 d2 d0) (if a1 d2 (if a0 d7 (or
+     a2 d0))))))
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=344.0 Adjusted=0.002898550724637681 Hits=1704
+Tree 0:
+ (and (or (and (if (or (not a0) (and d2 (not
+     (if d1 d7 (if (and d1 d1) d3 d2))))) (if
+     a1 d2 d0) (and a1 d7)) (not a0)) (and (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (or d0 d1))) (if (if d0 a1 a1)
+     (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4)))) (if a0 (or (if a2 d5 d1) (and (or
+     (if (if (or d6 d2) d3 d5) (and (or d2 a0)
+         d7) (or (if a2 d5 (not a0)) (and (or (if
+         a2 d5 d1) (if (if d0 a1 a1) (and a1 d3) (if
+         a0 (if (or (not a0) (and d2 (if d7 d5 d7)))
+         d5 d1) d4))) (or (if a2 d5 d1) (if a2 d6
+         d3))))) (if a0 d5 d2)) (or (if a2 d5 (and
+     (if a0 d7 d4) (or (not a0) (and d2 (if a0
+     d1 d4))))) (if a2 d6 d3)))) (if a0 (if a1
+     d2 d0) (if a1 d2 (if a0 d7 (or a2 d0))))))
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=336.0 Adjusted=0.002967359050445104 Hits=1712
+Tree 0:
+ (and (or (and (if (or (not a0) (and d2 (not
+     (if d1 d7 (if (and d1 d1) d3 d2))))) (if
+     a1 d2 d0) (if a1 d6 d1)) (not a0)) (and (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (or d0 d1))) (if (if d0 a1 a1)
+     (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4)))) (if a0 (or (or (if (if (or d6 d2)
+     d3 d5) (if a0 d7 (and (not a0) (if a1 d2
+     d0))) (and a1 d7)) (if a0 d5 d2)) (and (or
+     (or (and (if (or (not a0) (and d2 (not (if
+         d1 d7 (if (or d1 a2) d3 d2))))) (if a1 d2
+         d0) (if a1 d6 d1)) (not a0)) (and (or (and
+         (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+         d3) (or d0 d1))) (if (if d0 a1 a1) (and a1
+         d3) (if a0 (if (if a2 d6 a1) d5 d1) d4))))
+     (if a0 d5 d2)) (or (if a2 d5 d1) (if a2 d6
+     d3)))) (if a0 (if a1 d2 d0) (if a1 d2 (if
+     a0 d7 (or a2 d0))))))
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=320.0 Adjusted=0.003115264797507788 Hits=1728
+Tree 0:
+ (and (or (and (if (or (not a0) (and d2 (not
+     (if d1 d7 (and a1 d3))))) (if a1 d2 d0) (if
+     a1 d6 d1)) (if (or (not a0) (and a1 d7))
+     (or (and d2 a1) (if a1 a2 d4)) (and (if a2
+     (if a0 d7 (if a1 d2 d0)) d1) (or (not a0)
+     (and (not a0) (or (and a2 d7) (and (if a1
+         d2 d0) (if (if d0 a1 a1) (and a1 d3) (if
+         a0 (if (if a2 d6 a1) d5 d1) d4))))))))) (and
+     (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+         (if a2 d6 d3) (or d0 d1))) (if (if d0 a1
+     a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or a0 d2) (or (if a2 d5 d1) (if a2 d6 d3))))
+     (if a0 (if a1 d2 d0) (if a1 d2 (if a0 d7
+         (or a2 d0))))))
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=318.0 Adjusted=0.003134796238244514 Hits=1730
+Tree 0:
+ (and (or (if a2 d5 (and (or (or (and a2 d7)
+     (and (or a0 d4) (if (if d0 a1 a1) (and a1
+         d3) (if a0 (if (if a2 d6 a1) d5 d1) d6))))
+     (and (not a0) (if a1 d2 d0))) (or (or (if
+     a0 d7 (if a1 d2 d0)) (if a1 d2 d0)) (if a0
+     d1 d4)))) (and (or (and (if a0 d7 d4) (if
+     a1 a2 d4)) (or (if a2 d6 d3) (or d0 d1)))
+     (if (if d0 a1 a1) (and a1 d3) (if a0 (if
+         (if a2 d6 a1) d5 d1) d4)))) (if a0 (or (if
+     a2 d5 d1) (and (or (if (or (or (if a0 d7
+     (if a2 d6 a1)) (and (if a2 d6 d3) (or a0
+     d4))) (not d4)) (and (or d2 a0) d7) (and
+     (or (if (if (or d6 d2) d3 d5) (and (or d2
+         a0) d7) (and (if a1 d2 d0) d7)) (if a0 d5
+         d2)) d7)) (if a0 d5 d2)) (or (if a2 d5 d1)
+     (if a2 d6 d3)))) (if a0 (if a1 d2 d0) (if
+     a1 d2 (if a0 d7 (or a2 d0))))))
+
+Generation: 17
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=316.0 Adjusted=0.0031545741324921135 Hits=1732
+Tree 0:
+ (and (or (and (if (or (not a0) (and d2 (not
+     (if d1 d7 (and a1 d3))))) (if a1 d2 d0) (if
+     a1 d6 d1)) (if (or (not a0) (and a1 d7))
+     (or (and d2 a1) (if a1 a2 d4)) (and (if a2
+     (if a0 d7 (if a1 d2 d0)) d1) (if a2 d5 (and
+     (or (or (and a2 d7) (and (or a0 d4) (if (if
+         d0 a1 a1) (and a1 d3) (if a0 (if (if a2 d5
+         d1) d5 d1) d6)))) (and (not a0) (if a1 d2
+         d0))) (or (or (if a0 d7 (if a1 d2 d0)) (if
+     a1 d2 d0)) (if a0 d1 d4))))))) (and (or (and
+     (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+     d3) (or d0 d1))) (if (if d0 a1 a1) (and a1
+     d3) (if a0 (if (if a2 d6 a1) d5 d1) d4))))
+     (if a0 (or (if a2 d5 d1) (and (or a0 d2)
+         (or (if a2 d5 d1) (if a2 d6 d3)))) (if a0
+         (if a1 d2 d0) (if a1 d2 (if a0 d7 (or a2
+         d0))))))
+
+Generation: 18
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=304.0 Adjusted=0.003278688524590164 Hits=1744
+Tree 0:
+ (and (or (and (if (or (not a0) (and d2 (not
+     (if d1 d7 (if (and d1 d1) d3 d2))))) (if
+     a1 d2 d0) (if a1 d6 d1)) (not a0)) (or (and
+     (if (or (not a0) (and d2 (not (if d1 d7 (and
+         a1 d3))))) (if a1 d2 d0) (if a1 d6 d1)) (if
+     (or (not a0) (and a1 d7)) (or (and d2 a1)
+     (if a1 a2 d4)) (and (if a2 (if a0 (if d1
+     d7 (if (and d1 d1) d3 d2)) (if a1 d2 d0))
+     d1) (or (not a0) (and (not a0) (or (and a2
+     d7) (and (if a1 d2 d0) (if (if d0 a1 a1)
+     (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4))))))))) (and (or (and (if a0 d7 d4) (if
+     a1 a2 d4)) (or (if a2 d6 d3) (or d0 d1)))
+     (if (if d0 a1 a1) (and a1 d3) (if a0 (if
+         (if a2 d6 a1) d5 d1) d4))))) (if a0 (or (if
+     a2 d5 d1) (and (or (if (and (or (and a2 d7)
+     (if a1 d2 d0)) (or (if a2 d5 (if a0 d7 (if
+     a1 d2 d0))) (or (if a2 d5 (or a2 d1)) (and
+     a1 d7)))) (and (or d2 a0) d7) (and (if (if
+     d0 a1 a1) (and a1 d3) (if a0 (if d1 d5 d1)
+     d4)) d7)) (if a0 d5 d2)) (or (if (if d0 a1
+     a1) (and a1 d3) (if a0 (not (if d1 d7 (if
+     (and d1 d1) d3 d2))) d4)) (if a2 d6 d3))))
+     (if a0 (if a1 d2 d0) (if a1 d2 (if a0 d7
+         (or a2 d0))))))
+
+Generation: 19
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=298.0 Adjusted=0.0033444816053511705 Hits=1750
+Tree 0:
+ (and (or (and (if (or (if d7 d5 d7) (if a0
+     (if (or (not a0) (and d2 (if d7 d5 d7)))
+         d5 d1) d4)) (if a1 d2 d0) (if a2 d5 (and
+     (or (or (and a2 d7) (and (or a0 d4) (if (if
+         d0 a1 a1) (and a1 d3) (if a0 (if (if a2 d6
+         a1) d5 d1) d6)))) (and (not a0) (if a1 d2
+         d0))) (or (or (if a0 d7 (if a1 d2 d0)) (if
+     a1 d2 d0)) (if a0 d1 d4))))) (not a0)) (and
+     (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+         (if a2 d6 d3) (or d0 d1))) (if (if d0 a1
+     a1) (and a1 d3) (if a0 (if a2 d5 d1) d4))))
+     (if a0 (or (if a2 d5 d1) (and (or (if (if
+         (or a0 d2) d3 (if a2 d5 d1)) (and (or d2
+         a0) d7) (and (if a1 d2 d0) d7)) (if a0 d5
+         d2)) (or (or d0 d1) (if a2 d6 d3)))) (if
+         a0 (if a1 d2 d0) (if a1 d2 (if a0 d7 (or
+         a2 d0))))))
+
+Generation: 20
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=250.0 Adjusted=0.00398406374501992 Hits=1798
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (and (or (or (and a2 d7) (and
+     (or a0 d4) (if (if d0 a1 a1) (and a1 d3)
+     (if a0 (if (if a2 d6 a1) d5 d1) d6)))) (and
+     (not a0) (if a1 d2 d0))) (or (or (if a0 d7
+     (if a1 d2 d0)) (if a1 d2 d0)) (if a0 d1 d4))))
+     (and (or (and (if a0 d7 d4) (if a1 a2 d4))
+         (or (if a2 d6 d3) (or d0 d1))) (if (if d0
+         a1 a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+         d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and a1 d7) d3 d2))))
+         (not d4)) (and (or (if d5 (and (or d2 a0)
+         d7) (and a1 d7)) (if a0 d5 d2)) d7) (and
+         (or (if (if (or d6 d2) d3 d5) (and (or d2
+             a0) d7) (and (if a1 d2 d0) d7)) (if a0 d5
+             d2)) d7)) (if a0 d5 d2)) (or (if a2 d5 d1)
+     (if a2 d6 d3)))) (if a0 (if a1 d2 d0) (if
+     a1 d2 (if a0 d7 (or a2 d0))))))
+
+Generation: 21
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=266.0 Adjusted=0.003745318352059925 Hits=1782
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (and (or (or (and a2 d7) (and
+     (or a0 d4) (if (if d0 a1 a1) (and a1 d3)
+     (if a0 (if a1 d2 d0) d6)))) (and (not a0)
+     (if a1 d2 d0))) (or (or (if a0 d7 (if a1
+     d2 d0)) (if a1 d2 d0)) (if a0 d1 d4)))) (and
+     (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+         (if a2 d6 d3) (or d0 d1))) (if (if d0 a1
+     a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and a1 d7) d3 d2))))
+         (not d4)) (and (or (if d5 (and (or d2 a0)
+         d7) (and a1 d7)) (if a0 d5 d2)) d7) (and
+         (or (if (if (or d6 d2) d3 d5) (and (or d2
+             a0) d7) (and (if a1 d2 d0) d7)) (if a0 d5
+             d2)) d7)) (if a0 d5 d2)) (or (if a2 d5 d1)
+     (if a2 d6 d3)))) (if a0 (if a1 d2 d0) (if
+     a1 d2 (if a0 d7 (or a2 d0))))))
+
+Generation: 22
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=266.0 Adjusted=0.003745318352059925 Hits=1782
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (and (or (or (and a2 d7) (and
+     (or a0 d4) (if (if d0 a1 a1) (and a1 d3)
+     (if a0 (if a1 d2 d0) d6)))) (and (not a0)
+     (if a1 d2 d0))) (or (or (if a0 d7 (if a1
+     d2 d0)) (if a1 d2 d0)) (if a0 d1 d4)))) (and
+     (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+         (if a2 d6 d3) (or d0 d1))) (if (if d0 a1
+     a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and a1 d7) d3 d2))))
+         (if a0 (if a2 d5 d1) d4)) (and (or (if d5
+         (and (or d2 a0) d7) (and a1 d7)) (if a0 d5
+         d2)) d7) (and (or (if (if (or d6 d2) d3 d5)
+         (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+         (if a0 d5 d2)) d7)) (if a0 d5 d2)) (or (if
+     a2 d5 d1) (if a2 d6 d3)))) (if a0 (if a1
+     d2 d0) (if a1 d2 (if a0 d7 (or a2 d0))))))
+
+Generation: 23
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=250.0 Adjusted=0.00398406374501992 Hits=1798
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (and (or a2 (and (not a0) (if
+     a1 d2 d0))) (or (or (if a1 a2 d4) (if a1
+     d2 d0)) (if a0 d1 d4)))) (and (or (and (if
+     a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6 d3)
+     (or d0 d1))) (if (if d0 a1 a1) (and a1 d3)
+     (if a0 (if (if a2 d6 a1) d5 d1) d4)))) (if
+     a0 (or (if a2 d5 d1) (and (or (if (or (or
+     (if a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if
+     (and a1 d7) d3 d2)))) (not d4)) (and (or
+     (if d5 (and (or d2 a0) d7) (and a1 d7)) (if
+     a0 d5 d2)) d7) (and (or (if (if (or d6 d2)
+     d3 d5) (and (or d2 a0) d7) (and (if a1 d2
+     d0) d7)) (if a0 d5 d2)) d7)) (if a0 d5 d2))
+     (or (if a2 d5 d1) (if a2 d6 d3)))) (if a0
+     (if a1 d2 d0) (if a1 d2 (if a0 d7 (or a2
+     d0))))))
+
+Generation: 24
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=250.0 Adjusted=0.00398406374501992 Hits=1798
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (and (or a2 (and (not a0) (if
+     a1 d2 d0))) (or (or (if a1 a2 d4) (if a1
+     d2 d0)) (if a0 d1 d4)))) (and (or (and (if
+     a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6 d3)
+     (or d0 d1))) (if (if d0 a1 a1) (and a1 d3)
+     (if a0 (if (if a2 d6 a1) d5 d1) d4)))) (if
+     a0 (or (if a2 d5 d1) (and (or (if (or (or
+     (if a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if
+     (and a1 d7) d3 d2)))) (not d4)) (and (or
+     (if d5 (and (or d2 a0) d7) (and a1 d7)) (if
+     a0 d5 d2)) d7) (and (or (if (if (or d6 d2)
+     d3 d5) (and (or d2 a0) d7) (if a0 (if a2
+     d5 d1) d4)) (if a0 d5 d2)) d7)) (if a0 d5
+     d2)) (or (if a2 d5 d1) (if a2 d6 d3)))) (if
+     a0 (if a1 d2 d0) (if a1 d2 (if a0 d7 (or
+     a2 d0))))))
+
+Generation: 25
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=232.0 Adjusted=0.004291845493562232 Hits=1816
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or a0 d4) d7) (and (if a2
+     d6 d3) d7)) (and (or (or (and a2 d7) (and
+     (or a0 d4) (if (if d0 a1 a1) (and a1 d3)
+     (if a0 (if a1 d2 d0) d6)))) (and (not a0)
+     (if a1 d2 d0))) (or (or (if a0 d7 (if a1
+     d2 d0)) (if a1 d2 d0)) (if a0 d1 d4)))) (and
+     (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+         (if a2 d6 d3) (or d0 d1))) (if (if d0 a1
+     a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if a1 d2 d0)))) (if a0 (if
+         a2 d5 d1) d4)) (and (or (if d5 (and (or d2
+         a0) d7) (and a1 d7)) (if a0 d5 d2)) d7) (and
+         (or (if (if (or d6 d2) d3 d5) (and (or d2
+             a0) d7) (and (if a1 d2 d0) d7)) (if a0 d5
+             d2)) d7)) (if a0 d5 d2)) (or (if a2 d5 d1)
+     (if a2 d6 d3)))) (if a0 (if a1 d2 d0) (if
+     a1 d2 (if a0 d7 (or a2 d0))))))
+
+Generation: 26
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=226.0 Adjusted=0.004405286343612335 Hits=1822
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (and (or (or (and a2 d7) (and
+     (if a2 d5 d1) (if (if d0 a1 a1) (and a1 d3)
+     (if a0 (if a1 d2 d0) d6)))) (and (not a0)
+     (if a1 d2 d0))) (or (or (or (and d2 a1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and d1 d1) d3 d2))))
+         (not d4)) (and (or d2 a0) d7) (and (or (if
+         (if (or d6 d2) d3 d5) (and (or d2 a0) d7)
+         (and (if a1 d2 d0) d7)) (if a0 d5 d2)) d7))
+         (or a0 d2)) (or (if a2 d5 d1) (if a2 d6 d3))))
+     (if a1 d2 d0)) (if a0 d1 d4)))) (and (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (or d0 d1))) (if (if d0 a1 a1)
+     (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4)))) (if a0 (or (if a2 d5 d1) (and (or
+     (if (or (or (if a0 d7 (if a2 d6 a1)) (not
+         (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+         d4)) (and (or (if d5 (and (or d2 a0) d7)
+         (and a1 d7)) (if a0 d5 d2)) d7) (and (or
+         (if (if (or d6 d2) d3 d5) (and (or d2 a0)
+             d7) (and (if a1 d2 d0) d7)) (if a0 d5 d2))
+         d7)) (if a0 d5 d2)) (or (and a2 d7) (and
+     (or a0 d4) (if (or d0 d1) (and a1 d3) (if
+     a0 d7 d6)))))) (if a0 (if a1 d2 d0) (if a1
+     d2 (if a0 d7 (or a2 d0))))))
+
+Generation: 27
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=180.0 Adjusted=0.0055248618784530384 Hits=1868
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (and (if
+     a1 d2 d0) d7)) (and (or a2 (and (not a0)
+     (if a1 d2 d0))) (or (or (if a1 a2 d4) (if
+     a1 d2 d0)) (if a0 d1 d4)))) (and (or (and
+     (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+     d3) (or d0 d1))) (if (if d0 a1 a1) (and a1
+     d3) (if a0 (if (if a2 d6 a1) d5 d1) d4))))
+     (if a0 (or (if a2 d5 d1) (and (or (if (or
+         (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+             d7 (if (and a1 d7) d3 d2)))) (not d4)) (and
+         (or (if d5 (and (or d2 a0) d7) (and a1 d7))
+             (if a0 d5 d2)) d7) (and (or (or (if a0 d7
+         (if a1 d2 d0)) (if a1 d2 d0)) (if a0 d1 d4))
+         d7)) (if a0 d5 d2)) (or (if a2 d5 d1) (if
+         a2 d6 d3)))) (and (or (and (if (or (not a0)
+         (and d2 (not (if a2 d6 a1)))) (if a2 d6 (or
+         (if a0 (if a1 (if a1 d2 d0) d0) (if a1 d2
+             (if a0 d7 (or a2 d0)))) d0)) (or d2 a0))
+         (not a0)) (and (or (and (if a0 d7 d4) (or
+         (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+             d7 (if (and a1 d7) d3 d2)))) (not d4))) (or
+         (if a2 d6 d3) (or d2 (or (if a2 d5 d1) (and
+         (or (if (or (or (if a0 d7 (if a1 d2 d0))
+             (and (if a2 d6 d3) (or a0 d4))) (not d4))
+             (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+             (if d1 d7 (if (and a1 d3) d3 d2))) (or (if
+         (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+         a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+         a1) (if a2 d6 d3) (if a0 (if a2 d5 d1) d4))))
+         (if a0 (or (if a2 d5 d1) (and (or a0 d2)
+             (or (if a2 d5 d1) (if a2 d6 d3)))) (if a0
+             (if a1 d2 d0) (if a1 d2 (if a0 d7 (or a2
+             d0))))))))
+
+Generation: 28
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=180.0 Adjusted=0.0055248618784530384 Hits=1868
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (and (if
+     a1 d2 d0) d7)) (and (or a2 (and (not a0)
+     (if a1 d2 d0))) (or (or (if a1 a2 d4) (if
+     a1 d2 d0)) (if a0 d1 d4)))) (and (or (and
+     (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+     d3) (or d0 d1))) (if (if d0 a1 a1) (and a1
+     d3) (if a0 (if (if a2 d6 a1) d5 d1) d4))))
+     (if a0 (or (if a2 d5 d1) (and (or (if (or
+         (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+             d7 (if (and a1 d7) d3 d2)))) (not d4)) (and
+         (or (if d5 (and (or d2 a0) d7) (and a1 d7))
+             (if a0 d5 d2)) d7) (and (or (or (if a0 d7
+         (if a1 d2 d0)) (if a1 d2 d0)) (if a0 d1 d4))
+         d7)) (if a0 d5 d2)) (or (if a2 d5 d1) (if
+         a2 d6 d3)))) (and (or (and (if (or (not a0)
+         (and d2 (not (if a2 d6 a1)))) (if a2 d6 (or
+         (if a0 (if a1 (if a1 d2 d0) d0) (if a1 d2
+             (if a0 d7 (or a2 d0)))) d0)) (or d2 a0))
+         (not a0)) (and (or (and (if a0 d7 d4) (or
+         (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+             d7 (if (and a1 d7) d3 d2)))) (not d4))) (or
+         (if a2 d6 d3) (or d2 (or (if a2 d5 d1) (and
+         (or (if (or (or (if a0 d7 (if a1 d2 d0))
+             (and (if a2 d6 d3) (or a0 d4))) (not d4))
+             (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+             (if d1 d7 (if (and a1 d3) d3 d2))) (or (if
+         (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+         a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+         a1) (if a2 d6 d3) (if a0 (if a2 d5 d1) d4))))
+         (if a0 (or (if a2 d5 d1) (and (or a0 d2)
+             (or (if a2 d5 d1) (if a2 d6 d3)))) (if a0
+             (if a1 d2 d0) (if a1 d2 (if a0 d7 (or a2
+             d0))))))))
+
+Generation: 29
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=180.0 Adjusted=0.0055248618784530384 Hits=1868
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (and (if
+     a1 d2 d0) d7)) (and (or a2 (and (not a0)
+     (if a1 d2 d0))) (or (or (if a1 a2 d4) (if
+     a1 d2 d0)) (if a0 d1 d4)))) (and (or (and
+     (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+     d3) (or d0 d1))) (if (if d0 a1 a1) (and a1
+     d3) (if a0 (if (if a2 d6 a1) d5 d1) d4))))
+     (if a0 (or (if a2 d5 d1) (and (or (if (or
+         (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+             d7 (if (and a1 d7) d3 d2)))) (not d4)) (and
+         (or (if d5 (and (or d2 a0) d7) (and a1 d7))
+             (if a0 d5 d2)) d7) (and (or (or (if a0 d7
+         (if a1 d2 d0)) (if a1 d2 d0)) (if a0 d1 d4))
+         d7)) (if a0 d5 d2)) (or (if a2 d5 d1) (if
+         a2 d6 d3)))) (and (or (and (if (or (not a0)
+         (and d2 (not (if a2 d6 a1)))) (if a2 d6 (or
+         (if a0 (if a1 (if a1 d2 d0) d0) (if a1 d2
+             (if a0 d7 (or a2 d0)))) d0)) (or d2 a0))
+         (not a0)) (and (or (and (if a0 d7 d4) (or
+         (or (and a2 d7) (not (if d1 d7 (if (and a1
+             d7) d3 d2)))) (not d4))) (or (if a2 d6 d3)
+         (or d2 (or (if a2 d5 d1) (and (or (if (or
+             (or (if a0 d7 (if a1 d2 d0)) (and (if a2
+                 d6 d3) (or a0 d4))) (not d4)) (and (or d2
+             a0) d7) (and (if a1 d2 d0) d7)) (if d1 d7
+             (if (and a1 d3) d3 d2))) (or (if (or (if
+             a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2 d6
+             d3))))))) (if (if d0 (if d0 a1 a1) a1) (if
+         a2 d6 d3) (if a0 (if a2 d5 d1) d4)))) (if
+         a0 (or (if a2 d5 d1) (and (or a0 d2) (or
+         (if a2 d5 d1) (if a2 d6 d3)))) (if a0 (if
+         a1 d2 d0) (if a1 d2 (if a0 d7 (or a2 d0))))))))
+
+Generation: 30
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=160.0 Adjusted=0.006211180124223602 Hits=1888
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (and (if
+     a1 d2 d0) d7)) (and (or a2 (and (not a0)
+     (if a1 (or d2 a0) d0))) (or (or (if a1 a2
+     d4) (if a1 d2 d0)) (if a0 d1 d4)))) (and
+     (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+         (if a2 d6 d3) (or d0 d1))) (if (if d0 a1
+     a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and a1 d7) d3 d2))))
+         (not d4)) (and (or (if d5 (and (or d2 a0)
+         d7) (and a1 d7)) (if a0 d5 d2)) d7) (and
+         (or (or (if a0 d7 (if a1 d2 d0)) (if a1 d2
+             d0)) (if a0 d1 d4)) d7)) (if a0 d5 d2)) (or
+     (or (or (if a0 d7 (if a2 d6 a1)) (not (if
+         d1 d7 (if (and a1 (or d6 d2)) d3 d2)))) (not
+         d4)) (if a2 d6 d3)))) (and (or (and (if (or
+     (not a0) (and d2 (not (if a2 d6 a1)))) (if
+     a2 d6 (or (if a0 (if a1 (if a1 d2 d0) d0)
+     (if a1 d2 (if a0 d7 (or a2 d0)))) d0)) (or
+     d2 a0)) (not a0)) (and (or (and (if a0 d7
+     d4) (or (and a1 d3) (not d4))) (or (if a2
+     d6 d3) (or d2 (or (if a2 d5 d1) (and (or
+     (if (or (or (if a0 d7 (if a1 d2 d0)) (and
+         (if a2 d6 d3) (or a0 d4))) (not d4)) (and
+         (or d2 a0) d7) (and (if a1 d2 d0) d7)) (if
+     d1 d7 (if (and a1 d3) d3 d2))) (or (if (or
+     (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2
+     d6 d3))))))) (if (if d0 (if d0 a1 a1) a1)
+     (if a2 d6 d3) (if a0 (if a2 d5 d1) d4))))
+     (if a0 (or (if a2 d5 d1) (and (or a0 d2)
+         (or (if a2 d5 d1) (if a2 d6 d3)))) (if a0
+         (if a1 d2 d0) (if a1 d2 (if a0 d7 (or a2
+         d0))))))))
+
+Generation: 31
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=148.0 Adjusted=0.006711409395973154 Hits=1900
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (and (if
+     a1 d2 d0) d7)) (and (or a2 (and (not a0)
+     (if a1 (or d2 a0) d0))) (or (or (if a1 a2
+     d4) (if a1 d2 d0)) (if a0 d1 d4)))) (and
+     (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+         (if a2 d6 d3) (or d0 d1))) (if (if d0 a1
+     a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and a1 d7) d3 d2))))
+         (not d4)) (and (or (if d5 (and (or d2 a0)
+         d7) (and a1 d7)) (if a0 d5 d2)) d7) (and
+         (or (or (if a0 d7 (if a1 d2 d0)) (if a1 d2
+             d0)) (if a0 d1 d4)) d7)) (if a0 d5 d2)) (or
+     a1 (if a2 d6 d3)))) (and (or (and (if (or
+     (not a0) (and d2 (not (if a2 d6 a1)))) (if
+     a2 d6 (or (if a0 (if a1 (if a1 d2 d0) d0)
+     (if a1 d2 (if a0 d7 (or a2 d0)))) d0)) (or
+     d2 a0)) (not a0)) (and (or (and (if a0 d7
+     d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+     d4))) (or (if a2 d6 d3) (or d2 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (if d1 d7 (if (and a1 d3) d3
+     d2))) (or (if (or (if a2 d5 d1) (if a2 d6
+     d3)) d5 d1) (if a2 d6 d3))))))) (if (if d0
+     (if d0 a1 a1) a1) (if a2 d6 d3) (if a0 (if
+     a2 d5 d1) d4)))) (if a0 (or (if a2 d5 d1)
+     (and (or a0 d2) (or (or d2 a0) (if a2 d6
+         d3)))) (if a0 (if a1 d2 d0) (if a1 d2 (if
+     a0 d7 (or a2 d0))))))))
+
+Generation: 32
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=148.0 Adjusted=0.006711409395973154 Hits=1900
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (and (if
+     a1 d2 d0) d7)) (and (or a2 (and (not a0)
+     (if a1 d2 d0))) (or (or (if a1 a2 d4) (if
+     a1 d2 d0)) (if a0 d1 d4)))) (and (or (and
+     (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+     d3) (or d0 d1))) (if (if d0 a1 a1) (and a1
+     d3) (if a0 (if (if a2 d6 a1) d5 d1) d4))))
+     (if a0 (or (if a2 d5 d1) (and (or (if (or
+         (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+             d7 (if (and a1 d7) d3 d2)))) (not d4)) (and
+         (or (if d5 (and (or (if a2 d5 d1) (or (and
+             a2 d7) (and (or (if a2 d6 d3) (or d0 d1))
+             (if (if d0 a1 a1) (and a1 d3) (and (if a1
+                 d2 d0) d7))))) d7) (and a1 d7)) (if a0 d5
+             d2)) d7) (and (or (or (if a0 d7 (if a1 d2
+         d0)) (if a1 d2 d0)) (if a0 d1 d4)) d7)) (if
+         a0 d5 d2)) (or (if a2 d5 d1) (if d0 (if d0
+         a1 a1) a1)))) (and (or (and (if (or (not
+         a0) (and d2 (not (if a2 d6 a1)))) (if a2
+         d6 (or (if a0 (if a1 (if a1 d2 d0) d0) (if
+         a1 d2 (if a0 d7 (or a2 d0)))) d0)) (or d2
+         a0)) (not a0)) (and (or (and (if a0 d7 d4)
+         (or (or (if a0 d7 (if a2 d6 a1)) (not (if
+             d1 d7 (if (and a1 d7) d3 d2)))) (not d4)))
+         (or (if a2 d6 d3) (or d2 (or (if a2 d5 d1)
+             (and (or (if (or (or (if a0 d7 (if a1 d2
+                 d0)) (and (if a2 d6 d3) (or a0 d4))) (not
+                 d4)) (and (or d2 a0) d7) (and (if a1 d2 d0)
+                 d7)) (if d1 d7 (if (and a1 d3) d3 d2))) (or
+                 (if (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1)
+                 (if a2 d6 d3))))))) (if (if d0 (if d0 a1
+         a1) a1) (if a2 d6 d3) (if a0 (if a2 d5 d1)
+         d4)))) (if a0 (or (if a2 d5 d1) (and (if
+         a1 d2 d0) d7)) (if a0 (if a1 d2 d0) (if a1
+         d2 (if a0 d7 (or a2 d0))))))))
+
+Generation: 33
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=148.0 Adjusted=0.006711409395973154 Hits=1900
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (and (if
+     a1 d2 d0) d7)) (and (or a2 (and (not a0)
+     (if a1 (or d2 a0) d0))) (or (if a1 d2 d0)
+     (if a0 d1 d4)))) (and (or (and (if a0 d7
+     d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+     d0 d1))) (if (if d0 a1 a1) (and a1 d3) (if
+     a0 (if (if a2 d6 a1) d5 d1) d4)))) (if a0
+     (or (if a2 d5 d1) (and (or (if (or (or (if
+         a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if (and
+         a1 d7) d3 d2)))) (not d4)) (and (or (if d5
+         (and (or d2 a0) d7) (and a1 d7)) (if a0 d5
+         d2)) d7) (and (or (or (if a0 d7 (if a1 d2
+         d0)) (if a1 d2 d0)) (if a0 d1 d4)) d7)) (if
+         a0 d5 d2)) (or (if a2 d5 d1) (or (if (if
+         a1 d2 d0) (and (or (if d5 (and (or d2 a0)
+         d7) (and a1 d7)) (if a0 d5 d2)) d7) (and
+         (or (or (if a0 d7 (if a1 d2 d0)) (if a1 d2
+             d0)) (if a0 d1 d4)) d7)) (if a0 d5 d2)))))
+     (and (or (and (if (or (not a0) (and d2 (not
+         (if a2 d6 a1)))) (if a2 d6 (or (if a0 (if
+         a1 (if a1 d2 d0) d0) (if a1 d2 (if a0 d7
+         (or a2 d0)))) d0)) (or d2 a0)) (not a0))
+         (and (or (and (if a0 d7 d4) (or (or (if a0
+             d7 (if a2 d6 a1)) (not (if d1 d7 (if (and
+             a1 d7) d3 d2)))) (not d4))) (or (if a2 d6
+             d3) (or d2 (or (if a2 d5 d1) (and (or (if
+             (or (or (if a0 d7 (if a1 d2 d0)) (and (if
+                 a2 d6 d3) (or a0 d4))) (not d4)) (and (or
+             d2 a0) d7) (and (if a1 d2 d0) d7)) (if d1
+             d7 (if (and a1 d3) d3 d2))) (or (if (or (if
+             a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2 d6
+             d3))))))) (if (if d0 (if (if (if d0 a1 a1)
+             (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+             d4)) a1 a1) a1) (if a2 d6 d3) (if a0 (if
+             a2 d5 d1) d4)))) (if a0 (or (if a2 d5 d1)
+         (and (or a0 d2) (or (or d2 a0) (if a2 d6
+             d3)))) (if a0 (if a1 d2 d0) (if a1 d2 (if
+         a0 d7 (or a2 d0))))))))
+
+Generation: 34
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=148.0 Adjusted=0.006711409395973154 Hits=1900
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (and (if
+     a1 d2 d0) d7)) (and (or a2 (and (not a0)
+     (if a1 (or d2 a0) d0))) (or (if a1 d2 d0)
+     (if a0 d1 d4)))) (and (or (and (if a0 d7
+     d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+     d0 d1))) (if (if d0 a1 a1) (and a1 d3) (if
+     a0 (if (if a2 d6 a1) d5 d1) d4)))) (if a0
+     (or (if a2 d5 d1) (and (or (if (or (or (if
+         a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if (and
+         a1 d7) d3 d2)))) (not d4)) (and (or (if d5
+         (and (or d2 a0) d7) (and a1 d7)) (if a0 d5
+         d2)) d7) (and (or (or (if a0 d7 (if a1 d2
+         d0)) (if a1 d2 d0)) (if a0 d1 d4)) d7)) (if
+         a0 d5 d2)) (or (if a2 d5 d1) (or (if (or
+         (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+             d7 (if (and a1 d7) d3 d2)))) (not d4)) (and
+         (or (if d5 (and (or d2 a0) d7) (and a1 d7))
+             (if a0 d5 d2)) d7) (and (or (or (if a0 d7
+         (if a1 d2 d0)) (if a1 d2 d0)) (if a0 d1 d4))
+         d7)) (if a0 d5 d2))))) (and (or (and (if
+     (or (not a0) (and d2 (not (if a2 d6 a1))))
+     (if a2 d6 (or (if a0 (if a1 (if a1 d2 d0)
+         d0) (if a1 d2 (if a0 d7 (or a2 d0)))) d0))
+     (or d2 a0)) (not a0)) (and (or (and (if a0
+     d7 d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+     d4))) (or (if a2 d6 d3) (or d2 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (if d1 d7 (if (and a1 d3) d3
+     d2))) (or (if (or (if a2 d5 d1) (if a2 d6
+     d3)) d5 d1) (if a2 d6 d3))))))) (if (if d0
+     (if (if (or (if a0 d7 (if a2 d6 a1)) (not
+         (if d1 (or (if a2 d5 d1) (and (if a1 d2 d0)
+             d7)) (if (and a1 d7) d3 d2)))) (and a1 d3)
+         (if a0 (if (if a2 d6 a1) d5 d1) d4)) a1 a1)
+     a1) (if a2 d6 d3) (if a0 (if a2 d5 d1) d4))))
+     (if a0 (or (if a2 d5 d1) (and (or a0 d2)
+         (or (or d2 a0) (if a2 d6 d3)))) (if a0 (if
+         a1 d2 d0) (if a1 d2 (if a0 d7 (or a2 d0))))))))
+
+Generation: 35
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=116.0 Adjusted=0.008547008547008548 Hits=1932
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a1
+     d2 d0)) (and (or d2 a0) d7) (and (if a1 d2
+     d0) d7)) (and (or a2 (and (not a0) (if a1
+     d2 d0))) (or (or (if a1 a2 d4) (if a1 d2
+     d0)) (if a0 d1 d4)))) (and (or (and (if a0
+     d7 d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+     d0 d1))) (if (if d0 a1 a1) (and a1 d3) (if
+     a0 (if (if a2 d6 a1) d5 d1) d4)))) (if a0
+     (or (if a2 d5 d1) (and (or (if (or (or (if
+         a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if (and
+         a1 d7) d3 d2)))) (not d4)) (and (or (if d5
+         (and (or d2 a0) d7) (and a1 d7)) (if a0 d5
+         d2)) d7) (and (or (or (if a0 d7 (if a1 d2
+         d0)) (or (or (if a0 d7 (if a1 d2 d0)) (if
+         a1 a2 d4)) (if a0 d1 d4))) (if a0 d1 d4))
+         d7)) (if a0 d5 d2)) (or (if d0 a1 a1) (if
+         a2 d6 d3)))) (and (or (and (if (or (not a0)
+     (and d2 (not (if a2 d6 a1)))) (if a2 d6 (or
+     (if a0 (if a1 (if a1 d2 d0) d0) (if a1 d2
+         (if a0 d7 (or a2 d0)))) d0)) (or d2 a0))
+     (not a0)) (and (or (and (if a0 d7 d4) (or
+     (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+         d7 (if (and a1 d7) d3 d2)))) (not d4))) (or
+     (if a2 d6 d3) (or d2 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a1 d2 d0))
+         (and (if a2 d6 d3) (or a0 d4))) (not d4))
+         (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+         (if d1 d7 (if (and a1 d3) (or (if a2 d5 d1)
+             (if a2 d6 d3)) d2))) (or (if (or (if a2 d5
+     d1) (if a2 d6 d3)) d5 d1) (if a2 d6 d3)))))))
+     (if (if d0 (if d0 a1 a1) a1) (if a2 d6 d3)
+         (if a0 (if (if a2 d6 a1) d5 d1) d4)))) (if
+     a0 (or (if a2 d5 d1) (and (or a0 d2) (or
+     (if a2 d5 (if a0 d1 d4)) (if a2 d6 d3))))
+     (and (or a2 (and (not a0) (if a1 d2 d0)))
+         (or (or (if a1 a2 d4) (if a1 d2 d0)) (if
+             a0 d1 d4)))))))
+
+Generation: 36
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=116.0 Adjusted=0.008547008547008548 Hits=1932
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a1
+     d2 d0)) (and (or d2 a0) d7) (and (if a1 d2
+     d0) d7)) (and (or a2 (and (not a0) (if a1
+     d2 d0))) (or (or (if a1 a2 d4) (if a1 d2
+     d0)) (if a0 d1 d4)))) (and (or (and (if a0
+     d7 d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+     d0 d1))) (if (if d0 a1 a1) (and a1 d3) (if
+     a0 (if (if a2 d6 a1) d5 d1) d4)))) (if a0
+     (or (if a2 d5 d1) (and (or (if (or (or (if
+         a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if (and
+         a1 d7) d3 d2)))) (not d4)) (and (or (if d5
+         (and (or d2 a0) d7) (and a1 d7)) (if a0 d5
+         d2)) d7) (and (or (or (if a0 d7 (if a1 d2
+         d0)) (or (if a0 d7 (if a1 d2 d0)) (if a0
+         d1 d4))) (if a0 d1 d4)) d7)) (if a0 d5 d2))
+         (or (if d0 a1 a1) (if a2 d6 d3)))) (and (or
+     (and (if (or (not a0) (and d2 (not (if a2
+         d6 a1)))) (if a2 d6 (or (if a0 (if a1 (if
+         a1 d2 d0) d0) (if a1 d2 (if a0 d7 (or a2
+         d0)))) d0)) (or d2 a0)) (not a0)) (and (or
+     (and (if a0 d7 d4) (or (or (if a0 d7 (if
+         a2 d6 a1)) (not (if d1 d7 (if (and a1 d7)
+         d3 d2)))) (not d4))) (or (if a2 d6 d3) (or
+     d2 (or (if a2 d5 d1) (and (or (if (or (or
+     (if a0 d7 (if a1 d2 d0)) (and (if a2 d6 d3)
+     (or a0 d4))) (not d4)) (and (or d2 a0) d7)
+     (and (if a1 d2 d0) d7)) (if d1 d7 (if (and
+     a1 d3) (or (if a2 d5 d1) (if a2 d6 d3)) d2)))
+     (or (if (or (if a2 d5 d1) (if a2 d6 d3))
+         d5 d1) (if a2 d6 d3))))))) (if (if d0 (if
+     d0 a1 a1) a1) (if a2 d6 d3) (if a0 (if (if
+     a2 d6 a1) d5 d1) d4)))) (if a0 (or (if a2
+     d5 d1) (and (or a0 d2) (or (if a2 d5 (if
+     a0 d1 d4)) (if a2 d6 d3)))) (and (or a2 (and
+     (not a0) (if a1 d2 d0))) (or (or (if a1 a2
+     d4) (if a1 d2 d0)) (if a0 d1 d4)))))))
+
+Generation: 37
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=116.0 Adjusted=0.008547008547008548 Hits=1932
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a1
+     d2 d0)) (and (or d2 a0) d7) (and (if a1 d2
+     d0) d7)) (and (or a2 (and (not a0) (if a1
+     d2 d0))) (or (or (if a1 a2 d4) (if a1 d2
+     d0)) (if a0 (and a1 d3) (if a1 d2 (if a0
+     d7 (or a2 d0))))))) (and (or (and (if a0
+     d7 d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+     d0 d1))) (if (if d0 a1 a1) (and a1 d3) (if
+     a0 (if (if a2 d6 a1) d5 d1) d4)))) (if a0
+     (or (if a2 d5 d1) (and (or (if (or (or (if
+         a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if (and
+         a1 d7) d3 d2)))) (not d4)) (and (or (if d5
+         (and (or d2 a0) d7) (and a1 d7)) (if a0 d5
+         d2)) d7) (and (or (or (if a0 d7 (if a1 d2
+         d0)) (or (or (if a0 d7 (if a1 d2 d0)) (if
+         a1 a2 d4)) (if a0 d1 d4))) (if a0 d1 d4))
+         d7)) (if a0 d5 d2)) (or (if d0 a1 a1) (if
+         a2 d6 d3)))) (and (or (and (if (or (not a0)
+     (and d2 (not (if a2 d6 a1)))) (if a2 d6 (or
+     (if a0 (if a1 (if a1 d2 d0) d0) (if a1 d2
+         (if a0 d7 (or a2 d0)))) d0)) (or d2 a0))
+     (not a0)) (and (or (and (if a0 d7 d4) (or
+     (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+         d7 (if (and a1 d7) d3 d2)))) (not d4))) (or
+     (if a2 d6 d3) (or d2 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a1 d2 d0))
+         (and (if a2 d6 d3) (or a0 d4))) (not d4))
+         (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+         (if d1 d7 (if (and a1 d3) (or (if a2 d5 d1)
+             (if a2 d6 d3)) d2))) (or (if (or (if a2 d5
+     d1) (if a2 d6 d3)) d5 d1) (if a2 d6 d3)))))))
+     (if (if d0 (if d0 a1 a1) a1) (if a2 d6 d3)
+         (if a0 (if (if a2 d6 a1) d5 d1) d4)))) (if
+     a0 (or (if a2 d5 d1) (and (or a0 d2) (or
+     (if a2 d5 (if a0 d1 d4)) (if a2 d6 d3))))
+     (and (or a2 (and (not a0) (if a1 d2 d0)))
+         (or (or (if a1 a2 d4) (if a1 d2 d0)) (if
+             a0 d1 d4)))))))
+
+Generation: 38
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=104.0 Adjusted=0.009523809523809525 Hits=1944
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a1
+     d2 d0)) (and (or (and (if a0 d7 d4) (or (or
+     (if a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if
+     a2 d6 d3)))) (not d4))) (or (if a2 d6 d3)
+     (or d2 (or (if a2 d5 d1) (and (or (if (or
+         (or (if a0 d7 (if a1 d2 d0)) (and (if a2
+             d6 d3) (or a0 d4))) (not d4)) (and (or d2
+         a0) d7) (and (if a1 d2 d0) d7)) (if d1 d7
+         (if (and a1 d3) d3 d2))) (or (if (or (if
+         a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2 d6
+         d3))))))) (if (if d0 (if d0 a1 a1) a1) (if
+     a2 d6 d3) (if a0 (if a2 d5 d1) d4))) (and
+     (if a1 d2 d0) d7)) (and (or a2 (and (not
+     a0) (if a1 d2 d0))) (or (or (if a1 a2 d4)
+     (if a1 d2 d0)) (if a0 d1 d4)))) (and (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (or d0 d1))) (if (if d0 a1 a1)
+     (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4)))) (if a0 (or (if a2 d5 d1) (and (or
+     (if (or (or (if a0 d7 (if a2 d6 a1)) (not
+         (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+         d4)) (and (or (if d5 (and (or d2 a0) d7)
+         (and a1 d7)) (if a0 d5 d2)) d7) (and (or
+         (or (if a0 d7 (if a1 d2 d0)) (or (if a0 d7
+             (if a1 d2 d0)) (if a0 d1 d4))) (if a0 d1
+         d4)) d7)) (or (if a2 d5 d1) (and (or (if
+     (or (or (if a0 d7 (if a1 d2 d0)) (and (if
+         a2 d6 d3) (or a0 d4))) (not d4)) (and (or
+     d2 a0) d7) (and (if a1 d2 d0) d7)) (if d1
+     d7 (if (and a1 d3) d3 d2))) (or (if (or (if
+     a2 d5 d1) (if a2 d6 d3)) d5 d1) (or (and
+     (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+     d3) (if a2 d6 a1))))))) (or (if d0 a1 a1)
+     (if a2 d6 d3)))) (and (or (and (if (or (not
+     a0) (and d2 (not (if a2 d6 a1)))) (if a2
+     d6 (or (if a0 (if a1 (if a1 d2 d0) d0) (if
+     a1 d2 (if a0 d7 (or a2 d0)))) d0)) (or d2
+     a0)) (not a0)) (and (or (and (if a0 d7 d4)
+     (or (or (if a0 d7 (if a2 d6 a1)) (not (if
+         d1 d7 (if (and a1 d7) d3 d2)))) (not d4)))
+     (or (if a2 d6 d3) (or d2 (or (if a2 d5 d1)
+         (and (or (if (or (or (if a0 d7 (if a1 d2
+             d0)) (and (if a2 d6 d3) (or a0 d4))) (not
+             d4)) (and (or d2 a0) d7) (and (if a1 d2 d0)
+             d7)) (if d1 d7 (if (and a1 d3) (or (if a2
+             d5 d1) (if a2 d6 d3)) d2))) (or (if (or (if
+             a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2 d6
+             d3))))))) (if (if d0 (if d0 a1 a1) a1) (if
+     a2 d6 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4)))) (if a0 (or (if a2 d5 d1) (and (or
+     a0 d2) (or (if a2 d5 (if a0 d1 d4)) (if a2
+     d6 d3)))) (and (or a2 (and (not a0) (if a1
+     d2 d0))) (or (or (if a1 a2 d4) (if a1 d2
+     d0)) (if a0 d1 d4)))))))
+
+Generation: 39
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=104.0 Adjusted=0.009523809523809525 Hits=1944
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a1
+     d2 d0)) (and (or (and (if a0 d7 d4) (or (or
+     (if a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if
+     a2 d6 d3)))) (not d4))) (or (if a2 d6 d3)
+     (or d2 (or (if a2 d5 d1) (and (or (if (or
+         (or (if a0 d7 (if a1 d2 d0)) (and (if a2
+             d6 d3) (or a0 d4))) (not d4)) (and (or d2
+         a0) d7) (and (if a1 d2 d0) d7)) (if d1 d7
+         (if (and a1 d3) d3 d2))) (or (if (or (if
+         a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2 d6
+         d3))))))) (if (if d0 (if d0 a1 a1) a1) (if
+     a2 d6 d3) (if a0 (if a2 d5 d1) d4))) (and
+     (if a1 d2 d0) d7)) (and (or a2 (and (not
+     a0) (if a1 d2 d0))) (or (or (if a1 a2 d4)
+     (if a1 d2 d0)) (if a0 d1 d4)))) (and (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (or d0 d1))) (if (if d0 a1 a1)
+     (and a1 d3) (if a0 (if (if a2 d6 a1) d5 d1)
+     d4)))) (if a0 (or (if a2 d5 d1) (and (or
+     (if (or (or (if a0 d7 (if a2 d6 a1)) (not
+         (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+         d4)) (and (or (if d5 (and (or d2 a0) d7)
+         (and a1 d7)) (if a0 d5 d2)) d7) (and (or
+         (or (if a0 d7 (if a1 d2 d0)) (or (if a0 d7
+             (if a1 d2 d0)) (if a0 d1 d4))) (if a0 d1
+         d4)) d7)) (or (if a2 d5 d1) (and (or (if
+     (or (or (if a0 d7 (if a1 d2 d0)) (and (if
+         a2 d6 d3) (or a0 d4))) (not d4)) (and (or
+     d2 a0) d7) (and (if a1 d2 d0) d7)) (if d1
+     d7 (if (and a1 d3) d3 d2))) (or (if (or (if
+     a2 d5 d1) (if a2 d6 d3)) d5 d1) (or (and
+     (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+     d3) (if a2 d6 a1))))))) (or (if d0 a1 a1)
+     (if a2 d6 d3)))) (and (or (and (if (or (not
+     a0) (and d2 (not (if a2 d6 a1)))) (if a2
+     d6 (or (if a0 (if a1 (if a1 d2 d0) d0) (if
+     a1 d2 (if a0 d7 (or a2 d0)))) (if a0 d5 d2)))
+     (or d2 a0)) (not a0)) (and (or (and (if a0
+     d7 d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+     d4))) (or (if a2 d6 d3) (or d2 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (if d1 d7 (if (and a1 d3) (or
+     (if a2 d5 d1) (if a2 d6 d3)) d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+     a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+     a1) (if a2 d6 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or a0 d2) (or (if a2 d5 (if a0 d1 d4)) (if
+     a2 d6 d3)))) (and (or a2 (and (not a0) (if
+     a1 d2 d0))) (or (or (if a1 a2 d4) (if a1
+     d2 d0)) (if a0 d1 d4)))))))
+
+Generation: 40
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=72.0 Adjusted=0.0136986301369863 Hits=1976
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a1
+     d2 d0)) (and (or d2 a0) d7) (and (if a1 d2
+     d0) d7)) (and (or a2 (and (not a0) (if a1
+     d2 d0))) (or (or (if a1 a2 d4) (if a1 d2
+     d0)) (if a0 (and a1 d3) (if a1 d2 (if a0
+     d7 (or a2 d0))))))) (and (or (and (if a0
+     d7 d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+     d0 d1))) (if (if d0 a1 a1) (if a2 d6 d3)
+     (if a0 (if (if a2 d6 a1) d5 d1) d4)))) (if
+     a0 (or (if a2 d5 d1) (and (or (if (or (or
+     (if a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if
+     (and a1 d7) d3 d2)))) (not d4)) (and (or
+     (if d5 (and (or d2 a0) d7) (and a1 d7)) (if
+     a0 d5 d2)) d7) (and (or (or (if a0 d7 (if
+     a1 d2 d0)) (or (or (if a0 d7 (if a1 d2 d0))
+     (if a1 a2 d4)) (if a0 d1 d4))) (if a0 d1
+     d4)) d7)) (if a0 d5 d2)) (or (if d0 a1 a1)
+     (if a2 d6 d3)))) (and (or (and (if (or (not
+     a0) (and d2 (not (if a2 d6 a1)))) (if a2
+     d6 (or (if a0 (if a1 (if a1 d2 d0) d0) (if
+     a1 d2 (if a0 d7 (or a2 d0)))) (if a2 (if
+     (or (or (if a0 d7 (if a1 d2 d0)) (and (if
+         a2 d6 d3) (or a0 d4))) (if a1 d2 d0)) (and
+     (or d2 a0) d7) (and (if a1 d2 d0) d7)) (and
+     (or a2 (and (not a0) (if a1 d2 d0))) (or
+     (or (if a2 d6 d3) (or d0 d1)) (if a0 d1 d4))))))
+     (or d2 a0)) (not a0)) (and (or (and (if a0
+     d7 d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+     d4))) (or (if a2 d6 d3) (or d2 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 (if a2
+     d5 d1) d4) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (if d1 d7 (if (and a1 d3) (or
+     (if a2 d5 d1) (if a2 d6 d3)) d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+     a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+     a1) (if a2 d6 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or a0 d2) (or (if a2 d5 (if a0 d1 d4)) (if
+     a2 d6 d3)))) (and (or a2 (and (not a0) (if
+     a1 d2 d0))) (or (or (if a1 a2 d4) (if a1
+     d2 d0)) (if a0 d1 d4)))))))
+
+Generation: 41
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=72.0 Adjusted=0.0136986301369863 Hits=1976
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a1
+     d2 d0)) (and (or d2 a0) d7) (if a1 d2 d0))
+     (and (or a2 (and (not a0) (if a1 d2 d0)))
+         (or (or (if a1 a2 d4) (if a1 d2 d0)) (if
+             a0 d1 d4)))) (and (or (and (if a0 d7 d4)
+     (if a1 a2 d4)) (or (if a2 d6 d3) (or d0 d1)))
+     (if (if d0 a1 a1) (if a2 d6 d3) (if a0 (if
+         (if a2 d6 a1) d5 d1) d4)))) (if a0 (or (if
+     a2 d5 d1) (and (or (if (or (or (if a0 d7
+     (if a2 d6 a1)) (not (if d1 d7 (if (and a1
+     d7) d3 d2)))) (not d4)) (and (or (if d5 (and
+     (or d2 a0) d7) (and a1 d7)) (if a0 d5 d2))
+     d7) (and (or (or (if a0 d7 a0) (or (or (if
+     a0 d7 (if a1 d2 d0)) (if a1 a2 d4)) (if a0
+     d1 d4))) (if a0 d1 d4)) d7)) (if a0 d5 d2))
+     (or (if d0 a1 a1) (if a2 d6 d3)))) (and (or
+     (and (if (or (not a0) (and d2 (not (if a2
+         d6 a1)))) (if a2 d6 (or (if a0 (if a1 (if
+         a1 d2 d0) d0) (if a1 d2 (if a0 d7 (or a2
+         d0)))) d0)) (or d2 a0)) (not a0)) (and (or
+     (and (if a0 d7 d4) (or (or (and (if a0 d7
+         d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+         d0 d1))) (not d4))) (or (if a2 d6 d3) (or
+     d2 (if a2 d6 d3)))) (if (if d0 (if d0 a1
+     a1) a1) (if a2 d6 d3) (if a0 (if (if a2 d6
+     a1) d5 d1) d4)))) (if a0 (or (if a2 d5 d1)
+     (and (or a0 d2) (or (if a2 d5 (if a0 d1 d4))
+         (if a2 d6 d3)))) (and (or a2 (and (not a0)
+     (if a1 d2 d0))) (or (or (if a1 a2 d4) (if
+     a1 d2 d0)) (if a0 d1 d4)))))))
+
+Generation: 42
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=72.0 Adjusted=0.0136986301369863 Hits=1976
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a1
+     d2 d0)) (and (or d2 a0) d7) (if a1 d2 d0))
+     (and (or a2 (and (not a0) (if a1 d2 d0)))
+         (or (or (if a1 a2 d4) (if a1 d2 d0)) (if
+             a0 d1 d4)))) (and (or (and (if a0 d7 d4)
+     (if a1 a2 d4)) (or (if a2 d6 d3) (or d0 d1)))
+     (if (if d0 a1 a1) (if a2 d6 d3) (if a0 (if
+         (if a2 d6 a1) d5 d1) d4)))) (if a0 (or (if
+     a2 d5 d1) (and (or (if (or (or (if a0 d7
+     (if a2 d6 a1)) (not (if d1 d7 (if (and a1
+     d7) d3 d2)))) (not d4)) (and (or (if d5 (and
+     (or d2 a0) d7) (and a1 d7)) (if a0 d5 d2))
+     d7) (and (or (or (if a0 d7 a0) (or (or (if
+     a0 d7 (if a1 d2 d0)) (if a1 a2 d4)) (if a0
+     d1 d4))) (if a0 d1 d4)) d7)) (if a0 d5 d2))
+     (or (if d0 a1 a1) (if a2 d6 d3)))) (and (or
+     (and (if (or (not a0) (and d2 (not (if a2
+         d6 a1)))) (if a2 d6 (or (if a0 (if a1 (if
+         a1 d2 d0) d0) (if a1 d2 (if a0 d7 (or a2
+         d0)))) d0)) (or d2 a0)) (not a0)) (and (or
+     (and (if a0 d7 d4) (or (or (and (if a0 d7
+         d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+         d0 d1))) (not d4))) (or (if a2 d6 d3) (or
+     d2 (if a2 d6 d3)))) (if (if d0 (if d0 a1
+     a1) a1) (if a2 d6 d3) (if a0 (if (if a2 d6
+     a1) d5 d1) d4)))) (if a0 (or (if a2 d5 d1)
+     (and (or a0 d2) (or (if a2 d5 (if a0 d1 d4))
+         (if a2 d6 d3)))) (and (or a2 (and (not a0)
+     (if a1 d2 d0))) (or (or (if a1 a2 d4) (if
+     a1 d2 d0)) (if a0 d1 d4)))))))
+
+Generation: 43
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=64.0 Adjusted=0.015384615384615385 Hits=1984
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     (not d4) d2 d0)) (and (if a2 d6 d3) d7))
+     (if a1 d2 d0)) (and (or d2 a0) d7) (if a1
+     d2 (or (and (if a0 d7 d4) (or (or (if a0
+     d7 (if a2 d6 a1)) (not (if d1 d7 (if a2 d6
+     d3)))) (not d4))) (or (if a2 d6 d3) (or d2
+     (or (if a2 d5 d1) (and (or (if (or (or (if
+         a0 d7 (if a1 d2 d0)) (and (if a2 d6 d3) (or
+         a0 d4))) (not d4)) (and (or d2 a0) d7) (and
+         (if a1 d2 d0) d7)) (if d1 d7 (if (and a1
+         d3) d3 d2))) (or (if (or (if a2 d5 d1) (if
+         a2 d6 d3)) d5 d1) (if a2 d6 d3))))))))) (and
+     (or a2 (and (not a0) (if a1 d2 d0))) (or
+     (or (if a1 a2 d4) (if a1 d2 d0)) (if a0 d1
+     d4)))) (and (or (and (if a0 d7 d4) (if a1
+     a2 d4)) (or (if a2 d6 d3) (or d0 d1))) (if
+     (if d0 a1 a1) (if a2 d6 d3) (if a0 (if (if
+     a2 d6 a1) d5 d1) d4)))) (if a0 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a2 d6 a1)) (not (if d1 d7 (if (and a1 d7)
+     d3 d2)))) (not d4)) (and (or (if d5 (and
+     (or d2 a0) d7) (and a1 d7)) (if a0 d5 d2))
+     d7) (and (or (or (if a0 d7 a0) (or (or (if
+     a0 d7 (if a1 d2 d0)) (if a1 a2 d4)) (if a0
+     d1 d4))) (if a0 d1 d4)) d7)) (if a0 d5 d2))
+     (or (if d0 a1 a1) (if a2 d6 d3)))) (and (or
+     (and (if (or (not a0) (and d2 (not (if a2
+         d6 a1)))) (if a2 d6 (or (if a0 (if a1 (if
+         a1 d2 d0) d0) (if a1 d2 (if a0 d7 (or a2
+         d0)))) d0)) (or d2 a0)) (not a0)) (and (or
+     (and (if a0 d7 d4) (or (or (and (if a0 d7
+         d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+         d0 d1))) (not d4))) (or (if a2 d6 d3) (or
+     d2 (if a2 d6 d3)))) (if (if d0 (if d0 a1
+     a1) a1) (if a2 d6 d3) (if a0 (if (if a2 d6
+     a1) d5 d1) d4)))) (if a0 (or (if a2 d5 d1)
+     (and (or a0 d2) (or (if a2 d5 (if a0 d1 d4))
+         (if a2 d6 d3)))) (and (or a2 (and (not a0)
+     (if a1 d2 d0))) (or (or (if a1 a2 d4) (if
+     a1 d2 d0)) (if a0 d1 d4)))))))
+
+Generation: 44
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=52.0 Adjusted=0.018867924528301886 Hits=1996
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a0
+     d7 (if a2 d6 a1))) (and (or (and (if a0 d7
+     d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if a2 d6 d3)))) (not d4))) (or
+     (if a2 d6 d3) (or d2 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a1 d2 d0))
+         (and (if a2 d6 d3) (or a0 d4))) (not d4))
+         (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+         (if d1 d7 (if (and a1 d3) d3 d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+     a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+     a1) (if a0 d7 (if a2 d6 a1)) (if a0 (if a2
+     d5 d1) d4))) (and (if a1 d2 d0) d7)) (and
+     (or a2 (and (not a0) (if a1 d2 d0))) (or
+     (or (if a1 a2 d4) (if a1 d2 d0)) (if a0 d1
+     d4)))) (and (or (and (if a0 d7 d4) (if a1
+     a2 d4)) (or (if a2 d6 d3) (or d0 d1))) (if
+     (if d0 a1 a1) (and a1 d3) (if a0 (if (if
+     a2 d6 a1) d5 d1) d4)))) (if a0 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a2 d6 a1)) (not (if d1 d7 (if (and a1 d7)
+     d3 d2)))) (not d4)) (and (or (if d5 (and
+     (or d2 a0) d7) (and a1 d7)) (if a0 d5 d2))
+     d7) (and (or (or (if a0 d7 (if a1 d2 d0))
+     (or (if a0 d7 (if a1 d2 d0)) (if a0 d1 d4)))
+     (if a0 d1 d4)) d7)) (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a1 d2 d0))
+         (and (if a2 d6 d3) (or a0 d4))) (not d4))
+         (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+         (if d1 d7 (if (and a1 d3) d3 d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (if a2 d6 a1))))))) (or (if d0
+     a1 a1) (if a2 d6 d3)))) (and (or (and (if
+     (or (not a0) (and d2 (not (if a2 d6 a1))))
+     (if a2 d6 (or (if a0 (if a1 (if a1 d2 d0)
+         d0) (if a1 d2 (if a0 d7 (or a2 d0)))) (if
+         a0 d5 d2))) (or d2 a0)) (not a0)) (and (or
+     (and (if a0 d7 d4) (or (or (if a0 d7 (if
+         a2 d6 a1)) (not (if d1 d7 (if (and a1 d7)
+         d3 d2)))) (not d4))) (or (if a2 d6 d3) (or
+     d2 (or (if a2 d5 d1) (and (or (if (or (or
+     (if a0 d7 (if a1 d2 d0)) (and (if a2 d6 d3)
+     (or a0 d4))) (not d4)) (and (or d2 a0) d7)
+     (and (if a1 d2 d0) d7)) (if d1 d7 (if (and
+     a1 d3) (or (if a2 d5 d1) (if a2 d6 d3)) d2)))
+     (or (if (or (if a2 d5 d1) (if a2 d6 d3))
+         d5 d1) (if a2 d6 d3))))))) (if (if d0 (if
+     d0 a1 a1) a1) (if a2 d6 d3) (if a0 (if (if
+     a2 d6 a1) d5 d1) d4)))) (if a0 (not (if d1
+     d7 (if (if a2 d6 d3) d3 d2))) (and (or a2
+     (and (not a0) (if a1 d2 d0))) (or (or (if
+     a1 a2 d4) (if a1 d2 d0)) (or (if a1 a2 d4)
+     (if a1 d2 d0))))))))
+
+Generation: 45
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=52.0 Adjusted=0.018867924528301886 Hits=1996
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a0
+     d7 (if a2 d6 a1))) (and (or (and (if a0 d7
+     d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if a2 d6 d3)))) (not d4))) (or
+     (if a2 d6 d3) (or d2 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a1 d2 d0))
+         (and (if a2 d6 d3) (or a0 d4))) (not d4))
+         (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+         (if d1 d7 (if (and a1 d3) d3 d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+     a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+     a1) (if a0 d7 (if a2 d6 a1)) (if a0 (if a2
+     d5 d1) d4))) (and (if a1 d2 d0) d7)) (and
+     (or a2 (and (not a0) (if a1 d2 d0))) (or
+     (or (if a1 a2 d4) (if a1 d2 d0)) (if a0 d1
+     d4)))) (and (or (and (if a0 d7 d4) (if a1
+     a2 d4)) (or (if a2 d6 d3) (or d0 d1))) (if
+     (if d0 a1 a1) (and a1 d3) (if a0 (if (if
+     a2 d6 a1) d5 d1) d4)))) (if a0 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a2 d6 a1)) (not (if d1 d7 (if (and a1 d7)
+     d3 d2)))) (not d4)) (and (or (if d5 (and
+     (or d2 a0) d7) (and a1 d7)) (if a0 d5 d2))
+     d7) (and (or (or (if a0 d7 (if a1 d2 d0))
+     (or (if a0 d7 (if a1 d2 d0)) (if a0 d1 d4)))
+     (if a0 d1 d4)) d7)) (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a1 d2 d0))
+         (and (if a2 d6 d3) (or a0 d4))) (not d4))
+         (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+         (if d1 d7 (if (and a1 d3) d3 d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (if a2 d6 a1))))))) (or (if d0
+     a1 a1) (if a2 d6 d3)))) (and (or (and (if
+     (or (not a0) (and d2 (not (if a2 d6 a1))))
+     (if a2 d6 (or (if a0 (if a1 (if a1 d2 d0)
+         d0) (if a1 d2 (if a0 d7 (or a2 d0)))) (if
+         a0 d5 d2))) (or d2 a0)) (not a0)) (and (or
+     (and (if a0 d7 d4) (or (or (if a1 a2 d4)
+         (if a1 d2 d0)) (if a0 d1 d4))) (or (if a2
+     d6 d3) (or d2 (or (if a2 d5 d1) (and (or
+     (if (or (or (if a0 d7 (if a1 d2 d0)) (and
+         (if a2 d6 d3) (or a0 d4))) (not d4)) (and
+         (or d2 a0) d7) (and (if a1 d2 d0) d7)) (if
+     d1 d7 (if (and a1 d3) (or (if a2 d5 d1) (if
+     a2 d6 d3)) d2))) (or (if (or (if a2 d5 d1)
+     (if a2 d6 d3)) d5 d1) (if a2 d6 d3)))))))
+     (if (if d0 (if d0 a1 a1) a1) (if a2 d6 d3)
+         (if a0 (if (if a2 d6 a1) d5 d1) d4)))) (if
+     a0 (not (if d1 d7 (if (if a2 d6 d3) d3 d2)))
+     (and (or a2 (and (not a0) (if a1 d2 d0)))
+         (or (or (if a1 a2 d4) (if a1 d2 d0)) (or
+             (if a1 a2 d4) (if a1 d2 d0))))))))
+
+Generation: 46
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=52.0 Adjusted=0.018867924528301886 Hits=1996
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a0
+     d7 (if a2 d6 a1))) (and (or (and (if a0 d7
+     d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if a2 d6 d3)))) (not d4))) (or
+     (if a2 d6 d3) (or d2 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a1 d2 d0))
+         (and (if a2 d6 d3) (or a0 d4))) (not d4))
+         (and (or d2 a0) d7) (and (if a2 d5 d1) d7))
+         (if d1 d7 (if (and a1 d3) d3 d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+     a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+     a1) (if a0 d7 (if a2 d6 a1)) (if a0 (if a2
+     d5 d1) d4))) (and (if a1 d2 d0) d7)) (and
+     (or a2 (and (not a0) (if a1 d2 d0))) (or
+     (or (if a1 a2 d4) (if a1 d2 d0)) (if a0 d1
+     d4)))) (and (or (and (if a0 d7 d4) (if a1
+     a2 d4)) (or (if a2 d6 d3) (or d0 d1))) (if
+     (if d0 a1 a1) (and a1 d3) (if a0 (if (if
+     a2 d6 a1) d5 d1) d4)))) (if a0 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a2 d6 a1)) (not (if a0 (if (if a2 d6 a1)
+     d5 d1) d4))) (not d4)) (and (or (if d5 (and
+     (or d2 a0) d7) (and a1 d7)) (if a0 d5 d2))
+     d7) (and (or (or (if a0 d7 (if a1 d2 d0))
+     (or (if a0 d7 (if a1 d2 d0)) (if a0 d1 d4)))
+     (if a0 d1 d4)) d7)) (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a1 d2 d0))
+         (and (if a2 d6 d3) (or a0 d4))) (not d4))
+         (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+         (if d1 d7 (if (and a1 d3) d3 d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (or
+     (and (if a0 d7 d4) (if a1 a2 d4)) (or (if
+     a2 d6 d3) (if a2 d6 a1))))))) (or (if d0
+     a1 a1) (if a2 d6 d3)))) (and (or (and (if
+     (or (not a0) (and d2 (not (if a2 d6 a1))))
+     (if a2 d6 (or (if a0 (if a1 (if a1 d2 d0)
+         d0) (if a1 d2 (if a0 d7 (or a2 d0)))) (if
+         a0 d5 d2))) (or d2 a0)) (not a0)) (and (or
+     (and (if a0 d7 d4) (or (or (if a0 d7 (if
+         a2 d6 a1)) (not (if d1 d7 (if (and a1 d7)
+         d3 d2)))) (not d4))) (or (if a2 d6 d3) (or
+     d2 (or (if a2 d5 d1) (and (or (if (or (or
+     (if a0 d7 (if a1 d2 d0)) (and (if a2 d6 d3)
+     (or a0 d4))) (not d4)) (and (or d2 a0) d7)
+     (and (if a1 d2 d0) d7)) (if d1 d7 (if (and
+     a1 d3) (or (if a2 d5 d1) (if a2 d6 d3)) d2)))
+     (or (if (or (if a2 d5 d1) (if a2 d6 d3))
+         d5 d1) (if a2 d6 d3))))))) (if (if d0 (if
+     d0 a1 a1) a1) (if a2 d6 d3) (if a0 (if (if
+     a2 d6 a1) d5 d1) d4)))) (if a0 (not (if d1
+     d7 (if (if a2 d6 d3) d3 d2))) (and (or a2
+     (and (not a0) (if a1 d2 d0))) (or (or (if
+     a1 a2 d4) (if a1 d2 d0)) (or (if a1 a2 d4)
+     (if a1 d2 d0))))))))
+
+Generation: 47
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=44.0 Adjusted=0.022222222222222223 Hits=2004
+Tree 0:
+ (and (or (if a2 (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) d7)) (if a2
+     d5 d1)) (and (or (and (if a0 d7 d4) (or (or
+     (if a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if
+     a2 d6 d3)))) (not d4))) (or (if a2 d6 d3)
+     (or d2 (or (if a2 d5 d1) (and (or (if (or
+         (or (if a0 d7 (if a1 d2 d0)) (and (if a2
+             d6 d3) (or a0 d4))) (not d4)) (and (or d0
+         d1) d7) (and (if a1 d2 d0) d7)) (if d1 d7
+         (if (and a1 d3) d3 d2))) (or (if (or (if
+         a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2 d6
+         d3))))))) (if (if d0 (if d0 a1 a1) a1) (if
+     a0 d7 (if a2 d6 a1)) (if a0 (if a2 d5 d1)
+     d4))) (and (if a1 d2 d0) d7)) (and (or a2
+     (and (not a0) (if a1 d2 d0))) (or (or (if
+     a1 a2 d4) (if a1 d2 d0)) (if a0 d1 d4))))
+     (and (or (and (if a0 d7 d4) (if a1 a2 d4))
+         (or (if a2 d6 d3) (or d0 d1))) (if (if d0
+         a1 a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+         d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and a1 d7) d3 d2))))
+         (not d4)) (and (or (if d5 (and (or d2 a0)
+         d7) (and a1 d7)) (if a0 d5 d2)) d7) (and
+         (or (or (if a0 d7 (if a1 d2 d0)) (or (if
+             a0 d7 (if a1 d2 d0)) (if a0 d1 d4))) (if
+             a0 d1 d4)) d7)) (or (if a2 d5 d1) (and (or
+         (if (or (or (if a0 d7 (if a1 d2 d0)) (and
+             (if a2 d6 d3) (or a0 d4))) (not d4)) (and
+             (or d2 a0) d7) (and (if a1 d2 d0) d7)) (if
+         d1 d7 (if (and a1 d3) d3 d2))) (or (if (or
+         (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (or (and
+         (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+         d3) (if a2 d6 a1))))))) (or (if d0 a1 a1)
+     (if a2 d6 d3)))) (and (or (and (if (or (not
+     a0) (and d2 (not (if a2 d6 a1)))) (if a2
+     d6 (or (if a0 (if a1 (if a1 d2 d0) d0) (if
+     a1 d2 (if a0 d7 (or a2 d0)))) (if a0 d5 d2)))
+     (or d2 a0)) (not a0)) (and (or (and (if a0
+     d7 d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+     d4))) (or (if a2 d6 d3) (or d2 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (if d1 d7 (if (and a1 d3) (or
+     (if a2 d5 d1) (if a2 d6 d3)) d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+     a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+     a1) (if a2 d6 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (not (if d1 d7 (if (if
+     a2 d6 d3) d3 d2))) (and (or a2 (and (not
+     a0) (if a1 d2 d0))) (or (or (if a1 a2 d4)
+     (if a1 d2 d0)) (or (if a1 a2 d4) (if a1 d2
+     d0))))))))
+
+Generation: 48
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=36.0 Adjusted=0.02702702702702703 Hits=2012
+Tree 0:
+ (and (or (if a2 (if (or (or (if a2 d5 d1)
+     (and (if a2 d6 d3) d7)) (if a0 d7 (if a2
+     d6 a1))) (and (or (and (if a0 d7 d4) (or
+     (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+         d7 (if a2 d6 d3)))) (not d4))) (or (if a2
+     d6 d3) (or d2 (or (if a2 d5 d1) (and (or
+     (if (or (or (if a0 d7 (if a1 d2 d0)) (and
+         (if a2 d6 d3) (or a0 d4))) (not d4)) (and
+         (or d0 d1) d7) (and (if a1 d2 d0) d7)) (if
+     d1 d7 (if (and a1 d3) d3 d2))) (or (if (or
+     (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2
+     d6 d3))))))) (if (if d0 (if d0 a1 a1) a1)
+     (if a0 d7 (if a2 d6 a1)) (if a0 (if a2 d5
+     d1) d4))) (and (if a1 d2 d0) d7)) (and (or
+     a2 (and (not a0) (if a1 d2 d0))) (or (or
+     (if a1 a2 d4) (if a1 d2 d0)) (if a0 d1 d4))))
+     (and (or (and (if a0 d7 d4) (if a1 a2 d4))
+         (or (if a2 d6 d3) (or d0 d1))) (if (if d0
+         a1 a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+         d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and a1 d7) d3 d2))))
+         (not d4)) (and (or (if d5 (and (or d2 a0)
+         d7) (and a1 d7)) (if a0 d5 d2)) d7) (and
+         (or (or (if a0 d7 (if a1 d2 d0)) (or (if
+             a0 d7 (if a1 d2 d0)) (if a0 d1 d4))) (if
+             a0 d1 d4)) d7)) (or (if a2 d5 d1) (and (or
+         (if (or (or (if a0 d7 (if a1 d2 d0)) (and
+             (if a2 d6 d3) (or a0 d4))) (not d4)) (and
+             (or d2 a0) d7) (and (if a1 d2 d0) d7)) (if
+         d1 d7 (if (and a1 d3) d3 d2))) (or (if (or
+         (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (or (and
+         (if a0 d7 d4) (if a1 a2 d4)) (or (if a2 d6
+         d3) (if a2 d6 a1))))))) (or (if d0 a1 a1)
+     (if a2 d6 d3)))) (and (or (and (if (or (not
+     a0) (and d2 (not (if a2 d6 a1)))) (if a2
+     d6 (or (if a0 (if a1 (if a1 d2 d0) d0) (if
+     a1 d2 (if a0 d7 (or a2 d0)))) (if a0 d5 d2)))
+     (or d2 a0)) (not a0)) (and (or (and (if a0
+     d7 d4) (or (or (if a0 d7 (if a2 d6 a1)) (not
+     (if d1 d7 (if (and a1 d7) d3 d2)))) (not
+     d4))) (or (if a2 d6 d3) (or d2 (or (if a2
+     d5 d1) (and (or (if (or (or (if a0 d7 (if
+     a1 d2 d0)) (and (if a2 d6 d3) (or a0 d4)))
+     (not d4)) (and (or d2 a0) d7) (and (if a1
+     d2 d0) d7)) (if d1 d7 (if (and a1 d3) (or
+     (if a2 d5 d1) (if a2 d6 d3)) d2))) (or (if
+     (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if
+     a2 d6 d3))))))) (if (if d0 (if d0 a1 a1)
+     a1) (if a2 d6 d3) (if a0 (if (if a2 d6 a1)
+     d5 d1) d4)))) (if a0 (not (if d1 d7 (if (if
+     a2 d6 d3) d3 d2))) (and (or a2 (and (not
+     a0) (if a1 d2 d0))) (or (or (if a1 a2 d4)
+     (if a1 d2 d0)) (or (if a1 a2 d4) (if a1 d2
+     d0))))))))
+
+Generation: 49
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=36.0 Adjusted=0.02702702702702703 Hits=2012
+Tree 0:
+ (and (or (if a2 (if (or (or (if a2 d5 d1)
+     (and (if a2 d6 d3) d7)) (if a0 d7 (if a2
+     d6 a1))) (and (or (and (if a0 d7 d4) (or
+     (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+         d7 (if a2 d6 d3)))) (not d4))) (or (if a2
+     d6 d3) (or d2 (or (if a2 d5 d1) (and (or
+     (if (or (or (if a0 d7 (if a1 d2 d0)) (and
+         (if a2 d6 d3) (or a0 d4))) (not d4)) (and
+         (or d0 d1) d7) (and (if a1 d2 d0) d7)) (if
+     d1 d7 (if (and a1 d3) d3 d2))) (or (if (or
+     (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2
+     d6 d3))))))) (if (if d0 (if d0 a1 a1) a1)
+     (if a0 d7 (if a2 d6 a1)) (if a0 (if a2 d5
+     d1) d4))) (and (if a1 d2 d0) d7)) (and (or
+     a2 (and (not a0) (if a1 d2 d0))) (or (or
+     (if a1 a2 d4) (if a1 d2 d0)) (if a0 d1 d4))))
+     (and (or (and (if a0 d7 d4) (if a1 a2 d4))
+         (or (if a2 d6 d3) (or d0 d1))) (if (if d0
+         a1 a1) (and a1 d3) (if a0 (if (if a2 d6 a1)
+         d5 d1) d4)))) (if a0 (or (if a2 d5 d1) (and
+     (or (if (or (or (if a0 d7 (if a2 d6 a1))
+         (not (if d1 d7 (if (and a1 d7) d3 d2))))
+         (not d4)) (and (or (if d5 (and (or d2 a0)
+         d7) (and a1 d7)) (or (or (if a0 d7 (if a2
+         d6 a1)) (not (if d1 d7 (if (and a1 d7) d3
+         d2)))) (not d4))) d7) (and (or (or (if a0
+         d7 (if a1 d2 d0)) (or (if a0 d7 (if a1 d2
+         d0)) (if a0 d1 d4))) (if a0 d1 d4)) d7))
+         (or (if a2 d5 d1) (and (or (if (or (or (if
+             a0 d7 (if a1 d2 d0)) (and (if a2 d6 d3) (or
+             a0 d4))) (not d4)) (and (or d2 a0) d7) (and
+             (if a1 d2 d0) d7)) (if d1 d7 (if (and a1
+             d3) d3 d2))) (or (if (or (if a2 d5 d1) (if
+             a2 d6 d3)) d5 d1) (or (and (if a0 d7 d4)
+             (if a1 a2 d4)) (or (if a2 d6 d3) (if a2 d6
+             a1))))))) (or (if d0 a1 a1) (if a2 d6 d3))))
+     (and (or (and (if (or (not a0) (and d2 (not
+         (if a2 d6 a1)))) (if a2 d6 (or (if a0 (if
+         a1 (if a1 d2 d0) d0) (if a1 d2 (if a0 d7
+         (or a2 d0)))) (if a0 d5 d2))) (or d2 a0))
+         (not a0)) (and (or (and (if a0 d7 d4) (or
+         (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+             d7 (if (and a1 d7) d3 d2)))) (not d4))) (or
+         (if a2 d6 d3) (or d2 (or (if a2 d5 d1) (and
+         (or (if (or (or (if a0 d7 (if a1 d2 d0))
+             (and (if a2 d6 d3) (or a0 d4))) (not d4))
+             (and (or d2 a0) d7) (and (if a1 d2 d0) d7))
+             (if d1 d7 (if (and a1 d3) (or (if a2 d5 d1)
+                 (if a2 d6 d3)) d2))) (or (if (or (if a2 d5
+         d1) (if a2 d6 d3)) d5 d1) (if a2 d6 d3)))))))
+         (if (if d0 (if d0 a1 a1) a1) (if a2 d6 d3)
+             (if a0 (if (if a2 d6 a1) d5 d1) d4)))) (if
+         a0 (not (if d1 d7 (if (if a2 d6 d3) d3 d2)))
+         (and (or a2 (and (not a0) (if a1 d2 d0)))
+             (or (or (if a1 a2 d4) (if a1 d2 d0)) (or
+                 (if a1 a2 d4) (if a1 d2 d0))))))))
+
+Generation: 50
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=36.0 Adjusted=0.02702702702702703 Hits=2012
+Tree 0:
+ (and (or (if a2 (if (or (or (if a2 d5 d1)
+     (and (if a2 d6 d3) d7)) (if a0 d7 (if a2
+     d6 a1))) (and (or (and (if a0 d7 d4) (or
+     (or (if a0 d7 (if a2 d6 a1)) (not (if d1
+         d7 (if a2 d6 d3)))) (not d4))) (or (if a2
+     d6 d3) (or d2 (or (if a2 d5 d1) (and (or
+     (if (or (or (if a0 d7 (if a1 d2 d0)) (and
+         (if a2 d6 d3) (or a0 d4))) (not d4)) (and
+         (or d0 d1) d7) (and (if a1 d2 d0) d7)) (if
+     d1 d7 (if (and a1 d3) d3 d2))) (or (if (or
+     (if a2 d5 d1) (if a2 d6 d3)) d5 d1) (if a2
+     d6 d3))))))) (if (if d0 (if d0 a1 a1) a1)
+     (if a0 d7 (if a2 d6 a1)) (if a0 (if a2 d5
+     d1) d4))) (and (if a1 d2 d0) d7)) (and (or
+     a2 (and (not a0) (if a1 d2 d0))) (or (or
+     (or (if a2 d5 d1) (if a2 d6 d3)) (if a1 d2
+     d0)) (if a0 d1 d4)))) (and (or (and (if a0
+     d7 d4) (if a1 a2 d4)) (or (if a2 d6 d3) (or
+     d0 d1))) (if (if d0 a1 a1) (and a1 d3) (if
+     a0 (if (if a2 d6 a1) d5 d1) d4)))) (if a0
+     (or (if a2 d5 d1) (and (or (if (or (or (if
+         a0 d7 (if a2 d6 a1)) (not (if d1 d7 (if (and
+         a1 d7) d3 d2)))) (not d4)) (and (or (if d5
+         (and (or d2 a0) d7) (and a1 d7)) (if a0 d5
+         d2)) d7) (and (or (or (if a0 d7 (if a1 d2
+         d0)) (or (if a0 d7 (if a1 d2 d0)) (if a0
+         d1 d4))) (if a0 d1 d4)) d7)) (or (if a2 d5
+         d1) (and (or (if (or (or (if a0 d7 (if a1
+         d2 d0)) (and (if a2 d6 d3) (or a0 d4))) (not
+         d4)) (and (or d2 a0) d7) (and (if a1 d2 d0)
+         d7)) (if d1 d7 (if (and a1 d3) d3 d2))) (or
+         (if (or (if a2 d5 d1) (if a2 d6 d3)) d5 d1)
+         (or (and (if a0 d7 d4) (if a1 a2 d4)) (or
+             (if a2 d6 d3) (if a2 d6 a1))))))) (or (if
+         d0 a1 a1) (if a2 d6 d3)))) (and (or (and
+     (if (or (not a0) (and d2 (not (if a2 d6 a1))))
+         (if a2 d6 (or (if a0 (if a1 (if a1 d2 d0)
+             d0) (if a1 d2 (if a0 d7 (or a2 d0)))) (if
+             a0 d5 d2))) (or d2 a0)) (not a0)) (and (or
+     (and (if a0 d7 d4) (or (or (if a0 d7 (if
+         a2 d6 a1)) (not (if d1 d7 (if (and a1 d7)
+         d3 d2)))) (not d4))) (or (if a2 d6 d3) (or
+     d2 (or (if a2 d5 d1) (and (or (if (or (or
+     (if a0 d7 (if a1 d2 d0)) (and (if a2 d6 d3)
+     (or a0 d4))) (not d4)) (and (or d2 a0) d7)
+     (and (if a1 d2 d0) d7)) (if d1 d7 (if (and
+     a1 d3) (or (if a2 d5 d1) (if a2 d6 d3)) d2)))
+     (or (if (or (if a2 d5 d1) (if a2 d6 d3))
+         d5 d1) (if a2 d6 d3))))))) (if (if d0 (if
+     d0 a1 a1) a1) (if a2 d6 d3) (if a0 (if (if
+     a2 d6 a1) d5 d1) d4)))) (if a0 (not (if d1
+     d7 (if (if a2 d6 d3) d3 d2))) (and (or a2
+     (and (not a0) (if a1 d2 d0))) (or (or (if
+     a1 a2 d4) (if a2 d6 d3)) (or (if a1 a2 d4)
+     (if a1 d2 d0))))))))
