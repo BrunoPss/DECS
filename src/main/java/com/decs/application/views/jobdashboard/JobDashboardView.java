@@ -3,7 +3,8 @@ package com.decs.application.views.jobdashboard;
 import com.decs.application.data.Job;
 import com.decs.application.data.JobStatus;
 import com.decs.application.data.Problem;
-import com.decs.application.data.databases.MainDatabase;
+import com.decs.application.services.ObjectListDatabase;
+import com.decs.application.services.SlaveManager;
 import com.decs.application.utils.EvolutionEngine;
 import com.decs.application.utils.ProblemCreator;
 import com.decs.application.utils.constants.FilePathConstants;
@@ -20,34 +21,22 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.SerializableBiConsumer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-import com.vaadin.flow.shared.communication.PushMode;
 import ec.EvolutionState;
-import ec.Statistics;
-import ec.simple.SimpleStatistics;
 import jakarta.annotation.security.PermitAll;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.AsyncResult;
-import org.springframework.util.concurrent.ListenableFuture;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.CompletableFuture;
 
 @PageTitle("Job Dashboard")
 @Route(value = "job-dashboard", layout = MainLayout.class)
@@ -58,6 +47,8 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     //Internal Data
     private EvolutionEngine evolutionEngine;
     private Job newJob;
+    private SlaveManager slaveManager;
+    private ObjectListDatabase objectListDatabase;
     // Available Problems
     private HorizontalLayout availableProblemsLayoutGroup;
     // Upper Group
@@ -104,7 +95,10 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private Button stopBtn;
 
     //Constructor
-    public JobDashboardView() {
+    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase) {
+        this.slaveManager = slaveManager;
+        this.objectListDatabase = objectListDatabase;
+
         createAvailableProblems();
         createJobProgressBar();
         createLowerWidgetGroup();
@@ -176,7 +170,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         // Problem List build
         availableProblemsUpdater = availableProblemsGrid.getListDataView();
-        availableProblemsGrid.setDataProvider(MainDatabase.getAvailableProblemsDataProvider());
+        availableProblemsGrid.setDataProvider(objectListDatabase.getAvailableProblemsDataProvider());
 
         // Grid Group Build
         availableProblemsGridLayout.add(availableProblemsUpperGroup, availableProblemsGrid);
@@ -215,7 +209,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobActivityGrid.addColumn(createJobActivitySolutionRenderer()).setHeader("Solution");
         jobActivityGrid.setMinWidth("250px");
         jobActivityUpdater = jobActivityGrid.getListDataView();
-        jobActivityGrid.setDataProvider(MainDatabase.getJobActivityDataProvider());
+        jobActivityGrid.setDataProvider(objectListDatabase.getJobActivityDataProvider());
 
 
         jobActivityGridLabel = new Span("Job Activity");
@@ -290,12 +284,13 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     // Event Handlers
     private void startProblem(ClickEvent<Button> event) {
         Problem selectedProblem = availableProblemsGrid.getSelectedItems().iterator().next();
-        newJob = new Job(selectedProblem.getCode());
+        objectListDatabase.setSelectedProblem(selectedProblem);
+        newJob = new Job(selectedProblem.getCode(), selectedProblem.getDistribution());
         newJob.setStatus(JobStatus.RUNNING);
 
-        MainDatabase.addJobActivity(newJob);
+        objectListDatabase.addJobActivity(newJob);
         jobActivityGrid.getDataProvider().refreshAll();
-        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this);
+        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this, slaveManager);
         evolutionEngine.start();
     }
 

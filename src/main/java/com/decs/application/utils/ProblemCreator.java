@@ -1,10 +1,8 @@
 package com.decs.application.utils;
 
-import com.decs.application.data.FileConfigAttr;
 import com.decs.application.data.Problem;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,7 +26,9 @@ public final class ProblemCreator {
 
         for (HashMap<FileConfigAttr, String> h : configList) {
             problemList.add(new Problem(new File(h.get(FileConfigAttr.PARAMS_FILE)),
-                    h.get(FileConfigAttr.CODE), h.get(FileConfigAttr.FULL_NAME), h.get(FileConfigAttr.TYPE)));
+                    h.get(FileConfigAttr.CODE), h.get(FileConfigAttr.FULL_NAME), h.get(FileConfigAttr.TYPE),
+                    h.get(FileConfigAttr.DISTRIBUTION),
+                    new File(h.get(FileConfigAttr.PARAMS_FILE)).getParentFile()));
         }
 
         //File f = new File(path);

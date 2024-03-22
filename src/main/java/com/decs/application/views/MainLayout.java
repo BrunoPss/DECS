@@ -2,6 +2,7 @@ package com.decs.application.views;
 
 import com.decs.application.data.User;
 import com.decs.application.security.AuthenticatedUser;
+import com.decs.application.services.SlaveManager;
 import com.decs.application.views.ProblemEditor.ProblemEditorView;
 import com.decs.application.views.jobdashboard.JobDashboardView;
 import com.decs.application.views.nodemanager.NodeManagerView;
@@ -35,13 +36,15 @@ import org.vaadin.lineawesome.LineAwesomeIcon;
 public class MainLayout extends AppLayout {
 
     private H2 viewTitle;
-
     private AuthenticatedUser authenticatedUser;
     private AccessAnnotationChecker accessChecker;
 
-    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
+    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, SlaveManager slaveManager) {
         this.authenticatedUser = authenticatedUser;
         this.accessChecker = accessChecker;
+
+        // Initialize Slave Manager
+        slaveManager.startSlaveListener();
 
         setPrimarySection(Section.DRAWER);
         addDrawerContent();

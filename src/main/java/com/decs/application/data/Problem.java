@@ -6,9 +6,11 @@ import java.util.ArrayList;
 public class Problem {
     //Internal Data
     private File paramsFile;
+    private File rootFile;
     private String code;
     private String fullName;
     private String type;
+    private String distribution;
     private ParameterDatabase parameterDatabase;
 
     //Constructor
@@ -17,12 +19,14 @@ public class Problem {
         this.paramsFile = paramsFile;
         this.fullName = paramsFile.getName();
     }
-    public Problem(File paramsFile, String code, String fullName, String type) {
+    public Problem(File paramsFile, String code, String fullName, String type, String distribution, File rootFile) {
         this.paramsFile = paramsFile;
         this.code = code;
         this.fullName = fullName;
         this.type = type;
         this.parameterDatabase = new ParameterDatabase();
+        this.distribution = distribution;
+        this.rootFile = rootFile;
     }
 
 
@@ -31,6 +35,8 @@ public class Problem {
     public String getCode() { return code; }
     public String getFullName() { return fullName; }
     public String getType() { return type; }
+    public String getDistribution() { return distribution; }
+    public File getRootFile() { return rootFile; }
 
     //Set Methods
     public void setCode(String code) { this.code = code; }

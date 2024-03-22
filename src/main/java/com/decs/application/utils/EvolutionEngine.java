@@ -1,6 +1,7 @@
 package com.decs.application.utils;
 
 import com.decs.application.data.Job;
+import com.decs.application.services.SlaveManager;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import com.decs.application.views.jobdashboard.JobDashboardView;
@@ -15,6 +16,8 @@ import ec.util.ParameterDatabase;
 
 import java.io.File;
 import java.io.IOException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 public class EvolutionEngine extends Thread {
     //Internal Data
@@ -25,13 +28,15 @@ public class EvolutionEngine extends Thread {
     private UI ui;
     private Statistics results;
     private EvolutionState evaluatedState;
+    private SlaveManager slaveManager;
 
     //Constructor
-    public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard) {
+    public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager) {
         this.paramsFile = paramsFile;
         this.job = job;
         this.jobDashboard = jobDashboard;
         this.ui = ui;
+        this.slaveManager = slaveManager;
     }
 
     //Get Methods
@@ -43,6 +48,15 @@ public class EvolutionEngine extends Thread {
     //Methods
     @Override
     public void run() {
+        // Distributed ?
+        if (job.getDistribution().equals("eval")) {
+            System.out.println("Distributed Eval");
+
+            slaveManager.initializeSlaves();
+
+            //Registry registry = LocateRegistry.getRegistry();
+        }
+
         startInference();
         jobDashboard.updateInferenceResults(this.ui, evaluatedState);
     }

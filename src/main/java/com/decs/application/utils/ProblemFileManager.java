@@ -1,11 +1,7 @@
 package com.decs.application.utils;
 
-import com.decs.application.data.FileConfigAttr;
-import com.decs.application.data.Problem;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 
 public class ProblemFileManager {
@@ -51,12 +47,13 @@ public class ProblemFileManager {
     }
     public static void createFile() {
         try {
-            FileOutputStream f = new FileOutputStream("D:\\programing\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\factory\\TBox\\TBox.conf");
+            FileOutputStream f = new FileOutputStream("D:\\programing\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\user\\TBoxDist\\TBoxDist.conf");
             HashMap<FileConfigAttr, String> d = new HashMap<>();
-            d.put(FileConfigAttr.CODE, "TBox");
-            d.put(FileConfigAttr.FULL_NAME, "Two Box");
+            d.put(FileConfigAttr.CODE, "TBoxDist");
+            d.put(FileConfigAttr.FULL_NAME, "Two Box Distributed");
             d.put(FileConfigAttr.TYPE, "GP");
-            d.put(FileConfigAttr.ORIGIN, "factory");
+            d.put(FileConfigAttr.ORIGIN, "user");
+            d.put(FileConfigAttr.DISTRIBUTION, "eval");
             ObjectOutputStream ob = new ObjectOutputStream(f);
             ob.writeObject(d);
             f.close();

@@ -1,51 +1,59 @@
-package com.decs.application.data.databases;
+package com.decs.application.services;
 
 import com.decs.application.data.Job;
 import com.decs.application.data.Problem;
 import com.decs.application.utils.ProblemCreator;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.data.provider.DataProvider;
+import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainDatabase {
+@Service
+public class ObjectListDatabase {
     //Internal Data
-    private static ArrayList<Problem> availableProblemsList = initializeAvailableProblems();
-    private static ArrayList<Job> jobActivityList = new ArrayList<>();
+    private ArrayList<Problem> availableProblemsList;
+    private ArrayList<Job> jobActivityList;
+    private Problem selectedProblem;
 
     //Constructor
+    public ObjectListDatabase() {
+        availableProblemsList = initializeAvailableProblems();
+        jobActivityList = new ArrayList<>();
+    }
 
     //Fetch Methods
     // Job Activity List
-    public static ArrayList<Job> fetchJobActivityList() {
+    public ArrayList<Job> fetchJobActivityList() {
         return jobActivityList;
     }
-    public static int jobActivitySize() {
+    public int jobActivitySize() {
         return jobActivityList.size();
     }
 
     // Available Problems List
-    public static ArrayList<Problem> fetchAvailableProblemsList() {
+    public ArrayList<Problem> fetchAvailableProblemsList() {
         return availableProblemsList;
     }
-    public static int availableProblemsListSize() {
+    public int availableProblemsListSize() {
         return availableProblemsList.size();
     }
 
-    //Getters
-    public static DataProvider<Job, Void> getJobActivityDataProvider() { return jobActivityDataProvider; }
-    public static DataProvider<Problem, Void> getAvailableProblemsDataProvider() { return availableProblemsDataProvider; }
+    //Get Methods
+    public DataProvider<Job, Void> getJobActivityDataProvider() { return jobActivityDataProvider; }
+    public DataProvider<Problem, Void> getAvailableProblemsDataProvider() { return availableProblemsDataProvider; }
+    public Problem getSelectedProblem() { return this.selectedProblem; }
 
-    //Setters
-    public static void addJobActivity(Job newJob) { jobActivityList.add(newJob); }
-    public static void addAvailableProblem(Problem problem) { availableProblemsList.add(problem); }
-    public static void addAvailableProblems(List<Problem> problems) { availableProblemsList.addAll(problems); }
+    //Set Methods
+    public void addJobActivity(Job newJob) { jobActivityList.add(newJob); }
+    public void addAvailableProblem(Problem problem) { availableProblemsList.add(problem); }
+    public void addAvailableProblems(List<Problem> problems) { availableProblemsList.addAll(problems); }
+    public void setSelectedProblem(Problem selectedProblem) { this.selectedProblem = selectedProblem; }
 
     //Data Providers
     // Job Activity Data Provider
-    private static DataProvider<Job, Void> jobActivityDataProvider =
+    private DataProvider<Job, Void> jobActivityDataProvider =
             DataProvider.fromCallbacks(
                     query -> {
                         int offset = query.getOffset();
@@ -56,7 +64,7 @@ public class MainDatabase {
             );
 
     // Available Problems Data Provider
-    private static DataProvider<Problem, Void> availableProblemsDataProvider =
+    private DataProvider<Problem, Void> availableProblemsDataProvider =
             DataProvider.fromCallbacks(
                     query -> {
                         int offset = query.getOffset();
@@ -73,7 +81,7 @@ public class MainDatabase {
 
 
     //Internal Functions
-    private static ArrayList<Problem> initializeAvailableProblems() {
+    private ArrayList<Problem> initializeAvailableProblems() {
         ArrayList<Problem> problemsList = new ArrayList<>(ProblemCreator.problemScanner(FilePathConstants.FACTORY_PARAMS_FOLDER));
         problemsList.addAll(ProblemCreator.problemScanner(FilePathConstants.USER_PARAMS_FOLDER));
         return problemsList;
