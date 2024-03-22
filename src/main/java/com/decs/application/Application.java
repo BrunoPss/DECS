@@ -1,6 +1,7 @@
 package com.decs.application;
 
 import com.decs.application.data.SamplePersonRepository;
+import com.decs.application.utils.ProblemFileManager;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
@@ -29,6 +30,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
+        // Handle Initial Problem File Setup
+        //ProblemFileManager.createFile();
+
         SpringApplication.run(Application.class, args);
     }
 

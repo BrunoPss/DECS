@@ -52,7 +52,7 @@ public class EvolutionEngine extends Thread {
                     new String[]{"-file", paramsFile.getCanonicalPath()});
 
             // Stats file param
-            paramDatabase.set(new Parameter("stat.file"), "../../../stats/job" + job.getId() + "_" + job.getName() + "_stats.txt");
+            paramDatabase.set(new Parameter("stat.file"), "../../../../stats/job" + job.getId() + "_" + job.getName() + "_stats.txt");
             job.setStatsFile(new File(FilePathConstants.JOB_STATS_FOLDER + "/job" + job.getId() + "_" + job.getName() + "_stats.txt"));
 
             Output out = Evolve.buildOutput();

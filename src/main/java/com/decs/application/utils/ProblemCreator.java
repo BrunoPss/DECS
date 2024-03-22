@@ -1,10 +1,12 @@
 package com.decs.application.utils;
 
+import com.decs.application.data.FileConfigAttr;
 import com.decs.application.data.Problem;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public final class ProblemCreator {
     //Internal Data
@@ -21,23 +23,32 @@ public final class ProblemCreator {
 
     //Methods
     public static ArrayList<Problem> problemScanner(String path) {
-        File f = new File(path);
+        ArrayList<HashMap<FileConfigAttr, String>> configList = ProblemFileManager.getProblemList(path);
         ArrayList<Problem> problemList = new ArrayList<>();
 
-        // Filter .params files
-        FilenameFilter filter = new FilenameFilter() {
-            @Override
-            public boolean accept(File f, String name) {
-                return name.endsWith(".params");
-            }
-        };
-
-        File[] fileList = f.listFiles(filter);
-
-        for (File file : fileList) {
-            String[] fileInfo = filenameParser(file);
-            problemList.add(new Problem(file, fileInfo[0], fileInfo[1], fileInfo[2]));
+        for (HashMap<FileConfigAttr, String> h : configList) {
+            problemList.add(new Problem(new File(h.get(FileConfigAttr.PARAMS_FILE)),
+                    h.get(FileConfigAttr.CODE), h.get(FileConfigAttr.FULL_NAME), h.get(FileConfigAttr.TYPE)));
         }
+
+        //File f = new File(path);
+        //ArrayList<Problem> problemList = new ArrayList<>();
+
+        // Filter directories
+        //FilenameFilter filter = new FilenameFilter() {
+        //    @Override
+        //    public boolean accept(File f, String name) {
+        //        return f.isDirectory();
+        //    }
+        //};
+
+        // Create problem list
+        //File[] fileList = f.listFiles(filter);
+
+        //for (File file : fileList) {
+        //    String[] fileInfo = filenameParser(file);
+        //    problemList.add(new Problem(file, fileInfo[0], fileInfo[1], fileInfo[2]));
+        //}
         return problemList;
     }
 

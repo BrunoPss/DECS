@@ -2,7 +2,7 @@
 # Licensed under the Academic Free License version 3.0
 # See the file "LICENSE" for more information
 
-parent.0 = ../../base/koza.params
+parent.0 = koza.params
 
 # Stolen from koza/params -- overwriting just
 # a little for readability

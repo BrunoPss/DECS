@@ -295,7 +295,6 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         MainDatabase.addJobActivity(newJob);
         jobActivityGrid.getDataProvider().refreshAll();
-
         evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this);
         evolutionEngine.start();
     }
