@@ -53,6 +53,7 @@ public class EvolutionEngine extends Thread {
             System.out.println("Distributed Eval");
 
             slaveManager.initializeSlaves();
+            slaveManager.startInference();
 
             //Registry registry = LocateRegistry.getRegistry();
         }

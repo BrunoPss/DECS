@@ -51,18 +51,29 @@ public class SlaveManager {
     }
 
     public void initializeSlaves() {
-        for (SlaveInfo slaveInfo : slaveList) {
-            locateSlave(slaveInfo);
-            ArrayList<JobFile> jobFileMap = buildProblemFileMap();
+        // Send Slave Files
+        try {
+            for (SlaveInfo slaveInfo : slaveList) {
+                this.locateSlave(slaveInfo);
+                ArrayList<JobFile> jobFileMap = buildProblemFileMap();
 
-            try {
-                slaveInfo.getSlaveService().setupProblemEnvironment(jobFileMap);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-                System.out.println("RMI Remote Exception");
+                slaveInfo.getSlaveService().setupProblemEnvironment(jobFileMap, objectListDatabase.getSelectedProblem().getCode());
             }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            System.out.println("RMI Remote Exception");
         }
+    }
 
+    public void startInference() {
+        try {
+            for (SlaveInfo slaveInfo : slaveList) {
+                slaveInfo.getSlaveService().startInference(objectListDatabase.getSelectedProblem().getCode());
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            System.out.println("RMI Remote Exception");
+        }
     }
 
     //Overrides
