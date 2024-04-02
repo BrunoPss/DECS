@@ -13,15 +13,37 @@
 | Mail: ecj-help@cs.gmu.edu
 |       (better: join ECJ-INTEREST at URL above)
 | Date: July 1, 2017
-| Current Java: 20.0.2 / OpenJDK 64-Bit Server VM-20.0.2+9-78
+| Current Java: 21.0.1 / OpenJDK 64-Bit Server VM-21.0.1+12-29
 | Required Minimum Java: 1.5
 
 
 Threads:  breed/1 eval/1
-Seed: 1921091678 
+Seed: -1617130952 
 Setting up
 Processing GP Types
 Processing GP Node Constraints
 Processing GP Function Sets
 Processing GP Tree Constraints
 Initializing Generation 0
+Slave /127.0.0.1/0 connected successfully.
+Subpop 0 best fitness of generation Fitness: Standardized=1091.4526955732758 Adjusted=9.153714426739912E-4 Hits=0
+Generation 1	Evaluations So Far 1024
+Subpop 0 best fitness of generation Fitness: Standardized=965.0 Adjusted=0.0010351966873706005 Hits=0
+Generation 2	Evaluations So Far 2048
+Subpop 0 best fitness of generation Fitness: Standardized=965.0 Adjusted=0.0010351966873706005 Hits=0
+Generation 3	Evaluations So Far 3072
+Subpop 0 best fitness of generation Fitness: Standardized=887.8791657098498 Adjusted=0.0011250123060330818 Hits=0
+Generation 4	Evaluations So Far 4096
+Subpop 0 best fitness of generation Fitness: Standardized=744.0943919352252 Adjusted=0.001342111832841355 Hits=0
+Generation 5	Evaluations So Far 5120
+Subpop 0 best fitness of generation Fitness: Standardized=744.0943919352252 Adjusted=0.001342111832841355 Hits=0
+Generation 6	Evaluations So Far 6144
+Subpop 0 best fitness of generation Fitness: Standardized=730.0275203253143 Adjusted=0.0013679375566531208 Hits=0
+Generation 7	Evaluations So Far 7168
+Subpop 0 best fitness of generation Fitness: Standardized=659.5851420539925 Adjusted=0.0015138094037214444 Hits=0
+Generation 8	Evaluations So Far 8192
+Subpop 0 best fitness of generation Fitness: Standardized=550.0591511168859 Adjusted=0.001814687221822197 Hits=0
+Generation 9	Evaluations So Far 9216
+Subpop 0 best fitness of generation Fitness: Standardized=448.67083601411724 Adjusted=0.0022238489132717634 Hits=0
+Generation 10	Evaluations So Far 10240
+Slave /127.0.0.1/0 shut down.

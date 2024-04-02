@@ -82,7 +82,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     // Vertical Separator
     private Div verticalSeparator;
     // Job Metrics
-    private VerticalLayout jobMetricsLayout;
+    private HorizontalLayout jobMetricsGroupLayout;
+    private VerticalLayout jobMetricsTitlesLayout;
+    private VerticalLayout jobMetricsValuesLayout;
     private NativeLabel jobMetricsTitleLabel;
     private VerticalLayout jobMetrics;
     // Job Results
@@ -207,7 +209,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobActivityGrid.addColumn(Job::getName).setHeader("Name");
         jobActivityGrid.addColumn(createJobActivityStatusRenderer()).setHeader("Status");
         jobActivityGrid.addColumn(createJobActivitySolutionRenderer()).setHeader("Solution");
-        jobActivityGrid.setMinWidth("250px");
+        jobActivityGrid.setMinWidth("280px");
         jobActivityUpdater = jobActivityGrid.getListDataView();
         jobActivityGrid.setDataProvider(objectListDatabase.getJobActivityDataProvider());
 
@@ -215,26 +217,40 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobActivityGridLabel = new Span("Job Activity");
 
         jobActivity = new VerticalLayout(jobActivityGridLabel, jobActivityGrid);
+        jobActivity.setMinWidth("500px");
 
         // Vertical Separator
         verticalSeparator = new Div();
         verticalSeparator.getStyle().set("border", "1px solid black");
 
         // Job Metrics
-        jobMetricsLayout = new VerticalLayout();
-        jobMetricsLayout.getStyle().set("border", "1px solid black");
-        jobMetricsLayout.setMinWidth("200px");
-        jobMetricsLayout.setMaxWidth("230px");
+        jobMetricsGroupLayout = new HorizontalLayout();
+        jobMetricsGroupLayout.getStyle().set("border", "1px solid black");
+        //jobMetricsGroupLayout.setMinWidth("200px");
+        //jobMetricsGroupLayout.setMaxWidth("230px");
+
+        jobMetricsTitlesLayout = new VerticalLayout();
+        jobMetricsTitlesLayout.setMinWidth("180px");
+        jobMetricsValuesLayout = new VerticalLayout();
 
         jobMetricsTitleLabel = new NativeLabel("Metrics");
-        Span info1 = new Span("Evaluations");
-        Span info2 = new Span("Breed Threads");
-        Span info3 = new Span("Evaluation Threads");
-        Span info4 = new Span("Random Seed");
-        Span info5 = new Span("Connected Slaves");
 
-        jobMetricsLayout.add(info1, info2, info3, info4, info5);
-        jobMetrics = new VerticalLayout(jobMetricsTitleLabel, jobMetricsLayout);
+        Span title1 = new Span("Evaluations");
+        Span title2 = new Span("Breed Threads");
+        Span title3 = new Span("Evaluation Threads");
+        Span title4 = new Span("Random Seed");
+        Span title5 = new Span("Connected Slaves");
+
+        Span value1 = new Span("0.0");
+        Span value2 = new Span("0.0");
+        Span value3 = new Span("0.0");
+        Span value4 = new Span("0.0");
+        Span value5 = new Span("0.0");
+
+        jobMetricsTitlesLayout.add(title1, title2, title3, title4, title5);
+        jobMetricsValuesLayout.add(value1, value2, value3, value4, value5);
+        jobMetricsGroupLayout.add(jobMetricsTitlesLayout, jobMetricsValuesLayout);
+        jobMetrics = new VerticalLayout(jobMetricsTitleLabel, jobMetricsGroupLayout);
 
         // Job Results
         //jobResults = new TextArea();

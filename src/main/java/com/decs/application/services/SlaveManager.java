@@ -66,13 +66,14 @@ public class SlaveManager {
     }
 
     public void startInference() {
+        System.out.println("Start Inference");
         try {
             for (SlaveInfo slaveInfo : slaveList) {
                 slaveInfo.getSlaveService().startInference(objectListDatabase.getSelectedProblem().getCode());
             }
         } catch (RemoteException e) {
             e.printStackTrace();
-            System.out.println("RMI Remote Exception");
+            System.out.println("Inference RMI Remote Exception");
         }
     }
 
