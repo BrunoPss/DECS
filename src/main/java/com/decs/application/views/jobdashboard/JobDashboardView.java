@@ -86,6 +86,18 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private VerticalLayout jobMetricsTitlesLayout;
     private VerticalLayout jobMetricsValuesLayout;
     private NativeLabel jobMetricsTitleLabel;
+    private Span evaluationsTitle;
+    private Span generationTitle;
+    private Span breedThreadsTitle;
+    private Span evaluationThreadsTitle;
+    private Span randomSeedTitle;
+    private Span connectedSlavesTitle;
+    private Span evaluationsValue;
+    private Span generationValue;
+    private Span breedThreadsValue;
+    private Span evaluationThreadsValue;
+    private Span randomSeedValue;
+    private Span connectedSlavesValue;
     private VerticalLayout jobMetrics;
     // Job Results
     private TextArea jobResults;
@@ -235,20 +247,22 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         jobMetricsTitleLabel = new NativeLabel("Metrics");
 
-        Span title1 = new Span("Evaluations");
-        Span title2 = new Span("Breed Threads");
-        Span title3 = new Span("Evaluation Threads");
-        Span title4 = new Span("Random Seed");
-        Span title5 = new Span("Connected Slaves");
+        evaluationsTitle = new Span("Evaluations");
+        generationTitle = new Span("Generation");
+        breedThreadsTitle = new Span("Breed Threads");
+        evaluationThreadsTitle = new Span("Evaluation Threads");
+        randomSeedTitle = new Span("Random Seed");
+        connectedSlavesTitle = new Span("Connected Slaves");
 
-        Span value1 = new Span("0.0");
-        Span value2 = new Span("0.0");
-        Span value3 = new Span("0.0");
-        Span value4 = new Span("0.0");
-        Span value5 = new Span("0.0");
+        evaluationsValue = new Span("0");
+        generationValue = new Span("0");
+        breedThreadsValue = new Span("0");
+        evaluationThreadsValue = new Span("0");
+        randomSeedValue = new Span("0");
+        connectedSlavesValue = new Span("0");
 
-        jobMetricsTitlesLayout.add(title1, title2, title3, title4, title5);
-        jobMetricsValuesLayout.add(value1, value2, value3, value4, value5);
+        jobMetricsTitlesLayout.add(evaluationsTitle, breedThreadsTitle, evaluationThreadsTitle, randomSeedTitle, connectedSlavesTitle);
+        jobMetricsValuesLayout.add(evaluationsValue, breedThreadsValue, evaluationThreadsValue, randomSeedValue, connectedSlavesValue);
         jobMetricsGroupLayout.add(jobMetricsTitlesLayout, jobMetricsValuesLayout);
         jobMetrics = new VerticalLayout(jobMetricsTitleLabel, jobMetricsGroupLayout);
 
@@ -294,6 +308,20 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         ui.access(() -> {
             jobProgressBar.setValue(progress);
             jobProgressBarLabelValue.setText(String.valueOf((int) (progress * 100)));
+        });
+    }
+    public void setJobMetrics(UI ui, int breedThreads, int evalThreads) {
+        ui.access(() -> {
+            breedThreadsValue.setText(String.valueOf(breedThreads));
+            evaluationThreadsValue.setText(String.valueOf(evalThreads));
+            //randomSeedValue.setText(String.valueOf(randomSeed));
+        });
+    }
+    public void updateJobMetrics(UI ui, int evaluations, int generation) {
+        ui.access(() -> {
+            evaluationsValue.setText(String.valueOf(evaluations));
+            generationValue.setText(String.valueOf(generation));
+            connectedSlavesValue.setText(String.valueOf(slaveManager.getConnectedSlaves()));
         });
     }
 

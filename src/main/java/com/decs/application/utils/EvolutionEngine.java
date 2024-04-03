@@ -50,12 +50,14 @@ public class EvolutionEngine extends Thread {
     public void run() {
         // Distributed ?
         if (job.getDistribution().equals("eval")) {
-            System.out.println("Distributed Eval");
-
-            slaveManager.initializeSlaves();
-            slaveManager.startInference();
-
-            //Registry registry = LocateRegistry.getRegistry();
+            if (slaveManager.getConnectedSlaves() >= 1) {
+                System.out.println("Distributed Eval");
+                slaveManager.initializeSlaves();
+            }
+            else {
+                System.err.println("No Connected Slaves");
+                return;
+            }
         }
 
         startInference();
@@ -82,6 +84,10 @@ public class EvolutionEngine extends Thread {
             job.setLogFile(jobLogFile);
 
             evaluatedState = Evolve.initialize(paramDatabase, 0, out);
+
+            // Set Job Metrics
+            jobDashboard.setJobMetrics(this.ui, evaluatedState.breedthreads, evaluatedState.evalthreads);
+
             // Run all at once
             //evaluatedState.run(EvolutionState.C_STARTED_FRESH);
             // Run stage by stage
@@ -90,6 +96,7 @@ public class EvolutionEngine extends Thread {
             while (result == EvolutionState.R_NOTDONE) {
                 result = evaluatedState.evolve();
                 jobDashboard.updateProgressBar(this.ui, (float) evaluatedState.generation / (evaluatedState.numGenerations-1));
+                jobDashboard.updateJobMetrics(this.ui, evaluatedState.evaluations, evaluatedState.generation);
             }
 
             results = evaluatedState.statistics;

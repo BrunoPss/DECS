@@ -39,7 +39,9 @@ public class SlaveManager {
     }
 
     //Get Methods
-
+    public int getConnectedSlaves() {
+        return slaveList.size();
+    }
 
     //Set Methods
 
