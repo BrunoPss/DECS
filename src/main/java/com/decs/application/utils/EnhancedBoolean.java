@@ -17,4 +17,10 @@ public enum EnhancedBoolean {
             case FALSE -> false;
         };
     }
+    public String valueString() {
+        return switch (this) {
+            case TRUE -> "true";
+            case FALSE -> "false";
+        };
+    }
 }

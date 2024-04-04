@@ -1,6 +1,8 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
+import com.decs.application.data.ProblemType;
 import com.decs.application.utils.EnhancedBoolean;
+import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -13,9 +15,17 @@ import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
+import ec.util.Parameter;
+import ec.util.ParameterDatabase;
+import org.springframework.security.core.parameters.P;
+
+import java.io.File;
+import java.io.IOException;
 
 public class SimpleTab extends Tab implements ParamTab {
     //Internal Data
+    private static final String PARAMS_FILENAME = "simple.params";
+    //Layouts
     private VerticalLayout simpleTabLayout;
     // Stopping Condition
     private VerticalLayout stoppingCondLayoutGroup;
@@ -101,7 +111,48 @@ public class SimpleTab extends Tab implements ParamTab {
     }
 
     //Overrides
+    @Override
+    public String getFileName() { return PARAMS_FILENAME; }
 
+    @Override
+    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+        ParameterDatabase paramDatabase;
+
+        try {
+            File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
+            paramDatabase = new ParameterDatabase(paramsFile,
+                    new String[]{"-file", paramsFile.getCanonicalPath()});
+
+            // Parent
+            paramDatabase.set(new Parameter("parent.0"), "ec.params");
+
+            // Generations / Evaluations
+            paramDatabase.set(new Parameter(stoppingVariableTypeSelector.getValue().toLowerCase()), stoppingVariableValue.getValue().toString());
+
+            // Subpopulation
+            paramDatabase.set(new Parameter("pop.subpop.0.size"), subpopulationSize.getValue().toString());
+            paramDatabase.set(new Parameter("pop.subpop.0.duplicate-retries"), subpopulationDupRetries.getValue().toString());
+
+            // Breeder
+            paramDatabase.set(new Parameter("breed.elite.0"), breederElite.getValue().toString());
+            paramDatabase.set(new Parameter("breed.reevaluate-elites.0"), breederEliteReeval.getValue().valueString());
+            paramDatabase.set(new Parameter("breed.sequential"), breederSequential.getValue().valueString());
+
+            // Statistics
+            //...
+
+            return paramDatabase;
+
+        } catch (IOException e) {
+            System.err.println("IO Exception while opening params file");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     //Internal Functions
     private void createStoppingConditionGroup() {

@@ -339,6 +339,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     }
 
     private void updateAvailableProblemsList(ClickEvent<Button> event) {
+        System.err.println("REFRESH");
         availableProblemsGrid.getDataProvider().refreshAll();
     }
 

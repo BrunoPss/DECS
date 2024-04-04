@@ -1,5 +1,7 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
+import com.decs.application.data.ProblemType;
+import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -11,10 +13,17 @@ import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
+import ec.util.Parameter;
+import ec.util.ParameterDatabase;
 import org.apache.tomcat.Jar;
+
+import java.io.File;
+import java.io.IOException;
 
 public class KozaTab extends Tab implements ParamTab {
     //Internal Data
+    private static final String PARAMS_FILENAME = "koza.params";
+    //Layouts
     private VerticalLayout kozaTabLayout;
     // Initial Creation Group
     private VerticalLayout initialCreationLayoutGroup;
@@ -158,7 +167,77 @@ public class KozaTab extends Tab implements ParamTab {
     }
 
     //Overrides
+    @Override
+    public String getFileName() { return PARAMS_FILENAME; }
 
+    @Override
+    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+        ParameterDatabase paramDatabase;
+        try {
+            File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
+            paramDatabase = new ParameterDatabase(paramsFile,
+                    new String[]{"-file", paramsFile.getCanonicalPath()});
+
+            // Parent
+            paramDatabase.set(new Parameter("parent.0"), "simple.params");
+
+            // Half Builder
+            // Min Depth
+            paramDatabase.set(new Parameter("gp.koza.half.min-depth"), initialCreationMinDepth.getValue().toString());
+            // Max Depth
+            paramDatabase.set(new Parameter("gp.koza.half.max-depth"), initialCreationMaxDepth.getValue().toString());
+            // Grow Probability
+            paramDatabase.set(new Parameter("gp.koza.half.growp"), initialCreationGrowProb.getValue().toString());
+
+            // Pipelines
+            // Crossover Pipeline Prob
+            paramDatabase.set(new Parameter("pop.subpop.0.species.pipe.source.0.prob"), crossoverPipelineProb.getValue().toString());
+            // Reproduction Pipeline Prob
+            paramDatabase.set(new Parameter("pop.subpop.0.species.pipe.source.1.prob"), reproductionPipelineProb.getValue().toString());
+
+            // Crossover Pipeline
+            // Max Depth
+            paramDatabase.set(new Parameter("gp.koza.xover.maxdepth"), crossoverPipelineMaxDepth.getValue().toString());
+            // Tries
+            paramDatabase.set(new Parameter("gp.koza.xover.tries"), crossoverPipelineTries.getValue().toString());
+
+            // Point Mutation
+            // Max Depth
+            paramDatabase.set(new Parameter("gp.koza.mutate.maxdepth"), pointMutationMaxDepth.getValue().toString());
+            // Tries
+            paramDatabase.set(new Parameter("gp.koza.mutate.tries"), pointMutationTries.getValue().toString());
+
+            // Tournament
+            // Size
+            paramDatabase.set(new Parameter("select.tournament.size"), tournamentSize.getValue().toString());
+
+            // Subtree Mutation
+            // GROW
+            // Min Depth
+            paramDatabase.set(new Parameter("gp.koza.grow.min-depth"), subtreeMutationMinDepth.getValue().toString());
+            // Max Depth
+            paramDatabase.set(new Parameter("gp.koza.grow.max-depth"), subtreeMutationMaxDepth.getValue().toString());
+
+            // Koza Node Selection
+            // Terminals Prob
+            paramDatabase.set(new Parameter("gp.koza.ns.terminals"), kozaNodeSelectionTerminalsProb.getValue().toString());
+            // Non-Terminals Prob
+            paramDatabase.set(new Parameter("gp.koza.ns.nonterminals"), kozaNodeSelectionNonTerminalsProb.getValue().toString());
+            // Root Prob
+            paramDatabase.set(new Parameter("gp.koza.ns.root"), kozaNodeSelectionRootProb.getValue().toString());
+
+            return paramDatabase;
+
+        } catch (IOException e) {
+            System.err.println("IO Exception while opening params file");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     //Internal Functions
     private void createInitialCreationGroup() {
@@ -395,7 +474,7 @@ public class KozaTab extends Tab implements ParamTab {
         tournamentSizeLayout = new HorizontalLayout();
         tournamentSizeLayout.setAlignItems(FlexComponent.Alignment.END);
         tournamentSize = new IntegerField();
-        tournamentSize.setLabel("Max Depth");
+        tournamentSize.setLabel("Size");
         tournamentSize.setMin(1);
         tournamentSize.setValue(7);
         tournamentSize.setStepButtonsVisible(true);

@@ -2,6 +2,8 @@ package com.decs.application.views.ProblemEditor.tabs;
 
 import com.decs.application.data.ParameterGroupType;
 import com.decs.application.data.ProblemType;
+import com.decs.application.utils.EnhancedBoolean;
+import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.ProblemEditorView;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -20,12 +22,18 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
+import ec.util.Parameter;
+import ec.util.ParameterDatabase;
+import org.springframework.security.core.parameters.P;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class GeneralTab extends Tab implements ParamTab {
     //Internal Data
+    private static final String PARAMS_FILENAME = "ec.params";
     // General Tab
     private VerticalLayout generalTabLayout;
     // Problem Selector
@@ -60,6 +68,10 @@ public class GeneralTab extends Tab implements ParamTab {
     private VerticalLayout checkpointGroupLayout;
     private Span checkpointGroupTitle;
     private HorizontalLayout moduloPrefixLayout;
+    private HorizontalLayout checkpointInputLayout;
+    private Select<EnhancedBoolean> checkpointInput;
+    private Tooltip checkpointTooltip;
+    private Button checkpointHelpBtn;
     private HorizontalLayout moduloInputLayout;
     private IntegerField moduloInput;
     private Tooltip moduloTooltip;
@@ -102,7 +114,44 @@ public class GeneralTab extends Tab implements ParamTab {
     }
 
     //Overrides
+    @Override
+    public String getFileName() { return PARAMS_FILENAME; }
 
+    @Override
+    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+        ParameterDatabase paramDatabase;
+        try {
+            File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
+            paramDatabase = new ParameterDatabase(paramsFile,
+                    new String[]{"-file", paramsFile.getCanonicalPath()});
+
+            // Jobs
+            //...
+
+            // Eval / Breed Threads
+            paramDatabase.set(new Parameter("evalthreads"), evalInput.getValue().toString());
+            paramDatabase.set(new Parameter("breedthreads"), breedInput.getValue().toString());
+
+            // Random Seed
+            paramDatabase.set(new Parameter("seed.0"), seedInput.getValue());
+
+            // Checkpoint
+            paramDatabase.set(new Parameter("checkpoint"), checkpointInput.getValue().valueString());
+            paramDatabase.set(new Parameter("checkpoint-modulo"), moduloInput.getValue().toString());
+            paramDatabase.set(new Parameter("checkpoint-prefix"), prefixInput.getValue());
+
+            return paramDatabase;
+
+        } catch (IOException e) {
+            System.err.println("IO Exception while opening params file");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     //Internal Functions
     private void createProblemSelector() {
@@ -152,6 +201,7 @@ public class GeneralTab extends Tab implements ParamTab {
         seedInput = new ComboBox<>();
         seedInput.setLabel("Random Seed");
         seedInput.setAllowCustomValue(true);
+        seedInput.setItems("time");
         seedTooltip = seedInput.getTooltip().withManual(true);
         seedTooltip.setText("test tooltip");
 
@@ -221,6 +271,20 @@ public class GeneralTab extends Tab implements ParamTab {
         moduloPrefixLayout.setSpacing(true);
         moduloPrefixLayout.getThemeList().add("spacing-xl");
 
+        checkpointInputLayout = new HorizontalLayout();
+        checkpointInputLayout.setAlignItems(FlexComponent.Alignment.END);
+        checkpointInput = new Select<>();
+        checkpointInput.setLabel("Checkpoint");
+        checkpointInput.setItems(EnhancedBoolean.TRUE, EnhancedBoolean.FALSE);
+        checkpointInput.setValue(EnhancedBoolean.FALSE);
+        checkpointTooltip = checkpointInput.getTooltip().withManual(true);
+        checkpointTooltip.setText("test tooltip");
+        checkpointHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
+        checkpointHelpBtn.addClickListener(event -> {
+            checkpointTooltip.setOpened(!checkpointTooltip.isOpened());
+        });
+        checkpointInputLayout.add(checkpointInput, checkpointHelpBtn);
+
         moduloInputLayout = new HorizontalLayout();
         moduloInputLayout.setAlignItems(FlexComponent.Alignment.END);
         moduloInput = new IntegerField();
@@ -242,6 +306,9 @@ public class GeneralTab extends Tab implements ParamTab {
         prefixInput.setLabel("Prefix");
         prefixInput.setPrefixComponent(VaadinIcon.TEXT_LABEL.create());
         prefixInput.setClearButtonVisible(true);
+        prefixInput.setRequired(true);
+        prefixInput.setRequiredIndicatorVisible(true);
+        prefixInput.setMaxLength(50);
         prefixTooltip = prefixInput.getTooltip().withManual(true);
         prefixTooltip.setText("test tooltip");
         prefixHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
@@ -250,7 +317,7 @@ public class GeneralTab extends Tab implements ParamTab {
         });
         prefixInputLayout.add(prefixInput, prefixHelpBtn);
 
-        moduloPrefixLayout.add(moduloInputLayout, prefixInputLayout);
+        moduloPrefixLayout.add(checkpointInputLayout, moduloInputLayout, prefixInputLayout);
         checkpointGroupLayout.add(checkpointGroupTitle, moduloPrefixLayout);
     }
 

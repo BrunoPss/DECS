@@ -54,4 +54,6 @@ public enum ProblemType {
                 .map(Enum::toString)
                 .collect(Collectors.toList());
     }
+
+    public String getCode() { return this.code; }
 }
