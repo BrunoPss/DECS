@@ -45,6 +45,19 @@ public class ProblemFileManager {
         }
         return problemList;
     }
+
+    public static void writeConfFile(File path, HashMap<FileConfigAttr, String> problemInfo) {
+        try {
+            FileOutputStream f = new FileOutputStream(path);
+            ObjectOutputStream ob = new ObjectOutputStream(f);
+            ob.writeObject(problemInfo);
+            f.close();
+        } catch (IOException e) {
+            System.err.println("IO Exception");
+            e.printStackTrace();
+        }
+    }
+
     public static void createFile() {
         try {
             FileOutputStream f = new FileOutputStream("D:\\programing\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\user\\TBoxDist\\TBoxDist.conf");

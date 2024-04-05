@@ -75,7 +75,11 @@ public class ObjectListDatabase {
             );
 
     //Methods
-
+    public void updateAvailableProblems() {
+        availableProblemsList.clear();
+        availableProblemsList.addAll(ProblemCreator.problemScanner(FilePathConstants.FACTORY_PARAMS_FOLDER));
+        availableProblemsList.addAll(ProblemCreator.problemScanner(FilePathConstants.USER_PARAMS_FOLDER));
+    }
 
     //Overrides
 

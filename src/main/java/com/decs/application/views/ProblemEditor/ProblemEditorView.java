@@ -4,6 +4,9 @@ import com.decs.application.data.ParameterGroupType;
 import com.decs.application.data.Problem;
 import com.decs.application.data.ProblemType;
 import com.decs.application.services.ObjectListDatabase;
+import com.decs.application.utils.FileConfigAttr;
+import com.decs.application.utils.ProblemCreator;
+import com.decs.application.utils.ProblemFileManager;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.MainLayout;
 import com.decs.application.views.ProblemEditor.tabs.*;
@@ -40,6 +43,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @PageTitle("Problem Editor")
 @Route(value = "problem-editor", layout = MainLayout.class)
@@ -113,7 +117,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
     private void saveProblem(SaveEvent event) {
         System.out.println("SAVE");
         // Create Problem Folder
-        File problemFolder = new File(FilePathConstants.USER_PARAMS_FOLDER + "/" + event.getSource().getProblemName());
+        File problemFolder = new File(FilePathConstants.USER_PARAMS_FOLDER + "/" + event.getSource().getProblemCode());
         try {
             Files.createDirectory(problemFolder.toPath());
         } catch (IOException e) {
@@ -145,16 +149,24 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         try {
             // Copy Base Problem Params File
             Path baseFileOriginalPath = Paths.get(FilePathConstants.FACTORY_PARAMS_FOLDER+"/"+selectedProblem.getCode()+"/"+selectedProblem.getCode()+".params");
-            Path baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + selectedProblem.getCode()+".params");
+            Path baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + event.getSource().getProblemCode()+".params");
             Files.copy(baseFileOriginalPath, baseFileDestinationPath, StandardCopyOption.REPLACE_EXISTING);
-            // Copy .conf file
-            Path confFileOriginalPath = Paths.get(FilePathConstants.FACTORY_PARAMS_FOLDER+"/"+selectedProblem.getCode()+"/"+selectedProblem.getCode()+".conf");
-            Path confFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + selectedProblem.getCode()+".conf");
-            Files.copy(confFileOriginalPath, confFileDestinationPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.err.println("IO Exception");
             e.printStackTrace();
         }
+
+        // Create .conf File
+        File confFilePath = new File(problemFolder.getPath() + "/" + event.getSource().getProblemCode()+".conf");
+
+        HashMap<FileConfigAttr, String> problemInfo = new HashMap<>();
+        problemInfo.put(FileConfigAttr.CODE, event.getSource().getProblemCode());
+        problemInfo.put(FileConfigAttr.FULL_NAME, event.getSource().getProblemFullName());
+        problemInfo.put(FileConfigAttr.TYPE, event.getSource().getProblemType());
+        problemInfo.put(FileConfigAttr.ORIGIN, event.getSource().getProblemOrigin());
+        problemInfo.put(FileConfigAttr.DISTRIBUTION, event.getSource().getProblemDistribution());
+
+        ProblemFileManager.writeConfFile(confFilePath, problemInfo);
     }
 
     // Private Functions

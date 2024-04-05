@@ -167,6 +167,8 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         availableProblemsGrid.addColumn(Problem::getCode).setHeader("Code");
         availableProblemsGrid.addColumn(Problem::getFullName).setHeader("Name");
         availableProblemsGrid.addColumn(Problem::getType).setHeader("Type");
+        availableProblemsGrid.addColumn(Problem::getOrigin).setHeader("Origin");
+        availableProblemsGrid.addColumn(Problem::getDistribution).setHeader("Distribution");
 
         // Problems Scan
         factoryProblemsList = ProblemCreator.problemScanner(FilePathConstants.FACTORY_PARAMS_FOLDER);
@@ -340,6 +342,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
     private void updateAvailableProblemsList(ClickEvent<Button> event) {
         System.err.println("REFRESH");
+        objectListDatabase.updateAvailableProblems();
         availableProblemsGrid.getDataProvider().refreshAll();
     }
 

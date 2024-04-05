@@ -18,7 +18,11 @@ public class SaveButton extends Button {
     }
 
     //Get Methods
-    public String getProblemName() { return this.saveTab.getProblemName(); }
+    public String getProblemCode() { return this.saveTab.getProblemCode(); }
+    public String getProblemFullName() { return this.saveTab.getProblemFullName(); }
+    public String getProblemType() { return this.saveTab.getProblemType(); }
+    public String getProblemOrigin() { return this.saveTab.getProblemOrigin(); }
+    public String getProblemDistribution() { return this.saveTab.getProblemDistribution(); }
 
     //Set Methods
 

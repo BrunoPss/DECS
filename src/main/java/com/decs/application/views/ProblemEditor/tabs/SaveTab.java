@@ -8,6 +8,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.textfield.TextField;
@@ -22,7 +23,10 @@ public class SaveTab extends Tab implements ParamTab {
     private VerticalLayout saveTabLayout;
     private VerticalLayout problemSaveGroupLayout;
     private Span problemSaveGroupTitle;
+    HorizontalLayout upperInfoGroup;
+    private TextField problemCode;
     private TextField problemName;
+    private TextField problemType;
     private SaveButton saveProblemBtn;
 
     //Constructor
@@ -34,7 +38,11 @@ public class SaveTab extends Tab implements ParamTab {
     public SaveButton getSaveButton() {
         return this.saveProblemBtn;
     }
-    public String getProblemName() { return this.problemName.getValue(); }
+    public String getProblemCode() { return this.problemCode.getValue(); }
+    public String getProblemFullName() { return this.problemName.getValue(); }
+    public String getProblemType() { return this.problemType.getValue(); }
+    public String getProblemOrigin() { return "user"; }
+    public String getProblemDistribution() { return "local"; } // CHANGE THIS WHEN DISTRIBUTION MENU READY
 
     //Set Methods
 
@@ -70,6 +78,16 @@ public class SaveTab extends Tab implements ParamTab {
 
         problemSaveGroupTitle = new Span("Problem Info");
 
+        upperInfoGroup = new HorizontalLayout();
+
+        problemCode =  new TextField();
+        problemCode.setLabel("Problem Code");
+        problemCode.setPrefixComponent(VaadinIcon.TEXT_LABEL.create());
+        problemCode.setClearButtonVisible(true);
+        problemCode.setRequired(true);
+        problemCode.setRequiredIndicatorVisible(true);
+        problemCode.setMaxLength(100);
+
         problemName =  new TextField();
         problemName.setLabel("Problem Name");
         problemName.setPrefixComponent(VaadinIcon.TEXT_LABEL.create());
@@ -78,10 +96,20 @@ public class SaveTab extends Tab implements ParamTab {
         problemName.setRequiredIndicatorVisible(true);
         problemName.setMaxLength(100);
 
+        problemType =  new TextField();
+        problemType.setLabel("Problem Type");
+        problemType.setPrefixComponent(VaadinIcon.TEXT_LABEL.create());
+        problemType.setClearButtonVisible(true);
+        problemType.setRequired(true);
+        problemType.setRequiredIndicatorVisible(true);
+        problemType.setMaxLength(100);
+
+        upperInfoGroup.add(problemCode, problemName, problemType);
+
         saveProblemBtn = new SaveButton(this, "Save");
         saveProblemBtn.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
 
-        problemSaveGroupLayout.add(problemSaveGroupTitle, problemName, saveProblemBtn);
+        problemSaveGroupLayout.add(problemSaveGroupTitle, upperInfoGroup, saveProblemBtn);
     }
 
     // Event Listeners
