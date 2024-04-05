@@ -2,6 +2,7 @@ package com.decs.application.views;
 
 import com.decs.application.data.User;
 import com.decs.application.security.AuthenticatedUser;
+import com.decs.application.services.SlaveManager;
 import com.decs.application.views.ProblemEditor.ProblemEditorView;
 import com.decs.application.views.jobdashboard.JobDashboardView;
 import com.decs.application.views.nodemanager.NodeManagerView;
@@ -16,6 +17,7 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
@@ -34,13 +36,15 @@ import org.vaadin.lineawesome.LineAwesomeIcon;
 public class MainLayout extends AppLayout {
 
     private H2 viewTitle;
-
     private AuthenticatedUser authenticatedUser;
     private AccessAnnotationChecker accessChecker;
 
-    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
+    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, SlaveManager slaveManager) {
         this.authenticatedUser = authenticatedUser;
         this.accessChecker = accessChecker;
+
+        // Initialize Slave Manager
+        slaveManager.startSlaveListener();
 
         setPrimarySection(Section.DRAWER);
         addDrawerContent();
@@ -71,18 +75,21 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         if (accessChecker.hasAccess(JobDashboardView.class)) {
-            nav.addItem(new SideNavItem("Job Dashboard", JobDashboardView.class,
-                    LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+            nav.addItem(
+                    new SideNavItem("Job Dashboard", JobDashboardView.class,
+                            VaadinIcon.HOME.create()));
 
         }
         if (accessChecker.hasAccess(NodeManagerView.class)) {
-            nav.addItem(new SideNavItem("Node Manager", NodeManagerView.class,
-                    LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+            nav.addItem(
+                    new SideNavItem("Node Manager", NodeManagerView.class,
+                            VaadinIcon.CLUSTER.create()));
 
         }
         if (accessChecker.hasAccess(ProblemEditorView.class)) {
             nav.addItem(
-                    new SideNavItem("Problem Editor", ProblemEditorView.class, LineAwesomeIcon.PENCIL_RULER_SOLID.create()));
+                    new SideNavItem("Problem Editor", ProblemEditorView.class,
+                            VaadinIcon.SLIDERS.create()));
 
         }
 
@@ -97,9 +104,9 @@ public class MainLayout extends AppLayout {
             User user = maybeUser.get();
 
             Avatar avatar = new Avatar(user.getName());
-            StreamResource resource = new StreamResource("profile-pic",
-                    () -> new ByteArrayInputStream(user.getProfilePicture()));
-            avatar.setImageResource(resource);
+            //StreamResource resource = new StreamResource("profile-pic",
+            //        () -> new ByteArrayInputStream(user.getProfilePicture()));
+            //avatar.setImageResource(resource);
             avatar.setThemeName("xsmall");
             avatar.getElement().setAttribute("tabindex", "-1");
 

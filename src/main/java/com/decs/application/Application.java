@@ -1,15 +1,19 @@
 package com.decs.application;
 
 import com.decs.application.data.SamplePersonRepository;
+import com.decs.application.services.SlaveManager;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.theme.Theme;
 import javax.sql.DataSource;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.sql.init.SqlDataSourceScriptDatabaseInitializer;
 import org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * The entry point of the Spring Boot application.
@@ -19,11 +23,16 @@ import org.springframework.context.annotation.Bean;
  *
  */
 @SpringBootApplication
+@Push
+@EnableAsync
 @NpmPackage(value = "@fontsource/cousine", version = "4.5.0")
 @Theme(value = "decs")
 public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
+        // Handle Initial Problem File Setup
+        //ProblemFileManager.createFile();
+
         SpringApplication.run(Application.class, args);
     }
 
