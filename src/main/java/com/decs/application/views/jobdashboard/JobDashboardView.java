@@ -1,5 +1,6 @@
 package com.decs.application.views.jobdashboard;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.Job;
 import com.decs.application.data.JobStatus;
 import com.decs.application.data.Problem;
@@ -21,6 +22,8 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -337,7 +340,17 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         objectListDatabase.addJobActivity(newJob);
         jobActivityGrid.getDataProvider().refreshAll();
         evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this, slaveManager);
-        evolutionEngine.start();
+        if (newJob.getDistribution() != DistributionType.LOCAL && slaveManager.getConnectedSlaves() == 0) {
+            System.err.println("No connected Slaves");
+            Notification noSlavesNotification = Notification.show("No Slaves Connected");
+            noSlavesNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+            newJob.setStatus(JobStatus.FINISHED);
+            jobActivityUpdater.refreshItem(newJob);
+            startBtn.setEnabled(true);
+        }
+        else {
+            evolutionEngine.start();
+        }
     }
 
     private void updateAvailableProblemsList(ClickEvent<Button> event) {

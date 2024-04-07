@@ -1,5 +1,6 @@
 package com.decs.application.utils;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.Job;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.utils.constants.FilePathConstants;
@@ -49,17 +50,17 @@ public class EvolutionEngine extends Thread {
     @Override
     public void run() {
         // Distributed ?
-        if (job.getDistribution().equals("eval")) {
+        if (job.getDistribution() != DistributionType.LOCAL) {
             if (slaveManager.getConnectedSlaves() >= 1) {
                 System.out.println("Distributed Eval");
                 slaveManager.initializeSlaves();
+                slaveManager.startInference();
             }
             else {
-                System.err.println("No Connected Slaves");
                 return;
             }
         }
-
+        System.out.println("Start Inference");
         startInference();
         jobDashboard.updateInferenceResults(this.ui, evaluatedState);
     }

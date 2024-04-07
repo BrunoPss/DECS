@@ -11,7 +11,7 @@ public class Problem {
     private String fullName;
     private String type;
     private String origin;
-    private String distribution;
+    private DistributionType distribution;
     private ParameterDatabase parameterDatabase;
 
     //Constructor
@@ -20,7 +20,7 @@ public class Problem {
         this.paramsFile = paramsFile;
         this.fullName = paramsFile.getName();
     }
-    public Problem(File paramsFile, String code, String fullName, String type, String origin, String distribution, File rootFile) {
+    public Problem(File paramsFile, String code, String fullName, String type, String origin, DistributionType distribution, File rootFile) {
         this.paramsFile = paramsFile;
         this.code = code;
         this.fullName = fullName;
@@ -38,7 +38,7 @@ public class Problem {
     public String getFullName() { return fullName; }
     public String getType() { return type; }
     public String getOrigin() { return origin; }
-    public String getDistribution() { return distribution; }
+    public DistributionType getDistribution() { return distribution; }
     public File getRootFile() { return rootFile; }
 
     //Set Methods

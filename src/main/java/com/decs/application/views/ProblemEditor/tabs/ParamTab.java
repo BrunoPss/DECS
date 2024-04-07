@@ -6,6 +6,6 @@ import ec.util.ParameterDatabase;
 
 public interface ParamTab {
     public VerticalLayout buildLayout();
-    public String getFileName();
-    public ParameterDatabase createParamDatabase(ProblemType selectedProblem);
+    public String[] getFileName();
+    public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem);
 }

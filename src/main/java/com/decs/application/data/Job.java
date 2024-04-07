@@ -13,11 +13,11 @@ public class Job {
     private JobStatus status;
     private File logFile;
     private File statsFile;
-    private String distribution;
+    private DistributionType distribution;
 
     //Constructor
     public Job() {}
-    public Job(String name, String distribution) {
+    public Job(String name, DistributionType distribution) {
         this.name = name;
         this.id = uniqueId.getAndIncrement();
         this.status = JobStatus.QUEUED;
@@ -30,7 +30,7 @@ public class Job {
     public JobStatus getStatus() { return this.status; }
     public File getLogFile() { return this.logFile; }
     public File getStatsFile() { return this.statsFile; }
-    public String getDistribution() { return this.distribution; }
+    public DistributionType getDistribution() { return this.distribution; }
 
     //Set Methods
     public void setName(String name) { this.name = name; }

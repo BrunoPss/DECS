@@ -1,5 +1,6 @@
 package com.decs.application.utils;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.Problem;
 
 import java.io.File;
@@ -27,7 +28,7 @@ public final class ProblemCreator {
         for (HashMap<FileConfigAttr, String> h : configList) {
             problemList.add(new Problem(new File(h.get(FileConfigAttr.PARAMS_FILE)),
                     h.get(FileConfigAttr.CODE), h.get(FileConfigAttr.FULL_NAME), h.get(FileConfigAttr.TYPE),
-                    h.get(FileConfigAttr.ORIGIN), h.get(FileConfigAttr.DISTRIBUTION),
+                    h.get(FileConfigAttr.ORIGIN), DistributionType.valueOf(h.get(FileConfigAttr.DISTRIBUTION)),
                     new File(h.get(FileConfigAttr.PARAMS_FILE)).getParentFile()));
         }
 

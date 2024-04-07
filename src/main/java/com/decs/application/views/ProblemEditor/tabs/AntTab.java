@@ -30,10 +30,10 @@ public class AntTab extends Tab implements ParamTab {
 
     //Overrides
     @Override
-    public String getFileName() { return PARAMS_FILENAME; }
+    public String[] getFileName() { return new String[]{PARAMS_FILENAME}; }
 
     @Override
-    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+    public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
         return null;
     }
 

@@ -1,0 +1,29 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=1591.7134920634921 Adjusted=6.27859313670042E-4 Hits=0
+Tree 0:
+ (+ (* (+ (* h1 l1) (% h1 w1)) (- (- h0 w1)
+     (- w1 l0))) (- (- (% l0 w0) (% w0 h1)) (+
+     (+ l1 w1) (+ l0 l1))))
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=1537.9095238095238 Adjusted=6.498107812891627E-4 Hits=0
+Tree 0:
+ (* (+ (* h1 l1) (% h1 w1)) (- (- h0 w1) (-
+     w1 l0)))
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=1075.7849206349208 Adjusted=9.286905684102216E-4 Hits=0
+Tree 0:
+ (+ (* (+ (* h1 l1) (% h1 w1)) (- (- h0 w1)
+     (* (- h0 h0) (+ w1 l1)))) (- (- (% l0 w0)
+     (% w0 h1)) (+ (+ l1 w1) (* l1 w1))))

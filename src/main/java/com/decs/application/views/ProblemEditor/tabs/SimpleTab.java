@@ -112,10 +112,10 @@ public class SimpleTab extends Tab implements ParamTab {
 
     //Overrides
     @Override
-    public String getFileName() { return PARAMS_FILENAME; }
+    public String[] getFileName() { return new String[]{PARAMS_FILENAME}; }
 
     @Override
-    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+    public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
         ParameterDatabase paramDatabase;
 
         try {
@@ -141,7 +141,7 @@ public class SimpleTab extends Tab implements ParamTab {
             // Statistics
             //...
 
-            return paramDatabase;
+            return new ParameterDatabase[]{paramDatabase};
 
         } catch (IOException e) {
             System.err.println("IO Exception while opening params file");

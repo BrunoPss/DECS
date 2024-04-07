@@ -1,5 +1,6 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.ParameterGroupType;
 import com.decs.application.data.ProblemType;
 import com.decs.application.utils.EnhancedBoolean;
@@ -37,7 +38,9 @@ public class GeneralTab extends Tab implements ParamTab {
     // General Tab
     private VerticalLayout generalTabLayout;
     // Problem Selector
+    private HorizontalLayout problemSelectorLayout;
     private Select<ProblemType> problemSelector;
+    private Select<DistributionType> distributionSelector;
     // Jobs and Seed Group
     private VerticalLayout jobSeedGroupLayout;
     private HorizontalLayout jobSeedLayout;
@@ -88,6 +91,7 @@ public class GeneralTab extends Tab implements ParamTab {
 
     //Get Methods
     public Select<ProblemType> getProblemSelector() { return this.problemSelector; }
+    public Select<DistributionType> getDistSelector() { return this.distributionSelector; }
 
     //Set Methods
 
@@ -108,17 +112,17 @@ public class GeneralTab extends Tab implements ParamTab {
         createCheckpointGroup();
 
         // General Tab Builder
-        generalTabLayout.add(problemSelector, jobSeedGroupLayout, multithreadingGroupLayout, checkpointGroupLayout);
+        generalTabLayout.add(problemSelectorLayout, jobSeedGroupLayout, multithreadingGroupLayout, checkpointGroupLayout);
 
         return generalTabLayout;
     }
 
     //Overrides
     @Override
-    public String getFileName() { return PARAMS_FILENAME; }
+    public String[] getFileName() { return new String[]{PARAMS_FILENAME}; }
 
     @Override
-    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+    public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
         ParameterDatabase paramDatabase;
         try {
             File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
@@ -140,7 +144,7 @@ public class GeneralTab extends Tab implements ParamTab {
             paramDatabase.set(new Parameter("checkpoint-modulo"), moduloInput.getValue().toString());
             paramDatabase.set(new Parameter("checkpoint-prefix"), prefixInput.getValue());
 
-            return paramDatabase;
+            return new ParameterDatabase[]{paramDatabase};
 
         } catch (IOException e) {
             System.err.println("IO Exception while opening params file");
@@ -155,12 +159,20 @@ public class GeneralTab extends Tab implements ParamTab {
 
     //Internal Functions
     private void createProblemSelector() {
+        problemSelectorLayout = new HorizontalLayout();
+
         problemSelector = new Select<>();
         problemSelector.setLabel("Problem");
         problemSelector.setPlaceholder("Select Problem");
         // Select Values -> .param files available in the folder or ProblemType values
         problemSelector.setItems(ProblemType.values());
-        //problemSelector.addValueChangeListener();
+
+        distributionSelector = new Select<>();
+        distributionSelector.setLabel("Distribution");
+        distributionSelector.setPlaceholder("Select Distribution Method");
+        distributionSelector.setItems(DistributionType.values());
+
+        problemSelectorLayout.add(problemSelector, distributionSelector);
     }
 
     private void createJobsSeedGroup() {

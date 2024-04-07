@@ -1,5 +1,6 @@
 package com.decs.application.views.ProblemEditor;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.ParameterGroupType;
 import com.decs.application.data.Problem;
 import com.decs.application.data.ProblemType;
@@ -53,6 +54,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
     private TabSheet tabs;
     private ArrayList<ParamTab> tabsList;
     private ProblemType selectedProblem;
+    private DistributionType selectedDistMethod;
     private ObjectListDatabase objectListDatabase;
 
     public ProblemEditorView(ObjectListDatabase objectListDatabase) {
@@ -74,6 +76,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         GeneralTab generalTab = new GeneralTab();
         VerticalLayout generalTabContent = generalTab.buildLayout();
         generalTab.getProblemSelector().addValueChangeListener(this::problemChangeEvent);
+        generalTab.getDistSelector().addValueChangeListener(this::distributionChangeEvent);
         tabs.add(generalTab, generalTabContent);
         tabsList.add(generalTab);
 
@@ -95,23 +98,74 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         this.selectedProblem = event.getValue();
 
         // Delete Current Tabs
-        for (int i=1; i<tabsList.size(); i++) {
+        for (int i=1; i<tabsList.size()-1; i++) {
             tabs.remove((Tab) tabsList.get(i));
         }
-        tabsList.subList(1, tabsList.size()).clear();
+        tabsList.subList(1, tabsList.size()-1).clear();
 
         // Add Problem Tabs
-        for (ParameterGroupType p : event.getValue().getParameterGroups()) {
-            ParamTab newTab = createTab(p);
-            tabs.add((Tab) newTab, newTab.buildLayout());
+        ParamTab saveTab = tabsList.remove(tabsList.size()-1);
+        int i=1;
+        for (ParameterGroupType p : selectedProblem.getParameterGroups()) {
+            ParamTab newTab = createParamTab(p);
+            tabs.add((Tab) newTab, newTab.buildLayout(), i);
+            tabsList.add(newTab);
+            i++;
+        }
+        tabsList.add(saveTab);
+
+        // Add Distribution Tab
+        if (selectedDistMethod != null) {
+            ParamTab newTab = switch (selectedDistMethod) {
+                case DIST_EVAL -> new DistEvalTab();
+                case ISLANDS -> null;
+                case LOCAL -> null;
+            };
+            if (newTab != null) {
+                tabs.add((Tab) newTab, newTab.buildLayout(), tabsList.size()-2);
+            }
+        }
+    }
+
+    private void distributionChangeEvent(AbstractField.ComponentValueChangeEvent<Select<DistributionType>, DistributionType> event) {
+        // Save Selected Problem
+        this.selectedDistMethod = event.getValue();
+
+        System.out.println("Initial Tabs: " + tabsList);
+
+        // Delete Current Tabs
+        for (int i=1; i<tabsList.size()-1; i++) {
+            tabs.remove((Tab) tabsList.get(i));
+        }
+        tabsList.subList(1, tabsList.size()-1).clear();
+
+        System.out.println("After Remove: " + tabsList);
+
+        // Add Problem Tabs
+        if (selectedProblem != null) {
+            int i=1;
+            for (ParameterGroupType p : selectedProblem.getParameterGroups()) {
+                ParamTab newTab = createParamTab(p);
+                tabs.add((Tab) newTab, newTab.buildLayout(), i);
+                tabsList.add(newTab);
+                i++;
+            }
         }
 
-        // Add Save Tab
-        SaveTab saveTab = new SaveTab();
-        VerticalLayout saveTabContent = saveTab.buildLayout();
-        saveTab.getSaveButton().addSaveListener(this::saveProblem);
-        tabs.add(saveTab, saveTabContent);
+        // Add Distribution Tab
+        ParamTab saveTab = tabsList.remove(tabsList.size()-1);
+        ParamTab newTab = switch (selectedDistMethod) {
+            case DIST_EVAL -> new DistEvalTab();
+            case ISLANDS -> null;
+            case LOCAL -> null;
+        };
+        if (newTab != null) {
+            tabs.add((Tab) newTab, newTab.buildLayout(), tabsList.size());
+            tabsList.add(newTab);
+        }
         tabsList.add(saveTab);
+
+        System.out.println("Final List: " + tabsList);
     }
 
     private void saveProblem(SaveEvent event) {
@@ -128,13 +182,16 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         // Create Problem Files
         for (ParamTab tab : tabsList) {
             if (tab.getFileName() != null) {
-                try (FileWriter fwriter = new FileWriter(problemFolder.getPath() + "/" + tab.getFileName());
-                     PrintWriter pwriter = new PrintWriter(fwriter)) {
-
-                    // Write Params File from ParameterDatabase Object
-                    ParameterDatabase paramDatabase = tab.createParamDatabase(this.selectedProblem);
-                    paramDatabase.list(pwriter);
-
+                try {
+                    ParameterDatabase[] paramDatabase = tab.createParamDatabase(this.selectedProblem);
+                    FileWriter fwriter;
+                    for (int i=0; i< paramDatabase.length; i++) {
+                        fwriter = new FileWriter(problemFolder.getPath() + "/" + tab.getFileName()[i]);
+                        PrintWriter pwriter = new PrintWriter(fwriter);
+                        // Write Params File from ParameterDatabase Object
+                        paramDatabase[i].list(pwriter);
+                        fwriter.close();
+                    }
                 } catch (IOException e) {
                     System.out.println("IO Exception");
                     e.printStackTrace();
@@ -149,7 +206,24 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         try {
             // Copy Base Problem Params File
             Path baseFileOriginalPath = Paths.get(FilePathConstants.FACTORY_PARAMS_FOLDER+"/"+selectedProblem.getCode()+"/"+selectedProblem.getCode()+".params");
-            Path baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + event.getSource().getProblemCode()+".params");
+            Path baseFileDestinationPath;
+            if (event.getSource().getProblemDistribution().equals(DistributionType.DIST_EVAL.toString())) {
+                baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + selectedProblem.getCode() + ".params");
+                // Create Main param File
+                try {
+                    File mainParamFile = new File(problemFolder.getPath() + "/" + event.getSource().getProblemCode() + ".params");
+                    FileWriter fwriter = new FileWriter(mainParamFile);
+                    fwriter.write("parent.0 = " + selectedProblem.getCode()+".params"+"\n");
+                    fwriter.write("parent.1 = master.params");
+                    fwriter.close();
+                } catch (IOException e) {
+                    System.err.println("IO Exception while creating main parameter file");
+                    e.printStackTrace();
+                }
+            }
+            else {
+                baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + event.getSource().getProblemCode() + ".params");
+            }
             Files.copy(baseFileOriginalPath, baseFileDestinationPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.err.println("IO Exception");
@@ -170,15 +244,13 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
     }
 
     // Private Functions
-    private ParamTab createTab(ParameterGroupType groupType) {
+    private ParamTab createParamTab(ParameterGroupType groupType) {
         ParamTab newTab = switch (groupType) {
             case EC -> new GeneralTab();
             case SIMPLE -> new SimpleTab();
             case KOZA -> new KozaTab();
             case ANT -> new AntTab();
         };
-
-        tabsList.add(newTab);
         return newTab;
     }
 

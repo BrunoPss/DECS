@@ -1,0 +1,11 @@
+eval.compression = false
+eval.master.host = localhost
+eval.master.port = 15000
+eval.masterproblem = ec.eval.MasterProblem
+eval.masterproblem.debug-info = false
+eval.masterproblem.job-size = 1
+eval.masterproblem.max-jobs-per-slave = 1
+eval.return-inds = false
+eval.slave.run-evolve = false
+eval.slave.runtime = 6000
+parent.0 = master.params

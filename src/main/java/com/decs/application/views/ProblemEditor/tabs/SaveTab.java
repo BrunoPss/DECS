@@ -1,5 +1,6 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.ProblemType;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.SaveButton;
@@ -42,7 +43,7 @@ public class SaveTab extends Tab implements ParamTab {
     public String getProblemFullName() { return this.problemName.getValue(); }
     public String getProblemType() { return this.problemType.getValue(); }
     public String getProblemOrigin() { return "user"; }
-    public String getProblemDistribution() { return "local"; } // CHANGE THIS WHEN DISTRIBUTION MENU READY
+    public String getProblemDistribution() { return DistributionType.DIST_EVAL.toString(); } // CHANGE THIS WHEN DISTRIBUTION MENU READY
 
     //Set Methods
 
@@ -64,10 +65,10 @@ public class SaveTab extends Tab implements ParamTab {
 
     //Overrides
     @Override
-    public String getFileName() { return null; }
+    public String[] getFileName() { return null; }
 
     @Override
-    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+    public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
         return null;
     }
 
