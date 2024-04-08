@@ -177,16 +177,6 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         factoryProblemsList = ProblemCreator.problemScanner(FilePathConstants.FACTORY_PARAMS_FOLDER);
         userProblemsList = ProblemCreator.problemScanner(FilePathConstants.USER_PARAMS_FOLDER);
 
-        // Job Queue
-        //jobQueueGrid = new Grid<>(Job.class, false);
-        //jobQueueGrid.addColumn(Job::getId).setHeader("ID");
-        //jobQueueGrid.addColumn(Job::getName).setHeader("Name");
-        //jobQueueUpdater = jobQueueGrid.getListDataView();
-
-        //jobQueueLabel = new Span("Job Queue");
-
-        //jobQueue = new VerticalLayout(jobQueueLabel, jobQueueGrid);
-
         // Problem List build
         availableProblemsUpdater = availableProblemsGrid.getListDataView();
         availableProblemsGrid.setDataProvider(objectListDatabase.getAvailableProblemsDataProvider());
@@ -354,7 +344,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     }
 
     private void updateAvailableProblemsList(ClickEvent<Button> event) {
-        System.err.println("REFRESH");
+        System.err.println("Available Problems Refresh");
         objectListDatabase.updateAvailableProblems();
         availableProblemsGrid.getDataProvider().refreshAll();
     }
