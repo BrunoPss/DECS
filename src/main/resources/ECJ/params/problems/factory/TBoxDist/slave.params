@@ -59,7 +59,7 @@ eval.return-inds = false
 # Master to start up on that port and host and will then connect to it.
 # Essentially we're creating a slave daemon.
 
-# eval.slave.one-shot = false
+eval.slave.one-shot = true
 
 
 # Set this to TRUE (it's false by default) to cause the slave to

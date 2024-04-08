@@ -1,0 +1,897 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=730.936507936508 Adjusted=0.0013662387231089521 Hits=0
+Tree 0:
+ (* (% (* h1 h1) (- h0 w1)) (- (* h1 w0) (-
+     w1 w0)))
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=730.936507936508 Adjusted=0.0013662387231089521 Hits=0
+Tree 0:
+ (* (% (* h1 h1) (- h0 w1)) (- (* h1 w0) (-
+     w1 w0)))
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=899.3713602456635 Adjusted=0.0011106528307687988 Hits=0
+Tree 0:
+ (* (% (+ (+ (* w0 h0) (- w0 h1)) (* (% h1
+     l1) (- h0 l1))) (* (* (- h1 l1) (+ w1 l0))
+     (+ (- l0 h0) (* h1 w0)))) (* (- (+ (% l1
+     w1) (+ w1 w0)) (+ (* w1 l1) (+ l0 w0))) (*
+     (% (* h0 l1) (- h1 l1)) (- (% h1 l0) (% h1
+     w0)))))
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=821.297619047619 Adjusted=0.0012161047008237662 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (% w1 h1)
+     (+ (* w0 l0) l1))) (% (+ l0 l0) (% w1 w1)))
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=821.297619047619 Adjusted=0.0012161047008237662 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (% w1 h1)
+     (+ (* w0 l0) l1))) (% (+ l0 l0) (% w1 w1)))
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=768.5303174603175 Adjusted=0.001299493960550251 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (% w1 h1)
+     (+ (* w0 l0) l1))) (% (+ l0 l0) (% (* l1
+     h0) (+ l1 w1))))
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=768.5303174603175 Adjusted=0.001299493960550251 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (% w1 h1)
+     (+ (* w0 l0) l1))) (% (+ l0 l0) (% (* l1
+     h0) (+ l1 w1))))
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=739.6348594945762 Adjusted=0.0013501929961579444 Hits=0
+Tree 0:
+ (% (+ (+ (- (* h1 h0) (- (+ h1 (+ w1 w0))
+     (+ (* w1 l1) (+ l0 w0)))) (* l0 w0)) (% (*
+     (+ h0 l0) (% w0 h1)) (* (* l0 w0) (- l0 h0))))
+     (% (* (- w1 (+ l1 l0)) (- (% l1 h0) (+ h0
+         l0))) (% (* (% h1 h0) (- l0 h1)) (% (* w1
+         l0) (- l0 h1)))))
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=507.62857142857143 Adjusted=0.0019660712279519154 Hits=0
+Tree 0:
+ (% (* l0 (+ (* (+ (- w0 w1) (+ (- h0 w1)
+     (* w0 (- h0 l1)))) (+ l0 w1)) (* l0 h0)))
+     (* l0 h0))
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=507.62857142857143 Adjusted=0.0019660712279519154 Hits=0
+Tree 0:
+ (% (* l0 (+ (* (+ (- w0 w1) (+ (- h0 w1)
+     (* w0 (- h0 l1)))) (+ l0 w1)) (* l0 h0)))
+     (* l0 h0))
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=721.7031432881377 Adjusted=0.0013836939956428356 Hits=0
+Tree 0:
+ (% (+ (+ (- (* h1 h0) (- (+ (% l1 w1) (+
+     w1 w0)) (+ (* w1 l1) (% l0 w1)))) (* l0 w0))
+     (% (* (+ h0 l0) (% w0 h1)) (* (* l0 w0) (-
+         l0 h0)))) (% (* (- w1 (+ l1 l0)) (- (% l1
+     h0) (+ l0 l0))) (% (* (% h1 h0) (- l0 h1))
+     (% (* w1 l0) (- l0 h1)))))
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=722.0098898464639 Adjusted=0.0013831069450687 Hits=0
+Tree 0:
+ (% (+ (+ (- (* h1 h0) (- (+ (% l1 w1) (+
+     w1 w0)) (+ (* w1 l1) (% l0 w1)))) (* l0 w0))
+     (% (- l0 h1) (* (* l0 w0) (- l0 h0)))) (%
+     (* (- w1 (+ l1 l0)) (- (% l1 h0) (+ l0 l0)))
+     (% (* (% h1 h0) (- l0 h1)) (% (* w1 l0) (-
+         l0 h1)))))
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=605.6876228269085 Adjusted=0.001648294711107541 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (% w1 h1)
+     (+ l0 w0))) (% (+ (* (% h1 h0) (- (+ (- w0
+     (* h1 w1)) (- (- h0 l1) w0)) h1)) l0) (%
+     (* w1 l0) (- l0 h1))))
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=511.5392620392955 Adjusted=0.0019510700429488886 Hits=0
+Tree 0:
+ (* (% w0 l1) (- (+ (- (% (+ (+ (- (* h1 h0)
+     (- (+ h1 (- l0 h1)) (+ (* w1 l1) (+ l0 w0))))
+     (* l0 w0)) (% (* (+ h0 l0) (% w0 h1)) (*
+     w0 w0))) (% (* (- w1 (+ l1 l0)) (- (% l1
+     h0) (+ h0 l0))) (% (* (% h1 h0) (- l0 h1))
+     (% (* w1 l0) (- l0 h1))))) (* w1 w1)) (*
+     (* h1 l0) (- h0 l1))) h1))
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=511.5392620392955 Adjusted=0.0019510700429488886 Hits=0
+Tree 0:
+ (* (% w0 l1) (- (+ (- (% (+ (+ (- (* h1 h0)
+     (- (+ h1 (- l0 h1)) (+ (* w1 l1) (+ l0 w0))))
+     (* l0 w0)) (% (* (+ h0 l0) (% w0 h1)) (*
+     w0 w0))) (% (* (- w1 (+ l1 l0)) (- (% l1
+     h0) (+ h0 l0))) (% (* (% h1 h0) (- l0 h1))
+     (% (* w1 l0) (- l0 h1))))) (* w1 w1)) (*
+     (* h1 l0) (- h0 l1))) h1))
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=511.5392620392955 Adjusted=0.0019510700429488886 Hits=0
+Tree 0:
+ (* (% w0 l1) (- (+ (- (% (+ (+ (- (* h1 h0)
+     (- (+ h1 (- l0 h1)) (+ (* w1 l1) (+ l0 w0))))
+     (* l0 w0)) (% (* (+ h0 l0) (% w0 h1)) (*
+     w0 w0))) (% (* (- w1 (+ l1 l0)) (- (% l1
+     h0) (+ h0 l0))) (% (* (% h1 h0) (- l0 h1))
+     (% (* w1 l0) (- l0 h1))))) (* w1 w1)) (*
+     (* h1 l0) (- h0 l1))) h1))
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=511.9739155297529 Adjusted=0.0019494168606356732 Hits=0
+Tree 0:
+ (* (% w0 l1) (- (+ (- (% (+ (+ (- (* h1 h0)
+     (- (+ h1 (- l0 h1)) (+ (* w1 l1) (+ l0 w0))))
+     (* l0 w0)) (% (* (+ h0 l0) (% w0 h1)) (*
+     w0 (- l0 h1)))) (% (* (- w1 (+ l1 l0)) (-
+     (% l1 h0) (+ h0 l0))) (% (* (% h1 h0) (-
+     l0 h1)) (% (* w1 l0) (- l0 h1))))) (* w1
+     w1)) (* (* h1 l0) (- h0 l1))) h1))
+
+Generation: 17
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=504.076800605265 Adjusted=0.0019798969162741938 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (* w0 (- h0 l1)) (+ (* w1 l1) h0)))) (+ (-
+     h0 (- (- w1 h0) (- w0 w0))) (+ (% (% (+ l0
+     (- (% l1 h0) (+ w1 h0))) (% (- h0 l1) (-
+     l0 h1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (* l0 h1) (- l0 h1))) (* w1 w1))) (* l0
+     h0))) (- (+ (+ (% w1 w1) (% (- (% (* (+ (-
+     (% h1 l0) l1) (* (* l0 l1) (- h0 l1))) (-
+     h1 l1)) (- w0 w0)) (+ (* w1 l1) h0)) (* l0
+     h0))) (+ (- (% w1 h1) l1) l0)) (* w1 w1)))))
+     (* w1 w1))
+
+Generation: 18
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=326.79166666666663 Adjusted=0.0030507181899072076 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (- w1 h0) (% (* w1 l0) (-
+     l0 h1))))
+
+Generation: 19
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=326.79166666666663 Adjusted=0.0030507181899072076 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (- w1 h0) (% (* w1 l0) (-
+     l0 h1))))
+
+Generation: 20
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=326.79166666666663 Adjusted=0.0030507181899072076 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (- w1 h0) (% (* w1 l0) (-
+     l0 h1))))
+
+Generation: 21
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=326.79166666666663 Adjusted=0.0030507181899072076 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (- w1 h0) (% (* w1 l0) (-
+     l0 h1))))
+
+Generation: 22
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=371.30198412698417 Adjusted=0.0026859915945517004 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (- (% (* (+ (- (* l0 h1)
+     (- h0 (+ l1 w1))) (+ (- h0 (- h0 h1)) (*
+     w0 (- h0 l1)))) (- l0 l0)) (- w0 w0)) (+
+     (* w1 l1) h0)) (% (* w1 l0) (- l0 h1))))
+
+Generation: 23
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=371.30198412698417 Adjusted=0.0026859915945517004 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (- (% (* (+ (- (* l0 h1)
+     (- h0 (+ l1 w1))) (+ (- h0 (- h0 h1)) (*
+     w0 (% (* l0 h1) (- l0 h1))))) (- l0 l0))
+     (- w0 w0)) (+ (* w1 l1) h0)) (% (* w1 l0)
+     (- l0 h1))))
+
+Generation: 24
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=320.3250396825396 Adjusted=0.003112113519033477 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (* l0 h1) (- l0 h1))) (* w1 w1))) (* l0
+     h0)))
+
+Generation: 25
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=292.42456349206356 Adjusted=0.003408030970887165 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (+ (* (- h0 l1) (* l0 w0)) (- (% (* (+
+         l0 (* (* l0 l1) l0)) (+ w0 l0)) (- w0 w0))
+         (+ (* w1 l1) h0))) (- l0 h1))) (* w1 w1)))
+     (* l0 h0)))
+
+Generation: 26
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=292.42456349206356 Adjusted=0.003408030970887165 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (+ (* (- h0 l1) (* l0 w0)) (- (% (* (+
+         l0 (* l0 h0)) (+ w0 l0)) (- w0 w0)) (+ (*
+         w1 l1) h0))) (- l0 h1))) (* w1 w1))) (* l0
+     h0)))
+
+Generation: 27
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=292.42456349206356 Adjusted=0.003408030970887165 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (+ (* (- h0 l1) (* l0 w0)) (- (% (* w1
+         (+ w0 l0)) (- w0 w0)) (+ (* w1 l1) h0)))
+         (- l0 h1))) (* w1 w1))) (* l0 h0)))
+
+Generation: 28
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=292.42456349206356 Adjusted=0.003408030970887165 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (+ (* (- h0 l1) (* l0 w0)) (- (% (* (+
+         l0 (* l0 l0)) (+ w0 l0)) (- w0 w0)) (+ (*
+         w1 l1) h0))) (- l0 h1))) (* w1 w1))) (* l0
+     h0)))
+
+Generation: 29
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=288.79956349206356 Adjusted=0.0034506608220870767 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ h1 l0))) (+ (*
+     w0 l0) l1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (+ (* (- h0 l1) (* l0 w0)) (- (% (* (+
+         l0 (* (* l0 l1) l0)) (+ w0 l0)) (- w0 w0))
+         (+ (* w1 l1) h0))) (- l0 h1))) (* w1 w1)))
+     (* l0 h0)))
+
+Generation: 30
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=285.6741241496598 Adjusted=0.003488281347213411 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (+ (* (- h0 l1) (* l0 w0)) (- (% (* (+
+         l0 (* (* l0 l1) l0)) (+ (- l0 w0) (- w0 h1)))
+         (- w0 w0)) (+ (* (- (% l1 h0) (+ w1 h0))
+         l1) h0))) (- l0 h1))) (* w1 w1))) (* l0 h0)))
+
+Generation: 31
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=285.6741241496598 Adjusted=0.003488281347213411 Hits=0
+Tree 0:
+ (- (* (- (- w1 h0) (- w0 w0)) (- (+ h0 (-
+     (* (% h1 h0) (- l0 h1)) (+ l1 l0))) (+ (*
+     w0 l0) l1))) (% (* l0 (- (+ (+ w1 (+ h1 h0))
+     (% (+ (* (- h0 l1) (* l0 w0)) (- (% (* (+
+         l0 (* (* l0 l1) l0)) (+ (- l0 w0) (- w0 h1)))
+         (- w0 w0)) (+ (* (- (% l1 h0) (+ w1 h0))
+         l1) h0))) (- l0 h1))) (* w1 w1))) (* l0 h0)))
+
+Generation: 32
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=224.85339798057205 Adjusted=0.004427650896295216 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (- h0
+         (+ l1 w1)))) (* (- (* l0 h1) (* l0 h1)) l0))
+         (- l0 l0)) (- w0 w0)) (+ (* w1 l1) h0))))
+     (+ (- h0 (- (- w1 h0) (- w0 w0))) (+ (% (%
+         (+ l0 (- (% l1 h0) (+ w1 h0))) (% (- h0 l1)
+         (+ (+ w1 (- (* l0 h1) (* l0 h1))) (- l0 l0))))
+         (% (% (+ l0 (- h0 l1)) (% h1 l0)) (% (* l0
+             (- (+ (+ w1 (+ h1 h0)) (% (* l0 h1) (* (*
+                 w0 l0) (+ (- l0 h0) (+ w1 l0))))) (* w1 w1)))
+             (* l0 h0)))) (- (+ (+ (% w1 w1) (% (* (%
+         l1 h0) (+ (- l0 l0) (- (* (- (* h1 l0) (+
+         (- l0 w0) (- w0 h1))) (* l0 (- h0 h0))) (+
+         (% l1 h0) (* w1 l1))))) (* l0 h0))) (% l1
+         w0)) (* w1 w1))))) (* w1 w1))
+
+Generation: 33
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=224.85339798057205 Adjusted=0.004427650896295216 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ w1 (+ h1 h0)) (- l0 l0)) (- w0 w0))
+     (+ (* w1 l1) h0)))) (+ (- h0 (- (- w1 h0)
+     (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0) (+
+     w1 h0))) (% (- h0 l1) (+ (+ w1 (- (* l0 h1)
+     (* l0 h1))) (- l0 l0)))) (% (% (+ l0 (- h0
+     l1)) (% h1 l0)) (% (* l0 (- (+ (+ w1 (+ h1
+     h0)) (% (* l0 h1) (* (* w0 l0) (+ (- l0 h0)
+     (+ w1 l0))))) (* w1 w1))) (* l0 h0)))) (-
+     (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (- l0
+         l0) (- (* (- (* h1 l0) (+ (- l0 w0) (- w0
+         h1))) (* l0 (- h0 h0))) (+ (% l1 h0) (* w1
+         l1))))) (* l0 h0))) (% l1 w0)) (* w1 w1)))))
+     (* w1 w1))
+
+Generation: 34
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=262.01825157233645 Adjusted=0.00380201751787927 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (- h0 (- (- w1 h0) (- w0 w0))) (+ (* w1 l1)
+     h0)))) (+ (- h0 (- (- (- (* (% h1 h0) (-
+     l0 h1)) (+ l1 l0)) h0) (- w0 w0))) (+ (%
+     (% (+ l0 (- (% l1 h0) (+ w1 h0))) (% (- h0
+         l1) (- l0 h1))) (% (* l0 (- (- h0 l1) (*
+     w1 w1))) (* l0 h0))) (- (+ (+ (% w1 w1) (%
+     (* (% l1 h0) (+ (% (* (* (- (* h1 l0) (-
+         h0 l1)) (* l0 (- h0 h0))) h1) (* (* (- h1
+         l1) (+ h0 l0)) (+ (- l0 h0) (+ w1 l0))))
+         (- (* (- (* h1 l0) (+ (- l0 w0) (- w0 h1)))
+             (* l0 (- h0 h0))) (+ (% w1 w1) (* w1 l1)))))
+     (* l0 h0))) (% (+ (- l0 l0) (- (* (- (* h1
+     l0) (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+     h0))) (+ (+ (% w1 w1) (* w1 l1)) (* w1 l1))))
+     w0)) (+ (% w1 w1) (* w1 l1)))))) (* w1 w1))
+
+Generation: 35
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=259.1172927147258 Adjusted=0.0038444195292187426 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- l0 h1)) (+ l1 l0)) h0) (- w0 w0)))
+     (+ (% (% (+ l0 (- (% l1 h0) (+ w1 h0))) (%
+         (* (- h0 l1) (* l0 w0)) (- l0 h1))) (% (*
+         l0 (- (- h0 l1) (* w1 w1))) (* l0 h0))) (-
+         (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (% (*
+             (* (- (* h1 l0) (- h0 l1)) (* l0 (- h0 h0)))
+             h1) (* (* (- h1 l1) (+ h0 l0)) (+ (- l0 h0)
+             (+ w1 l0)))) (- (* (- (* h1 l0) (+ (- l0
+             w0) (- w0 h1))) (* l0 (- h0 h0))) (+ (% w1
+             w1) (* w1 l1))))) (* l0 h0))) (% (+ (- l0
+             l0) (- (* (- (* h1 l0) (+ (- l0 w0) (- w0
+             h1))) (* l0 (- h0 h0))) (+ (% w1 w1) (* w1
+             l1)))) w0)) (+ (% w1 w1) (* w1 l1)))))) (*
+     w1 w1))
+
+Generation: 36
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=252.30617675068243 Adjusted=0.003947791612615328 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (- h0
+         (+ l1 w1)))) (* (* l0 l1) l0)) (- l0 (* l0
+         h1))) (- w0 w0)) (+ (* w1 l1) h0)))) (+ (-
+     h0 (- (- (- (* (% h1 h0) (- l0 h1)) (+ l1
+     l0)) h0) (- h1 l1))) (+ (% (% (+ l0 (- (%
+     l1 h0) (+ w1 h0))) (% (- h0 l1) (- l0 h1)))
+     (% (* l0 (- (- h0 l1) (* w1 w1))) (* l0 h0)))
+     (- (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (%
+         (- (+ (+ (% w1 w1) (* w1 l1)) l0) (- h0 (-
+             h0 (+ l1 w1)))) (* (* (- h1 l1) (+ h0 l0))
+         (+ (- l0 h0) (+ w1 l0)))) (- (* (- (* h1
+         l0) (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+         h0))) (+ (% w1 w1) (* w1 l1))))) (* l0 h0)))
+         (% (+ (- l0 l0) (- (* (- (* h1 l0) (+ (-
+             l0 w0) (- w0 h1))) (* l0 (- h0 h0))) (+ (%
+             w1 w1) (* w1 l1)))) w0)) (+ (% w1 w1) (*
+         w1 l1)))))) (* w1 w1))
+
+Generation: 37
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=241.3987923616274 Adjusted=0.004125433094188565 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (- l0
+     w0) (+ l1 l0)) h0) (- w0 w0))) (+ (% (% (+
+     l0 (- (% l1 h0) (+ w1 h0))) (% (- h0 l1)
+     (- l0 h1))) (- w1 h0)) (- (+ (+ (% w1 w1)
+     (% (* (% l1 h0) (+ (% (* l0 h1) (* (* (-
+         h1 l1) (+ h0 l0)) (+ (- l0 h0) (+ w1 l0))))
+         (- (* (- (* h1 l0) (+ (- l0 w0) (- w0 h1)))
+             (* l0 (- h0 h0))) (+ (% w1 w1) (* w1 l1)))))
+         (* l0 h0))) (% (+ (- l0 l0) (- (* (- (* h1
+     l0) (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+     h0))) (+ (% w1 w1) (* w1 l1)))) w0)) (+ (%
+     w1 w1) (* w1 l1)))))) (* w1 w1))
+
+Generation: 38
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=230.89254923269604 Adjusted=0.004312342088216621 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (% (* l0 h1) (* (- w1 h0) (+ (- l0
+     h0) (+ w1 l0))))) (+ l1 l0)) h0) (- w0 w0)))
+     (+ (% (% (+ l0 (- (% l1 h0) (+ w1 h0))) (%
+         (- h0 l1) (% w1 w1))) (% (* l0 (- (- h0 l1)
+         (* w1 w1))) (* l0 h0))) (- (+ (+ (% w1 w1)
+         (% (* (% l1 h0) (+ (% (* (* (- (* h1 l0)
+             (- h0 l1)) (* l0 (- h0 h0))) h1) (* (* (-
+             h1 l1) (+ h0 l0)) (+ (- l0 h0) (+ w1 l0))))
+             (- (* (- l1 (+ (- l0 w0) (- w0 h1))) (* l0
+                 (- h0 h0))) (+ (% w1 w1) (* w1 l1))))) (*
+             l0 h0))) (% (+ (- l0 l0) (- (* (- (* h1 l0)
+         (+ (- l0 (+ (- l0 w0) (- w0 h1))) (- w0 h1)))
+         (* l0 (- h0 h0))) (+ (% w1 w1) (* w1 l1))))
+         w0)) (+ (% w1 w1) (* w1 l1)))))) (* w1 w1))
+
+Generation: 39
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=211.1273356063188 Adjusted=0.004714149626881997 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (- h0
+         (+ l1 w1)))) (* (* l0 l1) l0)) (- l0 (* l0
+         h1))) (- w0 w0)) (+ (* w1 l1) h0)))) (+ (-
+     h0 (- (- (- (* (% h1 h0) (- l0 h1)) (+ l1
+     l0)) h0) (- w0 w0))) (+ (% (% (+ l0 (- (%
+     l1 h0) (+ w1 h0))) (% (- h0 l1) (- l0 h1)))
+     (% (* l0 (- (- h0 l1) (* w1 w1))) (* l0 h0)))
+     (- (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (%
+         (* (* (- (* h1 l0) (- h0 l1)) (* l0 h0))
+             h1) (* (* (- h1 l1) (+ h0 l0)) (+ (- l0 h0)
+         (+ w1 l0)))) (- (* h0 (* l0 (- h0 h0))) (+
+         (% w1 w1) (* w1 l1))))) (* l0 h0))) (% (+
+         (- l0 l0) (- (* (- (* h1 l0) (+ l0 (- (%
+         l1 h0) (+ w1 h0)))) (* l0 (- h0 h0))) (+
+         (% w1 w1) (* w1 l1)))) w0)) (+ (% w1 w1)
+         (* w1 l1)))))) (* w1 w1))
+
+Generation: 40
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=211.1273356063188 Adjusted=0.004714149626881997 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (- h0
+         (+ l1 w1)))) (* (* l0 l1) l0)) (- l0 (* l0
+         h1))) (- w0 w0)) (+ (* w1 l1) h0)))) (+ (-
+     h0 (- (- (- (* (% h1 h0) (- l0 h1)) (+ l1
+     l0)) h0) (- w0 w0))) (+ (% (% (+ l0 (- (%
+     l1 h0) (+ w1 h0))) (% (- h0 l1) (- l0 h1)))
+     (% (* l0 (- (- h0 l1) (* w1 w1))) (* l0 h0)))
+     (- (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (%
+         (* (* (- (* h1 l0) (- h0 l1)) (* l0 h0))
+             h1) (* (* (- h1 l1) (+ h0 l0)) (+ (- l0 h0)
+         (+ w1 l0)))) (- (* h0 (* l0 (- h0 h0))) (+
+         (% w1 w1) (* w1 l1))))) (* l0 h0))) (% (+
+         (- l0 l0) (- (* (- (* h1 l0) (+ l0 (- (%
+         l1 h0) (+ w1 h0)))) (* l0 (- h0 h0))) (+
+         (% w1 w1) (* w1 l1)))) w0)) (+ (% w1 w1)
+         (* w1 l1)))))) (* w1 w1))
+
+Generation: 41
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=211.1273356063188 Adjusted=0.004714149626881997 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (- h0
+         (+ l1 w1)))) (* (* l0 l1) l0)) (- l0 (* l0
+         h1))) (- w0 w0)) (+ (* w1 l1) h0)))) (+ (-
+     h0 (- (- (- (* (% h1 h0) (- l0 h1)) (+ l1
+     l0)) h0) (- w0 w0))) (+ (% (% (+ l0 (- (%
+     l1 h0) (+ w1 h0))) (% (- h0 l1) (- l0 h1)))
+     (% (* l0 (- (- h0 l1) (* w1 w1))) (* l0 h0)))
+     (- (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (%
+         (* (* (- (* h1 l0) (- h0 l1)) (* l0 h0))
+             h1) (* (* (- h1 l1) (+ h0 l0)) (+ (- l0 h0)
+         (+ w1 l0)))) (- (* h0 (* l0 (- h0 h0))) (+
+         (% w1 w1) (* w1 l1))))) (* l0 h0))) (% (+
+         (- l0 l0) (- (* (- (* h1 l0) (+ l0 (- (%
+         l1 h0) (+ w1 h0)))) (* l0 (- h0 h0))) (+
+         (% w1 w1) (* w1 l1)))) w0)) (+ (% w1 w1)
+         (* w1 l1)))))) (* w1 w1))
+
+Generation: 42
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=211.1273356063188 Adjusted=0.004714149626881997 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (- h0
+         (+ l1 w1)))) (* (* l0 l1) l0)) (- l0 (* l0
+         h1))) (- w0 w0)) (+ (* w1 l1) h0)))) (+ (-
+     h0 (- (- (- (* (% h1 h0) (- l0 h1)) (+ l1
+     l0)) h0) (- w0 w0))) (+ (% (% (+ l0 (- (%
+     l1 h0) (+ w1 h0))) (% (- h0 l1) (- l0 h1)))
+     (% (* l0 (- (- h0 l1) (* w1 w1))) (* l0 h0)))
+     (- (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (%
+         (* (* (- (* h1 l0) (- h0 l1)) (* l0 h0))
+             h1) (* (* (- h1 l1) (+ h0 l0)) (+ (- l0 h0)
+         (+ w1 l0)))) (- (* h0 (* l0 (- h0 h0))) (+
+         (% w1 w1) (* w1 l1))))) (* l0 h0))) (% (+
+         (- l0 l0) (- (* (- (* h1 l0) (+ l0 (- (%
+         l1 h0) (+ w1 h0)))) (* l0 (- h0 h0))) (+
+         (% w1 w1) (* w1 l1)))) w0)) (+ (% w1 w1)
+         (* w1 l1)))))) (* w1 w1))
+
+Generation: 43
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=206.9233768177631 Adjusted=0.00480946402133735 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (- h0 h0) (- h0 (% (* l0 h1)
+         (* (* (- h1 l1) (+ h0 l0)) (+ (* (% h1 h0)
+             (- l0 h1)) (+ w1 l0)))))) (* (* l0 l1) l0))
+         (- l0 (* l0 h1))) (- w0 w0)) (+ (* w1 l1)
+     h0)))) (+ (- h0 (- (- (- (- l0 w0) (+ l1
+     l0)) h0) (- w0 w0))) (+ (% (% (+ l0 (- (%
+     l1 h0) (+ w1 h0))) (% (- h0 l1) (- (- (-
+     (* (% h1 (* l0 h0)) (- l0 h1)) (+ l1 l0))
+     h0) (- w0 w0)))) (- w1 h0)) (- (+ (+ (% w1
+     w1) (% (* (% l1 h0) (+ (% (* l0 h1) (* (*
+     (- h1 l1) (+ h0 l0)) (+ (- l0 h0) (+ w1 l0))))
+     (- (* (- (* h1 l0) (+ (- l0 w0) (- w0 h1)))
+         (* l0 (- h0 h0))) (+ (% w1 w1) (* w1 l1)))))
+     (* l0 h0))) (% (+ (- l0 l0) (- (* (- (* h1
+     l0) (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+     h0))) (+ (+ (- l0 h0) (+ w1 l0)) (* w1 l1))))
+     w0)) (+ (% w1 w1) (* w1 l1)))))) (* w1 w1))
+
+Generation: 44
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=182.05101013321993 Adjusted=0.005462958108082687 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- (% l1 h0) (+ w1 h0))) (+ l1 l0))
+     h0) (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0)
+     (+ w1 h0))) (% (- h0 l1) (% w1 w1))) (% (*
+     l0 (+ (- l0 w0) (- w0 h1))) (* l0 h0))) (-
+     (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (% (*
+         (* w1 (* l0 (- h0 h0))) h1) (* (* (- h1 l1)
+         (+ h0 l0)) (+ (- l0 h0) (+ w1 l0)))) (- (*
+         (- l1 (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+         h0))) (+ (% w1 w1) (* w1 l1))))) (* l0 h0)))
+         (% (+ (- l0 l0) (- (* (- (* h1 l0) (+ (-
+             l0 (+ (- l0 w0) (- w0 h1))) (- w0 h1))) (*
+             l0 (- h0 h0))) (+ (% w1 w1) (* w1 l1))))
+             w0)) (+ (% w1 w1) (* w1 l1)))))) (* w1 w1))
+
+Generation: 45
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=182.05101013321993 Adjusted=0.005462958108082687 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- (% l1 h0) (+ w1 h0))) (+ l1 l0))
+     h0) (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0)
+     (+ w1 h0))) (% (- h0 l1) (% w1 w1))) (% (*
+     l0 (+ (- l0 w0) (- w0 h1))) (* l0 h0))) (-
+     (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (% (*
+         (* w1 (* l0 (- h0 h0))) h1) (* (* (- h1 l1)
+         (+ h0 l0)) (+ (- l0 h0) (+ w1 l0)))) (- (*
+         (- l1 (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+         h0))) (+ (% w1 w1) (* w1 l1))))) (* l0 h0)))
+         (% (+ (- l0 l0) (- (* (- (* h1 l0) (+ (-
+             l0 (+ (- l0 w0) (- w0 h1))) (- w0 h1))) (*
+             l0 (- h0 h0))) (+ (% w1 w1) (* w1 l1))))
+             w0)) (+ (% w1 w1) (* w1 l1)))))) (* w1 w1))
+
+Generation: 46
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=182.05101013321993 Adjusted=0.005462958108082687 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- (% l1 h0) (+ w1 h0))) (+ l1 l0))
+     h0) (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0)
+     (+ w1 h0))) (% (- h0 l1) (% w1 w1))) (% (*
+     l0 (+ (- l0 w0) (- w0 h1))) (* l0 h0))) (-
+     (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (% (*
+         (* w1 (* l0 (- h0 h0))) h1) (* (* (- h1 l1)
+         (+ h0 l0)) (+ (- l0 h0) (+ w1 l0)))) (- (*
+         (- l1 (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+         h0))) (+ (% w1 w1) (* w1 l1))))) (* l0 h0)))
+         (% (+ (- l0 l0) (- (* (- (* h1 l0) (+ (-
+             l0 (+ (- l0 w0) (- w0 h1))) (- w0 h1))) (*
+             l0 (- h0 h0))) (+ (% w1 w1) (* w1 l1))))
+             w0)) (+ (% w1 w1) (* w1 l1)))))) (* w1 w1))
+
+Generation: 47
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=182.05101013321993 Adjusted=0.005462958108082687 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- (% l1 h0) (+ w1 h0))) (+ l1 l0))
+     h0) (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0)
+     (+ w1 h0))) (% (- h0 l1) (% w1 w1))) (% (*
+     l0 (+ (- l0 w0) (- w0 h1))) (* l0 h0))) (-
+     (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (% (*
+         (* w1 (* l0 (- h0 h0))) h1) (* (* (- h1 l1)
+         (+ h0 l0)) (+ (- l0 h0) (+ w1 l0)))) (- (*
+         (- l1 (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+         h0))) (+ (% w1 w1) (* w1 l1))))) (* l0 h0)))
+         (% (+ (- l0 l0) (- (* (- (* h1 l0) (+ (-
+             l0 (+ (- l0 w0) (- w0 h1))) (- w0 h1))) (*
+             l0 (- h0 h0))) (+ (% w1 w1) (* w1 l1))))
+             w0)) (+ (% w1 w1) (* w1 l1)))))) (* w1 w1))
+
+Generation: 48
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=182.05101013321993 Adjusted=0.005462958108082687 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- (% l1 h0) (+ w1 h0))) (+ l1 l0))
+     h0) (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0)
+     (+ w1 h0))) (% (- h0 l1) (% w1 w1))) (% (*
+     l0 (+ (- l0 w0) (- w0 h1))) (* l0 h0))) (-
+     (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (% (*
+         (* w1 (* l0 (- h0 h0))) h1) (* (* (- h1 l1)
+         (+ h0 l0)) (+ (- l0 h0) (+ w1 l0)))) (- (*
+         (- l1 (+ (- l0 w0) (- w0 h1))) (* l0 (- h0
+         h0))) (+ (% w1 w1) (* w1 l1))))) (* l0 h0)))
+         (% (+ (- l0 l0) (- (* (- (* h1 l0) (+ (-
+             l0 (+ (+ (* w1 l1) h0) (- w0 h1))) (- w0
+             h1))) (* l0 (- h0 h0))) (+ (% w1 w1) (* w1
+             l1)))) w0)) (+ (% w1 w1) (* w1 l1)))))) (*
+     w1 w1))
+
+Generation: 49
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=155.60351784926934 Adjusted=0.0063855525963503485 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- (% l1 h0) (+ w1 h0))) (+ l1 l0))
+     h0) (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0)
+     (% (+ l0 (- (% l1 h0) (+ w1 h0))) (% (- h0
+         l1) (- l0 h1))))) (% (- h0 l1) (% w1 w1)))
+     (% (* l0 (+ (- l0 w0) (- w0 h1))) (* l0 h0)))
+     (- (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (%
+         (* (* w1 (* l0 (- h0 h0))) h1) (* (* (- h1
+         l1) (+ h0 l0)) (+ (- l0 h0) (+ w1 l0))))
+         (- (* (- l1 (+ (- l0 w0) (- w0 h1))) (* l0
+             (- h0 h0))) (+ (% w1 w1) (* w1 l1))))) (*
+         l0 h0))) (% (+ (- l0 l0) (- (* (- (* h1 l0)
+         (+ (- l0 (+ (+ (* w1 l1) h0) (- w0 h1)))
+             (- w0 h1))) (* l0 (- h0 h0))) (+ (% w1 w1)
+         (* w1 l1)))) w0)) (+ (% w1 w1) (* w1 l1))))))
+     (* w1 w1))
+
+Generation: 50
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=155.60351784926934 Adjusted=0.0063855525963503485 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- (% l1 h0) (+ w1 h0))) (+ l1 l0))
+     h0) (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0)
+     (% (+ l0 (- (% l1 h0) (+ w1 h0))) (% (- h0
+         l1) (- l0 h1))))) (% (- h0 l1) (% w1 w1)))
+     (% (* l0 (+ (- l0 w0) (- w0 h1))) (* l0 h0)))
+     (- (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (%
+         (* (* w1 (* l0 (- h0 h0))) h1) (* (* (- h1
+         l1) (+ h0 l0)) (+ (- l0 h0) (+ w1 l0))))
+         (- (* (- l1 (+ (- l0 w0) (- w0 h1))) (* l0
+             (- h0 h0))) (+ (% w1 w1) (* w1 l1))))) (*
+         l0 h0))) (% (+ (- l0 l0) (- (* (- (* h1 l0)
+         (+ (- l0 (+ (+ (* w1 l1) h0) (- w0 h1)))
+             (- w0 h1))) (* l0 (- h0 h0))) (+ (% w1 w1)
+         (* w1 l1)))) w0)) (+ (% w1 w1) (* w1 l1))))))
+     (* w1 w1))
+
+Best Individual of Run:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=155.60351784926934 Adjusted=0.0063855525963503485 Hits=0
+Tree 0:
+ (- (+ (+ l0 (+ (* (- h0 l1) (* l0 w0)) (-
+     (% (* (+ (- (+ (- l0 h0) l0) (- h0 (% (*
+         l0 h1) (* (* (- h1 l1) (+ h0 l0)) (+ (* (%
+         h1 h0) (- l0 h1)) (+ w1 l0)))))) (* (* l0
+         l1) l0)) (- l0 (* l0 h1))) (- w0 w0)) (+
+     (* w1 l1) h0)))) (+ (- h0 (- (- (- (* (%
+     h1 h0) (- (% l1 h0) (+ w1 h0))) (+ l1 l0))
+     h0) (- w0 w0))) (+ (% (% (+ l0 (- (% l1 h0)
+     (% (+ l0 (- (% l1 h0) (+ w1 h0))) (% (- h0
+         l1) (- l0 h1))))) (% (- h0 l1) (% w1 w1)))
+     (% (* l0 (+ (- l0 w0) (- w0 h1))) (* l0 h0)))
+     (- (+ (+ (% w1 w1) (% (* (% l1 h0) (+ (%
+         (* (* w1 (* l0 (- h0 h0))) h1) (* (* (- h1
+         l1) (+ h0 l0)) (+ (- l0 h0) (+ w1 l0))))
+         (- (* (- l1 (+ (- l0 w0) (- w0 h1))) (* l0
+             (- h0 h0))) (+ (% w1 w1) (* w1 l1))))) (*
+         l0 h0))) (% (+ (- l0 l0) (- (* (- (* h1 l0)
+         (+ (- l0 (+ (+ (* w1 l1) h0) (- w0 h1)))
+             (- w0 h1))) (* l0 (- h0 h0))) (+ (% w1 w1)
+         (* w1 l1)))) w0)) (+ (% w1 w1) (* w1 l1))))))
+     (* w1 w1))

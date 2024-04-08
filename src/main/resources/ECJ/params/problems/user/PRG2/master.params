@@ -1,6 +1,0 @@
-eval.compression = false
-eval.master.port = 15000
-eval.masterproblem = ec.eval.MasterProblem
-eval.masterproblem.debug-info = false
-eval.masterproblem.job-size = 1
-eval.masterproblem.max-jobs-per-slave = 1

@@ -18,4 +18,7 @@ public interface SlaveService extends Remote {
 
     // Start Inference
     boolean startInference(String problemCode) throws RemoteException;
+
+    // Stop Inference
+    boolean stopInference() throws RemoteException;
 }

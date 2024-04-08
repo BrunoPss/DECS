@@ -100,6 +100,8 @@ public class EvolutionEngine extends Thread {
                 jobDashboard.updateJobMetrics(this.ui, evaluatedState.evaluations, evaluatedState.generation);
             }
 
+            evaluatedState.finish(result);
+
             results = evaluatedState.statistics;
 
             cleanup(evaluatedState);

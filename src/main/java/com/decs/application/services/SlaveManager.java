@@ -56,7 +56,9 @@ public class SlaveManager {
         // Send Slave Files
         try {
             for (SlaveInfo slaveInfo : slaveList) {
-                this.locateSlave(slaveInfo);
+                if (slaveInfo.getSlaveService() == null) {
+                    this.locateSlave(slaveInfo);
+                }
                 ArrayList<JobFile> jobFileMap = buildProblemFileMap();
 
                 slaveInfo.getSlaveService().setupProblemEnvironment(jobFileMap, objectListDatabase.getSelectedProblem().getCode());
@@ -76,6 +78,18 @@ public class SlaveManager {
         } catch (RemoteException e) {
             e.printStackTrace();
             System.out.println("Inference RMI Remote Exception");
+        }
+    }
+
+    public void stopInference() {
+        System.out.println("STOP INFERENCE");
+        try {
+            for (SlaveInfo slaveInfo : slaveList) {
+                slaveInfo.getSlaveService().stopInference();
+            }
+        } catch (RemoteException e) {
+            System.out.println("Remote Exception");
+            e.printStackTrace();
         }
     }
 
