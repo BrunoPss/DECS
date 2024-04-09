@@ -156,7 +156,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         ParamTab saveTab = tabsList.remove(tabsList.size()-1);
         ParamTab newTab = switch (selectedDistMethod) {
             case DIST_EVAL -> new DistEvalTab();
-            case ISLANDS -> null;
+            case ISLANDS -> new IslandsTab();
             case LOCAL -> null;
         };
         if (newTab != null) {
