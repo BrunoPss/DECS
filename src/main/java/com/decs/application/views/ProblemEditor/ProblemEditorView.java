@@ -73,7 +73,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         tabsList = new ArrayList<>();
 
         // General Tab
-        GeneralTab generalTab = new GeneralTab();
+        GeneralTab generalTab = new GeneralTab(objectListDatabase);
         VerticalLayout generalTabContent = generalTab.buildLayout();
         generalTab.getProblemSelector().addValueChangeListener(this::problemChangeEvent);
         generalTab.getDistSelector().addValueChangeListener(this::distributionChangeEvent);
@@ -156,7 +156,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         ParamTab saveTab = tabsList.remove(tabsList.size()-1);
         ParamTab newTab = switch (selectedDistMethod) {
             case DIST_EVAL -> new DistEvalTab();
-            case ISLANDS -> new IslandsTab();
+            case ISLANDS -> new IslandsTab(objectListDatabase);
             case LOCAL -> null;
         };
         if (newTab != null) {
@@ -246,7 +246,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
     // Private Functions
     private ParamTab createParamTab(ParameterGroupType groupType) {
         ParamTab newTab = switch (groupType) {
-            case EC -> new GeneralTab();
+            case EC -> new GeneralTab(objectListDatabase);
             case SIMPLE -> new SimpleTab();
             case KOZA -> new KozaTab();
             case ANT -> new AntTab();

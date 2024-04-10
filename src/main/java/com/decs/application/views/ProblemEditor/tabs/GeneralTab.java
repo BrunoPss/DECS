@@ -3,6 +3,7 @@ package com.decs.application.views.ProblemEditor.tabs;
 import com.decs.application.data.DistributionType;
 import com.decs.application.data.ParameterGroupType;
 import com.decs.application.data.ProblemType;
+import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.utils.EnhancedBoolean;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.ProblemEditorView;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 public class GeneralTab extends Tab implements ParamTab {
     //Internal Data
     private static final String PARAMS_FILENAME = "ec.params";
+    private ObjectListDatabase objectListDatabase;
     // General Tab
     private VerticalLayout generalTabLayout;
     // Problem Selector
@@ -85,8 +87,9 @@ public class GeneralTab extends Tab implements ParamTab {
     private Button prefixHelpBtn;
 
     //Constructor
-    public GeneralTab() {
+    public GeneralTab(ObjectListDatabase objectListDatabase) {
         setLabel("General");
+        this.objectListDatabase = objectListDatabase;
     }
 
     //Get Methods
@@ -166,6 +169,10 @@ public class GeneralTab extends Tab implements ParamTab {
         problemSelector.setPlaceholder("Select Problem");
         // Select Values -> .param files available in the folder or ProblemType values
         problemSelector.setItems(ProblemType.values());
+
+        problemSelector.addValueChangeListener(event -> {
+            objectListDatabase.setProblemCreatorSelector(event.getValue());
+        });
 
         distributionSelector = new Select<>();
         distributionSelector.setLabel("Distribution");

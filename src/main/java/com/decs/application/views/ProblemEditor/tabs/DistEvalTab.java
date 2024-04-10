@@ -101,8 +101,8 @@ public class DistEvalTab extends Tab implements ParamTab {
         ParameterDatabase masterParamDatabase;
         ParameterDatabase slaveParamDatabase;
         try {
-            File masterParamsFile = new File(FilePathConstants.DISTRIBUTED_EVAL_FOLDER+"/master.params");
-            File slaveParamsFile = new File(FilePathConstants.DISTRIBUTED_EVAL_FOLDER+"/slave.params");
+            File masterParamsFile = new File(FilePathConstants.DISTRIBUTED_EVAL_FOLDER+"/"+MASTER_PARAMS_FILENAME);
+            File slaveParamsFile = new File(FilePathConstants.DISTRIBUTED_EVAL_FOLDER+"/"+SLAVE_PARAMS_FILENAME);
 
             masterParamDatabase = new ParameterDatabase(masterParamsFile,
                     new String[]{"-file", masterParamsFile.getCanonicalPath()});

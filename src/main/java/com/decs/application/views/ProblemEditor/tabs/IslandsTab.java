@@ -2,12 +2,15 @@ package com.decs.application.views.ProblemEditor.tabs;
 
 import com.decs.application.data.Island;
 import com.decs.application.data.ProblemType;
+import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.utils.EnhancedBoolean;
+import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
@@ -27,14 +30,25 @@ import com.vaadin.flow.component.treegrid.TreeGrid;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.provider.ListDataView;
+import ec.util.Parameter;
 import ec.util.ParameterDatabase;
+import org.springframework.security.core.parameters.P;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 public class IslandsTab extends Tab implements ParamTab {
     //Internal Data
+    private static final String SERVER_PARAMS_FILENAME = "server.params";
+    private static final String CLIENT_PARAMS_FILENAME = "client.params";
+    private static final String ISLAND_PARAMS_FILENAME = "island.params";
+    private ArrayList<ParameterDatabase> islandParamDatabaseList;
+    private ObjectListDatabase objectListDatabase;
     private ArrayList<Island> islandList;
     private Island currentIsland;
     // Island Editor
@@ -62,6 +76,7 @@ public class IslandsTab extends Tab implements ParamTab {
     private IntegerField islandMigrationStartInput;
     private IntegerField islandMigrationOffsetInput;
     private IntegerField islandMailboxSizeInput;
+    private ComboBox<String> islandSeed;
     private Button saveBtn;
     // Global Settings
     private HorizontalLayout globalSettingsLayout;
@@ -75,11 +90,10 @@ public class IslandsTab extends Tab implements ParamTab {
     private Button compressionHelpBtn;
 
     //Constructor
-    public IslandsTab() {
+    public IslandsTab(ObjectListDatabase objectListDatabase) {
         setLabel("Islands");
-
+        this.objectListDatabase = objectListDatabase;
         this.islandList = new ArrayList<>();
-        buildIslandEditor();
     }
 
     //Get Methods
@@ -108,11 +122,100 @@ public class IslandsTab extends Tab implements ParamTab {
     //Overrides
     @Override
     public String[] getFileName() {
-        return null;
+        String[] filenameList = new String[islandList.size()+2];
+        int i;
+        for (i=0; i<islandList.size(); i++) {
+            filenameList[i] = islandList.get(i).getId()+".params";
+        }
+        filenameList[i] = SERVER_PARAMS_FILENAME;
+        i++;
+        filenameList[i] = CLIENT_PARAMS_FILENAME;
+
+        return filenameList;
     }
 
     @Override
     public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
+        ParameterDatabase serverParamDatabase;
+        ParameterDatabase clientParamDatabase;
+
+        try {
+            File serverParamsFile = new File(FilePathConstants.ISLANDS_FOLDER+"/"+SERVER_PARAMS_FILENAME);
+            File clientParamsFile = new File(FilePathConstants.ISLANDS_FOLDER+"/"+CLIENT_PARAMS_FILENAME);
+
+            serverParamDatabase = new ParameterDatabase(serverParamsFile,
+                    new String[]{"-file", serverParamsFile.getCanonicalPath()});
+            clientParamDatabase = new ParameterDatabase(clientParamsFile,
+                    new String[]{"-file", clientParamsFile.getCanonicalPath()});
+
+            // Problem (Client)
+            clientParamDatabase.set(new Parameter("parent.0"), objectListDatabase.getProblemCreatorSelector().getCode()+".params");
+
+            // Compression (Client)
+            clientParamDatabase.set(new Parameter("exch.compressed"), compressionInput.getValue().valueString());
+
+            // Synchronization (Server)
+            serverParamDatabase.set(new Parameter("exch.sync"), syncInput.getValue().valueString());
+
+            // Island Number (Server)
+            serverParamDatabase.set(new Parameter("exch.num-islands"), String.valueOf(islandList.size()));
+
+            // Migration Settings
+            for (int i=0; i<islandList.size(); i++) {
+                serverParamDatabase.set(new Parameter(String.format("exch.island.%d.id", i)), islandList.get(i).getId());
+                serverParamDatabase.set(new Parameter(String.format("exch.island.%d.num-mig", i)), String.valueOf(islandList.get(i).getMigrationNumber()));
+                for (int ii=0; ii<islandList.get(i).getMigrationNumber(); ii++) {
+                    System.out.println(ii);
+                    serverParamDatabase.set(new Parameter(String.format("exch.island.%d.mig.%d", i, ii)), islandList.get(i).getMigrationDestination().get(ii).getId());
+                }
+                serverParamDatabase.set(new Parameter(String.format("exch.island.%d.size", i)), String.valueOf(islandList.get(i).getMigrationSize()));
+                serverParamDatabase.set(new Parameter(String.format("exch.island.%d.mod", i)), String.valueOf(islandList.get(i).getMigrationOffset()));
+                serverParamDatabase.set(new Parameter(String.format("exch.island.%d.start", i)), String.valueOf(islandList.get(i).getMigrationStart()));
+                serverParamDatabase.set(new Parameter(String.format("exch.island.%d.mailbox-capacity", i)), String.valueOf(islandList.get(i).getMailboxSize()));
+            }
+
+            // Create Islands Param Files
+            islandParamDatabaseList = new ArrayList<>();
+            for (int i=0; i<islandList.size(); i++) {
+                //File islandParamFile = new File(FilePathConstants.ISLANDS_FOLDER+"/"+ISLAND_PARAMS_FILENAME);
+                //ParameterDatabase newParamDatabase = new ParameterDatabase(islandParamFile,
+                //        new String[]{"-file", islandParamFile.getCanonicalPath()});
+                ParameterDatabase newParamDatabase = new ParameterDatabase();
+
+                // Parent
+                if (i == 0) {
+                    newParamDatabase.set(new Parameter("parent.0"), "server.params");
+                }
+                else {
+                    newParamDatabase.set(new Parameter("parent.0"), "client.params");
+                }
+
+                // ID
+                newParamDatabase.set(new Parameter("exch.id"), islandList.get(i).getId());
+
+                // Stat File
+                newParamDatabase.set(new Parameter("stat.file"), islandList.get(i).getId()+".stat");
+
+                // Seed
+                newParamDatabase.set(new Parameter("seed.0"), islandList.get(i).getSeed());
+
+                // Port
+                newParamDatabase.set(new Parameter("exch.client-port"), String.valueOf(9000 + i));
+
+                islandParamDatabaseList.add(newParamDatabase);
+            }
+            islandParamDatabaseList.add(serverParamDatabase);
+            islandParamDatabaseList.add(clientParamDatabase);
+            return islandParamDatabaseList.toArray(ParameterDatabase[]::new);
+
+        } catch (IOException e) {
+            System.err.println("IO Exception while opening params file");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception");
+            e.printStackTrace();
+        }
+
         return null;
     }
 
@@ -152,13 +255,14 @@ public class IslandsTab extends Tab implements ParamTab {
         islandGrid.addColumn(Island::getId).setHeader("ID");
 
         islandGrid.addComponentColumn(island -> {
-            currentIsland = island;
             // Layout
             HorizontalLayout manageLayout = new HorizontalLayout();
 
             // Edit Button
             Button editButton = new Button("Edit");
             editButton.addClickListener( event -> {
+                currentIsland = island;
+                buildIslandEditor();
                 islandEditor.open();
             });
 
@@ -325,6 +429,12 @@ public class IslandsTab extends Tab implements ParamTab {
         islandMailboxSizeInput.setMin(1);
         islandMailboxSizeInput.setValue(20);
 
+        // Island Seed
+        islandSeed = new ComboBox<>();
+        islandSeed.setLabel("Random Seed");
+        islandSeed.setAllowCustomValue(true);
+        islandSeed.setItems("time");
+
         // Save Btn
         saveBtn = new Button();
         saveBtn.setText("Save");
@@ -340,6 +450,7 @@ public class IslandsTab extends Tab implements ParamTab {
                 islandMigrationStartInput,
                 islandMigrationOffsetInput,
                 islandMailboxSizeInput,
+                islandSeed,
                 saveBtn
         );
 
@@ -370,6 +481,27 @@ public class IslandsTab extends Tab implements ParamTab {
     private void saveIsland(ClickEvent<Button> event) {
         // ID
         currentIsland.setId(islandIDInput.getValue());
+
+        // Migration Number
+        currentIsland.setMigrationNumber(islandMigrationNumberInput.getValue());
+
+        // Migration Destination
+        currentIsland.setMigrationDestination(migrationDestinationIslandList);
+
+        // Migration Size
+        currentIsland.setMigrationSize(islandMigrationSizeInput.getValue());
+
+        // Migration Start
+        currentIsland.setMigrationStart(islandMigrationStartInput.getValue());
+
+        // Migration Offset
+        currentIsland.setMigrationOffset(islandMigrationOffsetInput.getValue());
+
+        // Mailbox Size
+        currentIsland.setMailboxSize(islandMailboxSizeInput.getValue());
+
+        // Seed
+        currentIsland.setSeed(islandSeed.getValue());
 
         // Refresh Island Grid
         islandGrid.getDataProvider().refreshAll();
