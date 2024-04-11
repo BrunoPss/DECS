@@ -1,0 +1,5 @@
+exch.client-port = 9001
+exch.id = monero
+parent.0 = client.params
+seed.0 = time
+stat.file = monero.stat

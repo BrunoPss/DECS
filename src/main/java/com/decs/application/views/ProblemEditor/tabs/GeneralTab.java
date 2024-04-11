@@ -170,7 +170,7 @@ public class GeneralTab extends Tab implements ParamTab {
         // Select Values -> .param files available in the folder or ProblemType values
         problemSelector.setItems(ProblemType.values());
 
-        problemSelector.addValueChangeListener(event -> {
+        problemSelector.addValueChangeListener( event -> {
             objectListDatabase.setProblemCreatorSelector(event.getValue());
         });
 
@@ -178,6 +178,10 @@ public class GeneralTab extends Tab implements ParamTab {
         distributionSelector.setLabel("Distribution");
         distributionSelector.setPlaceholder("Select Distribution Method");
         distributionSelector.setItems(DistributionType.values());
+
+        distributionSelector.addValueChangeListener( event -> {
+            objectListDatabase.setProblemCreatorDistribution(event.getValue());
+        });
 
         problemSelectorLayout.add(problemSelector, distributionSelector);
     }

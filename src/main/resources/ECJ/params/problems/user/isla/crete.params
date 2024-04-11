@@ -1,0 +1,5 @@
+exch.client-port = 9000
+exch.id = crete
+parent.0 = server.params
+seed.0 = time
+stat.file = crete.stat

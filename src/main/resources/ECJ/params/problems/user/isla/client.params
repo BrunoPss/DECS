@@ -1,0 +1,6 @@
+exch = ec.exchange.IslandExchange
+exch.compressed = false
+exch.select = ec.select.TournamentSelection
+exch.server-addr = localhost
+exch.server-port = 8999
+parent.0 = isla.params

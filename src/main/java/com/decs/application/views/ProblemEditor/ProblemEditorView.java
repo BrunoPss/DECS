@@ -39,10 +39,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -81,7 +78,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         tabsList.add(generalTab);
 
         // Save Tab
-        SaveTab saveTab = new SaveTab();
+        SaveTab saveTab = new SaveTab(objectListDatabase);
         VerticalLayout saveTabContent = saveTab.buildLayout();
         saveTab.getSaveButton().addSaveListener(this::saveProblem);
         tabs.add(saveTab, saveTabContent);
@@ -97,11 +94,15 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         // Save Selected Problem
         this.selectedProblem = event.getValue();
 
+        //System.out.println("Initial Tabs: " + tabsList);
+
         // Delete Current Tabs
         for (int i=1; i<tabsList.size()-1; i++) {
             tabs.remove((Tab) tabsList.get(i));
         }
         tabsList.subList(1, tabsList.size()-1).clear();
+
+        //System.out.println("After Remove: " + tabsList);
 
         // Add Problem Tabs
         ParamTab saveTab = tabsList.remove(tabsList.size()-1);
@@ -112,26 +113,30 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
             tabsList.add(newTab);
             i++;
         }
-        tabsList.add(saveTab);
+
+        //System.out.println("Inter: " + tabsList);
 
         // Add Distribution Tab
         if (selectedDistMethod != null) {
             ParamTab newTab = switch (selectedDistMethod) {
                 case DIST_EVAL -> new DistEvalTab();
-                case ISLANDS -> null;
+                case ISLANDS -> new IslandsTab(objectListDatabase);
                 case LOCAL -> null;
             };
             if (newTab != null) {
-                tabs.add((Tab) newTab, newTab.buildLayout(), tabsList.size()-2);
+                tabs.add((Tab) newTab, newTab.buildLayout(), tabsList.size());
+                tabsList.add(newTab);
             }
         }
+        tabsList.add(saveTab);
+        //System.out.println("Final List: " + tabsList);
     }
 
     private void distributionChangeEvent(AbstractField.ComponentValueChangeEvent<Select<DistributionType>, DistributionType> event) {
         // Save Selected Problem
         this.selectedDistMethod = event.getValue();
 
-        System.out.println("Initial Tabs: " + tabsList);
+        //System.out.println("Initial Tabs: " + tabsList);
 
         // Delete Current Tabs
         for (int i=1; i<tabsList.size()-1; i++) {
@@ -139,9 +144,10 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         }
         tabsList.subList(1, tabsList.size()-1).clear();
 
-        System.out.println("After Remove: " + tabsList);
+        //System.out.println("After Remove: " + tabsList);
 
         // Add Problem Tabs
+        ParamTab saveTab = tabsList.remove(tabsList.size()-1);
         if (selectedProblem != null) {
             int i=1;
             for (ParameterGroupType p : selectedProblem.getParameterGroups()) {
@@ -152,8 +158,9 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
             }
         }
 
+        //System.out.println("Inter: " + tabsList);
+
         // Add Distribution Tab
-        ParamTab saveTab = tabsList.remove(tabsList.size()-1);
         ParamTab newTab = switch (selectedDistMethod) {
             case DIST_EVAL -> new DistEvalTab();
             case ISLANDS -> new IslandsTab(objectListDatabase);
@@ -165,7 +172,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         }
         tabsList.add(saveTab);
 
-        System.out.println("Final List: " + tabsList);
+        //System.out.println("Final List: " + tabsList);
     }
 
     private void saveProblem(SaveEvent event) {
@@ -207,7 +214,10 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
             // Copy Base Problem Params File
             Path baseFileOriginalPath = Paths.get(FilePathConstants.FACTORY_PARAMS_FOLDER+"/"+selectedProblem.getCode()+"/"+selectedProblem.getCode()+".params");
             Path baseFileDestinationPath;
+
+            // Distributed Eval
             if (event.getSource().getProblemDistribution().equals(DistributionType.DIST_EVAL.toString())) {
+                System.out.println("Dist Eval");
                 baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + selectedProblem.getCode() + ".params");
                 // Create Main param File
                 try {
@@ -221,7 +231,20 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
                     e.printStackTrace();
                 }
             }
+            // Island
+            else if (event.getSource().getProblemDistribution().equals(DistributionType.ISLANDS.toString())) {
+                System.out.println("Islands");
+                //File clientParamFile = new File(problemFolder.getPath() + "/client.params");
+                //FileWriter fwriter = new FileWriter(clientParamFile);
+                //fwriter.write("parent.0 = " + selectedProblem.getCode() + ".params" + "\n");
+                //fwriter.close();
+                String text = "parent.0 = " + event.getSource().getProblemCode() + ".params" + "\n";
+                Files.write(Paths.get(problemFolder.getPath() + "/client.params"), text.getBytes(), StandardOpenOption.APPEND);
+                baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + event.getSource().getProblemCode() + ".params");
+            }
+            // Local
             else {
+                System.out.println("Local Eval");
                 baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + event.getSource().getProblemCode() + ".params");
             }
             Files.copy(baseFileOriginalPath, baseFileDestinationPath, StandardCopyOption.REPLACE_EXISTING);
@@ -239,6 +262,11 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         problemInfo.put(FileConfigAttr.TYPE, event.getSource().getProblemType());
         problemInfo.put(FileConfigAttr.ORIGIN, event.getSource().getProblemOrigin());
         problemInfo.put(FileConfigAttr.DISTRIBUTION, event.getSource().getProblemDistribution());
+
+        // Island
+        if (event.getSource().getProblemDistribution().equals(DistributionType.ISLANDS.toString())) {
+            problemInfo.put(FileConfigAttr.SERVER_ISLAND, confFilePath.getParent() + "/" + objectListDatabase.getServerIsland());
+        }
 
         ProblemFileManager.writeConfFile(confFilePath, problemInfo);
     }

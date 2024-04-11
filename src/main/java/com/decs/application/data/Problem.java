@@ -21,6 +21,7 @@ public class Problem {
         this.fullName = paramsFile.getName();
     }
     public Problem(File paramsFile, String code, String fullName, String type, String origin, DistributionType distribution, File rootFile) {
+        System.out.println("PARAMS FLE : " + paramsFile);
         this.paramsFile = paramsFile;
         this.code = code;
         this.fullName = fullName;

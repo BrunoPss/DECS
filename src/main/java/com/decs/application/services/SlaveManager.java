@@ -170,6 +170,7 @@ public class SlaveManager {
 
                     slaveList.add(slaveInfo);
 
+                    System.out.println("New Slave!");
                     System.out.println(slaveList.size());
                     System.out.println(this);
                 }
@@ -191,6 +192,7 @@ public class SlaveManager {
     private Runnable slaveStatusCheckerRun = new Runnable() {
         @Override
         public void run() {
+            //System.out.println(slaveList.size());
             for (int i=0; i<slaveList.size(); i++) {
                 try {
                     slaveList.get(i).getSlaveService().checkStatus();

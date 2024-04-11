@@ -149,7 +149,7 @@ public class IslandsTab extends Tab implements ParamTab {
                     new String[]{"-file", clientParamsFile.getCanonicalPath()});
 
             // Problem (Client)
-            clientParamDatabase.set(new Parameter("parent.0"), objectListDatabase.getProblemCreatorSelector().getCode()+".params");
+            //clientParamDatabase.set(new Parameter("parent.0"), objectListDatabase.getProblemCreatorSelector().getCode()+".params");
 
             // Compression (Client)
             clientParamDatabase.set(new Parameter("exch.compressed"), compressionInput.getValue().valueString());
@@ -185,6 +185,7 @@ public class IslandsTab extends Tab implements ParamTab {
                 // Parent
                 if (i == 0) {
                     newParamDatabase.set(new Parameter("parent.0"), "server.params");
+                    objectListDatabase.setServerIsland(islandList.get(i).getId()+".params");
                 }
                 else {
                     newParamDatabase.set(new Parameter("parent.0"), "client.params");

@@ -1,5 +1,6 @@
 package com.decs.application.services;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.Job;
 import com.decs.application.data.Problem;
 import com.decs.application.data.ProblemType;
@@ -18,6 +19,9 @@ public class ObjectListDatabase {
     private ArrayList<Job> jobActivityList;
     private Problem selectedProblem;
     private ProblemType problemCreatorSelector;
+    private DistributionType problemCreatorDistribution;
+    private String problemCreatorCode;
+    private String serverIsland;
 
     //Constructor
     public ObjectListDatabase() {
@@ -47,6 +51,9 @@ public class ObjectListDatabase {
     public DataProvider<Problem, Void> getAvailableProblemsDataProvider() { return availableProblemsDataProvider; }
     public Problem getSelectedProblem() { return this.selectedProblem; }
     public ProblemType getProblemCreatorSelector() { return this.problemCreatorSelector; }
+    public DistributionType getProblemCreatorDistribution() { return this.problemCreatorDistribution; }
+    public String getProblemCreatorCode() { return this.problemCreatorCode; }
+    public String getServerIsland() { return serverIsland; }
 
     //Set Methods
     public void addJobActivity(Job newJob) { jobActivityList.add(newJob); }
@@ -54,6 +61,9 @@ public class ObjectListDatabase {
     public void addAvailableProblems(List<Problem> problems) { availableProblemsList.addAll(problems); }
     public void setSelectedProblem(Problem selectedProblem) { this.selectedProblem = selectedProblem; }
     public void setProblemCreatorSelector(ProblemType problem) { this.problemCreatorSelector = problem; }
+    public void setProblemCreatorDistribution(DistributionType type) { this.problemCreatorDistribution = type; }
+    public void setProblemCreatorCode(String code) { this.problemCreatorCode = code; }
+    public void setServerIsland(String serverIsland) { this.serverIsland = serverIsland; }
 
     //Data Providers
     // Job Activity Data Provider

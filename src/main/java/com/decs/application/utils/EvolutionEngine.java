@@ -65,6 +65,7 @@ public class EvolutionEngine extends Thread {
         jobDashboard.updateInferenceResults(this.ui, evaluatedState);
     }
     public void startInference() {
+        //System.out.println(paramsFile.getPath());
         try {
             ParameterDatabase paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
