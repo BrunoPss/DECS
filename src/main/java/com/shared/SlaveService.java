@@ -1,5 +1,7 @@
 package com.shared;
 
+import com.decs.application.data.DistributionType;
+
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -14,8 +16,11 @@ public interface SlaveService extends Remote {
     // <jobFiles>
     // .conf file
     // .params files
-    boolean setupProblemEnvironment(ArrayList<JobFile> jobFiles, String problemCode) throws RemoteException;
+    boolean setupProblemEnvironment(ArrayList<JobFile> jobFiles, String problemCode, String distribution) throws RemoteException;
 
     // Start Inference
     boolean startInference(String problemCode) throws RemoteException;
+
+    // Stop Inference
+    boolean stopInference() throws RemoteException;
 }

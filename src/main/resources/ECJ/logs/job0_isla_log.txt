@@ -1,0 +1,190 @@
+
+| ECJ
+| An evolutionary computation system (version 27)
+| By Sean Luke
+| Contributors: E. Scott, L. Panait, G. Balan, S. Paus, Z. Skolicki,
+|               R. Kicinger, E. Popovici, K. Sullivan, J. Harrison, J. Bassett,
+|               R. Hubley, A. Desai, A. Chircop, J. Compton, W. Haddon,
+|               S. Donnelly, B. Jamil, J. Zelibor, E. Kangas, F. Abidi,
+|               H. Mooers, J. O'Beirne, L. Manzoni, K. Talukder, S. McKay,
+|               J. McDermott, J. Zou, A. Rutherford, D. Freelan, E. Wei,
+|               S. Rajendran, A. Dhawan, B. Brumbac, J. Hilty, A. Kabir
+| URL: http://cs.gmu.edu/~eclab/projects/ecj/
+| Mail: ecj-help@cs.gmu.edu
+|       (better: join ECJ-INTEREST at URL above)
+| Date: July 1, 2017
+| Current Java: 21.0.1 / OpenJDK 64-Bit Server VM-21.0.1+12-29
+| Required Minimum Java: 1.5
+
+
+Threads:  breed/1 eval/1
+Seed: -776272713 
+Setting up
+Processing GP Types
+Processing GP Node Constraints
+Processing GP Function Sets
+Processing GP Tree Constraints
+Initializing Generation 0
+The communication will be asynchronous.
+Server Launched.
+Connecting to Server localhost, port 8999
+Connected to Server after 0 ms
+Island crete logged in
+IslandExchangeMailbox created.
+My address is: 192.168.56.1
+0: Island crete has address 192.168.56.1 : 9000
+Island monero logged in
+1: Island monero has address 192.168.56.1 : 9001
+The communication will be asynchronous.
+Island crete should connect to island monero at 192.168.56.1 : 9001
+Trying to connect to 192.168.56.1 : 9001
+Island monero should connect to island crete at 192.168.56.1 : 9000
+Island monero connected to my mailbox
+All islands have connected to my client.
+Subpop 0 best fitness of generation Fitness: Standardized=1353.0 Adjusted=7.385524372230429E-4 Hits=0
+Sending 4 immigrants to island monero
+Generation 1	Evaluations So Far 1024
+Subpop 0 best fitness of generation Fitness: Standardized=1294.0 Adjusted=7.722007722007722E-4 Hits=0
+Generation 2	Evaluations So Far 2048
+Subpop 0 best fitness of generation Fitness: Standardized=1189.5436507936508 Adjusted=8.399524026971804E-4 Hits=0
+Generation 3	Evaluations So Far 3072
+Subpop 0 best fitness of generation Fitness: Standardized=932.5436507936508 Adjusted=0.0010711871899614458 Hits=0
+Generation 4	Evaluations So Far 4096
+Subpop 0 best fitness of generation Fitness: Standardized=625.0 Adjusted=0.001597444089456869 Hits=1
+Sending 4 immigrants to island monero
+Generation 5	Evaluations So Far 5120
+Subpop 0 best fitness of generation Fitness: Standardized=463.0 Adjusted=0.0021551724137931034 Hits=2
+Generation 6	Evaluations So Far 6144
+Subpop 0 best fitness of generation Fitness: Standardized=433.0 Adjusted=0.002304147465437788 Hits=0
+Generation 7	Evaluations So Far 7168
+Subpop 0 best fitness of generation Fitness: Standardized=433.0 Adjusted=0.002304147465437788 Hits=0
+Generation 8	Evaluations So Far 8192
+Subpop 0 best fitness of generation Fitness: Standardized=433.0 Adjusted=0.002304147465437788 Hits=0
+Sending 4 immigrants to island monero
+Receiving 4 immigrants for subpopulation 0 from island monero
+Receiving 4 immigrants for subpopulation 0 from island monero
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 12 individuals from mailbox for subpopulation 0
+Generation 9	Evaluations So Far 9216
+Subpop 0 best fitness of generation Fitness: Standardized=433.0 Adjusted=0.002304147465437788 Hits=0
+Generation 10	Evaluations So Far 10240
+Subpop 0 best fitness of generation Fitness: Standardized=422.17015873015885 Adjusted=0.002363115591611614 Hits=0
+Generation 11	Evaluations So Far 11264
+Subpop 0 best fitness of generation Fitness: Standardized=365.12308393361013 Adjusted=0.0027313219075291413 Hits=0
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 12	Evaluations So Far 12288
+Subpop 0 best fitness of generation Fitness: Standardized=362.00190476190477 Adjusted=0.0027548064814037444 Hits=0
+Sending 4 immigrants to island monero
+Generation 13	Evaluations So Far 13312
+Subpop 0 best fitness of generation Fitness: Standardized=335.715847196282 Adjusted=0.0029698631897686397 Hits=1
+Generation 14	Evaluations So Far 14336
+Subpop 0 best fitness of generation Fitness: Standardized=335.715847196282 Adjusted=0.0029698631897686397 Hits=1
+Generation 15	Evaluations So Far 15360
+Subpop 0 best fitness of generation Fitness: Standardized=312.816156462585 Adjusted=0.0031865790827096114 Hits=0
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 16	Evaluations So Far 16384
+Subpop 0 best fitness of generation Fitness: Standardized=312.816156462585 Adjusted=0.0031865790827096114 Hits=0
+Sending 4 immigrants to island monero
+Generation 17	Evaluations So Far 17408
+Subpop 0 best fitness of generation Fitness: Standardized=312.816156462585 Adjusted=0.0031865790827096114 Hits=0
+Generation 18	Evaluations So Far 18432
+Subpop 0 best fitness of generation Fitness: Standardized=303.8642097348199 Adjusted=0.0032801488927474637 Hits=0
+Generation 19	Evaluations So Far 19456
+Subpop 0 best fitness of generation Fitness: Standardized=302.8751660737471 Adjusted=0.003290825021737088 Hits=0
+Generation 20	Evaluations So Far 20480
+Receiving 4 immigrants for subpopulation 0 from island monero
+Subpop 0 best fitness of generation Fitness: Standardized=302.8751660737471 Adjusted=0.003290825021737088 Hits=0
+Sending 4 immigrants to island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 21	Evaluations So Far 21504
+Subpop 0 best fitness of generation Fitness: Standardized=302.84269424935053 Adjusted=0.003291176713893089 Hits=0
+Generation 22	Evaluations So Far 22528
+Subpop 0 best fitness of generation Fitness: Standardized=286.9666097116746 Adjusted=0.003472624833140363 Hits=0
+Generation 23	Evaluations So Far 23552
+Subpop 0 best fitness of generation Fitness: Standardized=280.2169476471629 Adjusted=0.0035559734516949506 Hits=0
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 24	Evaluations So Far 24576
+Subpop 0 best fitness of generation Fitness: Standardized=195.52081334641764 Adjusted=0.005088519546462731 Hits=0
+Sending 4 immigrants to island monero
+Generation 25	Evaluations So Far 25600
+Subpop 0 best fitness of generation Fitness: Standardized=195.52081334641764 Adjusted=0.005088519546462731 Hits=0
+Generation 26	Evaluations So Far 26624
+Subpop 0 best fitness of generation Fitness: Standardized=195.52081334641764 Adjusted=0.005088519546462731 Hits=0
+Generation 27	Evaluations So Far 27648
+Subpop 0 best fitness of generation Fitness: Standardized=194.92498843102067 Adjusted=0.0051039941765879965 Hits=0
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 28	Evaluations So Far 28672
+Subpop 0 best fitness of generation Fitness: Standardized=191.42518657429918 Adjusted=0.00519682489492549 Hits=0
+Sending 4 immigrants to island monero
+Generation 29	Evaluations So Far 29696
+Subpop 0 best fitness of generation Fitness: Standardized=191.42518657429918 Adjusted=0.00519682489492549 Hits=0
+Generation 30	Evaluations So Far 30720
+Subpop 0 best fitness of generation Fitness: Standardized=177.9786957680581 Adjusted=0.00558725716325433 Hits=1
+Generation 31	Evaluations So Far 31744
+Subpop 0 best fitness of generation Fitness: Standardized=177.9786957680581 Adjusted=0.00558725716325433 Hits=1
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 32	Evaluations So Far 32768
+Subpop 0 best fitness of generation Fitness: Standardized=162.14142904204218 Adjusted=0.0061296508549173985 Hits=0
+Sending 4 immigrants to island monero
+Generation 33	Evaluations So Far 33792
+Subpop 0 best fitness of generation Fitness: Standardized=161.15205335484654 Adjusted=0.006167051106109913 Hits=0
+Generation 34	Evaluations So Far 34816
+Subpop 0 best fitness of generation Fitness: Standardized=161.15205335484654 Adjusted=0.006167051106109913 Hits=0
+Generation 35	Evaluations So Far 35840
+Subpop 0 best fitness of generation Fitness: Standardized=143.0701916610922 Adjusted=0.006941061079118849 Hits=0
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 36	Evaluations So Far 36864
+Subpop 0 best fitness of generation Fitness: Standardized=143.0701916610922 Adjusted=0.006941061079118849 Hits=0
+Sending 4 immigrants to island monero
+Generation 37	Evaluations So Far 37888
+Subpop 0 best fitness of generation Fitness: Standardized=142.6057776078972 Adjusted=0.006963508130782948 Hits=0
+Generation 38	Evaluations So Far 38912
+Subpop 0 best fitness of generation Fitness: Standardized=141.70555768352398 Adjusted=0.007007435563355461 Hits=0
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 39	Evaluations So Far 39936
+Subpop 0 best fitness of generation Fitness: Standardized=134.3129836567945 Adjusted=0.0073902738153818455 Hits=0
+Generation 40	Evaluations So Far 40960
+Subpop 0 best fitness of generation Fitness: Standardized=127.91356777542796 Adjusted=0.0077571353989832606 Hits=0
+Sending 4 immigrants to island monero
+Generation 41	Evaluations So Far 41984
+Subpop 0 best fitness of generation Fitness: Standardized=127.91356777542796 Adjusted=0.0077571353989832606 Hits=0
+Generation 42	Evaluations So Far 43008
+Subpop 0 best fitness of generation Fitness: Standardized=125.50723260362462 Adjusted=0.007904686391593302 Hits=0
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 43	Evaluations So Far 44032
+Subpop 0 best fitness of generation Fitness: Standardized=125.50723260362462 Adjusted=0.007904686391593302 Hits=0
+Generation 44	Evaluations So Far 45056
+Subpop 0 best fitness of generation Fitness: Standardized=125.50723260362462 Adjusted=0.007904686391593302 Hits=0
+Sending 4 immigrants to island monero
+Generation 45	Evaluations So Far 46080
+Subpop 0 best fitness of generation Fitness: Standardized=125.26519501509635 Adjusted=0.007919838874683078 Hits=0
+Generation 46	Evaluations So Far 47104
+Subpop 0 best fitness of generation Fitness: Standardized=124.8417968393867 Adjusted=0.007946485389717624 Hits=0
+Receiving 4 immigrants for subpopulation 0 from island monero
+Immigrating 4 individuals from mailbox for subpopulation 0
+Generation 47	Evaluations So Far 48128
+Subpop 0 best fitness of generation Fitness: Standardized=124.8417968393867 Adjusted=0.007946485389717624 Hits=0
+Generation 48	Evaluations So Far 49152
+Subpop 0 best fitness of generation Fitness: Standardized=118.79967474518216 Adjusted=0.008347268071695795 Hits=0
+Sending 4 immigrants to island monero
+Generation 49	Evaluations So Far 50176
+Subpop 0 best fitness of generation Fitness: Standardized=118.79967474518216 Adjusted=0.008347268071695795 Hits=0
+Server: Island monero dropped connection
+Generation 50	Evaluations So Far 51200
+Subpop 0 best fitness of generation Fitness: Standardized=118.79883862516456 Adjusted=0.008347326330340094 Hits=0
+Total Evaluations 52224
+Subpop 0 best fitness of run: Fitness: Standardized=118.79883862516456 Adjusted=0.008347326330340094 Hits=0
+Shutting down the mailbox
+Server: Island crete dropped connection
+Server Exiting
+Mailbox shut down
+Shutting down the server
+Server shut down

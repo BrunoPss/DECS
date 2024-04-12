@@ -168,10 +168,10 @@ public class KozaTab extends Tab implements ParamTab {
 
     //Overrides
     @Override
-    public String getFileName() { return PARAMS_FILENAME; }
+    public String[] getFileName() { return new String[]{PARAMS_FILENAME}; }
 
     @Override
-    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+    public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
         ParameterDatabase paramDatabase;
         try {
             File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
@@ -226,7 +226,7 @@ public class KozaTab extends Tab implements ParamTab {
             // Root Prob
             paramDatabase.set(new Parameter("gp.koza.ns.root"), kozaNodeSelectionRootProb.getValue().toString());
 
-            return paramDatabase;
+            return new ParameterDatabase[]{paramDatabase};
 
         } catch (IOException e) {
             System.err.println("IO Exception while opening params file");

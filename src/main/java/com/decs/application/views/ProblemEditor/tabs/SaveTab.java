@@ -1,6 +1,8 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.ProblemType;
+import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.SaveButton;
 import com.vaadin.flow.component.ClickEvent;
@@ -20,6 +22,7 @@ import java.io.IOException;
 public class SaveTab extends Tab implements ParamTab {
     //Internal Data
     private String PARAMS_FILENAME;
+    private ObjectListDatabase objectListDatabase;
     private VerticalLayout saveTabLayout;
     private VerticalLayout problemSaveGroupLayout;
     private Span problemSaveGroupTitle;
@@ -30,8 +33,9 @@ public class SaveTab extends Tab implements ParamTab {
     private SaveButton saveProblemBtn;
 
     //Constructor
-    public SaveTab() {
+    public SaveTab(ObjectListDatabase objectListDatabase) {
         setLabel("Save");
+        this.objectListDatabase = objectListDatabase;
     }
 
     //Get Methods
@@ -42,7 +46,7 @@ public class SaveTab extends Tab implements ParamTab {
     public String getProblemFullName() { return this.problemName.getValue(); }
     public String getProblemType() { return this.problemType.getValue(); }
     public String getProblemOrigin() { return "user"; }
-    public String getProblemDistribution() { return "local"; } // CHANGE THIS WHEN DISTRIBUTION MENU READY
+    public String getProblemDistribution() { return this.objectListDatabase.getProblemCreatorDistribution().toString(); }
 
     //Set Methods
 
@@ -64,10 +68,10 @@ public class SaveTab extends Tab implements ParamTab {
 
     //Overrides
     @Override
-    public String getFileName() { return null; }
+    public String[] getFileName() { return null; }
 
     @Override
-    public ParameterDatabase createParamDatabase(ProblemType selectedProblem) {
+    public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
         return null;
     }
 

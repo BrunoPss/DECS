@@ -1,9 +1,11 @@
 package com.decs.application.utils;
 
+import com.decs.application.data.DistributionType;
 import com.decs.application.data.Problem;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public final class ProblemCreator {
@@ -25,10 +27,29 @@ public final class ProblemCreator {
         ArrayList<Problem> problemList = new ArrayList<>();
 
         for (HashMap<FileConfigAttr, String> h : configList) {
-            problemList.add(new Problem(new File(h.get(FileConfigAttr.PARAMS_FILE)),
-                    h.get(FileConfigAttr.CODE), h.get(FileConfigAttr.FULL_NAME), h.get(FileConfigAttr.TYPE),
-                    h.get(FileConfigAttr.ORIGIN), h.get(FileConfigAttr.DISTRIBUTION),
-                    new File(h.get(FileConfigAttr.PARAMS_FILE)).getParentFile()));
+            if (h.get(FileConfigAttr.DISTRIBUTION).equals(DistributionType.ISLANDS.toString())) {
+                Problem newProblem = new Problem(
+                        new File(h.get(FileConfigAttr.SERVER_ISLAND)),
+                        h.get(FileConfigAttr.CODE), h.get(FileConfigAttr.FULL_NAME), h.get(FileConfigAttr.TYPE),
+                        h.get(FileConfigAttr.ORIGIN), DistributionType.valueOf(h.get(FileConfigAttr.DISTRIBUTION)),
+                        new File(h.get(FileConfigAttr.PARAMS_FILE)).getParentFile()
+                );
+
+                String wordList = h.get(FileConfigAttr.ISLAND_LIST);
+                newProblem.setIslandList(new ArrayList<>(Arrays.asList(wordList.split(";"))));
+
+                problemList.add(newProblem);
+            }
+            else {
+                problemList.add(
+                        new Problem(
+                                new File(h.get(FileConfigAttr.PARAMS_FILE)),
+                                h.get(FileConfigAttr.CODE), h.get(FileConfigAttr.FULL_NAME), h.get(FileConfigAttr.TYPE),
+                                h.get(FileConfigAttr.ORIGIN), DistributionType.valueOf(h.get(FileConfigAttr.DISTRIBUTION)),
+                                new File(h.get(FileConfigAttr.PARAMS_FILE)).getParentFile()
+                        )
+                );
+            }
         }
 
         //File f = new File(path);

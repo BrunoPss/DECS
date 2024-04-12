@@ -11,8 +11,9 @@ public class Problem {
     private String fullName;
     private String type;
     private String origin;
-    private String distribution;
+    private DistributionType distribution;
     private ParameterDatabase parameterDatabase;
+    private ArrayList<String> islandList;
 
     //Constructor
     public Problem() {}
@@ -20,7 +21,8 @@ public class Problem {
         this.paramsFile = paramsFile;
         this.fullName = paramsFile.getName();
     }
-    public Problem(File paramsFile, String code, String fullName, String type, String origin, String distribution, File rootFile) {
+    public Problem(File paramsFile, String code, String fullName, String type, String origin, DistributionType distribution, File rootFile) {
+        System.out.println("PARAMS FLE : " + paramsFile);
         this.paramsFile = paramsFile;
         this.code = code;
         this.fullName = fullName;
@@ -38,13 +40,15 @@ public class Problem {
     public String getFullName() { return fullName; }
     public String getType() { return type; }
     public String getOrigin() { return origin; }
-    public String getDistribution() { return distribution; }
+    public DistributionType getDistribution() { return distribution; }
     public File getRootFile() { return rootFile; }
+    public ArrayList<String> getIslandList() { return islandList; }
 
     //Set Methods
     public void setCode(String code) { this.code = code; }
     public void setFullName(String fullName) { this.fullName = fullName; }
     public void setType(String type) { this.type = type; }
+    public void setIslandList(ArrayList<String> islandList) { this.islandList = islandList; }
 
     //Overrides
 

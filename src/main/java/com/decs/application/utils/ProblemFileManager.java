@@ -1,5 +1,7 @@
 package com.decs.application.utils;
 
+import com.decs.application.data.DistributionType;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,13 +62,13 @@ public class ProblemFileManager {
 
     public static void createFile() {
         try {
-            FileOutputStream f = new FileOutputStream("D:\\programing\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\user\\TBoxDist\\TBoxDist.conf");
+            FileOutputStream f = new FileOutputStream("C:\\Projects\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\user\\B11MFastDist\\B11MFastDist.conf");
             HashMap<FileConfigAttr, String> d = new HashMap<>();
-            d.put(FileConfigAttr.CODE, "TBoxDist");
-            d.put(FileConfigAttr.FULL_NAME, "Two Box Distributed");
+            d.put(FileConfigAttr.CODE, "B11MFastDist");
+            d.put(FileConfigAttr.FULL_NAME, "Boolean 11 Multiplexer Fast Distributed");
             d.put(FileConfigAttr.TYPE, "GP");
-            d.put(FileConfigAttr.ORIGIN, "user");
-            d.put(FileConfigAttr.DISTRIBUTION, "eval");
+            d.put(FileConfigAttr.ORIGIN, "factory");
+            d.put(FileConfigAttr.DISTRIBUTION, DistributionType.DIST_EVAL.toString());
             ObjectOutputStream ob = new ObjectOutputStream(f);
             ob.writeObject(d);
             f.close();

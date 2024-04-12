@@ -1,8 +1,11 @@
 package com.decs.application.services;
 
+import com.decs.application.data.DistributionType;
+import com.decs.application.data.Island;
 import com.shared.JobFile;
 import com.shared.SlaveInfo;
 import com.shared.SlaveService;
+import com.vaadin.flow.data.provider.DataProvider;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class SlaveManager {
@@ -42,24 +48,33 @@ public class SlaveManager {
     public int getConnectedSlaves() {
         return slaveList.size();
     }
+    public DataProvider<SlaveInfo, Void> getSlaveListDataProvider() { return slaveListDataProvider; }
+    public ArrayList<SlaveInfo> fetchSlaveList() { return slaveList; }
 
     //Set Methods
 
 
     //Methods
     public void startSlaveListener() {
+        // Slave Listener
         Thread slaveListener = new Thread(slaveListenerRun);
         slaveListener.start();
+
+        // Slave Status Checker
+        ScheduledExecutorService slaveStatusChecker = Executors.newSingleThreadScheduledExecutor();
+        slaveStatusChecker.scheduleAtFixedRate(slaveStatusCheckerRun, 0, 1000, TimeUnit.MILLISECONDS);
     }
 
     public void initializeSlaves() {
         // Send Slave Files
         try {
             for (SlaveInfo slaveInfo : slaveList) {
-                this.locateSlave(slaveInfo);
+                if (slaveInfo.getSlaveService() == null) {
+                    this.locateSlave(slaveInfo);
+                }
                 ArrayList<JobFile> jobFileMap = buildProblemFileMap();
 
-                slaveInfo.getSlaveService().setupProblemEnvironment(jobFileMap, objectListDatabase.getSelectedProblem().getCode());
+                slaveInfo.getSlaveService().setupProblemEnvironment(jobFileMap, objectListDatabase.getSelectedProblem().getCode(), objectListDatabase.getSelectedProblem().getDistribution().toString());
             }
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -70,12 +85,34 @@ public class SlaveManager {
     public void startInference() {
         System.out.println("Start Inference");
         try {
-            for (SlaveInfo slaveInfo : slaveList) {
-                slaveInfo.getSlaveService().startInference(objectListDatabase.getSelectedProblem().getCode());
+            if (objectListDatabase.getSelectedProblem().getDistribution().equals(DistributionType.ISLANDS)) {
+                ArrayList<String> islandList = objectListDatabase.getSelectedProblem().getIslandList();
+                islandList.remove(objectListDatabase.getSelectedProblem().getParamsFile().getName().replace(".params", ""));
+                System.out.println(islandList);
+                for (int i = 0; i < slaveList.size(); i++) {
+                    slaveList.get(i).getSlaveService().startInference(islandList.get(i));
+                }
+            }
+            else if (objectListDatabase.getSelectedProblem().getDistribution().equals(DistributionType.DIST_EVAL)) {
+                for (SlaveInfo slave : slaveList) {
+                    slave.getSlaveService().startInference(objectListDatabase.getSelectedProblem().getCode());
+                }
             }
         } catch (RemoteException e) {
             e.printStackTrace();
             System.out.println("Inference RMI Remote Exception");
+        }
+    }
+
+    public void stopInference() {
+        System.out.println("STOP INFERENCE");
+        try {
+            for (SlaveInfo slaveInfo : slaveList) {
+                slaveInfo.getSlaveService().stopInference();
+            }
+        } catch (RemoteException e) {
+            System.out.println("Remote Exception");
+            e.printStackTrace();
         }
     }
 
@@ -124,6 +161,7 @@ public class SlaveManager {
             System.out.println("Not Bound Exception");
         }
     }
+
     private Runnable slaveListenerRun = new Runnable() {
         @Override
         public void run() {
@@ -140,8 +178,11 @@ public class SlaveManager {
 
                     SlaveInfo slaveInfo = (SlaveInfo) objIn.readObject();
 
+                    locateSlave(slaveInfo);
+
                     slaveList.add(slaveInfo);
 
+                    System.out.println("New Slave!");
                     System.out.println(slaveList.size());
                     System.out.println(this);
                 }
@@ -154,7 +195,35 @@ public class SlaveManager {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
                 System.out.println("Class not found exception");
+            } finally {
+                socket.close();
             }
         }
     };
+
+    private Runnable slaveStatusCheckerRun = new Runnable() {
+        @Override
+        public void run() {
+            //System.out.println(slaveList.size());
+            for (int i=0; i<slaveList.size(); i++) {
+                try {
+                    slaveList.get(i).getSlaveService().checkStatus();
+                } catch (RemoteException e) {
+                    System.err.println("Remote Exception");
+                    slaveList.remove(i);
+                }
+            }
+        }
+    };
+
+    private DataProvider<SlaveInfo, Void> slaveListDataProvider =
+            DataProvider.fromCallbacks(
+                    query -> {
+                        int offset = query.getOffset();
+                        int limit = query.getLimit();
+                        return fetchSlaveList().stream();
+                    },
+                    query -> getConnectedSlaves()
+            );
+
 }

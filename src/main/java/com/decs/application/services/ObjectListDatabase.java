@@ -1,7 +1,6 @@
 package com.decs.application.services;
 
-import com.decs.application.data.Job;
-import com.decs.application.data.Problem;
+import com.decs.application.data.*;
 import com.decs.application.utils.ProblemCreator;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.data.provider.DataProvider;
@@ -16,6 +15,11 @@ public class ObjectListDatabase {
     private ArrayList<Problem> availableProblemsList;
     private ArrayList<Job> jobActivityList;
     private Problem selectedProblem;
+    private ProblemType problemCreatorSelector;
+    private DistributionType problemCreatorDistribution;
+    private String problemCreatorCode;
+    private String serverIsland;
+    private ArrayList<Island> islandList;
 
     //Constructor
     public ObjectListDatabase() {
@@ -44,12 +48,22 @@ public class ObjectListDatabase {
     public DataProvider<Job, Void> getJobActivityDataProvider() { return jobActivityDataProvider; }
     public DataProvider<Problem, Void> getAvailableProblemsDataProvider() { return availableProblemsDataProvider; }
     public Problem getSelectedProblem() { return this.selectedProblem; }
+    public ProblemType getProblemCreatorSelector() { return this.problemCreatorSelector; }
+    public DistributionType getProblemCreatorDistribution() { return this.problemCreatorDistribution; }
+    public String getProblemCreatorCode() { return this.problemCreatorCode; }
+    public String getServerIsland() { return serverIsland; }
+    public ArrayList<Island> getIslandList() { return islandList; }
 
     //Set Methods
     public void addJobActivity(Job newJob) { jobActivityList.add(newJob); }
     public void addAvailableProblem(Problem problem) { availableProblemsList.add(problem); }
     public void addAvailableProblems(List<Problem> problems) { availableProblemsList.addAll(problems); }
     public void setSelectedProblem(Problem selectedProblem) { this.selectedProblem = selectedProblem; }
+    public void setProblemCreatorSelector(ProblemType problem) { this.problemCreatorSelector = problem; }
+    public void setProblemCreatorDistribution(DistributionType type) { this.problemCreatorDistribution = type; }
+    public void setProblemCreatorCode(String code) { this.problemCreatorCode = code; }
+    public void setServerIsland(String serverIsland) { this.serverIsland = serverIsland; }
+    public void setIslandList(ArrayList<Island> islandList) { this.islandList = islandList; }
 
     //Data Providers
     // Job Activity Data Provider
