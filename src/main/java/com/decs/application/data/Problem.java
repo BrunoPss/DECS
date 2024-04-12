@@ -13,6 +13,7 @@ public class Problem {
     private String origin;
     private DistributionType distribution;
     private ParameterDatabase parameterDatabase;
+    private ArrayList<String> islandList;
 
     //Constructor
     public Problem() {}
@@ -41,11 +42,13 @@ public class Problem {
     public String getOrigin() { return origin; }
     public DistributionType getDistribution() { return distribution; }
     public File getRootFile() { return rootFile; }
+    public ArrayList<String> getIslandList() { return islandList; }
 
     //Set Methods
     public void setCode(String code) { this.code = code; }
     public void setFullName(String fullName) { this.fullName = fullName; }
     public void setType(String type) { this.type = type; }
+    public void setIslandList(ArrayList<String> islandList) { this.islandList = islandList; }
 
     //Overrides
 

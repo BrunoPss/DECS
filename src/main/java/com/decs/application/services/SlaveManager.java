@@ -1,5 +1,7 @@
 package com.decs.application.services;
 
+import com.decs.application.data.DistributionType;
+import com.decs.application.data.Island;
 import com.shared.JobFile;
 import com.shared.SlaveInfo;
 import com.shared.SlaveService;
@@ -72,7 +74,7 @@ public class SlaveManager {
                 }
                 ArrayList<JobFile> jobFileMap = buildProblemFileMap();
 
-                slaveInfo.getSlaveService().setupProblemEnvironment(jobFileMap, objectListDatabase.getSelectedProblem().getCode());
+                slaveInfo.getSlaveService().setupProblemEnvironment(jobFileMap, objectListDatabase.getSelectedProblem().getCode(), objectListDatabase.getSelectedProblem().getDistribution().toString());
             }
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -83,8 +85,18 @@ public class SlaveManager {
     public void startInference() {
         System.out.println("Start Inference");
         try {
-            for (SlaveInfo slaveInfo : slaveList) {
-                slaveInfo.getSlaveService().startInference(objectListDatabase.getSelectedProblem().getCode());
+            if (objectListDatabase.getSelectedProblem().getDistribution().equals(DistributionType.ISLANDS)) {
+                ArrayList<String> islandList = objectListDatabase.getSelectedProblem().getIslandList();
+                islandList.remove(objectListDatabase.getSelectedProblem().getParamsFile().getName().replace(".params", ""));
+                System.out.println(islandList);
+                for (int i = 0; i < slaveList.size(); i++) {
+                    slaveList.get(i).getSlaveService().startInference(islandList.get(i));
+                }
+            }
+            else if (objectListDatabase.getSelectedProblem().getDistribution().equals(DistributionType.DIST_EVAL)) {
+                for (SlaveInfo slave : slaveList) {
+                    slave.getSlaveService().startInference(objectListDatabase.getSelectedProblem().getCode());
+                }
             }
         } catch (RemoteException e) {
             e.printStackTrace();

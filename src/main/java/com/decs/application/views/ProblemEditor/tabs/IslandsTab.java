@@ -464,6 +464,7 @@ public class IslandsTab extends Tab implements ParamTab {
         Island newIsland = new Island("Island x");
         islandList.add(newIsland);
         refreshIslandList();
+        objectListDatabase.setIslandList(islandList);
     }
 
     private void fillMigrationDestinationList(int n) {

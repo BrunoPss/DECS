@@ -1,9 +1,6 @@
 package com.decs.application.views.ProblemEditor;
 
-import com.decs.application.data.DistributionType;
-import com.decs.application.data.ParameterGroupType;
-import com.decs.application.data.Problem;
-import com.decs.application.data.ProblemType;
+import com.decs.application.data.*;
 import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.utils.FileConfigAttr;
 import com.decs.application.utils.ProblemCreator;
@@ -262,6 +259,17 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         problemInfo.put(FileConfigAttr.TYPE, event.getSource().getProblemType());
         problemInfo.put(FileConfigAttr.ORIGIN, event.getSource().getProblemOrigin());
         problemInfo.put(FileConfigAttr.DISTRIBUTION, event.getSource().getProblemDistribution());
+
+        ArrayList<Island> islandList = objectListDatabase.getIslandList();
+        StringBuilder strBuilder = new StringBuilder();
+        for (int i = 0; i < islandList.size(); i++) {
+            strBuilder.append(islandList.get(i).getId());
+            if (i < islandList.size() - 1) {
+                strBuilder.append(";");
+            }
+        }
+        String resultString = strBuilder.toString();
+        problemInfo.put(FileConfigAttr.ISLAND_LIST, resultString);
 
         // Island
         if (event.getSource().getProblemDistribution().equals(DistributionType.ISLANDS.toString())) {

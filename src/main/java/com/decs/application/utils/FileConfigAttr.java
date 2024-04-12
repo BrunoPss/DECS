@@ -7,5 +7,6 @@ public enum FileConfigAttr {
     TYPE,
     ORIGIN,
     DISTRIBUTION,
-    SERVER_ISLAND;
+    SERVER_ISLAND,
+    ISLAND_LIST;
 }
