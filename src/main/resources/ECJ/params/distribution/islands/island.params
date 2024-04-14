@@ -14,4 +14,3 @@ seed.0 = 1000
 # same port.  But since we don't know this ahead of time, it's safer to
 # give 'em different ports
 exch.client-port = 9000
-

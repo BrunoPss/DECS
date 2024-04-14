@@ -3,5 +3,5 @@ exch.select = ec.select.TournamentSelection
 exch.compressed = false
 # This assumes all the islands are on the same machine.
 # You probably want to change this.
-exch.server-addr = localhost
+exch.server-addr = 192.168.2.104
 exch.server-port = 8999
