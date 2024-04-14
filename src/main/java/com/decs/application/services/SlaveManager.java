@@ -89,7 +89,7 @@ public class SlaveManager {
                 ArrayList<String> islandList = objectListDatabase.getSelectedProblem().getIslandList();
                 islandList.remove(objectListDatabase.getSelectedProblem().getParamsFile().getName().replace(".params", ""));
                 System.out.println(islandList);
-                for (int i = 0; i < slaveList.size(); i++) {
+                for (int i = 0; i < slaveList.size() && i < islandList.size(); i++) {
                     slaveList.get(i).getSlaveService().startInference(islandList.get(i));
                 }
             }
@@ -151,14 +151,18 @@ public class SlaveManager {
     private void locateSlave(SlaveInfo slaveInfo) {
         System.out.println("LOCATE SLAVE");
         try {
+            System.out.println("ADRESS: " + slaveInfo.getAddress());
+            System.out.println("PORT: " + slaveInfo.getPort());
             Registry registry = LocateRegistry.getRegistry(slaveInfo.getAddress(), slaveInfo.getPort());
+            System.out.println(registry);
+            System.out.println("ID: " + slaveInfo.getId());
             slaveInfo.setSlaveService((SlaveService) registry.lookup(slaveInfo.getId()));
         } catch (RemoteException e) {
-            e.printStackTrace();
             System.out.println("Remote Exception");
-        } catch (NotBoundException e) {
             e.printStackTrace();
+        } catch (NotBoundException e) {
             System.out.println("Not Bound Exception");
+            e.printStackTrace();
         }
     }
 

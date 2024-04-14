@@ -14,7 +14,7 @@ parent.0 = master.params
 # to connect.  Slaves need to be told this in their
 # parameter files.  The example below sets it to localhost,
 # which is probably not what you want.
-eval.master.host = localhost
+eval.master.host = 192.168.2.104
 
 
 # Specifies a slave's name for debugging purposes.  If this is not
