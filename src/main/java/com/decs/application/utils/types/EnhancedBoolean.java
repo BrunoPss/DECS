@@ -1,4 +1,4 @@
-package com.decs.application.utils;
+package com.decs.application.utils.types;
 
 public enum EnhancedBoolean {
     TRUE,

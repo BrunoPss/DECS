@@ -1,7 +1,6 @@
-package com.decs.application.views.ProblemEditor;
+package com.decs.application.views.ProblemEditor.save;
 
 import com.decs.application.views.ProblemEditor.tabs.SaveTab;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.shared.Registration;

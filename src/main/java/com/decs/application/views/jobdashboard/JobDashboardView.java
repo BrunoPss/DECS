@@ -1,13 +1,14 @@
 package com.decs.application.views.jobdashboard;
 
-import com.decs.application.data.DistributionType;
-import com.decs.application.data.Job;
-import com.decs.application.data.JobStatus;
-import com.decs.application.data.Problem;
+import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.job.Job;
+import com.decs.application.data.job.JobStatus;
+import com.decs.application.data.problem.Problem;
 import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.services.SlaveManager;
-import com.decs.application.utils.EvolutionEngine;
+import com.decs.application.engines.EvolutionEngine;
 import com.decs.application.utils.ProblemCreator;
+import com.decs.application.utils.Timer;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.MainLayout;
 import com.vaadin.flow.component.ClickEvent;
@@ -361,8 +362,22 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         TabSheet solutionTabs = new TabSheet();
         solutionTabs.setWidthFull();
         solutionTabs.setHeightFull();
+        Tab overviewTab = new Tab("Overview");
         Tab logTab = new Tab("Short Log");
         Tab statisticsTab = new Tab("Extended Log");
+
+        // Overview Tab
+        HorizontalLayout labelValueLayout = new HorizontalLayout();
+        VerticalLayout labelLayout = new VerticalLayout();
+        labelLayout.setWidth("20%");
+        VerticalLayout valueLayout = new VerticalLayout();
+        Span jobNameLabel = new Span("Job Name:");
+        Span jobElapsedTime = new Span("Elapsed Time:");
+        labelLayout.add(jobNameLabel, jobElapsedTime);
+        Span jobNameValue = new Span(currentJob.getName());
+        Span jobElapsedTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getElapsedTime()), Timer.nano2seconds(currentJob.getElapsedTime())));
+        valueLayout.add(jobNameValue, jobElapsedTimeValue);
+        labelValueLayout.add(labelLayout, valueLayout);
 
         // Log Tab
         Paragraph logText = new Paragraph();
@@ -375,6 +390,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         statisticsText.getElement().getStyle().set("white-space", "pre");
 
         // Tabsheet Builder
+        solutionTabs.add(overviewTab, labelValueLayout);
         solutionTabs.add(logTab, logText);
         solutionTabs.add(statisticsTab, statisticsText);
 

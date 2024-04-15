@@ -1,8 +1,13 @@
 package com.decs.application.services;
 
-import com.decs.application.data.*;
+import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.distribution.Island;
+import com.decs.application.data.job.Job;
+import com.decs.application.data.problem.Problem;
+import com.decs.application.data.problem.ProblemType;
 import com.decs.application.utils.ProblemCreator;
 import com.decs.application.utils.constants.FilePathConstants;
+import com.decs.application.views.MainLayout;
 import com.vaadin.flow.data.provider.DataProvider;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +25,7 @@ public class ObjectListDatabase {
     private String problemCreatorCode;
     private String serverIsland;
     private ArrayList<Island> islandList;
+    private MainLayout mainLayout;
 
     //Constructor
     public ObjectListDatabase() {
@@ -53,6 +59,7 @@ public class ObjectListDatabase {
     public String getProblemCreatorCode() { return this.problemCreatorCode; }
     public String getServerIsland() { return serverIsland; }
     public ArrayList<Island> getIslandList() { return islandList; }
+    public MainLayout getMainLayout() { return mainLayout; }
 
     //Set Methods
     public void addJobActivity(Job newJob) { jobActivityList.add(newJob); }
@@ -64,6 +71,7 @@ public class ObjectListDatabase {
     public void setProblemCreatorCode(String code) { this.problemCreatorCode = code; }
     public void setServerIsland(String serverIsland) { this.serverIsland = serverIsland; }
     public void setIslandList(ArrayList<Island> islandList) { this.islandList = islandList; }
+    public void setMainLayout(MainLayout mainLayout) { this.mainLayout = mainLayout; }
 
     //Data Providers
     // Job Activity Data Provider

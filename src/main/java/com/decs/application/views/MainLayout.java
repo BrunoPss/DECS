@@ -1,6 +1,6 @@
 package com.decs.application.views;
 
-import com.decs.application.data.User;
+import com.decs.application.data.user.User;
 import com.decs.application.security.AuthenticatedUser;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.views.ProblemEditor.ProblemEditorView;
@@ -23,12 +23,10 @@ import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.auth.AccessAnnotationChecker;
 import com.vaadin.flow.theme.lumo.LumoUtility;
-import java.io.ByteArrayInputStream;
+
 import java.util.Optional;
-import org.vaadin.lineawesome.LineAwesomeIcon;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -104,9 +102,6 @@ public class MainLayout extends AppLayout {
             User user = maybeUser.get();
 
             Avatar avatar = new Avatar(user.getName());
-            //StreamResource resource = new StreamResource("profile-pic",
-            //        () -> new ByteArrayInputStream(user.getProfilePicture()));
-            //avatar.setImageResource(resource);
             avatar.setThemeName("xsmall");
             avatar.getElement().setAttribute("tabindex", "-1");
 

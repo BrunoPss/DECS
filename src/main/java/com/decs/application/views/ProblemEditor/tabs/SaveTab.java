@@ -1,12 +1,8 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
-import com.decs.application.data.DistributionType;
-import com.decs.application.data.ProblemType;
+import com.decs.application.data.problem.ProblemType;
 import com.decs.application.services.ObjectListDatabase;
-import com.decs.application.utils.constants.FilePathConstants;
-import com.decs.application.views.ProblemEditor.SaveButton;
-import com.vaadin.flow.component.ClickEvent;
-import com.vaadin.flow.component.button.Button;
+import com.decs.application.views.ProblemEditor.save.SaveButton;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -15,9 +11,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.textfield.TextField;
 import ec.util.ParameterDatabase;
-
-import java.io.File;
-import java.io.IOException;
 
 public class SaveTab extends Tab implements ParamTab {
     //Internal Data

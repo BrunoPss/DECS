@@ -1,9 +1,7 @@
-package com.decs.application.views.ProblemEditor;
+package com.decs.application.views.ProblemEditor.save;
 
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.DomEvent;
-import com.vaadin.flow.component.EventData;
-import com.vaadin.flow.component.button.Button;
 
 @DomEvent("click")
 public class SaveEvent extends ComponentEvent<SaveButton> {

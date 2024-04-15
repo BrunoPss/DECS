@@ -1,7 +1,9 @@
 package com.decs.application.utils;
 
-import com.decs.application.data.DistributionType;
-import com.decs.application.data.Problem;
+import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.problem.Problem;
+import com.decs.application.utils.confFile.FileConfigAttr;
+import com.decs.application.utils.confFile.ProblemFileManager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,25 +53,6 @@ public final class ProblemCreator {
                 );
             }
         }
-
-        //File f = new File(path);
-        //ArrayList<Problem> problemList = new ArrayList<>();
-
-        // Filter directories
-        //FilenameFilter filter = new FilenameFilter() {
-        //    @Override
-        //    public boolean accept(File f, String name) {
-        //        return f.isDirectory();
-        //    }
-        //};
-
-        // Create problem list
-        //File[] fileList = f.listFiles(filter);
-
-        //for (File file : fileList) {
-        //    String[] fileInfo = filenameParser(file);
-        //    problemList.add(new Problem(file, fileInfo[0], fileInfo[1], fileInfo[2]));
-        //}
         return problemList;
     }
 

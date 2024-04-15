@@ -1,5 +1,6 @@
-package com.decs.application.data;
+package com.decs.application.data.person;
 
+import com.decs.application.data.AbstractEntity;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import java.time.LocalDate;

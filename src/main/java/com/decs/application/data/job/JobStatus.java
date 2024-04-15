@@ -1,4 +1,4 @@
-package com.decs.application.data;
+package com.decs.application.data.job;
 
 public enum JobStatus {
     QUEUED,

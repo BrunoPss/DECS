@@ -1,4 +1,4 @@
-package com.decs.application.utils;
+package com.decs.application.utils.confFile;
 
 public enum FileConfigAttr {
     PARAMS_FILE,

@@ -1,7 +1,7 @@
 package com.decs.application.security;
 
-import com.decs.application.data.User;
-import com.decs.application.data.UserRepository;
+import com.decs.application.data.user.User;
+import com.decs.application.data.user.UserRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;

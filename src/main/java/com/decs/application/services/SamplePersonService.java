@@ -1,7 +1,7 @@
 package com.decs.application.services;
 
-import com.decs.application.data.SamplePerson;
-import com.decs.application.data.SamplePersonRepository;
+import com.decs.application.data.person.SamplePerson;
+import com.decs.application.data.person.SamplePersonRepository;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

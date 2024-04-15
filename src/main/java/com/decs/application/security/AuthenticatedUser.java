@@ -1,7 +1,7 @@
 package com.decs.application.security;
 
-import com.decs.application.data.User;
-import com.decs.application.data.UserRepository;
+import com.decs.application.data.user.User;
+import com.decs.application.data.user.UserRepository;
 import com.vaadin.flow.spring.security.AuthenticationContext;
 import java.util.Optional;
 import org.springframework.security.core.userdetails.UserDetails;

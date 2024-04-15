@@ -1,8 +1,9 @@
-package com.decs.application.utils;
+package com.decs.application.engines;
 
-import com.decs.application.data.DistributionType;
-import com.decs.application.data.Job;
+import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.job.Job;
 import com.decs.application.services.SlaveManager;
+import com.decs.application.utils.Timer;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import com.decs.application.views.jobdashboard.JobDashboardView;
@@ -17,8 +18,6 @@ import ec.util.ParameterDatabase;
 
 import java.io.File;
 import java.io.IOException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 public class EvolutionEngine extends Thread {
     //Internal Data
@@ -65,7 +64,6 @@ public class EvolutionEngine extends Thread {
         jobDashboard.updateInferenceResults(this.ui, evaluatedState);
     }
     public void startInference() {
-        //System.out.println(paramsFile.getPath());
         try {
             ParameterDatabase paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
@@ -90,6 +88,9 @@ public class EvolutionEngine extends Thread {
             // Set Job Metrics
             jobDashboard.setJobMetrics(this.ui, evaluatedState.breedthreads, evaluatedState.evalthreads);
 
+            // Get Initial Timestamp
+            long startTimestamp = Timer.getTimestamp();
+
             // Run all at once
             //evaluatedState.run(EvolutionState.C_STARTED_FRESH);
             // Run stage by stage
@@ -100,8 +101,12 @@ public class EvolutionEngine extends Thread {
                 jobDashboard.updateProgressBar(this.ui, (float) evaluatedState.generation / (evaluatedState.numGenerations-1));
                 jobDashboard.updateJobMetrics(this.ui, evaluatedState.evaluations, evaluatedState.generation);
             }
-
             evaluatedState.finish(result);
+
+            // Get Final Timestamp
+            long finalTimestamp = Timer.getTimestamp();
+            // Set Elapsed Time
+            job.setElapsedTime(Timer.getElapsedTime(startTimestamp, finalTimestamp));
 
             results = evaluatedState.statistics;
 

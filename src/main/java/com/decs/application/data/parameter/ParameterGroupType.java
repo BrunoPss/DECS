@@ -1,4 +1,4 @@
-package com.decs.application.data;
+package com.decs.application.data.parameter;
 
 import java.util.Arrays;
 import java.util.List;

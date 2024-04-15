@@ -1,6 +1,7 @@
-package com.decs.application.data;
+package com.decs.application.data.problem;
 
-import java.util.ArrayList;
+import com.decs.application.data.parameter.ParameterGroupType;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

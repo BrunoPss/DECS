@@ -1,4 +1,4 @@
-package com.decs.application.data;
+package com.decs.application.data.person;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

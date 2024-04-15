@@ -1,4 +1,4 @@
-package com.decs.application.data;
+package com.decs.application.data.distribution;
 
 public enum DistributionType {
     LOCAL,

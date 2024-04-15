@@ -1,4 +1,6 @@
-package com.decs.application.data;
+package com.decs.application.data.job;
+
+import com.decs.application.data.distribution.DistributionType;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +16,7 @@ public class Job {
     private File logFile;
     private File statsFile;
     private DistributionType distribution;
+    private long elapsedTime; // time in milliseconds
 
     //Constructor
     public Job() {}
@@ -31,6 +34,7 @@ public class Job {
     public File getLogFile() { return this.logFile; }
     public File getStatsFile() { return this.statsFile; }
     public DistributionType getDistribution() { return this.distribution; }
+    public long getElapsedTime() { return this.elapsedTime; }
 
     //Set Methods
     public void setName(String name) { this.name = name; }
@@ -38,6 +42,7 @@ public class Job {
     public void setStatus(JobStatus status) { this.status = status; }
     public void setLogFile(File logFile) { this.logFile = logFile; }
     public void setStatsFile(File statsFile) { this.statsFile = statsFile; }
+    public void setElapsedTime(long elapsedTime) { this.elapsedTime = elapsedTime; }
 
     //Methods
     public String getJobLog() {

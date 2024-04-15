@@ -1,6 +1,6 @@
-package com.decs.application.utils;
+package com.decs.application.utils.confFile;
 
-import com.decs.application.data.DistributionType;
+import com.decs.application.data.distribution.DistributionType;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class ProblemFileManager {
             d.put(FileConfigAttr.CODE, "B11MFastDist");
             d.put(FileConfigAttr.FULL_NAME, "Boolean 11 Multiplexer Fast Distributed");
             d.put(FileConfigAttr.TYPE, "GP");
-            d.put(FileConfigAttr.ORIGIN, "factory");
+            d.put(FileConfigAttr.ORIGIN, "user");
             d.put(FileConfigAttr.DISTRIBUTION, DistributionType.DIST_EVAL.toString());
             ObjectOutputStream ob = new ObjectOutputStream(f);
             ob.writeObject(d);

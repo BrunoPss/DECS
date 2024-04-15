@@ -1,4 +1,6 @@
-package com.decs.application.data;
+package com.decs.application.data.problem;
+
+import com.decs.application.data.distribution.DistributionType;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -12,7 +14,6 @@ public class Problem {
     private String type;
     private String origin;
     private DistributionType distribution;
-    private ParameterDatabase parameterDatabase;
     private ArrayList<String> islandList;
 
     //Constructor
@@ -27,7 +28,6 @@ public class Problem {
         this.code = code;
         this.fullName = fullName;
         this.type = type;
-        this.parameterDatabase = new ParameterDatabase();
         this.origin = origin;
         this.distribution = distribution;
         this.rootFile = rootFile;

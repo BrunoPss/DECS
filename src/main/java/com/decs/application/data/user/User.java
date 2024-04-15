@@ -1,5 +1,6 @@
-package com.decs.application.data;
+package com.decs.application.data.user;
 
+import com.decs.application.data.AbstractEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
