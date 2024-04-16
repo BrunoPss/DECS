@@ -62,12 +62,12 @@ public class ProblemFileManager {
 
     public static void createFile() {
         try {
-            FileOutputStream f = new FileOutputStream("C:\\Projects\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\user\\B11MFastDist\\B11MFastDist.conf");
+            FileOutputStream f = new FileOutputStream("C:\\Projects\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\factory\\MetaDist\\MetaDist.conf");
             HashMap<FileConfigAttr, String> d = new HashMap<>();
-            d.put(FileConfigAttr.CODE, "B11MFastDist");
-            d.put(FileConfigAttr.FULL_NAME, "Boolean 11 Multiplexer Fast Distributed");
+            d.put(FileConfigAttr.CODE, "Meta");
+            d.put(FileConfigAttr.FULL_NAME, "Meta Problem Distributed");
             d.put(FileConfigAttr.TYPE, "GP");
-            d.put(FileConfigAttr.ORIGIN, "user");
+            d.put(FileConfigAttr.ORIGIN, "factory");
             d.put(FileConfigAttr.DISTRIBUTION, DistributionType.DIST_EVAL.toString());
             ObjectOutputStream ob = new ObjectOutputStream(f);
             ob.writeObject(d);

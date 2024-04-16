@@ -2,6 +2,7 @@ package com.decs.application.views;
 
 import com.decs.application.data.user.User;
 import com.decs.application.security.AuthenticatedUser;
+import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.views.ProblemEditor.ProblemEditorView;
 import com.decs.application.views.jobdashboard.JobDashboardView;
@@ -37,9 +38,10 @@ public class MainLayout extends AppLayout {
     private AuthenticatedUser authenticatedUser;
     private AccessAnnotationChecker accessChecker;
 
-    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, SlaveManager slaveManager) {
+    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, SlaveManager slaveManager, ObjectListDatabase objectListDatabase) {
         this.authenticatedUser = authenticatedUser;
         this.accessChecker = accessChecker;
+        objectListDatabase.setMainLayout(this);
 
         // Initialize Slave Manager
         slaveManager.startSlaveListener();

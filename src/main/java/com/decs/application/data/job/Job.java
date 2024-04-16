@@ -16,7 +16,8 @@ public class Job {
     private File logFile;
     private File statsFile;
     private DistributionType distribution;
-    private long elapsedTime; // time in milliseconds
+    private long wallClockTime; // Wall-Clock Time in nanoseconds
+    private long cpuTime; // CPU Time in nanoseconds
 
     //Constructor
     public Job() {}
@@ -34,7 +35,8 @@ public class Job {
     public File getLogFile() { return this.logFile; }
     public File getStatsFile() { return this.statsFile; }
     public DistributionType getDistribution() { return this.distribution; }
-    public long getElapsedTime() { return this.elapsedTime; }
+    public long getWallClockTime() { return this.wallClockTime; }
+    public long getCpuTime() { return this.cpuTime; }
 
     //Set Methods
     public void setName(String name) { this.name = name; }
@@ -42,7 +44,8 @@ public class Job {
     public void setStatus(JobStatus status) { this.status = status; }
     public void setLogFile(File logFile) { this.logFile = logFile; }
     public void setStatsFile(File statsFile) { this.statsFile = statsFile; }
-    public void setElapsedTime(long elapsedTime) { this.elapsedTime = elapsedTime; }
+    public void setWallClockTime(long elapsedTime) { this.wallClockTime = elapsedTime; }
+    public void setCpuTime(long cpuTime) { this.cpuTime = cpuTime; }
 
     //Methods
     public String getJobLog() {

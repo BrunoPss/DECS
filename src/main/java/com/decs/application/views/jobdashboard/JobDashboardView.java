@@ -369,14 +369,16 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         // Overview Tab
         HorizontalLayout labelValueLayout = new HorizontalLayout();
         VerticalLayout labelLayout = new VerticalLayout();
-        labelLayout.setWidth("20%");
+        labelLayout.setWidth("30%");
         VerticalLayout valueLayout = new VerticalLayout();
         Span jobNameLabel = new Span("Job Name:");
-        Span jobElapsedTime = new Span("Elapsed Time:");
-        labelLayout.add(jobNameLabel, jobElapsedTime);
+        Span jobWallClockTimeLabel = new Span("Wall-Clock Time:");
+        Span jobCPUTimeLabel = new Span("CPU Time:");
+        labelLayout.add(jobNameLabel, jobWallClockTimeLabel, jobCPUTimeLabel);
         Span jobNameValue = new Span(currentJob.getName());
-        Span jobElapsedTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getElapsedTime()), Timer.nano2seconds(currentJob.getElapsedTime())));
-        valueLayout.add(jobNameValue, jobElapsedTimeValue);
+        Span jobWallClockTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getWallClockTime()), Timer.nano2seconds(currentJob.getWallClockTime())));
+        Span jobCPUTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getCpuTime()), Timer.nano2seconds(currentJob.getCpuTime())));
+        valueLayout.add(jobNameValue, jobWallClockTimeValue, jobCPUTimeValue);
         labelValueLayout.add(labelLayout, valueLayout);
 
         // Log Tab

@@ -18,6 +18,8 @@ import ec.util.ParameterDatabase;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
 
 public class EvolutionEngine extends Thread {
     //Internal Data
@@ -29,6 +31,7 @@ public class EvolutionEngine extends Thread {
     private Statistics results;
     private EvolutionState evaluatedState;
     private SlaveManager slaveManager;
+    private ThreadMXBean mxBean;
 
     //Constructor
     public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager) {
@@ -37,6 +40,7 @@ public class EvolutionEngine extends Thread {
         this.jobDashboard = jobDashboard;
         this.ui = ui;
         this.slaveManager = slaveManager;
+        this.mxBean = ManagementFactory.getThreadMXBean();
     }
 
     //Get Methods
@@ -89,7 +93,8 @@ public class EvolutionEngine extends Thread {
             jobDashboard.setJobMetrics(this.ui, evaluatedState.breedthreads, evaluatedState.evalthreads);
 
             // Get Initial Timestamp
-            long startTimestamp = Timer.getTimestamp();
+            long initialWallClockTimestamp = Timer.getWallClockTimestamp();
+            long initialCPUTimestamp = Timer.getCPUTimestamp(ManagementFactory.getThreadMXBean());
 
             // Run all at once
             //evaluatedState.run(EvolutionState.C_STARTED_FRESH);
@@ -104,9 +109,11 @@ public class EvolutionEngine extends Thread {
             evaluatedState.finish(result);
 
             // Get Final Timestamp
-            long finalTimestamp = Timer.getTimestamp();
+            long finalWallClockTimestamp = Timer.getWallClockTimestamp();
+            long finalCPUTimestamp = Timer.getCPUTimestamp(ManagementFactory.getThreadMXBean());
             // Set Elapsed Time
-            job.setElapsedTime(Timer.getElapsedTime(startTimestamp, finalTimestamp));
+            job.setWallClockTime(Timer.computeTime(initialWallClockTimestamp, finalWallClockTimestamp));
+            job.setCpuTime(Timer.computeTime(initialCPUTimestamp, finalCPUTimestamp));
 
             results = evaluatedState.statistics;
 
