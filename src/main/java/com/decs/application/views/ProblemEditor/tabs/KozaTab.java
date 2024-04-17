@@ -1,6 +1,6 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
-import com.decs.application.data.ProblemType;
+import com.decs.application.data.problem.ProblemType;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
@@ -15,7 +15,6 @@ import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
 import ec.util.Parameter;
 import ec.util.ParameterDatabase;
-import org.apache.tomcat.Jar;
 
 import java.io.File;
 import java.io.IOException;

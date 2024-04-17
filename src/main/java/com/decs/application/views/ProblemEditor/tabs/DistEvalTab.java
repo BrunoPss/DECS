@@ -1,7 +1,7 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
-import com.decs.application.data.ProblemType;
-import com.decs.application.utils.EnhancedBoolean;
+import com.decs.application.data.problem.ProblemType;
+import com.decs.application.utils.types.EnhancedBoolean;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;

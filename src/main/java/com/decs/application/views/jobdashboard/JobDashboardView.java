@@ -1,13 +1,14 @@
 package com.decs.application.views.jobdashboard;
 
-import com.decs.application.data.DistributionType;
-import com.decs.application.data.Job;
-import com.decs.application.data.JobStatus;
-import com.decs.application.data.Problem;
+import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.job.Job;
+import com.decs.application.data.job.JobStatus;
+import com.decs.application.data.problem.Problem;
 import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.services.SlaveManager;
-import com.decs.application.utils.EvolutionEngine;
+import com.decs.application.engines.EvolutionEngine;
 import com.decs.application.utils.ProblemCreator;
+import com.decs.application.utils.Timer;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.MainLayout;
 import com.vaadin.flow.component.ClickEvent;
@@ -361,8 +362,24 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         TabSheet solutionTabs = new TabSheet();
         solutionTabs.setWidthFull();
         solutionTabs.setHeightFull();
+        Tab overviewTab = new Tab("Overview");
         Tab logTab = new Tab("Short Log");
         Tab statisticsTab = new Tab("Extended Log");
+
+        // Overview Tab
+        HorizontalLayout labelValueLayout = new HorizontalLayout();
+        VerticalLayout labelLayout = new VerticalLayout();
+        labelLayout.setWidth("30%");
+        VerticalLayout valueLayout = new VerticalLayout();
+        Span jobNameLabel = new Span("Job Name:");
+        Span jobWallClockTimeLabel = new Span("Wall-Clock Time:");
+        Span jobCPUTimeLabel = new Span("CPU Time:");
+        labelLayout.add(jobNameLabel, jobWallClockTimeLabel, jobCPUTimeLabel);
+        Span jobNameValue = new Span(currentJob.getName());
+        Span jobWallClockTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getWallClockTime()), Timer.nano2seconds(currentJob.getWallClockTime())));
+        Span jobCPUTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getCpuTime()), Timer.nano2seconds(currentJob.getCpuTime())));
+        valueLayout.add(jobNameValue, jobWallClockTimeValue, jobCPUTimeValue);
+        labelValueLayout.add(labelLayout, valueLayout);
 
         // Log Tab
         Paragraph logText = new Paragraph();
@@ -375,6 +392,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         statisticsText.getElement().getStyle().set("white-space", "pre");
 
         // Tabsheet Builder
+        solutionTabs.add(overviewTab, labelValueLayout);
         solutionTabs.add(logTab, logText);
         solutionTabs.add(statisticsTab, statisticsText);
 

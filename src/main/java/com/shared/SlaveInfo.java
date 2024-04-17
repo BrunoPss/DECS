@@ -1,7 +1,6 @@
 package com.shared;
 
 import java.io.Serializable;
-import java.net.InetAddress;
 
 public class SlaveInfo implements Serializable {
     //Internal Data

@@ -1,25 +1,24 @@
 package com.decs.application.services;
 
-import com.decs.application.data.DistributionType;
-import com.decs.application.data.Island;
+import com.decs.application.data.distribution.DistributionType;
 import com.shared.JobFile;
 import com.shared.SlaveInfo;
 import com.shared.SlaveService;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.data.provider.DataProvider;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import java.nio.file.Files;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -189,6 +188,10 @@ public class SlaveManager {
                     System.out.println("New Slave!");
                     System.out.println(slaveList.size());
                     System.out.println(this);
+
+                    // Show notification
+                    System.out.println(objectListDatabase.getMainLayout());
+                    showNotification(objectListDatabase.getMainLayout().getUI().orElseThrow(), "New Slave connected!");
                 }
             } catch (SocketException e) {
                 e.printStackTrace();
@@ -230,4 +233,10 @@ public class SlaveManager {
                     query -> getConnectedSlaves()
             );
 
+    private void showNotification(UI ui, String content) {
+        ui.access(() -> {
+            Notification notification = Notification.show(content);
+            notification.addThemeVariants(NotificationVariant.LUMO_CONTRAST);
+        });
+    }
 }

@@ -1,15 +1,10 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
-import com.decs.application.data.DistributionType;
-import com.decs.application.data.ParameterGroupType;
-import com.decs.application.data.ProblemType;
+import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.problem.ProblemType;
 import com.decs.application.services.ObjectListDatabase;
-import com.decs.application.utils.EnhancedBoolean;
+import com.decs.application.utils.types.EnhancedBoolean;
 import com.decs.application.utils.constants.FilePathConstants;
-import com.decs.application.views.ProblemEditor.ProblemEditorView;
-import com.vaadin.flow.component.AbstractField;
-import com.vaadin.flow.component.ComponentEventListener;
-import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Span;
@@ -21,17 +16,13 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
 import ec.util.Parameter;
 import ec.util.ParameterDatabase;
-import org.springframework.security.core.parameters.P;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 
 public class GeneralTab extends Tab implements ParamTab {
     //Internal Data

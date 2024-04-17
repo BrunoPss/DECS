@@ -1,13 +1,11 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
-import com.decs.application.data.Island;
-import com.decs.application.data.ProblemType;
+import com.decs.application.data.distribution.Island;
+import com.decs.application.data.problem.ProblemType;
 import com.decs.application.services.ObjectListDatabase;
-import com.decs.application.utils.EnhancedBoolean;
+import com.decs.application.utils.types.EnhancedBoolean;
 import com.decs.application.utils.constants.FilePathConstants;
-import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.ClickEvent;
-import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -26,21 +24,14 @@ import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.component.treegrid.TreeGrid;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.provider.DataProvider;
-import com.vaadin.flow.data.provider.ListDataView;
 import ec.util.Parameter;
 import ec.util.ParameterDatabase;
-import org.springframework.security.core.parameters.P;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 public class IslandsTab extends Tab implements ParamTab {
     //Internal Data

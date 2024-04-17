@@ -1,6 +1,6 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
-import com.decs.application.data.ProblemType;
+import com.decs.application.data.problem.ProblemType;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import ec.util.ParameterDatabase;

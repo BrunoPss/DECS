@@ -1,36 +1,27 @@
 package com.decs.application.views.ProblemEditor;
 
-import com.decs.application.data.*;
+import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.distribution.Island;
+import com.decs.application.data.parameter.ParameterGroupType;
+import com.decs.application.data.problem.ProblemType;
 import com.decs.application.services.ObjectListDatabase;
-import com.decs.application.utils.FileConfigAttr;
-import com.decs.application.utils.ProblemCreator;
-import com.decs.application.utils.ProblemFileManager;
+import com.decs.application.utils.confFile.FileConfigAttr;
+import com.decs.application.utils.confFile.ProblemFileManager;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.MainLayout;
+import com.decs.application.views.ProblemEditor.save.SaveEvent;
 import com.decs.application.views.ProblemEditor.tabs.*;
 import com.vaadin.flow.component.*;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.Uses;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
-import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
-import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.component.textfield.IntegerField;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import ec.util.Parameter;
 import ec.util.ParameterDatabase;
 import jakarta.annotation.security.PermitAll;
-import org.springframework.security.core.parameters.P;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -91,15 +82,11 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         // Save Selected Problem
         this.selectedProblem = event.getValue();
 
-        //System.out.println("Initial Tabs: " + tabsList);
-
         // Delete Current Tabs
         for (int i=1; i<tabsList.size()-1; i++) {
             tabs.remove((Tab) tabsList.get(i));
         }
         tabsList.subList(1, tabsList.size()-1).clear();
-
-        //System.out.println("After Remove: " + tabsList);
 
         // Add Problem Tabs
         ParamTab saveTab = tabsList.remove(tabsList.size()-1);
@@ -110,8 +97,6 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
             tabsList.add(newTab);
             i++;
         }
-
-        //System.out.println("Inter: " + tabsList);
 
         // Add Distribution Tab
         if (selectedDistMethod != null) {
@@ -126,22 +111,17 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
             }
         }
         tabsList.add(saveTab);
-        //System.out.println("Final List: " + tabsList);
     }
 
     private void distributionChangeEvent(AbstractField.ComponentValueChangeEvent<Select<DistributionType>, DistributionType> event) {
         // Save Selected Problem
         this.selectedDistMethod = event.getValue();
 
-        //System.out.println("Initial Tabs: " + tabsList);
-
         // Delete Current Tabs
         for (int i=1; i<tabsList.size()-1; i++) {
             tabs.remove((Tab) tabsList.get(i));
         }
         tabsList.subList(1, tabsList.size()-1).clear();
-
-        //System.out.println("After Remove: " + tabsList);
 
         // Add Problem Tabs
         ParamTab saveTab = tabsList.remove(tabsList.size()-1);
@@ -155,8 +135,6 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
             }
         }
 
-        //System.out.println("Inter: " + tabsList);
-
         // Add Distribution Tab
         ParamTab newTab = switch (selectedDistMethod) {
             case DIST_EVAL -> new DistEvalTab();
@@ -168,8 +146,6 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
             tabsList.add(newTab);
         }
         tabsList.add(saveTab);
-
-        //System.out.println("Final List: " + tabsList);
     }
 
     private void saveProblem(SaveEvent event) {
@@ -231,10 +207,7 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
             // Island
             else if (event.getSource().getProblemDistribution().equals(DistributionType.ISLANDS.toString())) {
                 System.out.println("Islands");
-                //File clientParamFile = new File(problemFolder.getPath() + "/client.params");
-                //FileWriter fwriter = new FileWriter(clientParamFile);
-                //fwriter.write("parent.0 = " + selectedProblem.getCode() + ".params" + "\n");
-                //fwriter.close();
+
                 String text = "parent.0 = " + event.getSource().getProblemCode() + ".params" + "\n";
                 Files.write(Paths.get(problemFolder.getPath() + "/client.params"), text.getBytes(), StandardOpenOption.APPEND);
                 baseFileDestinationPath = Paths.get(problemFolder.getPath() + "/" + event.getSource().getProblemCode() + ".params");
@@ -289,5 +262,4 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         };
         return newTab;
     }
-
 }
