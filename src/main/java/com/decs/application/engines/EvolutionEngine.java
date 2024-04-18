@@ -69,6 +69,7 @@ public class EvolutionEngine extends Thread {
     }
     public void startInference() {
         try {
+            System.out.println(paramsFile);
             ParameterDatabase paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
 
@@ -114,6 +115,8 @@ public class EvolutionEngine extends Thread {
             // Set Elapsed Time
             job.setWallClockTime(Timer.computeTime(initialWallClockTimestamp, finalWallClockTimestamp));
             job.setCpuTime(Timer.computeTime(initialCPUTimestamp, finalCPUTimestamp));
+            System.out.println("Wall Clock Time: " + Timer.computeTime(initialWallClockTimestamp, finalWallClockTimestamp));
+            System.out.println("CPU Time: " + Timer.computeTime(initialCPUTimestamp, finalCPUTimestamp));
 
             results = evaluatedState.statistics;
 

@@ -29,6 +29,8 @@ public final class ProblemCreator {
         ArrayList<Problem> problemList = new ArrayList<>();
 
         for (HashMap<FileConfigAttr, String> h : configList) {
+            System.out.println("PROBLEM CREATOR PARAMS FILE: " + h.get(FileConfigAttr.PARAMS_FILE));
+
             if (h.get(FileConfigAttr.DISTRIBUTION).equals(DistributionType.ISLANDS.toString())) {
                 Problem newProblem = new Problem(
                         new File(h.get(FileConfigAttr.SERVER_ISLAND)),
