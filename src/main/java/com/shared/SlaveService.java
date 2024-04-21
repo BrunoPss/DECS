@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public interface SlaveService extends Remote {
     boolean checkStatus() throws RemoteException;
+    SystemInformation getSystemInformation() throws RemoteException;
 
     // Transfer Problem Files
     // FileType, JobFile(fileName, content)

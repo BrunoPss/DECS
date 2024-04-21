@@ -1,15 +1,20 @@
-package com.decs.application.utils;
+package com.decs.application.services;
+
+import org.springframework.stereotype.Service;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 import java.util.concurrent.TimeUnit;
 
+@Service
 public class Timer {
     //Internal Data
-
+    private ThreadMXBean threadMXBean;
 
     //Constructor
-    private Timer() {}
+    public Timer() {
+        this.threadMXBean = ManagementFactory.getThreadMXBean();
+    }
 
     //Get Methods
 
@@ -24,7 +29,7 @@ public class Timer {
         return System.nanoTime();
     }
     // CPU Time
-    public static long getCPUTimestamp(ThreadMXBean mxBean) { return mxBean.getCurrentThreadCpuTime(); }
+    public static long getCPUTimestamp(ThreadMXBean threadMXBean) { return threadMXBean.getCurrentThreadCpuTime(); }
 
     public static long nano2milis(long value) {
         System.out.println(value);

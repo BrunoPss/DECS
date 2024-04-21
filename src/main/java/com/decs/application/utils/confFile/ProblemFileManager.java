@@ -1,9 +1,12 @@
 package com.decs.application.utils.confFile;
 
 import com.decs.application.data.distribution.DistributionType;
+import org.springframework.security.core.parameters.P;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class ProblemFileManager {
@@ -64,15 +67,35 @@ public class ProblemFileManager {
         try {
             FileOutputStream f = new FileOutputStream("C:\\Projects\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\factory\\MetaDist\\MetaDist.conf");
             HashMap<FileConfigAttr, String> d = new HashMap<>();
-            d.put(FileConfigAttr.CODE, "Meta");
+            d.put(FileConfigAttr.CODE, "MetaDist");
             d.put(FileConfigAttr.FULL_NAME, "Meta Problem Distributed");
             d.put(FileConfigAttr.TYPE, "GP");
             d.put(FileConfigAttr.ORIGIN, "factory");
             d.put(FileConfigAttr.DISTRIBUTION, DistributionType.DIST_EVAL.toString());
+            d.put(FileConfigAttr.PARAMS_FILE, "MetaDist.params");
             ObjectOutputStream ob = new ObjectOutputStream(f);
             ob.writeObject(d);
             f.close();
         } catch (Exception e) {e.printStackTrace();}
+    }
+
+    public static ArrayList<File> getFilesInFolder(File rootFolder) {
+        return new ArrayList<>(Arrays.asList(rootFolder.listFiles()));
+    }
+    public static ArrayList<String> getFileNamesInFolder(File rootFolder) {
+        return new ArrayList<>(Arrays.asList(rootFolder.list()));
+    }
+
+    public static void replaceFileContent(String filePath, String content) {
+        try {
+            File file = new File(filePath);
+            PrintWriter pWriter = new PrintWriter(file);
+            pWriter.write(content);
+            pWriter.close();
+        } catch (IOException e) {
+            System.err.println("IO Exception while replacing file content");
+            e.printStackTrace();
+        }
     }
 
     //Overrides

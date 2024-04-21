@@ -18,6 +18,8 @@ public class Job {
     private DistributionType distribution;
     private long wallClockTime; // Wall-Clock Time in nanoseconds
     private long cpuTime; // CPU Time in nanoseconds
+    private long heapMemoryUsage; // Heap memory used in bytes
+    private long nonHeapMemoryUsage; // Non heap memory used in bytes
 
     //Constructor
     public Job() {}
@@ -37,6 +39,8 @@ public class Job {
     public DistributionType getDistribution() { return this.distribution; }
     public long getWallClockTime() { return this.wallClockTime; }
     public long getCpuTime() { return this.cpuTime; }
+    public long getHeapMemoryUsage() { return heapMemoryUsage; }
+    public long getNonHeapMemoryUsage() { return nonHeapMemoryUsage; }
 
     //Set Methods
     public void setName(String name) { this.name = name; }
@@ -46,6 +50,8 @@ public class Job {
     public void setStatsFile(File statsFile) { this.statsFile = statsFile; }
     public void setWallClockTime(long elapsedTime) { this.wallClockTime = elapsedTime; }
     public void setCpuTime(long cpuTime) { this.cpuTime = cpuTime; }
+    public void setHeapMemoryUsage(long heapMemoryUsage) { this.heapMemoryUsage = heapMemoryUsage; }
+    public void setNonHeapMemoryUsage(long nonHeapMemoryUsage) { this.nonHeapMemoryUsage = nonHeapMemoryUsage; }
 
     //Methods
     public String getJobLog() {

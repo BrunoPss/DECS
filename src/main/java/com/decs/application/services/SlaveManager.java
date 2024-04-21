@@ -121,7 +121,7 @@ public class SlaveManager {
     //Internal Functions
     private ArrayList<JobFile> buildProblemFileMap() {
         ArrayList<JobFile> jobFiles = new ArrayList<>();
-        File[] filesList = objectListDatabase.getSelectedProblem().getRootFile().listFiles();
+        File[] filesList = objectListDatabase.getSelectedProblem().getRootFolder().listFiles();
 
         FileInputStream fIn;
         try {

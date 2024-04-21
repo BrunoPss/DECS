@@ -3,7 +3,8 @@ package com.decs.application.engines;
 import com.decs.application.data.distribution.DistributionType;
 import com.decs.application.data.job.Job;
 import com.decs.application.services.SlaveManager;
-import com.decs.application.utils.Timer;
+import com.decs.application.services.SystemManager;
+import com.decs.application.services.Timer;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import com.decs.application.views.jobdashboard.JobDashboardView;
@@ -19,7 +20,6 @@ import ec.util.ParameterDatabase;
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.lang.management.ThreadMXBean;
 
 public class EvolutionEngine extends Thread {
     //Internal Data
@@ -31,16 +31,18 @@ public class EvolutionEngine extends Thread {
     private Statistics results;
     private EvolutionState evaluatedState;
     private SlaveManager slaveManager;
-    private ThreadMXBean mxBean;
+    private Timer timer;
+    private SystemManager systemManager;
 
     //Constructor
-    public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager) {
+    public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager, Timer timer, SystemManager systemManager) {
         this.paramsFile = paramsFile;
         this.job = job;
         this.jobDashboard = jobDashboard;
         this.ui = ui;
         this.slaveManager = slaveManager;
-        this.mxBean = ManagementFactory.getThreadMXBean();
+        this.timer = timer;
+        this.systemManager = systemManager;
     }
 
     //Get Methods
@@ -69,6 +71,7 @@ public class EvolutionEngine extends Thread {
     }
     public void startInference() {
         try {
+            System.out.println(paramsFile);
             ParameterDatabase paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
 
@@ -92,9 +95,14 @@ public class EvolutionEngine extends Thread {
             // Set Job Metrics
             jobDashboard.setJobMetrics(this.ui, evaluatedState.breedthreads, evaluatedState.evalthreads);
 
-            // Get Initial Timestamp
+            // Elapsed Time Collection
+            // Get initial timestamp
             long initialWallClockTimestamp = Timer.getWallClockTimestamp();
             long initialCPUTimestamp = Timer.getCPUTimestamp(ManagementFactory.getThreadMXBean());
+            // Memory Usage Collection
+            // Get initial memory usage
+            //long initialHeapMemoryUsage = systemManager.getHeapMemoryUsed();
+            //long initialNonHeapMemoryUsage = systemManager.getNonHeapMemoryUsed();
 
             // Run all at once
             //evaluatedState.run(EvolutionState.C_STARTED_FRESH);
@@ -108,12 +116,24 @@ public class EvolutionEngine extends Thread {
             }
             evaluatedState.finish(result);
 
-            // Get Final Timestamp
+            // Elapsed Time Collection
+            // Get final timestamp
             long finalWallClockTimestamp = Timer.getWallClockTimestamp();
             long finalCPUTimestamp = Timer.getCPUTimestamp(ManagementFactory.getThreadMXBean());
             // Set Elapsed Time
             job.setWallClockTime(Timer.computeTime(initialWallClockTimestamp, finalWallClockTimestamp));
             job.setCpuTime(Timer.computeTime(initialCPUTimestamp, finalCPUTimestamp));
+            System.out.println("Wall Clock Time: " + job.getWallClockTime());
+            System.out.println("CPU Time: " + job.getCpuTime());
+            // Memory Usage Collection
+            // Get final memory usage
+            //long finalHeapMemoryUsage = systemManager.getHeapMemoryUsed();
+            //long finalNonHeapMemoryUsage = systemManager.getNonHeapMemoryUsed();
+            // Set Memory Usage
+            //job.setHeapMemoryUsage(SystemManager.computeMemoryUsage(initialHeapMemoryUsage, finalHeapMemoryUsage));
+            //job.setNonHeapMemoryUsage(SystemManager.computeMemoryUsage(initialNonHeapMemoryUsage, finalNonHeapMemoryUsage));
+            //System.out.println("Heap Memory Usage: " + job.getHeapMemoryUsage());
+            //System.out.println("Non Heap Memory Usage: " + job.getNonHeapMemoryUsage());
 
             results = evaluatedState.statistics;
 

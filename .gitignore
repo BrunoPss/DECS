@@ -4,8 +4,6 @@
 .settings
 .project
 .classpath
-src/main/resources/ECJ/logs
-src/main/resources/ECJ/stats
 
 *.iml
 .DS_Store

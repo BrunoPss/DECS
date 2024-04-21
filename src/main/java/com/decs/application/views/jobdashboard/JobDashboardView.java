@@ -7,8 +7,10 @@ import com.decs.application.data.problem.Problem;
 import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.engines.EvolutionEngine;
+import com.decs.application.services.SystemManager;
 import com.decs.application.utils.ProblemCreator;
-import com.decs.application.utils.Timer;
+import com.decs.application.services.Timer;
+import com.decs.application.utils.confFile.ProblemFileManager;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.MainLayout;
 import com.vaadin.flow.component.ClickEvent;
@@ -16,6 +18,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.dependency.Uses;
@@ -29,6 +32,7 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -40,6 +44,9 @@ import com.vaadin.flow.router.RouteAlias;
 import ec.EvolutionState;
 import jakarta.annotation.security.PermitAll;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 @PageTitle("Job Dashboard")
@@ -53,6 +60,8 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private Job newJob;
     private SlaveManager slaveManager;
     private ObjectListDatabase objectListDatabase;
+    private Timer timer;
+    private SystemManager systemManager;
     // Available Problems
     private HorizontalLayout availableProblemsLayoutGroup;
     // Upper Group
@@ -83,6 +92,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private Span jobActivityGridLabel;
     private VerticalLayout jobActivity;
     private Button jobActivitySolutionBtn;
+    private Button problemEditorBtn;
     // Vertical Separator
     private Div verticalSeparator;
     // Job Metrics
@@ -111,11 +121,23 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private VerticalLayout actionBtnGroup;
     private Button startBtn;
     private Button stopBtn;
+    // Problem Editor
+    private Dialog problemEditorDialog;
+    private VerticalLayout problemEditorLayoutGroup;
+    private HorizontalLayout fileActionsLayoutGroup;
+    private HorizontalLayout fileActionsButtonLayout;
+    private Select<String> fileSelector;
+    private Button fileActionsOpenBtn;
+    private Button fileActionsSaveBtn;
+    private Button fileActionsDiscardBtn;
+    private TextArea textEditor;
 
     //Constructor
-    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase) {
+    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase, Timer timer, SystemManager systemManager) {
         this.slaveManager = slaveManager;
         this.objectListDatabase = objectListDatabase;
+        this.timer = timer;
+        this.systemManager = systemManager;
 
         createAvailableProblems();
         createJobProgressBar();
@@ -173,6 +195,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         availableProblemsGrid.addColumn(Problem::getType).setHeader("Type");
         availableProblemsGrid.addColumn(Problem::getOrigin).setHeader("Origin");
         availableProblemsGrid.addColumn(Problem::getDistribution).setHeader("Distribution");
+        availableProblemsGrid.addColumn(createProblemEditorRenderer()).setHeader("Editor");
 
         // Problems Scan
         factoryProblemsList = ProblemCreator.problemScanner(FilePathConstants.FACTORY_PARAMS_FOLDER);
@@ -330,7 +353,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         objectListDatabase.addJobActivity(newJob);
         jobActivityGrid.getDataProvider().refreshAll();
-        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this, slaveManager);
+        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this, slaveManager, timer, systemManager);
         if (newJob.getDistribution() != DistributionType.LOCAL && slaveManager.getConnectedSlaves() == 0) {
             System.err.println("No connected Slaves");
             Notification noSlavesNotification = Notification.show("No Slaves Connected");
@@ -374,10 +397,14 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         Span jobNameLabel = new Span("Job Name:");
         Span jobWallClockTimeLabel = new Span("Wall-Clock Time:");
         Span jobCPUTimeLabel = new Span("CPU Time:");
+        //Span jobHeapMemoryLabel = new Span("Heap Memory Used:");
+        //Span jobNonHeapMemoryLabel = new Span("Non Heap Memory Used:");
         labelLayout.add(jobNameLabel, jobWallClockTimeLabel, jobCPUTimeLabel);
         Span jobNameValue = new Span(currentJob.getName());
         Span jobWallClockTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getWallClockTime()), Timer.nano2seconds(currentJob.getWallClockTime())));
         Span jobCPUTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getCpuTime()), Timer.nano2seconds(currentJob.getCpuTime())));
+        //Span jobHeapMemoryValue = new Span(String.format("%d bytes (%d mB)", SystemManager.bytes2megaBytes(currentJob.getHeapMemoryUsage()), SystemManager.bytes2gigaBytes(currentJob.getHeapMemoryUsage())));
+        //Span jobNonHeapMemoryValue = new Span(String.format("%d bytes (%d mB)", SystemManager.bytes2megaBytes(currentJob.getNonHeapMemoryUsage()), SystemManager.bytes2gigaBytes(currentJob.getNonHeapMemoryUsage())));
         valueLayout.add(jobNameValue, jobWallClockTimeValue, jobCPUTimeValue);
         labelValueLayout.add(labelLayout, valueLayout);
 
@@ -402,6 +429,110 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         return solutionDialog;
     }
 
+    private Dialog buildProblemEditor(Problem currentProblem) {
+        problemEditorDialog = new Dialog();
+        problemEditorDialog.setHeaderTitle("Problem Editor");
+        problemEditorDialog.setMinWidth("60%");
+        problemEditorDialog.setMaxWidth("60%");
+        problemEditorDialog.setMinHeight("80%");
+        problemEditorDialog.setMaxHeight("80%");
+
+        // Problem Editor Layout Group
+        problemEditorLayoutGroup = new VerticalLayout();
+
+        // File Actions Layout Group
+        fileActionsLayoutGroup = new HorizontalLayout();
+        fileActionsLayoutGroup.setWidthFull();
+        fileActionsLayoutGroup.setAlignItems(FlexComponent.Alignment.END);
+        fileActionsLayoutGroup.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
+
+        // File Actions Button Layout
+        fileActionsButtonLayout = new HorizontalLayout();
+
+        // File Selector
+        fileSelector = new Select<>();
+        fileSelector.setLabel("File Selector");
+
+        // Get Files inside problem root folder and remove the .conf file
+        ArrayList<String> filesList = ProblemFileManager.getFileNamesInFolder(currentProblem.getRootFolder());
+        filesList.removeIf(str -> str.endsWith(".conf"));
+
+        fileSelector.setItems(filesList);
+        fileSelector.addValueChangeListener( event -> {
+            fileActionsOpenBtn.setEnabled(true);
+        });
+
+        // File Actions Buttons
+        // Open Button
+        fileActionsOpenBtn = new Button();
+        fileActionsOpenBtn.setText("Open");
+        fileActionsOpenBtn.addClickListener( event -> {
+            // Disable Open Button
+            fileActionsOpenBtn.setEnabled(false);
+            // Clear Text Editor
+            textEditor.clear();
+            try {
+                String content = Files.readString(Path.of(currentProblem.getRootFolder().getPath()+"/"+fileSelector.getValue()));
+                textEditor.setValue(content);
+                textEditor.setLabel(fileSelector.getValue());
+                System.out.println("FILE TO OPEN: " + Path.of(currentProblem.getRootFolder().getPath()+"/"+fileSelector.getValue()));
+            } catch (IOException e) {
+                System.err.println("IO Exception while opening file to edit");
+                e.printStackTrace();
+            }
+        });
+
+        // Save Button
+        fileActionsSaveBtn = new Button();
+        fileActionsSaveBtn.setText("Save");
+        fileActionsSaveBtn.addClickListener( event -> {
+            // Build confirmation Dialog
+            ConfirmDialog fileSaveConfirmDialog = new ConfirmDialog();
+            fileSaveConfirmDialog.setHeader("Save File");
+            fileSaveConfirmDialog.setText(
+                    String.format("Do you really want to save your changes to the file %s ?", textEditor.getLabel())
+            );
+            fileSaveConfirmDialog.setCancelable(true);
+
+            fileSaveConfirmDialog.setConfirmText("Save");
+            fileSaveConfirmDialog.addConfirmListener( saveEvent -> {
+                // Save File
+                ProblemFileManager.replaceFileContent(currentProblem.getRootFolder().getPath()+"/"+textEditor.getLabel(), textEditor.getValue());
+
+                // Confirmation Notification
+                Notification fileSavedNotification = Notification.show(String.format("File %s successfully saved!", textEditor.getLabel()));
+                fileSavedNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+            });
+
+            // Show Confirmation Dialog
+            fileSaveConfirmDialog.open();
+        });
+
+        // Cancel Button
+        fileActionsDiscardBtn = new Button();
+        fileActionsDiscardBtn.setText("Discard");
+        fileActionsDiscardBtn.addClickListener(event -> {
+            fileSelector.clear();
+            textEditor.clear();
+        });
+
+        // File Actions Layout Builder
+        fileActionsButtonLayout.add(fileActionsOpenBtn, fileActionsSaveBtn, fileActionsDiscardBtn);
+        fileActionsLayoutGroup.add(fileSelector, fileActionsButtonLayout);
+
+        // Text Editor
+        textEditor = new TextArea();
+        textEditor.setWidthFull();
+        textEditor.setLabel("File Name");
+
+        // Layout Builder
+        problemEditorLayoutGroup.add(fileActionsLayoutGroup, textEditor);
+        // Dialog Builder
+        problemEditorDialog.add(problemEditorLayoutGroup);
+
+        return problemEditorDialog;
+    }
+
     // Component Renderers
     private static ComponentRenderer<Span, Job> createJobActivityStatusRenderer() {
         return new ComponentRenderer<>(Span::new, jobActivityStatusUpdater);
@@ -415,13 +546,25 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private ComponentRenderer<Button, Job> createJobActivitySolutionRenderer() {
         return new ComponentRenderer<>(Button::new, jobActivitySolutionButton);
     }
-    private final SerializableBiConsumer<Button, Job> jobActivitySolutionButton = ( button, currentJob) -> {
+    private final SerializableBiConsumer<Button, Job> jobActivitySolutionButton = ( button, currentJob ) -> {
         jobActivitySolutionBtn = button;
         Icon btnIcon = new Icon(VaadinIcon.DASHBOARD);
-        button.setIcon(btnIcon);
+        jobActivitySolutionBtn.setIcon(btnIcon);
         //button.setEnabled(false);
-        button.addClickListener(event -> {
+        jobActivitySolutionBtn.addClickListener(event -> {
             buildSolutionsDialog(currentJob).open();
+        });
+    };
+
+    private ComponentRenderer<Button, Problem> createProblemEditorRenderer() {
+        return new ComponentRenderer<>(Button::new, problemEditorButton);
+    }
+
+    private final SerializableBiConsumer<Button, Problem> problemEditorButton = ( button, currentProblem ) -> {
+        problemEditorBtn = button;
+        problemEditorBtn.setText("Edit");
+        problemEditorBtn.addClickListener(event -> {
+            buildProblemEditor(currentProblem).open();
         });
     };
 }
