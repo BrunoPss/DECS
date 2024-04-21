@@ -7,8 +7,9 @@ import com.decs.application.data.problem.Problem;
 import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.engines.EvolutionEngine;
+import com.decs.application.services.SystemManager;
 import com.decs.application.utils.ProblemCreator;
-import com.decs.application.utils.Timer;
+import com.decs.application.services.Timer;
 import com.decs.application.utils.confFile.ProblemFileManager;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.MainLayout;
@@ -59,6 +60,8 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private Job newJob;
     private SlaveManager slaveManager;
     private ObjectListDatabase objectListDatabase;
+    private Timer timer;
+    private SystemManager systemManager;
     // Available Problems
     private HorizontalLayout availableProblemsLayoutGroup;
     // Upper Group
@@ -130,9 +133,11 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private TextArea textEditor;
 
     //Constructor
-    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase) {
+    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase, Timer timer, SystemManager systemManager) {
         this.slaveManager = slaveManager;
         this.objectListDatabase = objectListDatabase;
+        this.timer = timer;
+        this.systemManager = systemManager;
 
         createAvailableProblems();
         createJobProgressBar();
@@ -348,7 +353,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         objectListDatabase.addJobActivity(newJob);
         jobActivityGrid.getDataProvider().refreshAll();
-        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this, slaveManager);
+        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this, slaveManager, timer, systemManager);
         if (newJob.getDistribution() != DistributionType.LOCAL && slaveManager.getConnectedSlaves() == 0) {
             System.err.println("No connected Slaves");
             Notification noSlavesNotification = Notification.show("No Slaves Connected");
@@ -392,10 +397,14 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         Span jobNameLabel = new Span("Job Name:");
         Span jobWallClockTimeLabel = new Span("Wall-Clock Time:");
         Span jobCPUTimeLabel = new Span("CPU Time:");
+        //Span jobHeapMemoryLabel = new Span("Heap Memory Used:");
+        //Span jobNonHeapMemoryLabel = new Span("Non Heap Memory Used:");
         labelLayout.add(jobNameLabel, jobWallClockTimeLabel, jobCPUTimeLabel);
         Span jobNameValue = new Span(currentJob.getName());
         Span jobWallClockTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getWallClockTime()), Timer.nano2seconds(currentJob.getWallClockTime())));
         Span jobCPUTimeValue = new Span(String.format("%d ms (%d s)", Timer.nano2milis(currentJob.getCpuTime()), Timer.nano2seconds(currentJob.getCpuTime())));
+        //Span jobHeapMemoryValue = new Span(String.format("%d bytes (%d mB)", SystemManager.bytes2megaBytes(currentJob.getHeapMemoryUsage()), SystemManager.bytes2gigaBytes(currentJob.getHeapMemoryUsage())));
+        //Span jobNonHeapMemoryValue = new Span(String.format("%d bytes (%d mB)", SystemManager.bytes2megaBytes(currentJob.getNonHeapMemoryUsage()), SystemManager.bytes2gigaBytes(currentJob.getNonHeapMemoryUsage())));
         valueLayout.add(jobNameValue, jobWallClockTimeValue, jobCPUTimeValue);
         labelValueLayout.add(labelLayout, valueLayout);
 

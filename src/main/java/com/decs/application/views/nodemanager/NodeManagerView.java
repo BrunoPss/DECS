@@ -3,11 +3,13 @@ package com.decs.application.views.nodemanager;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.views.MainLayout;
 import com.shared.SlaveInfo;
+import com.shared.SystemInformation;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.Uses;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.html.Span;
@@ -16,9 +18,13 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
+import com.vaadin.flow.function.SerializableBiConsumer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+
+import java.rmi.RemoteException;
 
 @PageTitle("Node Manager")
 @Route(value = "node-manager", layout = MainLayout.class)
@@ -93,6 +99,7 @@ public class NodeManagerView extends Composite<VerticalLayout> {
         nodeListGrid.addColumn(SlaveInfo::getId).setHeader("ID");
         nodeListGrid.addColumn(SlaveInfo::getAddress).setHeader("Address");
         nodeListGrid.addColumn(SlaveInfo::getPort).setHeader("Port");
+        nodeListGrid.addColumn(createNodeInfoRenderer()).setHeader("Info");
 
         // Node List Build
         nodeListUpdater = nodeListGrid.getListDataView();
@@ -107,5 +114,116 @@ public class NodeManagerView extends Composite<VerticalLayout> {
     private void updateSlaveList(ClickEvent<Button> event) {
         System.out.println("Slave List Refresh");
         slaveManager.getSlaveListDataProvider().refreshAll();
+    }
+
+    // Component Renderers
+    private ComponentRenderer<Button, SlaveInfo> createNodeInfoRenderer() {
+        return new ComponentRenderer<>(Button::new, nodeInfoButton);
+    }
+    private final SerializableBiConsumer<Button, SlaveInfo> nodeInfoButton = ( button, currentSlave ) -> {
+        Icon btnIcon = new Icon(VaadinIcon.INFO_CIRCLE);
+        button.setIcon(btnIcon);
+        button.addClickListener(event -> {
+            try {
+                SystemInformation sysInf = currentSlave.getSlaveService().getSystemInformation();
+                buildSlaveInfoDialog(currentSlave, sysInf).open();
+            } catch (RemoteException e) {
+                System.err.println("Remote Exception");
+                e.printStackTrace();
+            }
+        });
+    };
+
+    // Dialogs
+    private Dialog buildSlaveInfoDialog(SlaveInfo currentSlave, SystemInformation systemInformation) {
+        Dialog slaveInfoDialog = new Dialog();
+        slaveInfoDialog.setHeaderTitle("Slave Info");
+        slaveInfoDialog.setMinWidth("60%");
+        slaveInfoDialog.setMaxWidth("60%");
+        slaveInfoDialog.setMinHeight("80%");
+        slaveInfoDialog.setMaxHeight("80%");
+
+        // Layout Group
+        VerticalLayout slaveInfoLayoutGroup = new VerticalLayout();
+        slaveInfoLayoutGroup.setHeightFull();
+        slaveInfoLayoutGroup.setWidthFull();
+
+        // System Layout
+        VerticalLayout slaveInfoSystemLayout = new VerticalLayout();
+        // Title
+        Span slaveInfoSystemTitle = new Span("System");
+        slaveInfoSystemTitle.getStyle().set("font-weight", "bold");
+        // System Information Layout Group
+        HorizontalLayout slaveInfoSystemValuesGroup = new HorizontalLayout();
+        // Title Group
+        VerticalLayout slaveInfoSystemTitleLayout = new VerticalLayout();
+        Span userNameTitle = new Span("Username:");
+        Span OSNameTitle = new Span("OS Name:");
+        Span OSVersionTitle = new Span("OS Version:");
+        Span OSArchTitle = new Span("OS Architecture:");
+        slaveInfoSystemTitleLayout.add(userNameTitle, OSNameTitle, OSVersionTitle, OSArchTitle);
+        // Values Group
+        VerticalLayout slaveInfoSystemValuesLayout = new VerticalLayout();
+        Span userNameValue = new Span(systemInformation.getUsername());
+        Span OSNameValue = new Span(systemInformation.getOSName());
+        Span OSVersionValue = new Span(systemInformation.getOSVersion());
+        Span OSArchValue = new Span(systemInformation.getOSArchitecture());
+        slaveInfoSystemValuesLayout.add(userNameValue, OSNameValue, OSVersionValue, OSArchValue);
+        // System Information Layout Group Builder
+        slaveInfoSystemValuesGroup.add(slaveInfoSystemTitleLayout, slaveInfoSystemValuesLayout);
+        // System Layout Builder
+        slaveInfoSystemLayout.add(slaveInfoSystemTitle, slaveInfoSystemValuesGroup);
+
+        // Network Layout
+        VerticalLayout slaveInfoNetworkLayout = new VerticalLayout();
+        // Title
+        Span slaveInfoNetworkTitle = new Span("Network");
+        slaveInfoNetworkTitle.getStyle().set("font-weight", "bold");
+        // Network Information Layout Group
+        HorizontalLayout slaveInfoNetworkValuesGroup = new HorizontalLayout();
+        // Title Group
+        VerticalLayout slaveInfoNetworkTitleLayout = new VerticalLayout();
+        Span IDTitle = new Span("Network ID:");
+        Span addressTitle = new Span("Address:");
+        Span portTitle = new Span("Port:");
+        slaveInfoNetworkTitleLayout.add(IDTitle, addressTitle, portTitle);
+        // Values Group
+        VerticalLayout slaveInfoNetworkValuesLayout = new VerticalLayout();
+        Span IDValue = new Span(currentSlave.getId());
+        Span addressValue = new Span(currentSlave.getAddress());
+        Span portValue = new Span(String.valueOf(currentSlave.getPort()));
+        slaveInfoNetworkValuesLayout.add(IDValue, addressValue, portValue);
+        // Network Information Layout Group Builder
+        slaveInfoNetworkValuesGroup.add(slaveInfoNetworkTitleLayout, slaveInfoNetworkValuesLayout);
+        // Network Layout Builder
+        slaveInfoNetworkLayout.add(slaveInfoNetworkTitle, slaveInfoNetworkValuesGroup);
+
+        // Hardware Layout
+        VerticalLayout slaveInfoHardwareLayout = new VerticalLayout();
+        // Title
+        Span slaveInfoHardwareTitle = new Span("Hardware");
+        slaveInfoHardwareTitle.getStyle().set("font-weight", "bold");
+        // Hardware Information Layout Group
+        HorizontalLayout slaveInfoHardwareValuesGroup = new HorizontalLayout();
+        // Title Group
+        VerticalLayout slaveInfoHardwareTitleLayout = new VerticalLayout();
+        Span CPUCoreTitle = new Span("CPU Cores:");
+        slaveInfoHardwareTitleLayout.add(CPUCoreTitle);
+        // Values Group
+        VerticalLayout slaveInfoHardwareValuesLayout = new VerticalLayout();
+        Span CPUCoreValue = new Span(String.valueOf(systemInformation.getCPUCoreNumber()));
+        slaveInfoHardwareValuesLayout.add(CPUCoreValue);
+        // Hardware Information Layout Group Builder
+        slaveInfoHardwareValuesGroup.add(slaveInfoHardwareTitleLayout, slaveInfoHardwareValuesLayout);
+        // Hardware Layout Builder
+        slaveInfoHardwareLayout.add(slaveInfoHardwareTitle, slaveInfoHardwareValuesGroup);
+
+        // Info Layout Group Builder
+        slaveInfoLayoutGroup.add(slaveInfoSystemLayout, slaveInfoNetworkLayout, slaveInfoHardwareLayout);
+
+        // Dialog Builder
+        slaveInfoDialog.add(slaveInfoLayoutGroup);
+
+        return slaveInfoDialog;
     }
 }
