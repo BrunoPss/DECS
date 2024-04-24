@@ -1,9 +1,12 @@
 package com.decs.application.data.job;
 
 import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.generation.Generation;
+import com.decs.application.utils.csvFile.CSVGenerator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -16,10 +19,11 @@ public class Job {
     private File logFile;
     private File statsFile;
     private DistributionType distribution;
+    private ArrayList<Generation> generationList;
     private long wallClockTime; // Wall-Clock Time in nanoseconds
     private long cpuTime; // CPU Time in nanoseconds
-    private long heapMemoryUsage; // Heap memory used in bytes
-    private long nonHeapMemoryUsage; // Non heap memory used in bytes
+    //private long heapMemoryUsage; // Heap memory used in bytes
+    //private long nonHeapMemoryUsage; // Non heap memory used in bytes
 
     //Constructor
     public Job() {}
@@ -28,6 +32,7 @@ public class Job {
         this.id = uniqueId.getAndIncrement();
         this.status = JobStatus.QUEUED;
         this.distribution = distribution;
+        this.generationList = new ArrayList<>();
     }
 
     //Get Methods
@@ -39,8 +44,8 @@ public class Job {
     public DistributionType getDistribution() { return this.distribution; }
     public long getWallClockTime() { return this.wallClockTime; }
     public long getCpuTime() { return this.cpuTime; }
-    public long getHeapMemoryUsage() { return heapMemoryUsage; }
-    public long getNonHeapMemoryUsage() { return nonHeapMemoryUsage; }
+    //public long getHeapMemoryUsage() { return heapMemoryUsage; }
+    //public long getNonHeapMemoryUsage() { return nonHeapMemoryUsage; }
 
     //Set Methods
     public void setName(String name) { this.name = name; }
@@ -50,8 +55,8 @@ public class Job {
     public void setStatsFile(File statsFile) { this.statsFile = statsFile; }
     public void setWallClockTime(long elapsedTime) { this.wallClockTime = elapsedTime; }
     public void setCpuTime(long cpuTime) { this.cpuTime = cpuTime; }
-    public void setHeapMemoryUsage(long heapMemoryUsage) { this.heapMemoryUsage = heapMemoryUsage; }
-    public void setNonHeapMemoryUsage(long nonHeapMemoryUsage) { this.nonHeapMemoryUsage = nonHeapMemoryUsage; }
+    //public void setHeapMemoryUsage(long heapMemoryUsage) { this.heapMemoryUsage = heapMemoryUsage; }
+    //public void setNonHeapMemoryUsage(long nonHeapMemoryUsage) { this.nonHeapMemoryUsage = nonHeapMemoryUsage; }
 
     //Methods
     public String getJobLog() {
@@ -69,6 +74,13 @@ public class Job {
             return scanner.next();
         } catch (IOException e) { e.printStackTrace(); }
         return "";
+    }
+
+    public void addGeneration(Generation generation) {
+        generationList.add(generation);
+    }
+    public void writeGenerationTableFile() {
+        CSVGenerator.generateCSVFile(generationList, "job" + id + "_" + name + "_table.csv");
     }
 
     //Overrides

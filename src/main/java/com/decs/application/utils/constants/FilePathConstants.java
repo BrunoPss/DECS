@@ -8,6 +8,7 @@ public final class FilePathConstants {
     public static final String ISLANDS_FOLDER = "src/main/resources/ECJ/params/distribution/islands";
     public static final String JOB_LOGS_FOLDER = "src/main/resources/ECJ/logs";
     public static final String JOB_STATS_FOLDER = "src/main/resources/ECJ/stats";
+    public static final String JOB_TABLES_FOLDER = "src/main/resources/ECJ/tables";
 
     //Constructor
     private FilePathConstants() {}

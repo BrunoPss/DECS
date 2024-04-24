@@ -1,6 +1,7 @@
 package com.decs.application.engines;
 
 import com.decs.application.data.distribution.DistributionType;
+import com.decs.application.data.generation.Generation;
 import com.decs.application.data.job.Job;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.services.SystemManager;
@@ -12,6 +13,9 @@ import com.vaadin.flow.component.UI;
 import ec.EvolutionState;
 import ec.Evolve;
 import ec.Statistics;
+import ec.app.gui.SimpleXYSeriesChartStatistics;
+import ec.display.chart.ChartableStatistics;
+import ec.gp.koza.KozaShortStatistics;
 import ec.simple.SimpleStatistics;
 import ec.util.Output;
 import ec.util.Parameter;
@@ -113,6 +117,7 @@ public class EvolutionEngine extends Thread {
                 result = evaluatedState.evolve();
                 jobDashboard.updateProgressBar(this.ui, (float) evaluatedState.generation / (evaluatedState.numGenerations-1));
                 jobDashboard.updateJobMetrics(this.ui, evaluatedState.evaluations, evaluatedState.generation);
+                job.addGeneration(new Generation(evaluatedState.generation, ((SimpleStatistics)(evaluatedState.statistics)).getBestSoFar()[0].fitness.fitness()));
             }
             evaluatedState.finish(result);
 
@@ -136,6 +141,9 @@ public class EvolutionEngine extends Thread {
             //System.out.println("Non Heap Memory Usage: " + job.getNonHeapMemoryUsage());
 
             results = evaluatedState.statistics;
+
+            // Write Generation Table file
+            job.writeGenerationTableFile();
 
             cleanup(evaluatedState);
         } catch (IOException e) { e.printStackTrace(); }
