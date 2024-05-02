@@ -156,7 +156,7 @@ public class IslandsTab extends Tab implements ParamTab {
                 serverParamDatabase.set(new Parameter(String.format("exch.island.%d.id", i)), islandList.get(i).getId());
                 serverParamDatabase.set(new Parameter(String.format("exch.island.%d.num-mig", i)), String.valueOf(islandList.get(i).getMigrationNumber()));
                 for (int ii=0; ii<islandList.get(i).getMigrationNumber(); ii++) {
-                    System.out.println(ii);
+                    //System.out.println(ii);
                     serverParamDatabase.set(new Parameter(String.format("exch.island.%d.mig.%d", i, ii)), islandList.get(i).getMigrationDestination().get(ii).getId());
                 }
                 serverParamDatabase.set(new Parameter(String.format("exch.island.%d.size", i)), String.valueOf(islandList.get(i).getMigrationSize()));

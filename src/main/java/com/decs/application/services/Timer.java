@@ -32,7 +32,7 @@ public class Timer {
     public static long getCPUTimestamp(ThreadMXBean threadMXBean) { return threadMXBean.getCurrentThreadCpuTime(); }
 
     public static long nano2milis(long value) {
-        System.out.println(value);
+        //System.out.println(value);
         return TimeUnit.NANOSECONDS.toMillis(value);
     }
     public static long nano2seconds(long value) {

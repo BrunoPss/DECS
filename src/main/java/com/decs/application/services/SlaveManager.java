@@ -190,7 +190,7 @@ public class SlaveManager {
                     System.out.println(this);
 
                     // Show notification
-                    System.out.println(objectListDatabase.getMainLayout());
+                    //System.out.println(objectListDatabase.getMainLayout());
                     showNotification(objectListDatabase.getMainLayout().getUI().orElseThrow(), "New Slave connected!");
                 }
             } catch (SocketException e) {
@@ -217,6 +217,7 @@ public class SlaveManager {
                     slaveList.get(i).getSlaveService().checkStatus();
                 } catch (RemoteException e) {
                     System.err.println("Remote Exception");
+                    System.err.println("Dead or Blocked slave");
                     slaveList.remove(i);
                 }
             }
