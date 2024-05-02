@@ -23,7 +23,7 @@ public class Problem {
         this.fullName = paramsFile.getName();
     }
     public Problem(File paramsFile, String code, String fullName, String type, String origin, DistributionType distribution, File rootFolder) {
-        System.out.println("PARAMS FLE : " + paramsFile);
+        //System.out.println("PARAMS FLE : " + paramsFile);
         this.paramsFile = paramsFile;
         this.code = code;
         this.fullName = fullName;

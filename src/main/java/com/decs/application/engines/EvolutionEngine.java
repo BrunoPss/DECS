@@ -3,13 +3,14 @@ package com.decs.application.engines;
 import com.decs.application.data.distribution.DistributionType;
 import com.decs.application.data.generation.Generation;
 import com.decs.application.data.job.Job;
+import com.decs.application.services.SessionManager;
 import com.decs.application.services.SlaveManager;
-import com.decs.application.services.SystemManager;
 import com.decs.application.services.Timer;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import com.decs.application.views.jobdashboard.JobDashboardView;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.server.VaadinSession;
 import ec.EvolutionState;
 import ec.Evolve;
 import ec.Statistics;
@@ -20,14 +21,18 @@ import ec.simple.SimpleStatistics;
 import ec.util.Output;
 import ec.util.Parameter;
 import ec.util.ParameterDatabase;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.security.core.parameters.P;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class EvolutionEngine extends Thread {
     //Internal Data
-    private ParameterDatabase parameterDatabase;
+    private ParameterDatabase paramDatabase;
     private File paramsFile;
     private Job job;
     private JobDashboardView jobDashboard;
@@ -36,17 +41,17 @@ public class EvolutionEngine extends Thread {
     private EvolutionState evaluatedState;
     private SlaveManager slaveManager;
     private Timer timer;
-    private SystemManager systemManager;
+    private SessionManager sessionManager;
 
     //Constructor
-    public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager, Timer timer, SystemManager systemManager) {
+    public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager, Timer timer, SessionManager sessionManager) {
         this.paramsFile = paramsFile;
         this.job = job;
         this.jobDashboard = jobDashboard;
         this.ui = ui;
         this.slaveManager = slaveManager;
         this.timer = timer;
-        this.systemManager = systemManager;
+        this.sessionManager = sessionManager;
     }
 
     //Get Methods
@@ -58,10 +63,13 @@ public class EvolutionEngine extends Thread {
     //Methods
     @Override
     public void run() {
+        // Set Evolution Engine Busy
+        sessionManager.setEvolutionEngineBusy(true, this.ui);
+
         // Distributed ?
         if (job.getDistribution() != DistributionType.LOCAL) {
             if (slaveManager.getConnectedSlaves() >= 1) {
-                System.out.println("Distributed Eval");
+                System.out.println("Distributed");
                 slaveManager.initializeSlaves();
                 slaveManager.startInference();
             }
@@ -72,11 +80,15 @@ public class EvolutionEngine extends Thread {
         System.out.println("Start Inference");
         startInference();
         jobDashboard.updateInferenceResults(this.ui, evaluatedState);
+
+        // Set Evolution Engine Free
+        sessionManager.setEvolutionEngineBusy(false, this.ui);
     }
+
     public void startInference() {
         try {
             System.out.println(paramsFile);
-            ParameterDatabase paramDatabase = new ParameterDatabase(paramsFile,
+            paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
 
             // Stats file param

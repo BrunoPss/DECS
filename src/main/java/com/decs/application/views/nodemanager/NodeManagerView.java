@@ -112,7 +112,7 @@ public class NodeManagerView extends Composite<VerticalLayout> {
 
     // Event Handlers
     private void updateSlaveList(ClickEvent<Button> event) {
-        System.out.println("Slave List Refresh");
+        //System.out.println("Slave List Refresh");
         slaveManager.getSlaveListDataProvider().refreshAll();
     }
 

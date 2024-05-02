@@ -5,9 +5,9 @@ import com.decs.application.data.job.Job;
 import com.decs.application.data.job.JobStatus;
 import com.decs.application.data.problem.Problem;
 import com.decs.application.services.ObjectListDatabase;
+import com.decs.application.services.SessionManager;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.engines.EvolutionEngine;
-import com.decs.application.services.SystemManager;
 import com.decs.application.utils.ProblemCreator;
 import com.decs.application.services.Timer;
 import com.decs.application.utils.confFile.ProblemFileManager;
@@ -15,6 +15,7 @@ import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.MainLayout;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -44,6 +45,7 @@ import com.vaadin.flow.router.RouteAlias;
 import ec.EvolutionState;
 import jakarta.annotation.security.PermitAll;
 
+import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,12 +58,13 @@ import java.util.ArrayList;
 @Uses(Icon.class)
 public class JobDashboardView extends Composite<VerticalLayout> {
     //Internal Data
+    private UI ui;
     private EvolutionEngine evolutionEngine;
     private Job newJob;
     private SlaveManager slaveManager;
     private ObjectListDatabase objectListDatabase;
     private Timer timer;
-    private SystemManager systemManager;
+    private SessionManager sessionManager;
     // Available Problems
     private HorizontalLayout availableProblemsLayoutGroup;
     // Upper Group
@@ -131,17 +134,27 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private Button fileActionsSaveBtn;
     private Button fileActionsDiscardBtn;
     private TextArea textEditor;
+    // Busy Notification
+    private Notification busyNotification;
 
     //Constructor
-    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase, Timer timer, SystemManager systemManager) {
+    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase, Timer timer, SessionManager sessionManager) {
         this.slaveManager = slaveManager;
         this.objectListDatabase = objectListDatabase;
         this.timer = timer;
-        this.systemManager = systemManager;
+        this.sessionManager = sessionManager;
 
         createAvailableProblems();
         createJobProgressBar();
         createLowerWidgetGroup();
+
+        checkServerStatus();
+
+        // Add Busy Listeners
+        this.ui = UI.getCurrent();
+        //System.out.println("UIS : " + VaadinSession.getCurrent().getUIs());
+        //System.out.println("UI VAR : " + this.ui);
+        addEvolutionEngineBusyListener();
 
         getContent().add(availableProblemsLayoutGroup, jobProgressBarComp, lowerWidgetGroup);
     }
@@ -221,7 +234,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobProgressBarLabelText.setId("jpbLabel");
         jobProgressBar.getElement().setAttribute("aria-labelledby", "jpbLabel");
 
-        jobProgressBarLabelValue = new Span("50%");
+        jobProgressBarLabelValue = new Span("0%");
 
         jobProgressBarLabel = new HorizontalLayout(jobProgressBarLabelText, jobProgressBarLabelValue);
         jobProgressBarLabel.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
@@ -285,12 +298,6 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobMetricsGroupLayout.add(jobMetricsTitlesLayout, jobMetricsValuesLayout);
         jobMetrics = new VerticalLayout(jobMetricsTitleLabel, jobMetricsGroupLayout);
 
-        // Job Results
-        //jobResults = new TextArea();
-        //jobResults.setLabel("Results");
-        //jobResults.setReadOnly(true);
-        //jobResults.setWidthFull();
-
         // Start / Stop Buttons
         actionBtnGroup = new VerticalLayout();
         actionBtnGroup.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
@@ -315,10 +322,16 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         lowerWidgetGroup.add(jobActivity, verticalSeparator, jobMetrics, actionBtnGroup);
     }
 
+    private void checkServerStatus() {
+        // Start Btn
+        startBtn.setEnabled(!sessionManager.getEvolutionEngineBusy());
+    }
+
     public void updateInferenceResults(UI ui, EvolutionState evaluatedState) {
         ui.access(() -> {
+            //System.out.println("UI results : " + ui);
             newJob.setStatus(JobStatus.FINISHED);
-            jobActivityUpdater.refreshItem(newJob);
+            jobActivityGrid.setItems(objectListDatabase.getJobActivityDataProvider());
             startBtn.setEnabled(true);
             jobActivitySolutionBtn.setEnabled(true);
         });
@@ -346,31 +359,39 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
     // Event Handlers
     private void startProblem(ClickEvent<Button> event) {
-        Problem selectedProblem = availableProblemsGrid.getSelectedItems().iterator().next();
-        objectListDatabase.setSelectedProblem(selectedProblem);
-        newJob = new Job(selectedProblem.getCode(), selectedProblem.getDistribution());
-        newJob.setStatus(JobStatus.RUNNING);
+        ui.access(() -> {
+            Problem selectedProblem = availableProblemsGrid.getSelectedItems().iterator().next();
+            objectListDatabase.setSelectedProblem(selectedProblem);
+            newJob = new Job(selectedProblem.getCode(), selectedProblem.getDistribution());
 
-        objectListDatabase.addJobActivity(newJob);
-        jobActivityGrid.getDataProvider().refreshAll();
-        evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, event.getSource().getUI().orElseThrow(), this, slaveManager, timer, systemManager);
-        if (newJob.getDistribution() != DistributionType.LOCAL && slaveManager.getConnectedSlaves() == 0) {
-            System.err.println("No connected Slaves");
-            Notification noSlavesNotification = Notification.show("No Slaves Connected");
-            noSlavesNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-            newJob.setStatus(JobStatus.FINISHED);
-            jobActivityUpdater.refreshItem(newJob);
-            startBtn.setEnabled(true);
-        }
-        else {
+            if (newJob.getDistribution() != DistributionType.LOCAL && slaveManager.getConnectedSlaves() == 0) {
+                System.err.println("No connected Slaves");
+                Notification noSlavesNotification = Notification.show("No Slaves Connected");
+                noSlavesNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                newJob.setStatus(JobStatus.FINISHED);
+                jobActivityUpdater.refreshItem(newJob);
+                startBtn.setEnabled(true);
+
+                return;
+            }
+
+            newJob.setStatus(JobStatus.RUNNING);
+
+            objectListDatabase.addJobActivity(newJob);
+            jobActivityGrid.setItems(objectListDatabase.getJobActivityDataProvider());
+
+            evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, ui, this, slaveManager, timer, sessionManager);
+
             evolutionEngine.start();
-        }
+        });
     }
 
     private void updateAvailableProblemsList(ClickEvent<Button> event) {
-        System.err.println("Available Problems Refresh");
-        objectListDatabase.updateAvailableProblems();
-        availableProblemsGrid.getDataProvider().refreshAll();
+        this.ui.access(() -> {
+            System.err.println("Available Problems Refresh");
+            objectListDatabase.updateAvailableProblems();
+            availableProblemsGrid.setItems(objectListDatabase.getAvailableProblemsDataProvider());
+        });
     }
 
     private Dialog buildSolutionsDialog(Job currentJob) {
@@ -475,7 +496,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
                 String content = Files.readString(Path.of(currentProblem.getRootFolder().getPath()+"/"+fileSelector.getValue()));
                 textEditor.setValue(content);
                 textEditor.setLabel(fileSelector.getValue());
-                System.out.println("FILE TO OPEN: " + Path.of(currentProblem.getRootFolder().getPath()+"/"+fileSelector.getValue()));
+                //System.out.println("FILE TO OPEN: " + Path.of(currentProblem.getRootFolder().getPath()+"/"+fileSelector.getValue()));
             } catch (IOException e) {
                 System.err.println("IO Exception while opening file to edit");
                 e.printStackTrace();
@@ -531,6 +552,78 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         problemEditorDialog.add(problemEditorLayoutGroup);
 
         return problemEditorDialog;
+    }
+
+    public void addEvolutionEngineBusyListener() {
+        sessionManager.addPropertyChangeListener(SessionManager.EVOLUTION_ENGINE_TYPE, this::evolutioEngineBusyEvent, this.ui);
+    }
+    private void evolutioEngineBusyEvent(PropertyChangeEvent evt) {
+        this.ui.access(() -> {
+            //System.out.println("UI Listener : " + this.ui);
+            //System.out.println("UI STARTER: " + sessionManager.getStarterUI());
+            if (this.ui != sessionManager.getStarterUI()) {
+                // Block Start Button
+                startBtn.setEnabled(!((boolean) evt.getNewValue()));
+
+                // Busy Notification
+                if ((boolean) evt.getNewValue()) {
+                    busyNotification = new Notification();
+                    busyNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                    busyNotification.setDuration(0);
+                    busyNotification.setPosition(Notification.Position.TOP_CENTER);
+                    Icon busyNotificationIcon = VaadinIcon.WARNING.create();
+                    Button moreInfoBtn = new Button("Info", clickEvent -> {
+                        createBusyInfoDialog().open();
+                    });
+                    moreInfoBtn.getStyle().setMargin("0 0 0 var(--lumo-space-l)");
+                    HorizontalLayout busyNotLayout = new HorizontalLayout(busyNotificationIcon, new Text("Server is busy at the moment!"), moreInfoBtn);
+                    busyNotLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+                    busyNotification.add(busyNotLayout);
+                    busyNotification.open();
+                }
+                else {
+                    // Close Busy Notification
+                    busyNotification.close();
+
+                    // Create Server Free Notification
+                    Notification freeNotification = new Notification();
+                    freeNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+                    freeNotification.setDuration(4000);
+                    freeNotification.setPosition(Notification.Position.TOP_CENTER);
+                    Icon freeIcon = VaadinIcon.CHECK_CIRCLE.create();
+                    HorizontalLayout freeNotLayout = new HorizontalLayout(freeIcon, new Text("Server is now free!"), createCloseNotificatonBtn(freeNotification));
+                    freeNotLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+                    freeNotification.add(freeNotLayout);
+                    freeNotification.open();
+                }
+            }
+        });
+    }
+
+    private Dialog createBusyInfoDialog() {
+        Dialog busyInfoDialog = new Dialog();
+        busyInfoDialog.setWidth("50%");
+        H2 busyInfoDialogHeadline = new H2("Server Busy");
+        Paragraph busyInfoDialogText = new Paragraph(
+                "The server is processing another task at this moment, please wait until the current task is finished." +
+                        "You will be notified when the server is free again." +
+                        "Thank you for understanding");
+        Button busyInfoDialogCloseBtn = new Button("Close");
+        busyInfoDialogCloseBtn.addClickListener(e -> busyInfoDialog.close());
+        VerticalLayout busyInfoDialogLayout = new VerticalLayout(busyInfoDialogHeadline, busyInfoDialogText, busyInfoDialogCloseBtn);
+        busyInfoDialogLayout.setAlignSelf(FlexComponent.Alignment.END, busyInfoDialogCloseBtn);
+        busyInfoDialogLayout.setWidthFull();
+        busyInfoDialog.add(busyInfoDialogLayout);
+
+        return busyInfoDialog;
+    }
+    private static Button createCloseNotificatonBtn(Notification notification) {
+        Button closeBtn = new Button(VaadinIcon.CLOSE_SMALL.create(), clickEvent -> {
+            notification.close();
+        });
+        closeBtn.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
+
+        return closeBtn;
     }
 
     // Component Renderers
