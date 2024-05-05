@@ -35,7 +35,12 @@ eval.problem.reevaluate = true
 
 
 # Meta-individuals are costly, so we might as well do N threads
-evalthreads = auto
+evalthreads = 5
+seed.0 = time
+seed.1 = time
+seed.2 = time
+seed.3 = time
+seed.4 = time
 
 
 # Here's our standard meta-level EC.  You can change this to whatever
@@ -51,7 +56,7 @@ breed.elite-frac.0 =			0.125
 breed.reevaluate-elites.0 =		true
 eval =					ec.simple.SimpleEvaluator
 stat =					ec.simple.SimpleStatistics
-generations =				50
+generations =				10
 quit-on-run-complete =			true
 pop = 					ec.Population
 pop.subpop.0.size =                     30

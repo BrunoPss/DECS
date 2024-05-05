@@ -37,6 +37,7 @@ import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.SerializableBiConsumer;
 import com.vaadin.flow.router.PageTitle;
@@ -50,6 +51,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 @PageTitle("Job Dashboard")
 @Route(value = "job-dashboard", layout = MainLayout.class)
@@ -308,7 +310,16 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         startBtn.setWidth("130px");
         startBtn.setHeight("50px");
         startBtn.setDisableOnClick(true);
-        startBtn.addClickListener(this::startProblem);
+        startBtn.addClickListener( evt -> {
+            try {
+                Problem selectedProblem = availableProblemsGrid.getSelectedItems().iterator().next();
+                buildJobNameDialog().open();
+            } catch (NoSuchElementException e) {
+                System.err.println("No problem selected!");
+                Notification errNotification = Notification.show("No problem selected!");
+                errNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+            }
+        });
 
         stopBtn = new Button("Stop");
         stopBtn.addThemeVariants(ButtonVariant.LUMO_ERROR);
@@ -358,11 +369,11 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     }
 
     // Event Handlers
-    private void startProblem(ClickEvent<Button> event) {
+    private void startProblem(String jobName) {
         ui.access(() -> {
             Problem selectedProblem = availableProblemsGrid.getSelectedItems().iterator().next();
             objectListDatabase.setSelectedProblem(selectedProblem);
-            newJob = new Job(selectedProblem.getCode(), selectedProblem.getDistribution());
+            newJob = new Job(jobName, selectedProblem.getDistribution());
 
             if (newJob.getDistribution() != DistributionType.LOCAL && slaveManager.getConnectedSlaves() == 0) {
                 System.err.println("No connected Slaves");
@@ -392,6 +403,41 @@ public class JobDashboardView extends Composite<VerticalLayout> {
             objectListDatabase.updateAvailableProblems();
             availableProblemsGrid.setItems(objectListDatabase.getAvailableProblemsDataProvider());
         });
+    }
+
+    private Dialog buildJobNameDialog() {
+        Dialog jobNameDialog = new Dialog();
+        jobNameDialog.setHeaderTitle("Job Name");
+        jobNameDialog.setCloseOnOutsideClick(false);
+        jobNameDialog.setCloseOnEsc(false);
+
+        Span jobNameText = new Span("Please insert the name for the job.");
+        TextField jobName = new TextField();
+        VerticalLayout jobNameLayout = new VerticalLayout(jobNameText, jobName);
+        jobNameDialog.add(jobNameLayout);
+
+        Button jobDialogBtn = new Button("Continue");
+        jobDialogBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
+        jobDialogBtn.addClickListener( evt -> {
+            if (!jobName.getValue().isBlank()) {
+                jobNameDialog.close();
+                startProblem(jobName.getValue());
+            }
+            else {
+                Notification blankNotification = Notification.show("Please fill the job name field!");
+                blankNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+            }
+        });
+        Button jobNameCancelBtn = new Button("Cancel");
+        jobNameCancelBtn.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        jobNameCancelBtn.addClickListener( evt -> {
+            startBtn.setEnabled(true);
+            jobNameDialog.close();
+        });
+
+        jobNameDialog.getFooter().add(jobNameCancelBtn, jobDialogBtn);
+
+        return jobNameDialog;
     }
 
     private Dialog buildSolutionsDialog(Job currentJob) {
