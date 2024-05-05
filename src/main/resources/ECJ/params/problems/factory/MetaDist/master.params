@@ -30,7 +30,7 @@ eval.masterproblem.debug-info = false
 # efficient.  If you have a lot more individuals than slaves,
 # and so can afford stuffing the queues, t's probably helpful to have 2
 # or 3 jobs in the queue.
-eval.masterproblem.max-jobs-per-slave = 1
+eval.masterproblem.max-jobs-per-slave = 2
 
 
 # How large should our job be?  If you're doing ordinary

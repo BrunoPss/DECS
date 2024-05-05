@@ -41,6 +41,7 @@ public class NodeManagerView extends Composite<VerticalLayout> {
     private Icon nodeListTitleUpdateBtnIcon;
     private Button nodeListTitleUpdateBtn;
     private Grid<SlaveInfo> nodeListGrid;
+    private Span connectedSlaves;
     private GridListDataView<SlaveInfo> nodeListUpdater;
 
     //Constructor
@@ -101,12 +102,15 @@ public class NodeManagerView extends Composite<VerticalLayout> {
         nodeListGrid.addColumn(SlaveInfo::getPort).setHeader("Port");
         nodeListGrid.addColumn(createNodeInfoRenderer()).setHeader("Info");
 
+        // Connected Slaves number
+        connectedSlaves = new Span(String.format("Connected Slaves: %d", slaveManager.getConnectedSlaves()));
+
         // Node List Build
         nodeListUpdater = nodeListGrid.getListDataView();
         nodeListGrid.setDataProvider(slaveManager.getSlaveListDataProvider());
 
         // Group Builder
-        nodeListGridLayout.add(nodeListUpperGroup, nodeListGrid);
+        nodeListGridLayout.add(nodeListUpperGroup, nodeListGrid, connectedSlaves);
         nodeListLayoutGroup.add(nodeListGridLayout);
     }
 
@@ -114,6 +118,7 @@ public class NodeManagerView extends Composite<VerticalLayout> {
     private void updateSlaveList(ClickEvent<Button> event) {
         //System.out.println("Slave List Refresh");
         slaveManager.getSlaveListDataProvider().refreshAll();
+        connectedSlaves.setText(String.format("Connected Slaves: %d", slaveManager.getConnectedSlaves()));
     }
 
     // Component Renderers

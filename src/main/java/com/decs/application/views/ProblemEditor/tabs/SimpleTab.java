@@ -327,6 +327,7 @@ public class SimpleTab extends Tab implements ParamTab {
         statisticsClass = new Select<>();
         statisticsClass.setLabel("Elite Reevaluation");
         statisticsClass.setItems(StatisticsType.values());
+        statisticsClass.setValue(StatisticsType.SIMPLE);
         //statisticsClass.setValue();
         statisticsClassTooltip = statisticsClass.getTooltip().withManual(true);
         statisticsClassTooltip.setText("test tooltip");
@@ -345,6 +346,7 @@ public class SimpleTab extends Tab implements ParamTab {
         statisticsFile.setLabel("Filename");
         statisticsFile.setPrefixComponent(VaadinIcon.TEXT_LABEL.create());
         statisticsFile.setClearButtonVisible(true);
+        statisticsFile.setValue("stats");
         statisticsFileTooltip = statisticsFile.getTooltip().withManual(true);
         statisticsFileTooltip.setText("test tooltip");
         statisticsFileHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));

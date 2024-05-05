@@ -426,6 +426,7 @@ public class IslandsTab extends Tab implements ParamTab {
         islandSeed.setLabel("Random Seed");
         islandSeed.setAllowCustomValue(true);
         islandSeed.setItems("time");
+        islandSeed.setValue("time");
 
         // Save Btn
         saveBtn = new Button();

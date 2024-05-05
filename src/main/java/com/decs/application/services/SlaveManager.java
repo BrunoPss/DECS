@@ -202,8 +202,6 @@ public class SlaveManager {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
                 System.out.println("Class not found exception");
-            } finally {
-                socket.close();
             }
         }
     };

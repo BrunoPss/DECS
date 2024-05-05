@@ -216,6 +216,7 @@ public class GeneralTab extends Tab implements ParamTab {
         seedInput.setLabel("Random Seed");
         seedInput.setAllowCustomValue(true);
         seedInput.setItems("time");
+        seedInput.setValue("time");
         seedTooltip = seedInput.getTooltip().withManual(true);
         seedTooltip.setText("test tooltip");
 
@@ -323,6 +324,7 @@ public class GeneralTab extends Tab implements ParamTab {
         prefixInput.setRequired(true);
         prefixInput.setRequiredIndicatorVisible(true);
         prefixInput.setMaxLength(50);
+        prefixInput.setValue("out");
         prefixTooltip = prefixInput.getTooltip().withManual(true);
         prefixTooltip.setText("test tooltip");
         prefixHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
