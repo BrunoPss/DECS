@@ -702,6 +702,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private final SerializableBiConsumer<Button, Problem> problemEditorButton = ( button, currentProblem ) -> {
         problemEditorBtn = button;
         problemEditorBtn.setText("Edit");
+        problemEditorBtn.setTooltipText("Edit Parameters");
         problemEditorBtn.addClickListener(event -> {
             buildProblemEditor(currentProblem).open();
         });

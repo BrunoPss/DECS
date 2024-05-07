@@ -3,6 +3,7 @@ package com.decs.application.views.ProblemEditor.tabs;
 import com.decs.application.data.distribution.Island;
 import com.decs.application.data.problem.ProblemType;
 import com.decs.application.services.ObjectListDatabase;
+import com.decs.application.utils.constants.TooltipText;
 import com.decs.application.utils.types.EnhancedBoolean;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.ClickEvent;
@@ -297,7 +298,7 @@ public class IslandsTab extends Tab implements ParamTab {
         syncInput.setItems(EnhancedBoolean.TRUE, EnhancedBoolean.FALSE);
         syncInput.setValue(EnhancedBoolean.FALSE);
         syncTooltip = syncInput.getTooltip().withManual(true);
-        syncTooltip.setText("test tooltip");
+        syncTooltip.setText(TooltipText.islandSyncTooltipText);
         syncHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         syncHelpBtn.addClickListener(event -> {
             syncTooltip.setOpened(!syncTooltip.isOpened());
@@ -311,8 +312,9 @@ public class IslandsTab extends Tab implements ParamTab {
         compressionInput.setLabel("Compression");
         compressionInput.setItems(EnhancedBoolean.TRUE, EnhancedBoolean.FALSE);
         compressionInput.setValue(EnhancedBoolean.FALSE);
+        compressionInput.setEnabled(false); // Compression isn't supported yet
         compressionTooltip = compressionInput.getTooltip().withManual(true);
-        compressionTooltip.setText("test tooltip");
+        compressionTooltip.setText(TooltipText.islandCompressionTooltipText);
         compressionHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         compressionHelpBtn.addClickListener(event -> {
             compressionTooltip.setOpened(!compressionTooltip.isOpened());

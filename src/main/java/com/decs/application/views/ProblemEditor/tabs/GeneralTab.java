@@ -3,6 +3,7 @@ package com.decs.application.views.ProblemEditor.tabs;
 import com.decs.application.data.distribution.DistributionType;
 import com.decs.application.data.problem.ProblemType;
 import com.decs.application.services.ObjectListDatabase;
+import com.decs.application.utils.constants.TooltipText;
 import com.decs.application.utils.types.EnhancedBoolean;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.button.Button;
@@ -197,7 +198,7 @@ public class GeneralTab extends Tab implements ParamTab {
         jobInput.setValue(1);
         jobInput.setStepButtonsVisible(true);
         jobTooltip = jobInput.getTooltip().withManual(true);
-        jobTooltip.setText("test tooltip");
+        jobTooltip.setText(TooltipText.jobTooltipText);
 
         jobHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         jobHelpBtn.addClickListener(event -> {
@@ -218,7 +219,7 @@ public class GeneralTab extends Tab implements ParamTab {
         seedInput.setItems("time");
         seedInput.setValue("time");
         seedTooltip = seedInput.getTooltip().withManual(true);
-        seedTooltip.setText("test tooltip");
+        seedTooltip.setText(TooltipText.seedTooltipText);
 
         seedHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         seedHelpBtn.addClickListener(event -> {
@@ -250,7 +251,7 @@ public class GeneralTab extends Tab implements ParamTab {
         evalInput.setValue(1);
         evalInput.setStepButtonsVisible(true);
         evalTooltip = evalInput.getTooltip().withManual(true);
-        evalTooltip.setText("test tooltip");
+        evalTooltip.setText(TooltipText.evalTooltipText);
         evalHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         evalHelpBtn.addClickListener(event -> {
             evalTooltip.setOpened(!evalTooltip.isOpened());
@@ -265,7 +266,7 @@ public class GeneralTab extends Tab implements ParamTab {
         breedInput.setValue(1);
         breedInput.setStepButtonsVisible(true);
         breedTooltip = breedInput.getTooltip().withManual(true);
-        breedTooltip.setText("test tooltip");
+        breedTooltip.setText(TooltipText.breedTooltipText);
         breedHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         breedHelpBtn.addClickListener(event -> {
             breedTooltip.setOpened(!breedTooltip.isOpened());
@@ -292,8 +293,9 @@ public class GeneralTab extends Tab implements ParamTab {
         checkpointInput.setLabel("Checkpoint");
         checkpointInput.setItems(EnhancedBoolean.TRUE, EnhancedBoolean.FALSE);
         checkpointInput.setValue(EnhancedBoolean.FALSE);
+        checkpointInput.setEnabled(false); // Checkpointing isn't supported yet
         checkpointTooltip = checkpointInput.getTooltip().withManual(true);
-        checkpointTooltip.setText("test tooltip");
+        checkpointTooltip.setText(TooltipText.checkpointTooltipText);
         checkpointHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         checkpointHelpBtn.addClickListener(event -> {
             checkpointTooltip.setOpened(!checkpointTooltip.isOpened());
@@ -306,9 +308,10 @@ public class GeneralTab extends Tab implements ParamTab {
         moduloInput.setLabel("Modulo");
         moduloInput.setMin(1);
         moduloInput.setValue(1);
+        moduloInput.setEnabled(false); // Checkpointing isn't supported yet
         moduloInput.setStepButtonsVisible(true);
         moduloTooltip = moduloInput.getTooltip().withManual(true);
-        moduloTooltip.setText("test tooltip");
+        moduloTooltip.setText(TooltipText.moduloTooltipText);
         moduloHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         moduloHelpBtn.addClickListener(event -> {
             moduloTooltip.setOpened(!moduloTooltip.isOpened());
@@ -325,8 +328,9 @@ public class GeneralTab extends Tab implements ParamTab {
         prefixInput.setRequiredIndicatorVisible(true);
         prefixInput.setMaxLength(50);
         prefixInput.setValue("out");
+        prefixInput.setEnabled(false); // Checkpointing isn't available yet
         prefixTooltip = prefixInput.getTooltip().withManual(true);
-        prefixTooltip.setText("test tooltip");
+        prefixTooltip.setText(TooltipText.prefixTooltipText);
         prefixHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         prefixHelpBtn.addClickListener(event -> {
             prefixTooltip.setOpened(!prefixTooltip.isOpened());
