@@ -2,6 +2,7 @@ package com.decs.application.views.ProblemEditor.tabs;
 
 import com.decs.application.data.problem.ProblemType;
 import com.decs.application.utils.constants.FilePathConstants;
+import com.decs.application.utils.constants.TooltipText;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -262,7 +263,7 @@ public class KozaTab extends Tab implements ParamTab {
         initialCreationMinDepth.setValue(2);
         initialCreationMinDepth.setStepButtonsVisible(true);
         initialCreationMinDepthTooltip = initialCreationMinDepth.getTooltip().withManual(true);
-        initialCreationMinDepthTooltip.setText("test tooltip");
+        initialCreationMinDepthTooltip.setText(TooltipText.initialCreationMinDepthTooltipText);
         initialCreationMinDepthHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         initialCreationMinDepthHelpBtn.addClickListener(event -> {
             initialCreationMinDepthTooltip.setOpened(!initialCreationMinDepthTooltip.isOpened());
@@ -278,7 +279,7 @@ public class KozaTab extends Tab implements ParamTab {
         initialCreationMaxDepth.setValue(initialCreationMinDepth.getValue()+4);
         initialCreationMaxDepth.setStepButtonsVisible(true);
         initialCreationMaxDepthTooltip = initialCreationMaxDepth.getTooltip().withManual(true);
-        initialCreationMaxDepthTooltip.setText("test tooltip");
+        initialCreationMaxDepthTooltip.setText(TooltipText.initialCreationMaxDepthTooltipText);
         initialCreationMaxDepthHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         initialCreationMaxDepthHelpBtn.addClickListener(event -> {
             initialCreationMaxDepthTooltip.setOpened(!initialCreationMaxDepthTooltip.isOpened());
@@ -296,7 +297,7 @@ public class KozaTab extends Tab implements ParamTab {
         initialCreationGrowProb.setValue(0.9);
         initialCreationGrowProb.setStepButtonsVisible(true);
         initialCreationGrowProbTooltip = initialCreationGrowProb.getTooltip().withManual(true);
-        initialCreationGrowProbTooltip.setText("test tooltip");
+        initialCreationGrowProbTooltip.setText(TooltipText.initialCreationGrowProbTooltipText);
         initialCreationGrowProbHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         initialCreationGrowProbHelpBtn.addClickListener(event -> {
             initialCreationGrowProbTooltip.setOpened(!initialCreationGrowProbTooltip.isOpened());
@@ -331,7 +332,7 @@ public class KozaTab extends Tab implements ParamTab {
         crossoverPipelineProb.setValue(0.9);
         crossoverPipelineProb.setStepButtonsVisible(true);
         crossoverPipelineProbTooltip = crossoverPipelineProb.getTooltip().withManual(true);
-        crossoverPipelineProbTooltip.setText("test tooltip");
+        crossoverPipelineProbTooltip.setText(TooltipText.crossoverPipelineProbTooltipText);
         crossoverPipelineProbHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         crossoverPipelineProbHelpBtn.addClickListener(event -> {
             crossoverPipelineProbTooltip.setOpened(!crossoverPipelineProbTooltip.isOpened());
@@ -349,7 +350,7 @@ public class KozaTab extends Tab implements ParamTab {
         reproductionPipelineProb.setValue(0.1);
         reproductionPipelineProb.setStepButtonsVisible(true);
         reproductionPipelineProbTooltip = reproductionPipelineProb.getTooltip().withManual(true);
-        reproductionPipelineProbTooltip.setText("test tooltip");
+        reproductionPipelineProbTooltip.setText(TooltipText.reproductionPipelineProbTooltipText);
         reproductionPipelineProbHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         reproductionPipelineProbHelpBtn.addClickListener(event -> {
             reproductionPipelineProbTooltip.setOpened(!reproductionPipelineProbTooltip.isOpened());
@@ -384,7 +385,7 @@ public class KozaTab extends Tab implements ParamTab {
         crossoverPipelineMaxDepth.setValue(17);
         crossoverPipelineMaxDepth.setStepButtonsVisible(true);
         crossoverPipelineMaxDepthTooltip = crossoverPipelineMaxDepth.getTooltip().withManual(true);
-        crossoverPipelineMaxDepthTooltip.setText("test tooltip");
+        crossoverPipelineMaxDepthTooltip.setText(TooltipText.crossoverPipelineMaxDepthTooltipText);
         crossoverPipelineMaxDepthHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         crossoverPipelineMaxDepthHelpBtn.addClickListener(event -> {
             crossoverPipelineMaxDepthTooltip.setOpened(!crossoverPipelineMaxDepthTooltip.isOpened());
@@ -400,7 +401,7 @@ public class KozaTab extends Tab implements ParamTab {
         crossoverPipelineTries.setValue(1);
         crossoverPipelineTries.setStepButtonsVisible(true);
         crossoverPipelineTriesTooltip = crossoverPipelineTries.getTooltip().withManual(true);
-        crossoverPipelineTriesTooltip.setText("test tooltip");
+        crossoverPipelineTriesTooltip.setText(TooltipText.crossoverPipelineTriesTooltipText);
         crossoverPipelineTriesHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         crossoverPipelineTriesHelpBtn.addClickListener(event -> {
             crossoverPipelineTriesTooltip.setOpened(!crossoverPipelineTriesTooltip.isOpened());
@@ -435,7 +436,7 @@ public class KozaTab extends Tab implements ParamTab {
         pointMutationMaxDepth.setValue(17);
         pointMutationMaxDepth.setStepButtonsVisible(true);
         pointMutationMaxDepthTooltip = pointMutationMaxDepth.getTooltip().withManual(true);
-        pointMutationMaxDepthTooltip.setText("test tooltip");
+        pointMutationMaxDepthTooltip.setText(TooltipText.pointMutationMaxDepthTooltipText);
         pointMutationMaxDepthHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         pointMutationMaxDepthHelpBtn.addClickListener(event -> {
             pointMutationMaxDepthTooltip.setOpened(!pointMutationMaxDepthTooltip.isOpened());
@@ -451,7 +452,7 @@ public class KozaTab extends Tab implements ParamTab {
         pointMutationTries.setValue(1);
         pointMutationTries.setStepButtonsVisible(true);
         pointMutationTriesTooltip = pointMutationTries.getTooltip().withManual(true);
-        pointMutationTriesTooltip.setText("test tooltip");
+        pointMutationTriesTooltip.setText(TooltipText.pointMutationTriesTooltipText);
         pointMutationTriesHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         pointMutationTriesHelpBtn.addClickListener(event -> {
             pointMutationTriesTooltip.setOpened(!pointMutationTriesTooltip.isOpened());
@@ -478,7 +479,7 @@ public class KozaTab extends Tab implements ParamTab {
         tournamentSize.setValue(7);
         tournamentSize.setStepButtonsVisible(true);
         tournamentSizeTooltip = tournamentSize.getTooltip().withManual(true);
-        tournamentSizeTooltip.setText("test tooltip");
+        tournamentSizeTooltip.setText(TooltipText.tournamentSizeTooltipText);
         tournamentSizeHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         tournamentSizeHelpBtn.addClickListener(event -> {
             tournamentSizeTooltip.setOpened(!tournamentSizeTooltip.isOpened());
@@ -511,7 +512,7 @@ public class KozaTab extends Tab implements ParamTab {
         subtreeMutationMinDepth.setValue(5);
         subtreeMutationMinDepth.setStepButtonsVisible(true);
         subtreeMutationMinDepthTooltip = subtreeMutationMinDepth.getTooltip().withManual(true);
-        subtreeMutationMinDepthTooltip.setText("test tooltip");
+        subtreeMutationMinDepthTooltip.setText(TooltipText.subtreeMutationMinDepthTooltipText);
         subtreeMutationMinDepthHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         subtreeMutationMinDepthHelpBtn.addClickListener(event -> {
             subtreeMutationMinDepthTooltip.setOpened(!subtreeMutationMinDepthTooltip.isOpened());
@@ -527,7 +528,7 @@ public class KozaTab extends Tab implements ParamTab {
         subtreeMutationMaxDepth.setValue(subtreeMutationMinDepth.getValue());
         subtreeMutationMaxDepth.setStepButtonsVisible(true);
         subtreeMutationMaxDepthTooltip = subtreeMutationMaxDepth.getTooltip().withManual(true);
-        subtreeMutationMaxDepthTooltip.setText("test tooltip");
+        subtreeMutationMaxDepthTooltip.setText(TooltipText.subtreeMutationMaxDepthTooltipText);
         subtreeMutationMaxDepthHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         subtreeMutationMaxDepthHelpBtn.addClickListener(event -> {
             subtreeMutationMaxDepthTooltip.setOpened(!subtreeMutationMaxDepthTooltip.isOpened());
@@ -561,7 +562,7 @@ public class KozaTab extends Tab implements ParamTab {
         kozaNodeSelectionTerminalsProb.setValue(0.1);
         kozaNodeSelectionTerminalsProb.setStepButtonsVisible(true);
         kozaNodeSelectionTerminalsProbTooltip = kozaNodeSelectionTerminalsProb.getTooltip().withManual(true);
-        kozaNodeSelectionTerminalsProbTooltip.setText("test tooltip");
+        kozaNodeSelectionTerminalsProbTooltip.setText(TooltipText.kozaNodeSelectionTerminalsProbTooltipText);
         kozaNodeSelectionTerminalsProbHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         kozaNodeSelectionTerminalsProbHelpBtn.addClickListener(event -> {
             kozaNodeSelectionTerminalsProbTooltip.setOpened(!kozaNodeSelectionTerminalsProbTooltip.isOpened());
@@ -579,7 +580,7 @@ public class KozaTab extends Tab implements ParamTab {
         kozaNodeSelectionNonTerminalsProb.setValue(0.9);
         kozaNodeSelectionNonTerminalsProb.setStepButtonsVisible(true);
         kozaNodeSelectionNonTerminalsProbTooltip = kozaNodeSelectionNonTerminalsProb.getTooltip().withManual(true);
-        kozaNodeSelectionNonTerminalsProbTooltip.setText("test tooltip");
+        kozaNodeSelectionNonTerminalsProbTooltip.setText(TooltipText.kozaNodeSelectionNonTerminalsProbTooltipText);
         kozaNodeSelectionNonTerminalsProbHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         kozaNodeSelectionNonTerminalsProbHelpBtn.addClickListener(event -> {
             kozaNodeSelectionNonTerminalsProbTooltip.setOpened(!kozaNodeSelectionNonTerminalsProbTooltip.isOpened());
@@ -597,7 +598,7 @@ public class KozaTab extends Tab implements ParamTab {
         kozaNodeSelectionRootProb.setValue(0.0);
         kozaNodeSelectionRootProb.setStepButtonsVisible(true);
         kozaNodeSelectionRootProbTooltip = kozaNodeSelectionRootProb.getTooltip().withManual(true);
-        kozaNodeSelectionRootProbTooltip.setText("test tooltip");
+        kozaNodeSelectionRootProbTooltip.setText(TooltipText.kozaNodeSelectionRootProbTooltipText);
         kozaNodeSelectionRootProbHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         kozaNodeSelectionRootProbHelpBtn.addClickListener(event -> {
             kozaNodeSelectionRootProbTooltip.setOpened(!kozaNodeSelectionRootProbTooltip.isOpened());

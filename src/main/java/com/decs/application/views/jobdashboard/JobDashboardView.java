@@ -318,6 +318,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
                 System.err.println("No problem selected!");
                 Notification errNotification = Notification.show("No problem selected!");
                 errNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                startBtn.setEnabled(true);
             }
         });
 
@@ -702,6 +703,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private final SerializableBiConsumer<Button, Problem> problemEditorButton = ( button, currentProblem ) -> {
         problemEditorBtn = button;
         problemEditorBtn.setText("Edit");
+        problemEditorBtn.setTooltipText("Edit Parameters");
         problemEditorBtn.addClickListener(event -> {
             buildProblemEditor(currentProblem).open();
         });

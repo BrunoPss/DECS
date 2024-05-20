@@ -1,6 +1,7 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
 import com.decs.application.data.problem.ProblemType;
+import com.decs.application.utils.constants.TooltipText;
 import com.decs.application.utils.types.EnhancedBoolean;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.button.Button;
@@ -174,7 +175,7 @@ public class SimpleTab extends Tab implements ParamTab {
         stoppingVariableTypeSelector.setItems("Generations", "Evaluations");
         stoppingVariableTypeSelector.setValue("Generations");
         stoppingTooltip = stoppingVariableTypeSelector.getTooltip().withManual(true);
-        stoppingTooltip.setText("test tooltip");
+        stoppingTooltip.setText(TooltipText.stoppingTooltipText);
 
         stoppingCondHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         stoppingCondHelpBtn.addClickListener(event -> {
@@ -215,7 +216,7 @@ public class SimpleTab extends Tab implements ParamTab {
         subpopulationSize.setValue(1024);
         subpopulationSize.setStepButtonsVisible(true);
         subpopulationSizeTooltip = subpopulationSize.getTooltip().withManual(true);
-        subpopulationSizeTooltip.setText("test tooltip");
+        subpopulationSizeTooltip.setText(TooltipText.subpopulationSizeTooltipText);
         subpopulationHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         subpopulationHelpBtn.addClickListener(event -> {
             subpopulationSizeTooltip.setOpened(!subpopulationSizeTooltip.isOpened());
@@ -231,7 +232,7 @@ public class SimpleTab extends Tab implements ParamTab {
         subpopulationDupRetries.setValue(0);
         subpopulationDupRetries.setStepButtonsVisible(true);
         subpopulationDupRetriesTooltip = subpopulationDupRetries.getTooltip().withManual(true);
-        subpopulationDupRetriesTooltip.setText("test tooltip");
+        subpopulationDupRetriesTooltip.setText(TooltipText.subpopulationDupRetriesTooltipText);
         subpopulationDupRetriesHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         subpopulationDupRetriesHelpBtn.addClickListener(event -> {
             subpopulationDupRetriesTooltip.setOpened(!subpopulationDupRetriesTooltip.isOpened());
@@ -263,7 +264,7 @@ public class SimpleTab extends Tab implements ParamTab {
         breederElite.setValue(10);
         breederElite.setStepButtonsVisible(true);
         breederEliteTooltip = breederElite.getTooltip().withManual(true);
-        breederEliteTooltip.setText("test tooltip");
+        breederEliteTooltip.setText(TooltipText.breederEliteTooltipText);
         breederEliteHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         breederEliteHelpBtn.addClickListener(event -> {
             breederEliteTooltip.setOpened(!breederEliteTooltip.isOpened());
@@ -278,7 +279,7 @@ public class SimpleTab extends Tab implements ParamTab {
         breederEliteReeval.setItems(EnhancedBoolean.values());
         breederEliteReeval.setValue(EnhancedBoolean.FALSE);
         breederEliteReevalTooltip = breederEliteReeval.getTooltip().withManual(true);
-        breederEliteReevalTooltip.setText("test tooltip");
+        breederEliteReevalTooltip.setText(TooltipText.breederEliteReevalTooltipText);
 
         breederEliteReevalHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         breederEliteReevalHelpBtn.addClickListener(event -> {
@@ -295,7 +296,7 @@ public class SimpleTab extends Tab implements ParamTab {
         breederSequential.setItems(EnhancedBoolean.values());
         breederSequential.setValue(EnhancedBoolean.FALSE);
         breederSequentialTooltip = breederSequential.getTooltip().withManual(true);
-        breederSequentialTooltip.setText("test tooltip");
+        breederSequentialTooltip.setText(TooltipText.breederSequentialTooltipText);
 
         breederSequentialHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         breederSequentialHelpBtn.addClickListener(event -> {
@@ -330,7 +331,7 @@ public class SimpleTab extends Tab implements ParamTab {
         statisticsClass.setValue(StatisticsType.SIMPLE);
         //statisticsClass.setValue();
         statisticsClassTooltip = statisticsClass.getTooltip().withManual(true);
-        statisticsClassTooltip.setText("test tooltip");
+        statisticsClassTooltip.setText(TooltipText.statisticsClassTooltipText);
 
         statisticsClassHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         statisticsClassHelpBtn.addClickListener(event -> {
@@ -348,7 +349,7 @@ public class SimpleTab extends Tab implements ParamTab {
         statisticsFile.setClearButtonVisible(true);
         statisticsFile.setValue("stats");
         statisticsFileTooltip = statisticsFile.getTooltip().withManual(true);
-        statisticsFileTooltip.setText("test tooltip");
+        statisticsFileTooltip.setText(TooltipText.statisticsFileTooltipText);
         statisticsFileHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         statisticsFileHelpBtn.addClickListener(event -> {
             statisticsFileTooltip.setOpened(!statisticsFileTooltip.isOpened());

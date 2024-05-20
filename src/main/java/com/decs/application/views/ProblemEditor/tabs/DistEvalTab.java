@@ -1,6 +1,7 @@
 package com.decs.application.views.ProblemEditor.tabs;
 
 import com.decs.application.data.problem.ProblemType;
+import com.decs.application.utils.constants.TooltipText;
 import com.decs.application.utils.types.EnhancedBoolean;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.vaadin.flow.component.button.Button;
@@ -158,10 +159,10 @@ public class DistEvalTab extends Tab implements ParamTab {
         slaveJobQueueSize = new IntegerField();
         slaveJobQueueSize.setLabel("Queue Size");
         slaveJobQueueSize.setMin(1);
-        slaveJobQueueSize.setValue(1);
+        slaveJobQueueSize.setValue(2);
         slaveJobQueueSize.setStepButtonsVisible(true);
         slaveJobQueueSizeTooltip = slaveJobQueueSize.getTooltip().withManual(true);
-        slaveJobQueueSizeTooltip.setText("test tooltip");
+        slaveJobQueueSizeTooltip.setText(TooltipText.slaveJobQueueSizeTooltipText);
 
         slaveJobsHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         slaveJobsHelpBtn.addClickListener(event -> {
@@ -180,7 +181,7 @@ public class DistEvalTab extends Tab implements ParamTab {
         slaveJobSize.setValue(1);
         slaveJobSize.setStepButtonsVisible(true);
         slaveJobSizeTooltip = slaveJobSize.getTooltip().withManual(true);
-        slaveJobSizeTooltip.setText("test tooltip");
+        slaveJobSizeTooltip.setText(TooltipText.slaveJobSizeTooltipText);
 
         slaveJobSizeHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         slaveJobSizeHelpBtn.addClickListener(event -> {
@@ -209,7 +210,7 @@ public class DistEvalTab extends Tab implements ParamTab {
         compression.setValue(EnhancedBoolean.FALSE);
         compression.setEnabled(false);// JZLib is not installed yet
         compressionTooltip = compression.getTooltip().withManual(true);
-        compressionTooltip.setText("test tooltip");
+        compressionTooltip.setText(TooltipText.compressionTooltipText);
 
         compressionHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         compressionHelpBtn.addClickListener(event -> {
@@ -241,7 +242,7 @@ public class DistEvalTab extends Tab implements ParamTab {
         runEvolve.setItems(EnhancedBoolean.values());
         runEvolve.setValue(EnhancedBoolean.FALSE);
         runEvolveTooltip = runEvolve.getTooltip().withManual(true);
-        runEvolveTooltip.setText("test tooltip");
+        runEvolveTooltip.setText(TooltipText.runEvolveTooltipText);
 
         runEvolveHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         runEvolveHelpBtn.addClickListener(event -> {
@@ -260,7 +261,7 @@ public class DistEvalTab extends Tab implements ParamTab {
         runEvolveRuntime.setValue(6000);
         runEvolveRuntime.setStepButtonsVisible(true);
         runEvolveRuntimeTooltip = runEvolveRuntime.getTooltip().withManual(true);
-        runEvolveRuntimeTooltip.setText("test tooltip");
+        runEvolveRuntimeTooltip.setText(TooltipText.runEvolveRuntimeTooltipText);
 
         runEvolveRuntimeHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         runEvolveRuntimeHelpBtn.addClickListener(event -> {
@@ -278,7 +279,7 @@ public class DistEvalTab extends Tab implements ParamTab {
         returnInds.setItems(EnhancedBoolean.values());
         returnInds.setValue(EnhancedBoolean.FALSE);
         returnIndsTooltip = runEvolveRuntime.getTooltip().withManual(true);
-        returnIndsTooltip.setText("test tooltip");
+        returnIndsTooltip.setText(TooltipText.returnIndsTooltipText);
 
         returnIndsHelpBtn = new Button(new Icon(VaadinIcon.QUESTION));
         returnIndsHelpBtn.addClickListener(event -> {
