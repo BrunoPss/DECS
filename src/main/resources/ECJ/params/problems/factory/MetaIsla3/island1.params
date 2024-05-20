@@ -1,0 +1,5 @@
+exch.client-port = 9001
+exch.id = island1
+parent.0 = server.params
+seed.0 = 5336138
+stat.file = island1.stat

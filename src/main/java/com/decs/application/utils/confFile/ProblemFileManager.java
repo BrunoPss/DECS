@@ -65,14 +65,17 @@ public class ProblemFileManager {
 
     public static void createFile() {
         try {
-            FileOutputStream f = new FileOutputStream("C:\\Projects\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\factory\\MetaDist\\MetaDist.conf");
+            FileOutputStream f = new FileOutputStream("C:\\Projects\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\factory\\MetaIsla3\\MetaIsla3.conf");
             HashMap<FileConfigAttr, String> d = new HashMap<>();
-            d.put(FileConfigAttr.CODE, "MetaDist");
-            d.put(FileConfigAttr.FULL_NAME, "Meta Problem Distributed");
+            d.put(FileConfigAttr.CODE, "MetaIsla3");
+            d.put(FileConfigAttr.FULL_NAME, "Meta Problem Islands");
             d.put(FileConfigAttr.TYPE, "GP");
             d.put(FileConfigAttr.ORIGIN, "factory");
-            d.put(FileConfigAttr.DISTRIBUTION, DistributionType.DIST_EVAL.toString());
-            d.put(FileConfigAttr.PARAMS_FILE, "MetaDist.params");
+            d.put(FileConfigAttr.DISTRIBUTION, DistributionType.ISLANDS.toString());
+            d.put(FileConfigAttr.PARAMS_FILE, "MetaIsla3.params");
+            // Islands Problem
+            d.put(FileConfigAttr.SERVER_ISLAND, "src\\main\\resources\\ECJ\\params\\problems\\factory\\MetaIsla3\\island1.params");
+            d.put(FileConfigAttr.ISLAND_LIST, "island1;island2;island3");
             ObjectOutputStream ob = new ObjectOutputStream(f);
             ob.writeObject(d);
             f.close();

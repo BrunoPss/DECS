@@ -318,6 +318,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
                 System.err.println("No problem selected!");
                 Notification errNotification = Notification.show("No problem selected!");
                 errNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                startBtn.setEnabled(true);
             }
         });
 

@@ -1,0 +1,6 @@
+exch = ec.exchange.IslandExchange
+exch.compressed = false
+exch.select = ec.select.TournamentSelection
+exch.server-addr = 192.168.2.104
+exch.server-port = 8999
+parent.0 = MetaIsla3.params
