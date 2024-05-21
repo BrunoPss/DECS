@@ -1,0 +1,70 @@
+exch = ec.exchange.IslandExchange
+exch.compressed = false
+exch.i-am-server = true
+
+# Island 1
+exch.island.0.id = island1
+exch.island.0.mailbox-capacity = 20
+exch.island.0.mig.0 = island2
+exch.island.0.mig.1 = island3
+exch.island.0.mig.2 = island4
+exch.island.0.mig.3 = island5
+exch.island.0.mod = 4
+exch.island.0.num-mig = 1
+exch.island.0.size = 4
+exch.island.0.start = 1
+
+# Island 2
+exch.island.1.id = island2
+exch.island.1.mailbox-capacity = 20
+exch.island.1.mig.0 = island1
+exch.island.1.mig.1 = island3
+exch.island.1.mig.2 = island4
+exch.island.1.mig.3 = island5
+exch.island.1.mod = 4
+exch.island.1.num-mig = 1
+exch.island.1.size = 4
+exch.island.1.start = 1
+
+# Island 3
+exch.island.2.id = island3
+exch.island.2.mailbox-capacity = 20
+exch.island.2.mig.0 = island1
+exch.island.2.mig.1 = island2
+exch.island.2.mig.2 = island4
+exch.island.2.mig.3 = island5
+exch.island.2.mod = 4
+exch.island.2.num-mig = 1
+exch.island.2.size = 4
+exch.island.2.start = 1
+
+# Island 4
+exch.island.3.id = island4
+exch.island.3.mailbox-capacity = 20
+exch.island.3.mig.0 = island1
+exch.island.3.mig.1 = island2
+exch.island.3.mig.2 = island3
+exch.island.3.mig.3 = island5
+exch.island.3.mod = 4
+exch.island.3.num-mig = 1
+exch.island.3.size = 4
+exch.island.3.start = 1
+
+# Island 5
+exch.island.4.id = island5
+exch.island.4.mailbox-capacity = 20
+exch.island.4.mig.0 = island1
+exch.island.4.mig.1 = island2
+exch.island.4.mig.2 = island3
+exch.island.4.mig.3 = island4
+exch.island.4.mod = 4
+exch.island.4.num-mig = 1
+exch.island.4.size = 4
+exch.island.4.start = 1
+
+exch.num-islands = 5
+exch.select = ec.select.TournamentSelection
+exch.server-addr = 192.168.2.104
+exch.server-port = 8999
+exch.sync = false
+parent.0 = client.params
