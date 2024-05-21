@@ -3,4 +3,4 @@ exch.compressed = false
 exch.select = ec.select.TournamentSelection
 exch.server-addr = 192.168.2.104
 exch.server-port = 8999
-parent.0 = isla.params
+parent.0 = Mult11Isla5.params
