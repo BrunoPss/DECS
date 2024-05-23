@@ -45,6 +45,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import ec.EvolutionState;
 import jakarta.annotation.security.PermitAll;
+import org.springframework.boot.ApplicationArguments;
 
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
@@ -67,6 +68,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private ObjectListDatabase objectListDatabase;
     private Timer timer;
     private SessionManager sessionManager;
+    private String[] args;
     // Available Problems
     private HorizontalLayout availableProblemsLayoutGroup;
     // Upper Group
@@ -140,11 +142,12 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private Notification busyNotification;
 
     //Constructor
-    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase, Timer timer, SessionManager sessionManager) {
+    public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase, Timer timer, SessionManager sessionManager, ApplicationArguments args) {
         this.slaveManager = slaveManager;
         this.objectListDatabase = objectListDatabase;
         this.timer = timer;
         this.sessionManager = sessionManager;
+        this.args = args.getSourceArgs();
 
         createAvailableProblems();
         createJobProgressBar();
@@ -392,7 +395,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
             objectListDatabase.addJobActivity(newJob);
             jobActivityGrid.setItems(objectListDatabase.getJobActivityDataProvider());
 
-            evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, ui, this, slaveManager, timer, sessionManager);
+            evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, ui, this, slaveManager, timer, sessionManager, args);
 
             evolutionEngine.start();
         });

@@ -21,8 +21,12 @@ import ec.simple.SimpleStatistics;
 import ec.util.Output;
 import ec.util.Parameter;
 import ec.util.ParameterDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.parameters.P;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,9 +46,10 @@ public class EvolutionEngine extends Thread {
     private SlaveManager slaveManager;
     private Timer timer;
     private SessionManager sessionManager;
+    private String[] args;
 
     //Constructor
-    public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager, Timer timer, SessionManager sessionManager) {
+    public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager, Timer timer, SessionManager sessionManager, String[] args) {
         this.paramsFile = paramsFile;
         this.job = job;
         this.jobDashboard = jobDashboard;
@@ -52,6 +57,7 @@ public class EvolutionEngine extends Thread {
         this.slaveManager = slaveManager;
         this.timer = timer;
         this.sessionManager = sessionManager;
+        this.args = args;
     }
 
     //Get Methods
@@ -88,8 +94,14 @@ public class EvolutionEngine extends Thread {
     public void startInference() {
         try {
             System.out.println(paramsFile);
+            System.out.println(args[0]);
             paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
+
+            // Manually setting the local IP address
+            // This was intentionally changed in ECJ source code
+            // The original implementation is problematic...
+            Evolve.myAddress = args[0];
 
             // Stats file param
             paramDatabase.set(new Parameter("stat.file"), "../../../../stats/job" + job.getId() + "_" + job.getName() + "_stats.txt");

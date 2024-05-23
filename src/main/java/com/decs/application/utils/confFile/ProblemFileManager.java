@@ -65,17 +65,17 @@ public class ProblemFileManager {
 
     public static void createFile() {
         try {
-            FileOutputStream f = new FileOutputStream("C:\\Projects\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\factory\\Mult11Isla3\\Mult11Isla3.conf");
+            FileOutputStream f = new FileOutputStream("C:\\Projects\\DECS\\src\\main\\resources\\ECJ\\params\\problems\\factory\\Mult11Isla5\\Mult11Isla5.conf");
             HashMap<FileConfigAttr, String> d = new HashMap<>();
-            d.put(FileConfigAttr.CODE, "Mult11Isla3");
-            d.put(FileConfigAttr.FULL_NAME, "Multiplexer 11bit Problem 3 Islands");
+            d.put(FileConfigAttr.CODE, "Mult11Isla5");
+            d.put(FileConfigAttr.FULL_NAME, "Multiplexer 11bit Problem 5 Islands");
             d.put(FileConfigAttr.TYPE, "GP");
             d.put(FileConfigAttr.ORIGIN, "factory");
             d.put(FileConfigAttr.DISTRIBUTION, DistributionType.ISLANDS.toString());
-            d.put(FileConfigAttr.PARAMS_FILE, "Mult11Isla3.params");
+            d.put(FileConfigAttr.PARAMS_FILE, "Mult11Isla5.params");
             // Islands Problem
-            d.put(FileConfigAttr.SERVER_ISLAND, "src\\main\\resources\\ECJ\\params\\problems\\factory\\Mult11Isla3\\island1.params");
-            d.put(FileConfigAttr.ISLAND_LIST, "island1;island2;island3");
+            d.put(FileConfigAttr.SERVER_ISLAND, "src/main/resources/ECJ/params/problems/factory/Mult11Isla5/island1.params");
+            d.put(FileConfigAttr.ISLAND_LIST, "island1;island2;island3;island4;island5");
             ObjectOutputStream ob = new ObjectOutputStream(f);
             ob.writeObject(d);
             f.close();

@@ -16,3 +16,6 @@ from any browser connected to the local network.
 In order to interact with the Coordinator, you should access the URL
 http://<coordinator-address>:8080. For development purposes you can access the Coordinator
 at http://localhost:8080.
+
+Parameters
+<address>
