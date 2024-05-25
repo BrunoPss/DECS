@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class ProblemFileManager {
     //Internal Data
@@ -25,28 +26,32 @@ public class ProblemFileManager {
     //Methods
     public static ArrayList<HashMap<FileConfigAttr, String>> getProblemList(String path) {
         ArrayList<HashMap<FileConfigAttr, String>> problemList = new ArrayList<>();
+        try {
+            FilenameFilter confFilter = (f, name) -> name.endsWith(".conf");
 
-        FilenameFilter confFilter = new FilenameFilter() {
-            @Override
-            public boolean accept(File f, String name) {
-                return name.endsWith(".conf");
+            File f = new File(path);
+            File[] folderList = f.listFiles();
+            ArrayList<File> fileList = new ArrayList<>();
+
+            if (folderList != null) {
+                for (File file : folderList) {
+                    if (file.isDirectory()) {
+                        fileList.add(Objects.requireNonNull(file.listFiles(confFilter))[0]);
+                    }
+                }
             }
-        };
 
-        File f = new File(path);
-        File[] folderList = f.listFiles();
-        ArrayList<File> fileList = new ArrayList<>();
-
-        for (File file : folderList) {
-            if (file.isDirectory()) {
-                fileList.add(file.listFiles(confFilter)[0]);
+            for (File file : fileList) {
+                HashMap<FileConfigAttr, String> h = extractMap(file);
+                if (h != null) {
+                    h.put(FileConfigAttr.PARAMS_FILE, file.getParent() + "/" + h.get(FileConfigAttr.CODE) + ".params");
+                    problemList.add(h);
+                }
             }
-        }
-
-        for (File file : fileList) {
-            HashMap<FileConfigAttr, String> h = extractMap(file);
-            h.put(FileConfigAttr.PARAMS_FILE, file.getParent()+"/"+h.get(FileConfigAttr.CODE)+".params");
-            problemList.add(h);
+            return problemList;
+        } catch (Exception e) {
+            System.out.println("Exception in getProblemList");
+            e.printStackTrace();
         }
         return problemList;
     }
@@ -58,7 +63,10 @@ public class ProblemFileManager {
             ob.writeObject(problemInfo);
             f.close();
         } catch (IOException e) {
-            System.err.println("IO Exception");
+            System.err.println("IO Exception in writeConfFile");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception in writeConfFile");
             e.printStackTrace();
         }
     }
@@ -83,10 +91,22 @@ public class ProblemFileManager {
     }
 
     public static ArrayList<File> getFilesInFolder(File rootFolder) {
-        return new ArrayList<>(Arrays.asList(rootFolder.listFiles()));
+        try {
+            return new ArrayList<>(Arrays.asList(Objects.requireNonNull(rootFolder.listFiles())));
+        } catch (Exception e) {
+            System.err.println("Exception in getFilesInFolder");
+            e.printStackTrace();
+            return null;
+        }
     }
     public static ArrayList<String> getFileNamesInFolder(File rootFolder) {
-        return new ArrayList<>(Arrays.asList(rootFolder.list()));
+        try {
+            return new ArrayList<>(Arrays.asList(Objects.requireNonNull(rootFolder.list())));
+        } catch (Exception e) {
+            System.err.println("Exception in getFileNamesInFolder");
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void replaceFileContent(String filePath, String content) {
@@ -97,6 +117,9 @@ public class ProblemFileManager {
             pWriter.close();
         } catch (IOException e) {
             System.err.println("IO Exception while replacing file content");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception in replaceFileContent");
             e.printStackTrace();
         }
     }
@@ -118,6 +141,9 @@ public class ProblemFileManager {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.err.println("Class Not Found");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception in extractMap");
             e.printStackTrace();
         }
         return null;

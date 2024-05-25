@@ -135,6 +135,9 @@ public class NodeManagerView extends Composite<VerticalLayout> {
             } catch (RemoteException e) {
                 System.err.println("Remote Exception");
                 e.printStackTrace();
+            } catch (Exception e) {
+                System.err.println("Exception at nodeInfoButton");
+                e.printStackTrace();
             }
         });
     };

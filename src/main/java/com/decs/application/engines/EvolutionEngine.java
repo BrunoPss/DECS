@@ -10,29 +10,17 @@ import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import com.decs.application.views.jobdashboard.JobDashboardView;
 import com.vaadin.flow.component.UI;
-import com.vaadin.flow.server.VaadinSession;
 import ec.EvolutionState;
 import ec.Evolve;
 import ec.Statistics;
-import ec.app.gui.SimpleXYSeriesChartStatistics;
-import ec.display.chart.ChartableStatistics;
-import ec.gp.koza.KozaShortStatistics;
 import ec.simple.SimpleStatistics;
 import ec.util.Output;
 import ec.util.Parameter;
 import ec.util.ParameterDatabase;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.parameters.P;
-import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 public class EvolutionEngine extends Thread {
     //Internal Data
@@ -170,7 +158,13 @@ public class EvolutionEngine extends Thread {
             job.writeGenerationTableFile();
 
             cleanup(evaluatedState);
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            System.err.println("IO Exception in startInference");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception in startInference");
+            e.printStackTrace();
+        }
     }
     public double getFitness(StatisticsType statType) {
         switch (statType) {

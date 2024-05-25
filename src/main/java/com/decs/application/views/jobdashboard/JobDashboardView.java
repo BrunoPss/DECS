@@ -322,6 +322,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
                 Notification errNotification = Notification.show("No problem selected!");
                 errNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
                 startBtn.setEnabled(true);
+            } catch (Exception e) {
+                System.err.println("Exception in startBtn Click Listener");
+                e.printStackTrace();
             }
         });
 
@@ -375,29 +378,37 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     // Event Handlers
     private void startProblem(String jobName) {
         ui.access(() -> {
-            Problem selectedProblem = availableProblemsGrid.getSelectedItems().iterator().next();
-            objectListDatabase.setSelectedProblem(selectedProblem);
-            newJob = new Job(jobName, selectedProblem.getDistribution());
+            try {
+                Problem selectedProblem = availableProblemsGrid.getSelectedItems().iterator().next();
+                objectListDatabase.setSelectedProblem(selectedProblem);
+                newJob = new Job(jobName, selectedProblem.getDistribution());
 
-            if (newJob.getDistribution() != DistributionType.LOCAL && slaveManager.getConnectedSlaves() == 0) {
-                System.err.println("No connected Slaves");
-                Notification noSlavesNotification = Notification.show("No Slaves Connected");
-                noSlavesNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-                newJob.setStatus(JobStatus.FINISHED);
-                jobActivityUpdater.refreshItem(newJob);
-                startBtn.setEnabled(true);
+                if (newJob.getDistribution() != DistributionType.LOCAL && slaveManager.getConnectedSlaves() == 0) {
+                    System.err.println("No connected Slaves");
+                    Notification noSlavesNotification = Notification.show("No Slaves Connected");
+                    noSlavesNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                    newJob.setStatus(JobStatus.FINISHED);
+                    jobActivityUpdater.refreshItem(newJob);
+                    startBtn.setEnabled(true);
 
-                return;
+                    return;
+                }
+
+                newJob.setStatus(JobStatus.RUNNING);
+
+                objectListDatabase.addJobActivity(newJob);
+                jobActivityGrid.setItems(objectListDatabase.getJobActivityDataProvider());
+
+                evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, ui, this, slaveManager, timer, sessionManager, args);
+
+                evolutionEngine.start();
+            } catch (NoSuchElementException e) {
+                System.err.println("No selected element at startProblem");
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.err.println("Exception at startProblem");
+                e.printStackTrace();
             }
-
-            newJob.setStatus(JobStatus.RUNNING);
-
-            objectListDatabase.addJobActivity(newJob);
-            jobActivityGrid.setItems(objectListDatabase.getJobActivityDataProvider());
-
-            evolutionEngine = new EvolutionEngine(selectedProblem.getParamsFile(), newJob, ui, this, slaveManager, timer, sessionManager, args);
-
-            evolutionEngine.start();
         });
     }
 
@@ -508,98 +519,113 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         problemEditorDialog.setMinHeight("80%");
         problemEditorDialog.setMaxHeight("80%");
 
-        // Problem Editor Layout Group
-        problemEditorLayoutGroup = new VerticalLayout();
+        try {
 
-        // File Actions Layout Group
-        fileActionsLayoutGroup = new HorizontalLayout();
-        fileActionsLayoutGroup.setWidthFull();
-        fileActionsLayoutGroup.setAlignItems(FlexComponent.Alignment.END);
-        fileActionsLayoutGroup.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
+            // Problem Editor Layout Group
+            problemEditorLayoutGroup = new VerticalLayout();
 
-        // File Actions Button Layout
-        fileActionsButtonLayout = new HorizontalLayout();
+            // File Actions Layout Group
+            fileActionsLayoutGroup = new HorizontalLayout();
+            fileActionsLayoutGroup.setWidthFull();
+            fileActionsLayoutGroup.setAlignItems(FlexComponent.Alignment.END);
+            fileActionsLayoutGroup.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
 
-        // File Selector
-        fileSelector = new Select<>();
-        fileSelector.setLabel("File Selector");
+            // File Actions Button Layout
+            fileActionsButtonLayout = new HorizontalLayout();
 
-        // Get Files inside problem root folder and remove the .conf file
-        ArrayList<String> filesList = ProblemFileManager.getFileNamesInFolder(currentProblem.getRootFolder());
-        filesList.removeIf(str -> str.endsWith(".conf"));
+            // File Selector
+            fileSelector = new Select<>();
+            fileSelector.setLabel("File Selector");
 
-        fileSelector.setItems(filesList);
-        fileSelector.addValueChangeListener( event -> {
-            fileActionsOpenBtn.setEnabled(true);
-        });
-
-        // File Actions Buttons
-        // Open Button
-        fileActionsOpenBtn = new Button();
-        fileActionsOpenBtn.setText("Open");
-        fileActionsOpenBtn.addClickListener( event -> {
-            // Disable Open Button
-            fileActionsOpenBtn.setEnabled(false);
-            // Clear Text Editor
-            textEditor.clear();
-            try {
-                String content = Files.readString(Path.of(currentProblem.getRootFolder().getPath()+"/"+fileSelector.getValue()));
-                textEditor.setValue(content);
-                textEditor.setLabel(fileSelector.getValue());
-                //System.out.println("FILE TO OPEN: " + Path.of(currentProblem.getRootFolder().getPath()+"/"+fileSelector.getValue()));
-            } catch (IOException e) {
-                System.err.println("IO Exception while opening file to edit");
-                e.printStackTrace();
+            // Get Files inside problem root folder and remove the .conf file
+            ArrayList<String> filesList = ProblemFileManager.getFileNamesInFolder(currentProblem.getRootFolder());
+            if (filesList != null) {
+                filesList.removeIf(str -> str.endsWith(".conf"));
             }
-        });
 
-        // Save Button
-        fileActionsSaveBtn = new Button();
-        fileActionsSaveBtn.setText("Save");
-        fileActionsSaveBtn.addClickListener( event -> {
-            // Build confirmation Dialog
-            ConfirmDialog fileSaveConfirmDialog = new ConfirmDialog();
-            fileSaveConfirmDialog.setHeader("Save File");
-            fileSaveConfirmDialog.setText(
-                    String.format("Do you really want to save your changes to the file %s ?", textEditor.getLabel())
-            );
-            fileSaveConfirmDialog.setCancelable(true);
-
-            fileSaveConfirmDialog.setConfirmText("Save");
-            fileSaveConfirmDialog.addConfirmListener( saveEvent -> {
-                // Save File
-                ProblemFileManager.replaceFileContent(currentProblem.getRootFolder().getPath()+"/"+textEditor.getLabel(), textEditor.getValue());
-
-                // Confirmation Notification
-                Notification fileSavedNotification = Notification.show(String.format("File %s successfully saved!", textEditor.getLabel()));
-                fileSavedNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+            fileSelector.setItems(filesList);
+            fileSelector.addValueChangeListener(event -> {
+                fileActionsOpenBtn.setEnabled(true);
             });
 
-            // Show Confirmation Dialog
-            fileSaveConfirmDialog.open();
-        });
+            // File Actions Buttons
+            // Open Button
+            fileActionsOpenBtn = new Button();
+            fileActionsOpenBtn.setText("Open");
+            fileActionsOpenBtn.addClickListener(event -> {
+                // Disable Open Button
+                fileActionsOpenBtn.setEnabled(false);
+                // Clear Text Editor
+                textEditor.clear();
+                try {
+                    String content = Files.readString(Path.of(currentProblem.getRootFolder().getPath() + "/" + fileSelector.getValue()));
+                    textEditor.setValue(content);
+                    textEditor.setLabel(fileSelector.getValue());
+                    //System.out.println("FILE TO OPEN: " + Path.of(currentProblem.getRootFolder().getPath()+"/"+fileSelector.getValue()));
+                } catch (IOException e) {
+                    System.err.println("IO Exception while opening file to edit");
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    System.err.println("Exception at fileActionsOpenBtn Click Listener");
+                    e.printStackTrace();
+                }
+            });
 
-        // Cancel Button
-        fileActionsDiscardBtn = new Button();
-        fileActionsDiscardBtn.setText("Discard");
-        fileActionsDiscardBtn.addClickListener(event -> {
-            fileSelector.clear();
-            textEditor.clear();
-        });
+            // Save Button
+            fileActionsSaveBtn = new Button();
+            fileActionsSaveBtn.setText("Save");
+            fileActionsSaveBtn.addClickListener(event -> {
+                // Build confirmation Dialog
+                ConfirmDialog fileSaveConfirmDialog = new ConfirmDialog();
+                fileSaveConfirmDialog.setHeader("Save File");
+                fileSaveConfirmDialog.setText(
+                        String.format("Do you really want to save your changes to the file %s ?", textEditor.getLabel())
+                );
+                fileSaveConfirmDialog.setCancelable(true);
 
-        // File Actions Layout Builder
-        fileActionsButtonLayout.add(fileActionsOpenBtn, fileActionsSaveBtn, fileActionsDiscardBtn);
-        fileActionsLayoutGroup.add(fileSelector, fileActionsButtonLayout);
+                fileSaveConfirmDialog.setConfirmText("Save");
+                fileSaveConfirmDialog.addConfirmListener(saveEvent -> {
+                    // Save File
+                    ProblemFileManager.replaceFileContent(currentProblem.getRootFolder().getPath() + "/" + textEditor.getLabel(), textEditor.getValue());
 
-        // Text Editor
-        textEditor = new TextArea();
-        textEditor.setWidthFull();
-        textEditor.setLabel("File Name");
+                    // Confirmation Notification
+                    Notification fileSavedNotification = Notification.show(String.format("File %s successfully saved!", textEditor.getLabel()));
+                    fileSavedNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+                });
 
-        // Layout Builder
-        problemEditorLayoutGroup.add(fileActionsLayoutGroup, textEditor);
-        // Dialog Builder
-        problemEditorDialog.add(problemEditorLayoutGroup);
+                // Show Confirmation Dialog
+                fileSaveConfirmDialog.open();
+            });
+
+            // Cancel Button
+            fileActionsDiscardBtn = new Button();
+            fileActionsDiscardBtn.setText("Discard");
+            fileActionsDiscardBtn.addClickListener(event -> {
+                fileSelector.clear();
+                textEditor.clear();
+            });
+
+            // File Actions Layout Builder
+            fileActionsButtonLayout.add(fileActionsOpenBtn, fileActionsSaveBtn, fileActionsDiscardBtn);
+            fileActionsLayoutGroup.add(fileSelector, fileActionsButtonLayout);
+
+            // Text Editor
+            textEditor = new TextArea();
+            textEditor.setWidthFull();
+            textEditor.setLabel("File Name");
+
+            // Layout Builder
+            problemEditorLayoutGroup.add(fileActionsLayoutGroup, textEditor);
+            // Dialog Builder
+            problemEditorDialog.add(problemEditorLayoutGroup);
+
+        } catch (NullPointerException e) {
+            System.err.println("Null Pointer Exception at build Problem editor");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Null Pointer Exception at build Problem editor");
+            e.printStackTrace();
+        }
 
         return problemEditorDialog;
     }

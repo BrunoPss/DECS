@@ -232,7 +232,7 @@ public class KozaTab extends Tab implements ParamTab {
             System.err.println("IO Exception while opening params file");
             e.printStackTrace();
         } catch (Exception e) {
-            System.err.println("Exception");
+            System.err.println("Exception at createParameter Database");
             e.printStackTrace();
         }
 

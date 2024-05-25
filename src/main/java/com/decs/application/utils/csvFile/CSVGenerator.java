@@ -44,6 +44,9 @@ public class CSVGenerator {
         } catch (IOException e) {
             System.err.println("IO Excpetion");
             e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Excpetion in generateCSVFile");
+            e.printStackTrace();
         }
     }
 
