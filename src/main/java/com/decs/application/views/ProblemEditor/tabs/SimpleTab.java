@@ -147,7 +147,7 @@ public class SimpleTab extends Tab implements ParamTab {
             System.err.println("IO Exception while opening params file");
             e.printStackTrace();
         } catch (Exception e) {
-            System.err.println("Exception");
+            System.err.println("Exception at createParameterDatabase");
             e.printStackTrace();
         }
 

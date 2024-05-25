@@ -81,27 +81,73 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
 
     // Event Listeners
     private void problemChangeEvent(AbstractField.ComponentValueChangeEvent<Select<ProblemType>, ProblemType> event) {
-        // Save Selected Problem
-        this.selectedProblem = event.getValue();
+        try {
+            // Save Selected Problem
+            this.selectedProblem = event.getValue();
 
-        // Delete Current Tabs
-        for (int i=1; i<tabsList.size()-1; i++) {
-            tabs.remove((Tab) tabsList.get(i));
+            // Delete Current Tabs
+            for (int i = 1; i < tabsList.size() - 1; i++) {
+                tabs.remove((Tab) tabsList.get(i));
+            }
+            tabsList.subList(1, tabsList.size() - 1).clear();
+
+            // Add Problem Tabs
+            ParamTab saveTab = tabsList.remove(tabsList.size() - 1);
+            int i = 1;
+            for (ParameterGroupType p : selectedProblem.getParameterGroups()) {
+                ParamTab newTab = createParamTab(p);
+                tabs.add((Tab) newTab, newTab.buildLayout(), i);
+                tabsList.add(newTab);
+                i++;
+            }
+
+            // Add Distribution Tab
+            if (selectedDistMethod != null) {
+                ParamTab newTab = switch (selectedDistMethod) {
+                    case DIST_EVAL -> new DistEvalTab();
+                    case ISLANDS -> new IslandsTab(objectListDatabase);
+                    case LOCAL -> null;
+                };
+                if (newTab != null) {
+                    tabs.add((Tab) newTab, newTab.buildLayout(), tabsList.size());
+                    tabsList.add(newTab);
+                }
+            }
+            tabsList.add(saveTab);
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Index out of bounds exception at problemChangeEvent");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception at problemChangeEvent");
+            e.printStackTrace();
         }
-        tabsList.subList(1, tabsList.size()-1).clear();
+    }
 
-        // Add Problem Tabs
-        ParamTab saveTab = tabsList.remove(tabsList.size()-1);
-        int i=1;
-        for (ParameterGroupType p : selectedProblem.getParameterGroups()) {
-            ParamTab newTab = createParamTab(p);
-            tabs.add((Tab) newTab, newTab.buildLayout(), i);
-            tabsList.add(newTab);
-            i++;
-        }
+    private void distributionChangeEvent(AbstractField.ComponentValueChangeEvent<Select<DistributionType>, DistributionType> event) {
+        try {
 
-        // Add Distribution Tab
-        if (selectedDistMethod != null) {
+            // Save Selected Problem
+            this.selectedDistMethod = event.getValue();
+
+            // Delete Current Tabs
+            for (int i = 1; i < tabsList.size() - 1; i++) {
+                tabs.remove((Tab) tabsList.get(i));
+            }
+            tabsList.subList(1, tabsList.size() - 1).clear();
+
+            // Add Problem Tabs
+            ParamTab saveTab = tabsList.remove(tabsList.size() - 1);
+            if (selectedProblem != null) {
+                int i = 1;
+                for (ParameterGroupType p : selectedProblem.getParameterGroups()) {
+                    ParamTab newTab = createParamTab(p);
+                    tabs.add((Tab) newTab, newTab.buildLayout(), i);
+                    tabsList.add(newTab);
+                    i++;
+                }
+            }
+
+            // Add Distribution Tab
             ParamTab newTab = switch (selectedDistMethod) {
                 case DIST_EVAL -> new DistEvalTab();
                 case ISLANDS -> new IslandsTab(objectListDatabase);
@@ -111,43 +157,14 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
                 tabs.add((Tab) newTab, newTab.buildLayout(), tabsList.size());
                 tabsList.add(newTab);
             }
+            tabsList.add(saveTab);
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Index out of bounds exception at distributionChangeEvent");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception at distributionChangeEvent");
+            e.printStackTrace();
         }
-        tabsList.add(saveTab);
-    }
-
-    private void distributionChangeEvent(AbstractField.ComponentValueChangeEvent<Select<DistributionType>, DistributionType> event) {
-        // Save Selected Problem
-        this.selectedDistMethod = event.getValue();
-
-        // Delete Current Tabs
-        for (int i=1; i<tabsList.size()-1; i++) {
-            tabs.remove((Tab) tabsList.get(i));
-        }
-        tabsList.subList(1, tabsList.size()-1).clear();
-
-        // Add Problem Tabs
-        ParamTab saveTab = tabsList.remove(tabsList.size()-1);
-        if (selectedProblem != null) {
-            int i=1;
-            for (ParameterGroupType p : selectedProblem.getParameterGroups()) {
-                ParamTab newTab = createParamTab(p);
-                tabs.add((Tab) newTab, newTab.buildLayout(), i);
-                tabsList.add(newTab);
-                i++;
-            }
-        }
-
-        // Add Distribution Tab
-        ParamTab newTab = switch (selectedDistMethod) {
-            case DIST_EVAL -> new DistEvalTab();
-            case ISLANDS -> new IslandsTab(objectListDatabase);
-            case LOCAL -> null;
-        };
-        if (newTab != null) {
-            tabs.add((Tab) newTab, newTab.buildLayout(), tabsList.size());
-            tabsList.add(newTab);
-        }
-        tabsList.add(saveTab);
     }
 
     private void saveProblem(SaveEvent event) {
