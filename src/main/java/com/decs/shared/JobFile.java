@@ -1,4 +1,4 @@
-package com.shared;
+package com.decs.shared;
 
 import java.io.Serializable;
 

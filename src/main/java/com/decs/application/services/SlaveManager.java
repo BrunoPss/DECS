@@ -1,9 +1,9 @@
 package com.decs.application.services;
 
 import com.decs.application.data.distribution.DistributionType;
-import com.shared.JobFile;
-import com.shared.SlaveInfo;
-import com.shared.SlaveService;
+import com.decs.shared.JobFile;
+import com.decs.shared.SlaveInfo;
+import com.decs.shared.SlaveService;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;

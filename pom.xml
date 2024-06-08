@@ -96,13 +96,19 @@
         <dependency>
             <groupId>ECJ_JAR</groupId>
             <artifactId>ECJ_JAR</artifactId>
-            <version>27</version>
+            <version>27.3</version>
             <scope>system</scope>
-            <systemPath>${basedir}\src\main\resources\ECJ\jar\ecj-27.jar</systemPath>
+            <systemPath>${basedir}\src\main\resources\ECJ\jar\ecj-27_V3.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version>1.44.0</version> <!-- Check the latest version via https://playwright.dev -->
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

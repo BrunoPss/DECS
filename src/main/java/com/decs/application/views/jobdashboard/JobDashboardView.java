@@ -207,6 +207,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         // Available Problems Grid
         availableProblemsGrid = new Grid<>(Problem.class, false);
+        availableProblemsGrid.setId("availableProblemsGrid");
         availableProblemsGrid.setMaxHeight("300px");
         availableProblemsGrid.addColumn(Problem::getCode).setHeader("Code");
         availableProblemsGrid.addColumn(Problem::getFullName).setHeader("Name");
@@ -233,6 +234,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private void createJobProgressBar() {
         // Job Progress Bar
         jobProgressBar = new ProgressBar();
+        jobProgressBar.setId("jobProgressBar");
         jobProgressBar.setValue(0);
 
         jobProgressBarLabelText = new NativeLabel("Job Progress");

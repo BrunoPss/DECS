@@ -2,8 +2,8 @@ package com.decs.application.views.nodemanager;
 
 import com.decs.application.services.SlaveManager;
 import com.decs.application.views.MainLayout;
-import com.shared.SlaveInfo;
-import com.shared.SystemInformation;
+import com.decs.shared.SlaveInfo;
+import com.decs.shared.SystemInformation;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.button.Button;
