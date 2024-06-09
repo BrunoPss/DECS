@@ -9,6 +9,7 @@ import com.decs.application.services.Timer;
 import com.decs.application.utils.constants.FilePathConstants;
 import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import com.decs.application.views.jobdashboard.JobDashboardView;
+import com.decs.application.views.notifications.ErrorNotification;
 import com.vaadin.flow.component.UI;
 import ec.EvolutionState;
 import ec.Evolve;
@@ -164,6 +165,7 @@ public class EvolutionEngine extends Thread {
         } catch (Exception e) {
             System.err.println("Exception in startInference");
             e.printStackTrace();
+            ErrorNotification.showErrorNotification("Error in problem execution!");
         }
     }
     public double getFitness(StatisticsType statType) {

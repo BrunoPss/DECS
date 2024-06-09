@@ -8,19 +8,21 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PlaywrightIT {
     //Internal Data
-    private static Playwright playwright;
-    private static Browser browser;
+    protected static Playwright playwright;
+    protected static Browser browser;
+    protected static BrowserType browserType;
+    protected static BrowserType.LaunchOptions launchOptions;
     protected Page page;
-    private BrowserContext browserContext;
+    protected BrowserContext browserContext;
 
     @LocalServerPort
-    private int port;
+    protected int port;
 
     @BeforeAll
     static void beforeAll() {
         playwright = Playwright.create();
-        BrowserType browserType = playwright.chromium();
-        BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
+        browserType = playwright.chromium();
+        launchOptions = new BrowserType.LaunchOptions();
         launchOptions.headless = false;
         browser = browserType.launch(launchOptions);
     }

@@ -255,7 +255,7 @@ public class IslandsTab extends Tab implements ParamTab {
             Button editButton = new Button("Edit");
             editButton.addClickListener( event -> {
                 currentIsland = island;
-                buildIslandEditor();
+                buildIslandEditor(island.getId());
                 islandEditor.open();
             });
 
@@ -329,7 +329,7 @@ public class IslandsTab extends Tab implements ParamTab {
         islandGrid.getDataProvider().refreshAll();
     }
 
-    private void buildIslandEditor() {
+    private void buildIslandEditor(String islandID) {
         // Dialog
         islandEditor = new Dialog();
         islandEditor.setHeaderTitle("Island Editor");
@@ -342,24 +342,28 @@ public class IslandsTab extends Tab implements ParamTab {
         islandIDInput = new TextField();
         islandIDInput.setLabel("ID");
         islandIDInput.setRequired(true);
+        islandIDInput.setValue(islandID);
         //islandIDInput.setClearButtonVisible();
 
         // Island Migration Number
         islandMigrationNumberInput = new IntegerField();
         islandMigrationNumberInput.setLabel("Migration Number");
         islandMigrationNumberInput.setMin(1);
-        islandMigrationNumberInput.setValue(3);
+        islandMigrationNumberInput.setValue(1);
         islandMigrationNumberInput.setStepButtonsVisible(true);
         islandMigrationNumberInput.addValueChangeListener(event -> {
-            fillMigrationDestinationList(event.getValue());
+            fillMigrationDestinationList(event.getValue(), islandID);
             islandMigDestGrid.getDataProvider().refreshAll();
         });
 
         // Island Migration Destination
+        VerticalLayout islandMigDestLayout = new VerticalLayout();
+        Span islandMigDestLabel = new Span("Migration List");
         migrationDestinationIslandList = new ArrayList<>();
         islandMigDestGrid = new Grid<>();
         islandMigDestGrid.setAllRowsVisible(true);
         islandMigDestGridEditor = islandMigDestGrid.getEditor();
+        islandMigDestLayout.add(islandMigDestLabel, islandMigDestGrid);
 
         Grid.Column<Island> idColumn = islandMigDestGrid.addColumn(Island::getId);
         Grid.Column<Island> editColumn = islandMigDestGrid.addComponentColumn(island -> {
@@ -395,7 +399,7 @@ public class IslandsTab extends Tab implements ParamTab {
         actions.setPadding(false);
         editColumn.setEditorComponent(actions);
 
-        fillMigrationDestinationList(islandMigrationNumberInput.getValue());
+        fillMigrationDestinationList(islandMigrationNumberInput.getValue(), islandID);
 
         islandMigDestGrid.setItems(migrationDestinationIslandList);
 
@@ -415,13 +419,13 @@ public class IslandsTab extends Tab implements ParamTab {
         islandMigrationOffsetInput = new IntegerField();
         islandMigrationOffsetInput.setLabel("Migration Offset");
         islandMigrationOffsetInput.setMin(1);
-        islandMigrationOffsetInput.setValue(4);
+        islandMigrationOffsetInput.setValue(12);
 
         // Island Mailbox Size
         islandMailboxSizeInput = new IntegerField();
         islandMailboxSizeInput.setLabel("Mailbox Size");
         islandMailboxSizeInput.setMin(1);
-        islandMailboxSizeInput.setValue(20);
+        islandMailboxSizeInput.setValue(40);
 
         // Island Seed
         islandSeed = new ComboBox<>();
@@ -440,7 +444,7 @@ public class IslandsTab extends Tab implements ParamTab {
         islandEditorLayout.add(
                 islandIDInput,
                 islandMigrationNumberInput,
-                islandMigDestGrid,
+                islandMigDestLayout,
                 islandMigrationSizeInput,
                 islandMigrationStartInput,
                 islandMigrationOffsetInput,
@@ -455,18 +459,18 @@ public class IslandsTab extends Tab implements ParamTab {
 
     // Event Handlers
     private void createNewIsland(ClickEvent<Button> event) {
-        Island newIsland = new Island("Island x");
+        Island newIsland = new Island("isla" + (islandList.size()+1));
         islandList.add(newIsland);
         refreshIslandList();
         objectListDatabase.setIslandList(islandList);
     }
 
-    private void fillMigrationDestinationList(int n) {
+    private void fillMigrationDestinationList(int n, String islandID) {
         int it = Math.abs(n - migrationDestinationIslandList.size());
         int size = migrationDestinationIslandList.size();
         for (int i=0; i < it; i++) {
             if (n > size) {
-                migrationDestinationIslandList.add(new Island("Island " + migrationDestinationIslandList.size()+i));
+                migrationDestinationIslandList.add(new Island(islandID));
             }
             else if (n < size) {
                 migrationDestinationIslandList.remove(migrationDestinationIslandList.size()-1);

@@ -140,6 +140,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private TextArea textEditor;
     // Busy Notification
     private Notification busyNotification;
+    private Button jobDialogBtn;
 
     //Constructor
     public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase, Timer timer, SessionManager sessionManager, ApplicationArguments args) {
@@ -256,6 +257,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         // Job Activity list
         jobActivityGrid = new Grid<>(Job.class, false);
+        jobActivityGrid.setId("jobActivityGrid");
         jobActivityGrid.addColumn(Job::getId).setHeader("ID").setSortable(true);
         jobActivityGrid.addColumn(Job::getName).setHeader("Name");
         jobActivityGrid.addColumn(createJobActivityStatusRenderer()).setHeader("Status");
@@ -277,6 +279,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         // Job Metrics
         jobMetricsGroupLayout = new HorizontalLayout();
         jobMetricsGroupLayout.getStyle().set("border", "1px solid black");
+        jobMetricsGroupLayout.setId("jobMetricsGroupLayout");
         //jobMetricsGroupLayout.setMinWidth("200px");
         //jobMetricsGroupLayout.setMaxWidth("230px");
 
@@ -311,6 +314,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         actionBtnGroup.setAlignItems(FlexComponent.Alignment.CENTER);
 
         startBtn = new Button("Start");
+        startBtn.setId("startBtn");
         startBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SUCCESS);
         startBtn.setWidth("130px");
         startBtn.setHeight("50px");
@@ -331,6 +335,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         });
 
         stopBtn = new Button("Stop");
+        stopBtn.setId("stopBtn");
         stopBtn.addThemeVariants(ButtonVariant.LUMO_ERROR);
         stopBtn.setWidth("100px");
         stopBtn.setHeight("40px");
@@ -345,6 +350,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private void checkServerStatus() {
         // Start Btn
         startBtn.setEnabled(!sessionManager.getEvolutionEngineBusy());
+        if (jobDialogBtn != null) {
+            jobDialogBtn.setEnabled(!sessionManager.getEvolutionEngineBusy());
+        }
     }
 
     public void updateInferenceResults(UI ui, EvolutionState evaluatedState) {
@@ -433,12 +441,14 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         VerticalLayout jobNameLayout = new VerticalLayout(jobNameText, jobName);
         jobNameDialog.add(jobNameLayout);
 
-        Button jobDialogBtn = new Button("Continue");
+        jobDialogBtn = new Button("Continue");
         jobDialogBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         jobDialogBtn.addClickListener( evt -> {
             if (!jobName.getValue().isBlank()) {
                 jobNameDialog.close();
-                startProblem(jobName.getValue());
+                if (!sessionManager.getEvolutionEngineBusy()) {
+                    startProblem(jobName.getValue());
+                }
             }
             else {
                 Notification blankNotification = Notification.show("Please fill the job name field!");
@@ -642,6 +652,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
             if (this.ui != sessionManager.getStarterUI()) {
                 // Block Start Button
                 startBtn.setEnabled(!((boolean) evt.getNewValue()));
+                if (jobDialogBtn != null) {
+                    jobDialogBtn.setEnabled(!((boolean) evt.getNewValue()));
+                }
 
                 // Busy Notification
                 if ((boolean) evt.getNewValue()) {
