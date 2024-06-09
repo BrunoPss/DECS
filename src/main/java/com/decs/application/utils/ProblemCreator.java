@@ -4,6 +4,7 @@ import com.decs.application.data.distribution.DistributionType;
 import com.decs.application.data.problem.Problem;
 import com.decs.application.utils.confFile.FileConfigAttr;
 import com.decs.application.utils.confFile.ProblemFileManager;
+import com.decs.application.views.notifications.ErrorNotification;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public final class ProblemCreator {
         } catch (Exception e) {
             System.err.println("Exception in problemScanner");
             e.printStackTrace();
+            ErrorNotification.showErrorNotification("Error while creating problem files!");
         }
         return problemList;
     }

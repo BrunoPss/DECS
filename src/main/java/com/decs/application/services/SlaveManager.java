@@ -1,9 +1,10 @@
 package com.decs.application.services;
 
 import com.decs.application.data.distribution.DistributionType;
-import com.shared.JobFile;
-import com.shared.SlaveInfo;
-import com.shared.SlaveService;
+import com.decs.application.views.notifications.ErrorNotification;
+import com.decs.shared.JobFile;
+import com.decs.shared.SlaveInfo;
+import com.decs.shared.SlaveService;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -55,13 +56,19 @@ public class SlaveManager {
 
     //Methods
     public void startSlaveListener() {
-        // Slave Listener
-        Thread slaveListener = new Thread(slaveListenerRun);
-        slaveListener.start();
+        try {
+            // Slave Listener
+            Thread slaveListener = new Thread(slaveListenerRun);
+            slaveListener.start();
 
-        // Slave Status Checker
-        ScheduledExecutorService slaveStatusChecker = Executors.newSingleThreadScheduledExecutor();
-        slaveStatusChecker.scheduleAtFixedRate(slaveStatusCheckerRun, 0, 1000, TimeUnit.MILLISECONDS);
+            // Slave Status Checker
+            ScheduledExecutorService slaveStatusChecker = Executors.newSingleThreadScheduledExecutor();
+            slaveStatusChecker.scheduleAtFixedRate(slaveStatusCheckerRun, 0, 1000, TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            System.err.println("Exception at startSlaveListener");
+            e.printStackTrace();
+            ErrorNotification.showErrorNotification("Error!");
+        }
     }
 
     public void initializeSlaves() {
@@ -76,8 +83,12 @@ public class SlaveManager {
                 slaveInfo.getSlaveService().setupProblemEnvironment(jobFileMap, objectListDatabase.getSelectedProblem().getCode(), objectListDatabase.getSelectedProblem().getDistribution().toString());
             }
         } catch (RemoteException e) {
-            e.printStackTrace();
             System.out.println("RMI Remote Exception");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception at initializeSlaves");
+            e.printStackTrace();
+            ErrorNotification.show("Error!");
         }
     }
 
@@ -98,8 +109,12 @@ public class SlaveManager {
                 }
             }
         } catch (RemoteException e) {
-            e.printStackTrace();
             System.out.println("Inference RMI Remote Exception");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception at startInference Slave manager");
+            e.printStackTrace();
+            ErrorNotification.showErrorNotification("Error!");
         }
     }
 
@@ -112,6 +127,10 @@ public class SlaveManager {
         } catch (RemoteException e) {
             System.out.println("Remote Exception");
             e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception at stopInference");
+            e.printStackTrace();
+            ErrorNotification.showErrorNotification("Error!");
         }
     }
 
@@ -143,6 +162,10 @@ public class SlaveManager {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("File not found exception");
+        } catch (Exception e) {
+            System.err.println("Exception at buildProblemFileMap");
+            e.printStackTrace();
+            ErrorNotification.showErrorNotification("Error!");
         }
 
         return null;
@@ -162,6 +185,10 @@ public class SlaveManager {
         } catch (NotBoundException e) {
             System.out.println("Not Bound Exception");
             e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Exception at locateSlave");
+            e.printStackTrace();
+            ErrorNotification.showErrorNotification("Error!");
         }
     }
 
@@ -202,6 +229,10 @@ public class SlaveManager {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
                 System.out.println("Class not found exception");
+            } catch (Exception e) {
+                System.err.println("Exception at slaveListenerRun");
+                e.printStackTrace();
+                ErrorNotification.showErrorNotification("Error!");
             }
         }
     };
@@ -217,6 +248,10 @@ public class SlaveManager {
                     System.err.println("Remote Exception");
                     System.err.println("Dead or Blocked slave");
                     slaveList.remove(i);
+                } catch (Exception e) {
+                    System.err.println("Exception at slaveStatusCheckerRun");
+                    e.printStackTrace();
+                    ErrorNotification.showErrorNotification("Error!");
                 }
             }
         }

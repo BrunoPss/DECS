@@ -18,4 +18,12 @@ http://<coordinator-address>:8080. For development purposes you can access the C
 at http://localhost:8080.
 
 Parameters
-<address>
+
+`<address>`
+
+## Tests
+
+There are some simple tests included on this project. They are placed on the 'test' folder
+and can be executed with the following command.
+
+`mvn test`
