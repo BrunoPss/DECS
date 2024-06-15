@@ -86,6 +86,7 @@ public class NodeManagerView extends Composite<VerticalLayout> {
         nodeListTitleUpdateBtnIcon = new Icon(VaadinIcon.REFRESH);
         nodeListTitleUpdateBtnIcon.setSize("20px");
         nodeListTitleUpdateBtn = new Button(nodeListTitleUpdateBtnIcon);
+        nodeListTitleUpdateBtn.setId("nodeListTitleUpdateBtn");
         nodeListTitleUpdateBtn.addThemeVariants(ButtonVariant.LUMO_ICON);
         nodeListTitleUpdateBtn.addClickListener(this::updateSlaveList);
         nodeListTitleUpdateBtn.setTooltipText("Refresh");
@@ -96,6 +97,7 @@ public class NodeManagerView extends Composite<VerticalLayout> {
 
         // Node List Grid
         nodeListGrid = new Grid<>(SlaveInfo.class, false);
+        nodeListGrid.setId("nodeListGrid");
         nodeListGrid.setMaxHeight("300px");
         nodeListGrid.addColumn(SlaveInfo::getId).setHeader("ID");
         nodeListGrid.addColumn(SlaveInfo::getAddress).setHeader("Address");

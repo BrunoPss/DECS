@@ -1,5 +1,3 @@
-parent.0 = simple.params
-
 pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
 
 init = ec.gp.GPInitializer
