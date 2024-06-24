@@ -16,6 +16,7 @@ import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.NumberField;
 import ec.util.Parameter;
 import ec.util.ParameterDatabase;
+import org.springframework.security.core.parameters.P;
 
 import java.io.File;
 import java.io.IOException;
@@ -174,7 +175,7 @@ public class KozaTab extends Tab implements ParamTab {
     public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
         ParameterDatabase paramDatabase;
         try {
-            File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
+            File paramsFile = new File(FilePathConstants.DEFAULTS_PARAMS_FOLDER + "/" + PARAMS_FILENAME);
             paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
 
@@ -259,6 +260,7 @@ public class KozaTab extends Tab implements ParamTab {
         initialCreationMinDepthLayout.setAlignItems(FlexComponent.Alignment.END);
         initialCreationMinDepth = new IntegerField();
         initialCreationMinDepth.setLabel("Min Depth");
+        initialCreationMinDepth.setId("initialCreationMinDepth");
         initialCreationMinDepth.setMin(1);
         initialCreationMinDepth.setValue(2);
         initialCreationMinDepth.setStepButtonsVisible(true);
@@ -275,6 +277,7 @@ public class KozaTab extends Tab implements ParamTab {
         initialCreationMaxDepthLayout.setAlignItems(FlexComponent.Alignment.END);
         initialCreationMaxDepth = new IntegerField();
         initialCreationMaxDepth.setLabel("Max Depth");
+        initialCreationMaxDepth.setId("initialCreationMaxDepth");
         initialCreationMaxDepth.setMin(initialCreationMinDepth.getValue());
         initialCreationMaxDepth.setValue(initialCreationMinDepth.getValue()+4);
         initialCreationMaxDepth.setStepButtonsVisible(true);
@@ -291,6 +294,7 @@ public class KozaTab extends Tab implements ParamTab {
         initialCreationGrowProbLayout.setAlignItems(FlexComponent.Alignment.END);
         initialCreationGrowProb = new NumberField();
         initialCreationGrowProb.setLabel("Grow Probability");
+        initialCreationGrowProb.setId("initialCreationGrowProb");
         initialCreationGrowProb.setMin(0);
         initialCreationGrowProb.setMax(1);
         initialCreationGrowProb.setStep(0.05);
@@ -326,6 +330,7 @@ public class KozaTab extends Tab implements ParamTab {
         crossoverPipelineProbLayout.setAlignItems(FlexComponent.Alignment.END);
         crossoverPipelineProb = new NumberField();
         crossoverPipelineProb.setLabel("Crossover Pipe Prob.");
+        crossoverPipelineProb.setId("crossoverPipelineProb");
         crossoverPipelineProb.setMin(0);
         crossoverPipelineProb.setMax(1);
         crossoverPipelineProb.setStep(0.05);
@@ -344,6 +349,7 @@ public class KozaTab extends Tab implements ParamTab {
         reproductionPipelineProbLayout.setAlignItems(FlexComponent.Alignment.END);
         reproductionPipelineProb = new NumberField();
         reproductionPipelineProb.setLabel("Repr. Pipe Prob.");
+        reproductionPipelineProb.setId("reproductionPipelineProb");
         reproductionPipelineProb.setMin(0);
         reproductionPipelineProb.setMax(1);
         reproductionPipelineProb.setStep(0.05);
@@ -381,6 +387,7 @@ public class KozaTab extends Tab implements ParamTab {
         crossoverPipelineMaxDepthLayout.setAlignItems(FlexComponent.Alignment.END);
         crossoverPipelineMaxDepth = new IntegerField();
         crossoverPipelineMaxDepth.setLabel("Max Depth");
+        crossoverPipelineMaxDepth.setId("crossoverPipelineMaxDepth");
         crossoverPipelineMaxDepth.setMin(1);
         crossoverPipelineMaxDepth.setValue(17);
         crossoverPipelineMaxDepth.setStepButtonsVisible(true);
@@ -397,6 +404,7 @@ public class KozaTab extends Tab implements ParamTab {
         crossoverPipelineTriesLayout.setAlignItems(FlexComponent.Alignment.END);
         crossoverPipelineTries = new IntegerField();
         crossoverPipelineTries.setLabel("Tries");
+        crossoverPipelineTries.setId("crossoverPipelineTries");
         crossoverPipelineTries.setMin(1);
         crossoverPipelineTries.setValue(1);
         crossoverPipelineTries.setStepButtonsVisible(true);
@@ -432,6 +440,7 @@ public class KozaTab extends Tab implements ParamTab {
         pointMutationMaxDepthLayout.setAlignItems(FlexComponent.Alignment.END);
         pointMutationMaxDepth = new IntegerField();
         pointMutationMaxDepth.setLabel("Max Depth");
+        pointMutationMaxDepth.setId("pointMutationMaxDepth");
         pointMutationMaxDepth.setMin(1);
         pointMutationMaxDepth.setValue(17);
         pointMutationMaxDepth.setStepButtonsVisible(true);
@@ -448,6 +457,7 @@ public class KozaTab extends Tab implements ParamTab {
         pointMutationTriesLayout.setAlignItems(FlexComponent.Alignment.END);
         pointMutationTries = new IntegerField();
         pointMutationTries.setLabel("Tries");
+        pointMutationTries.setId("pointMutationTries");
         pointMutationTries.setMin(1);
         pointMutationTries.setValue(1);
         pointMutationTries.setStepButtonsVisible(true);
@@ -475,6 +485,7 @@ public class KozaTab extends Tab implements ParamTab {
         tournamentSizeLayout.setAlignItems(FlexComponent.Alignment.END);
         tournamentSize = new IntegerField();
         tournamentSize.setLabel("Size");
+        tournamentSize.setId("tournamentSize");
         tournamentSize.setMin(1);
         tournamentSize.setValue(7);
         tournamentSize.setStepButtonsVisible(true);
@@ -508,6 +519,7 @@ public class KozaTab extends Tab implements ParamTab {
         subtreeMutationMinDepthLayout.setAlignItems(FlexComponent.Alignment.END);
         subtreeMutationMinDepth = new IntegerField();
         subtreeMutationMinDepth.setLabel("Min Depth");
+        subtreeMutationMinDepth.setId("subtreeMutationMinDepth");
         subtreeMutationMinDepth.setMin(1);
         subtreeMutationMinDepth.setValue(5);
         subtreeMutationMinDepth.setStepButtonsVisible(true);
@@ -524,6 +536,7 @@ public class KozaTab extends Tab implements ParamTab {
         subtreeMutationMaxDepthLayout.setAlignItems(FlexComponent.Alignment.END);
         subtreeMutationMaxDepth = new IntegerField();
         subtreeMutationMaxDepth.setLabel("Max Depth");
+        subtreeMutationMaxDepth.setId("subtreeMutationMaxDepth");
         subtreeMutationMaxDepth.setMin(subtreeMutationMinDepth.getValue());
         subtreeMutationMaxDepth.setValue(subtreeMutationMinDepth.getValue());
         subtreeMutationMaxDepth.setStepButtonsVisible(true);
@@ -556,6 +569,7 @@ public class KozaTab extends Tab implements ParamTab {
         kozaNodeSelectionTerminalsProbLayout.setAlignItems(FlexComponent.Alignment.END);
         kozaNodeSelectionTerminalsProb = new NumberField();
         kozaNodeSelectionTerminalsProb.setLabel("Terminals Prob");
+        kozaNodeSelectionTerminalsProb.setId("kozaNodeSelectionTerminalsProb");
         kozaNodeSelectionTerminalsProb.setMin(0);
         kozaNodeSelectionTerminalsProb.setMax(1);
         kozaNodeSelectionTerminalsProb.setStep(0.05);
@@ -574,6 +588,7 @@ public class KozaTab extends Tab implements ParamTab {
         kozaNodeSelectionNonTerminalsProbLayout.setAlignItems(FlexComponent.Alignment.END);
         kozaNodeSelectionNonTerminalsProb = new NumberField();
         kozaNodeSelectionNonTerminalsProb.setLabel("Non-Terminals Prob");
+        kozaNodeSelectionNonTerminalsProb.setId("kozaNodeSelectionNonTerminalsProb");
         kozaNodeSelectionNonTerminalsProb.setMin(0);
         kozaNodeSelectionNonTerminalsProb.setMax(1);
         kozaNodeSelectionNonTerminalsProb.setStep(0.05);
@@ -592,6 +607,7 @@ public class KozaTab extends Tab implements ParamTab {
         kozaNodeSelectionRootProbLayout.setAlignItems(FlexComponent.Alignment.END);
         kozaNodeSelectionRootProb = new NumberField();
         kozaNodeSelectionRootProb.setLabel("Root Prob");
+        kozaNodeSelectionRootProb.setId("kozaNodeSelectionRootProb");
         kozaNodeSelectionRootProb.setMin(0);
         kozaNodeSelectionRootProb.setMax(1);
         kozaNodeSelectionRootProb.setStep(0.05);

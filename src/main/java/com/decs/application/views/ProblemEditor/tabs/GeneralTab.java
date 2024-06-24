@@ -120,9 +120,11 @@ public class GeneralTab extends Tab implements ParamTab {
     public ParameterDatabase[] createParamDatabase(ProblemType selectedProblem) {
         ParameterDatabase paramDatabase;
         try {
-            File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
-            paramDatabase = new ParameterDatabase(paramsFile,
-                    new String[]{"-file", paramsFile.getCanonicalPath()});
+            //File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
+            //paramDatabase = new ParameterDatabase(paramsFile,
+            //        new String[]{"-file", paramsFile.getCanonicalPath()});
+
+            paramDatabase = new ParameterDatabase();
 
             // Jobs
             //...
@@ -141,9 +143,9 @@ public class GeneralTab extends Tab implements ParamTab {
 
             return new ParameterDatabase[]{paramDatabase};
 
-        } catch (IOException e) {
-            System.err.println("IO Exception while opening params file");
-            e.printStackTrace();
+        //} catch (IOException e) {
+        //    System.err.println("IO Exception while opening params file");
+        //    e.printStackTrace();
         } catch (Exception e) {
             System.err.println("Exception at create parameter database");
             e.printStackTrace();

@@ -75,22 +75,19 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         if (accessChecker.hasAccess(JobDashboardView.class)) {
-            nav.addItem(
-                    new SideNavItem("Job Dashboard", JobDashboardView.class,
-                            VaadinIcon.HOME.create()));
-
+            SideNavItem jobDashboardNavItem = new SideNavItem("Job Dashboard", JobDashboardView.class, VaadinIcon.HOME.create());
+            jobDashboardNavItem.setId("jobDashboardNavItem");
+            nav.addItem(jobDashboardNavItem);
         }
         if (accessChecker.hasAccess(NodeManagerView.class)) {
-            nav.addItem(
-                    new SideNavItem("Node Manager", NodeManagerView.class,
-                            VaadinIcon.CLUSTER.create()));
-
+            SideNavItem nodeManagerNavItem = new SideNavItem("Node Manager", NodeManagerView.class, VaadinIcon.CLUSTER.create());
+            nodeManagerNavItem.setId("nodeManagerNavItem");
+            nav.addItem(nodeManagerNavItem);
         }
         if (accessChecker.hasAccess(ProblemEditorView.class)) {
-            nav.addItem(
-                    new SideNavItem("Problem Editor", ProblemEditorView.class,
-                            VaadinIcon.SLIDERS.create()));
-
+            SideNavItem problemEditorNavItem = new SideNavItem("Problem Editor", ProblemEditorView.class, VaadinIcon.SLIDERS.create());
+            problemEditorNavItem.setId("problemEditorNavItem");
+            nav.addItem(problemEditorNavItem);
         }
 
         return nav;

@@ -119,7 +119,7 @@ public class SimpleTab extends Tab implements ParamTab {
         ParameterDatabase paramDatabase;
 
         try {
-            File paramsFile = new File(FilePathConstants.FACTORY_PARAMS_FOLDER + "/" + selectedProblem.getCode() + "/" + PARAMS_FILENAME);
+            File paramsFile = new File(FilePathConstants.DEFAULTS_PARAMS_FOLDER + "/" + PARAMS_FILENAME);
             paramDatabase = new ParameterDatabase(paramsFile,
                     new String[]{"-file", paramsFile.getCanonicalPath()});
 
@@ -137,9 +137,6 @@ public class SimpleTab extends Tab implements ParamTab {
             paramDatabase.set(new Parameter("breed.elite.0"), breederElite.getValue().toString());
             paramDatabase.set(new Parameter("breed.reevaluate-elites.0"), breederEliteReeval.getValue().valueString());
             paramDatabase.set(new Parameter("breed.sequential"), breederSequential.getValue().valueString());
-
-            // Statistics
-            //...
 
             return new ParameterDatabase[]{paramDatabase};
 
@@ -326,7 +323,7 @@ public class SimpleTab extends Tab implements ParamTab {
         statisticsClassLayout = new HorizontalLayout();
         statisticsClassLayout.setAlignItems(FlexComponent.Alignment.END);
         statisticsClass = new Select<>();
-        statisticsClass.setLabel("Elite Reevaluation");
+        statisticsClass.setLabel("Statistics Class");
         statisticsClass.setItems(StatisticsType.values());
         statisticsClass.setValue(StatisticsType.SIMPLE);
         //statisticsClass.setValue();

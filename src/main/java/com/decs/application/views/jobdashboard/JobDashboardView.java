@@ -438,11 +438,13 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         Span jobNameText = new Span("Please insert the name for the job.");
         TextField jobName = new TextField();
+        jobName.setId("jobName");
         VerticalLayout jobNameLayout = new VerticalLayout(jobNameText, jobName);
         jobNameDialog.add(jobNameLayout);
 
         jobDialogBtn = new Button("Continue");
         jobDialogBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
+        jobDialogBtn.setId("jobDialogBtn");
         jobDialogBtn.addClickListener( evt -> {
             if (!jobName.getValue().isBlank()) {
                 jobNameDialog.close();
@@ -678,6 +680,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
                     // Create Server Free Notification
                     Notification freeNotification = new Notification();
+                    freeNotification.setId("freeNotification");
                     freeNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
                     freeNotification.setDuration(4000);
                     freeNotification.setPosition(Notification.Position.TOP_CENTER);
@@ -693,6 +696,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
     private Dialog createBusyInfoDialog() {
         Dialog busyInfoDialog = new Dialog();
+        busyInfoDialog.setId("busyInfoDialog");
         busyInfoDialog.setWidth("50%");
         H2 busyInfoDialogHeadline = new H2("Server Busy");
         Paragraph busyInfoDialogText = new Paragraph(
@@ -734,6 +738,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobActivitySolutionBtn = button;
         Icon btnIcon = new Icon(VaadinIcon.DASHBOARD);
         jobActivitySolutionBtn.setIcon(btnIcon);
+        jobActivitySolutionBtn.setId("jobActivitySolutionBtn");
         //button.setEnabled(false);
         jobActivitySolutionBtn.addClickListener(event -> {
             buildSolutionsDialog(currentJob).open();
