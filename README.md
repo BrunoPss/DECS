@@ -27,3 +27,11 @@ There are some simple tests included on this project. They are placed on the 'te
 and can be executed with the following command.
 
 `mvn test`
+
+## Default User
+
+DECS implements a simple login interface which manages the user access to the system.
+There is a default user configured for development purposes with the following credentials:
+
+User: `user`\
+Password: `user`

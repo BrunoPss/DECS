@@ -1,0 +1,9 @@
+The Node Manager is a view that provides information about the connected
+processing nodes.
+
+Each node can be further analyzed, retrieving real-time information
+about the hardware and characteristics of the machine in which it is being executed.
+
+This information is often relevant when performing experiments with a specfic
+cluster, where the hardware and software specifications of the processing nodes should
+be collected and included in the results.

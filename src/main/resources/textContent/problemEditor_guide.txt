@@ -1,0 +1,28 @@
+The process of creating a problem from scratch, including all the parameter files for
+the evolutionary configuration of ECJ can be complicated and time-consuming,
+especially for users unfamiliar with the framework.
+
+Addressing this issue, DECS provides a basic problem builder that maps the possible
+parameters into user-friendly components with data validation rules, eliminating possible errors.
+
+Since ECJ was originally conceived to be expandable, based on the supported features and algorithms,
+this creates a higher level of complexity in the parameter configuration, which
+gets close to a programming language. Creating a simple user interface that supports
+all the parameters and their combinational behaviors poses a huge challenge, which can
+be compared to the creation of a block-based user interface for a small programming
+language.
+
+One way to simplify this problem is to allow the creation of new problems
+based on existing ones with the possibility of tweaking the most relevant parameters,
+with a special focus on the distribution configuration. The following image shows the
+Koza tab of the problem editor.
+
+Each tab represents a group of parameters that a pre-built problem supports.
+
+Since the Island Model can be difficult to configure textually through property/value attributes,
+due to the complex migration customization possibilities, there is a special tab
+for this distribution technique, illustrated in the following image.
+
+The core components of this model are the islands, so a list is provided where these
+are displayed. Further individual island customization can be made in the Island Editor,
+where it is possible to define the respective migration configurations.

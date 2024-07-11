@@ -5,33 +5,29 @@ import com.decs.application.security.AuthenticatedUser;
 import com.decs.application.services.ObjectListDatabase;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.views.ProblemEditor.ProblemEditorView;
+import com.decs.application.views.information.AboutView;
+import com.decs.application.views.information.HelpView;
 import com.decs.application.views.jobdashboard.JobDashboardView;
 import com.decs.application.views.nodemanager.NodeManagerView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.contextmenu.MenuItem;
-import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Footer;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.Scroller;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.auth.AccessAnnotationChecker;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
 import java.util.Optional;
 
-/**
- * The main view is a top-level placeholder for other views.
- */
 public class MainLayout extends AppLayout {
 
     private H2 viewTitle;
@@ -62,17 +58,28 @@ public class MainLayout extends AppLayout {
     }
 
     private void addDrawerContent() {
-        H1 appName = new H1("DECS");
-        appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
-        Header header = new Header(appName);
+        StreamResource decsLogo = new StreamResource("DECS_logo.png",
+                () -> getClass().getResourceAsStream("/logos/DECS_logo.png"));
+        Image appLogo = new Image(decsLogo, "DECS Logo");
+        appLogo.setWidth("90%");
+        appLogo.setHeight("90%");
+        Header header = new Header(appLogo);
 
-        Scroller scroller = new Scroller(createNavigation());
+        VerticalLayout navGroup = new VerticalLayout(createNavigation());
+        navGroup.setWidthFull();
+
+        Scroller scroller = new Scroller(navGroup);
 
         addToDrawer(header, scroller, createFooter());
     }
 
-    private SideNav createNavigation() {
+    private SideNav[] createNavigation() {
         SideNav nav = new SideNav();
+
+        SideNav infoNav = new SideNav();
+        infoNav.setLabel("Information");
+        infoNav.setCollapsible(true);
+        infoNav.setExpanded(false);
 
         if (accessChecker.hasAccess(JobDashboardView.class)) {
             SideNavItem jobDashboardNavItem = new SideNavItem("Job Dashboard", JobDashboardView.class, VaadinIcon.HOME.create());
@@ -90,7 +97,18 @@ public class MainLayout extends AppLayout {
             nav.addItem(problemEditorNavItem);
         }
 
-        return nav;
+        if (accessChecker.hasAccess(HelpView.class)) {
+            SideNavItem helpNavItem = new SideNavItem("Help", HelpView.class);
+            helpNavItem.setId("helpNavItem");
+            infoNav.addItem(helpNavItem);
+        }
+        if (accessChecker.hasAccess(AboutView.class)) {
+            SideNavItem aboutNavItem = new SideNavItem("About", AboutView.class);
+            aboutNavItem.setId("helpNavItem");
+            infoNav.addItem(aboutNavItem);
+        }
+
+        return new SideNav[]{nav, infoNav};
     }
 
     private Footer createFooter() {
