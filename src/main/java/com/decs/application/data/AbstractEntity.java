@@ -8,7 +8,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Version;
 
 /**
- * <b></b>Abstract Entity Class</b>
+ * <b>Abstract Entity Class</b>
  * <p>
  *     This class represents a system abstract entity.
  * </p>
