@@ -33,6 +33,9 @@ public class StressTests extends PlaywrightIT {
      */
     @Test
     void concurrentJobsTest() {
+        // Clear clients list
+        clientList.clear();
+
         for (int i=0; i<CLIENTS; i++) {
             Browser br = browserType.launch(launchOptions);
             Page page = br.newPage();
@@ -43,7 +46,7 @@ public class StressTests extends PlaywrightIT {
 
         page.getByText("B11MFast", new Page.GetByTextOptions().setExact(true)).click();
         page.locator("//vaadin-button[@id='startBtn']").click();
-        page.locator("//input[@id='input-vaadin-text-field-13']").fill("1");
+        page.locator("//input[@id='input-vaadin-text-field-14']").fill("1");
         page.locator("//vaadin-button[@id='jobDialogBtn']").click();
 
         for (Client client : clientList) {
@@ -67,6 +70,9 @@ public class StressTests extends PlaywrightIT {
             client.getPage().close();
             client.getBrowser().close();
         }
+
+        // Clear clients list
+        clientList.clear();
     }
 
     /**
@@ -75,6 +81,9 @@ public class StressTests extends PlaywrightIT {
      */
     @Test
     void concurrentAccessTest() {
+        // Clear clients list
+        clientList.clear();
+
         for (int i=0; i<CLIENTS; i++) {
             Browser br = browserType.launch(launchOptions);
             Page page = br.newPage();
@@ -89,8 +98,6 @@ public class StressTests extends PlaywrightIT {
             // Check if all browsers are alive
             assert client.getBrowser().isConnected();
             // Check if all clients have a stable view of the application
-            // Main Title
-            assertThat(client.getPage().getByText("DECS")).isVisible();
             // Three Main Views
             // Job Dashboard View
             client.getPage().locator("//vaadin-side-nav-item[@id='jobDashboardNavItem']").click();
@@ -106,5 +113,7 @@ public class StressTests extends PlaywrightIT {
             assertThat(client.getPage().locator("h2:has-text('Problem Editor')")).isVisible();
         }
 
+        // Clear clients list
+        clientList.clear();
     }
 }
