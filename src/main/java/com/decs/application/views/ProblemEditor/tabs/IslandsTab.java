@@ -34,10 +34,28 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * <b>Islands Tab Class</b>
+ * <p>
+ *     This class implements the problem editor islands parameter tab.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class IslandsTab extends Tab implements ParamTab {
     //Internal Data
+    /**
+     * Name of the server island parameter file this tab will generate
+     */
     private static final String SERVER_PARAMS_FILENAME = "server.params";
+    /**
+     * Name of the client islands parameter file this tab will generate
+     */
     private static final String CLIENT_PARAMS_FILENAME = "client.params";
+    /**
+     * Name of the regular islands parameter file this tab will generate
+     */
     private static final String ISLAND_PARAMS_FILENAME = "island.params";
     private ArrayList<ParameterDatabase> islandParamDatabaseList;
     private ObjectListDatabase objectListDatabase;
@@ -81,7 +99,10 @@ public class IslandsTab extends Tab implements ParamTab {
     private Tooltip compressionTooltip;
     private Button compressionHelpBtn;
 
-    //Constructor
+    /**
+     * Class Constructor
+     * @param objectListDatabase Object list database object
+     */
     public IslandsTab(ObjectListDatabase objectListDatabase) {
         setLabel("Islands");
         this.objectListDatabase = objectListDatabase;
@@ -94,7 +115,8 @@ public class IslandsTab extends Tab implements ParamTab {
     //Set Methods
 
 
-    //Methods
+    //Overrides
+    @Override
     public VerticalLayout buildLayout() {
         // Islands Tab
         VerticalLayout islandsTabLayout = new VerticalLayout();
@@ -111,7 +133,6 @@ public class IslandsTab extends Tab implements ParamTab {
         return islandsTabLayout;
     }
 
-    //Overrides
     @Override
     public String[] getFileName() {
         String[] filenameList = new String[islandList.size()+2];
@@ -213,6 +234,9 @@ public class IslandsTab extends Tab implements ParamTab {
     }
 
     //Internal Functions
+    /**
+     * Builds the island list components group
+     */
     private void createIslandListGroup() {
         // Island List
         islandListLayoutGroup = new HorizontalLayout();
@@ -285,6 +309,9 @@ public class IslandsTab extends Tab implements ParamTab {
         islandListLayoutGroup.add(islandListLayout);
     }
 
+    /**
+     * Builds the global settings components group
+     */
     private void createGlobalSettingsGroup() {
         // Global Settings Layout
         globalSettingsLayout = new HorizontalLayout();
@@ -325,10 +352,17 @@ public class IslandsTab extends Tab implements ParamTab {
         globalSettingsLayout.add(syncInputLayout, compressionInputLayout);
     }
 
+    /**
+     * Refreshes the island list grid component
+     */
     private void refreshIslandList() {
         islandGrid.getDataProvider().refreshAll();
     }
 
+    /**
+     * Builds the island editor components group
+     * @param islandID Identification of the selected island
+     */
     private void buildIslandEditor(String islandID) {
         // Dialog
         islandEditor = new Dialog();
@@ -458,6 +492,10 @@ public class IslandsTab extends Tab implements ParamTab {
     }
 
     // Event Handlers
+    /**
+     * Creates a new island object
+     * @param event Source event instance
+     */
     private void createNewIsland(ClickEvent<Button> event) {
         Island newIsland = new Island("isla" + (islandList.size()+1));
         islandList.add(newIsland);
@@ -465,6 +503,11 @@ public class IslandsTab extends Tab implements ParamTab {
         objectListDatabase.setIslandList(islandList);
     }
 
+    /**
+     * Fills the migration destination list with default values
+     * @param n Total number of islands in the list
+     * @param islandID Identification of the selected island
+     */
     private void fillMigrationDestinationList(int n, String islandID) {
         int it = Math.abs(n - migrationDestinationIslandList.size());
         int size = migrationDestinationIslandList.size();
@@ -478,6 +521,10 @@ public class IslandsTab extends Tab implements ParamTab {
         }
     }
 
+    /**
+     * Saves the configuration of the respective island
+     * @param event Source event
+     */
     private void saveIsland(ClickEvent<Button> event) {
         // ID
         currentIsland.setId(islandIDInput.getValue());
@@ -511,6 +558,9 @@ public class IslandsTab extends Tab implements ParamTab {
     }
 
     // Data Providers
+    /**
+     * Data provider for the island list grid
+     */
     private DataProvider<Island, Void> islandGridDataProvider =
             DataProvider.fromCallbacks(
                     query -> {

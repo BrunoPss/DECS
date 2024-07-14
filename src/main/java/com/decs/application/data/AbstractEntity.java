@@ -7,6 +7,14 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Version;
 
+/**
+ * <b>Abstract Entity Class</b>
+ * <p>
+ *     This class represents a system abstract entity.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @MappedSuperclass
 public abstract class AbstractEntity {
 

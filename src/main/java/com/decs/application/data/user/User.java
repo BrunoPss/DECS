@@ -12,6 +12,14 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import java.util.Set;
 
+/**
+ * <b>User Class</b>
+ * <p>
+ *     This class represents a system user.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Entity
 @Table(name = "application_user")
 public class User extends AbstractEntity {

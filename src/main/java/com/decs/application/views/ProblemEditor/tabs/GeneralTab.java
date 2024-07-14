@@ -25,8 +25,20 @@ import ec.util.ParameterDatabase;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * <b>General Tab Class</b>
+ * <p>
+ *     This class implements the problem editor General parameter tab.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class GeneralTab extends Tab implements ParamTab {
     //Internal Data
+    /**
+     * Name of the parameter file this tab will generate
+     */
     private static final String PARAMS_FILENAME = "ec.params";
     private ObjectListDatabase objectListDatabase;
     // General Tab
@@ -78,7 +90,10 @@ public class GeneralTab extends Tab implements ParamTab {
     private Tooltip prefixTooltip;
     private Button prefixHelpBtn;
 
-    //Constructor
+    /**
+     * Class Constructor
+     * @param objectListDatabase Object list database instance
+     */
     public GeneralTab(ObjectListDatabase objectListDatabase) {
         setLabel("General");
         this.objectListDatabase = objectListDatabase;
@@ -91,7 +106,8 @@ public class GeneralTab extends Tab implements ParamTab {
     //Set Methods
 
 
-    //Methods
+    //Overrides
+    @Override
     public VerticalLayout buildLayout() {
         // General Tab
         generalTabLayout = new VerticalLayout();
@@ -112,7 +128,6 @@ public class GeneralTab extends Tab implements ParamTab {
         return generalTabLayout;
     }
 
-    //Overrides
     @Override
     public String[] getFileName() { return new String[]{PARAMS_FILENAME}; }
 
@@ -155,6 +170,10 @@ public class GeneralTab extends Tab implements ParamTab {
     }
 
     //Internal Functions
+
+    /**
+     * Builds the problem selector components group
+     */
     private void createProblemSelector() {
         problemSelectorLayout = new HorizontalLayout();
 
@@ -180,6 +199,9 @@ public class GeneralTab extends Tab implements ParamTab {
         problemSelectorLayout.add(problemSelector, distributionSelector);
     }
 
+    /**
+     * Builds the jobs and seed components group
+     */
     private void createJobsSeedGroup() {
         jobSeedGroupLayout = new VerticalLayout();
         jobSeedGroupLayout.setPadding(true);
@@ -235,6 +257,9 @@ public class GeneralTab extends Tab implements ParamTab {
         jobSeedGroupLayout.add(jobSeedGroupTitle, jobSeedLayout);
     }
 
+    /**
+     * Builds the multithreading components group
+     */
     private void createMultithreadingGroup() {
         multithreadingGroupLayout = new VerticalLayout();
         multithreadingGroupLayout.setPadding(true);
@@ -279,6 +304,9 @@ public class GeneralTab extends Tab implements ParamTab {
         multithreadingGroupLayout.add(multithreadingGroupTitle, evalBreedLayout);
     }
 
+    /**
+     * Builds the checkpoint components group
+     */
     private void createCheckpointGroup() {
         checkpointGroupLayout = new VerticalLayout();
         checkpointGroupLayout.setPadding(true);

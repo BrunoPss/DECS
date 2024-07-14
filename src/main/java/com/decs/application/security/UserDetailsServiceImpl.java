@@ -12,15 +12,34 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * <b>User Details Service Implementation Class</b>
+ * <p>
+ *     This class implements the user details service interface.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    /**
+     * Class Constructor
+     * @param userRepository User repository object
+     */
     public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Loads a user by its username
+     * @param username Name of the user to be loaded
+     * @return Object containing user's information
+     * @throws UsernameNotFoundException Exception raised when the specified username was not found in the user
+     * repository
+     */
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -33,10 +52,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
     }
 
+    /**
+     * Retrieves a user's authorities
+     * @param user User object
+     * @return List of the specified user authorities
+     */
     private static List<GrantedAuthority> getAuthorities(User user) {
         return user.getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .collect(Collectors.toList());
-
     }
-
 }

@@ -21,8 +21,20 @@ import org.springframework.security.core.parameters.P;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * <b>Koza Tab Class</b>
+ * <p>
+ *     This class implements the problem editor Koza parameter tab.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class KozaTab extends Tab implements ParamTab {
     //Internal Data
+    /**
+     * Name of the parameter file this tab will generate
+     */
     private static final String PARAMS_FILENAME = "koza.params";
     //Layouts
     private VerticalLayout kozaTabLayout;
@@ -132,7 +144,9 @@ public class KozaTab extends Tab implements ParamTab {
     private Tooltip kozaNodeSelectionRootProbTooltip;
     private Button kozaNodeSelectionRootProbHelpBtn;
 
-    //Constructor
+    /**
+     * Class Constructor
+     */
     public KozaTab() {
         setLabel("Koza");
     }
@@ -143,7 +157,8 @@ public class KozaTab extends Tab implements ParamTab {
     //Set Methods
 
 
-    //Methods
+    //Overrides
+    @Override
     public VerticalLayout buildLayout() {
         kozaTabLayout = new VerticalLayout();
 
@@ -167,7 +182,6 @@ public class KozaTab extends Tab implements ParamTab {
         return kozaTabLayout;
     }
 
-    //Overrides
     @Override
     public String[] getFileName() { return new String[]{PARAMS_FILENAME}; }
 
@@ -241,6 +255,9 @@ public class KozaTab extends Tab implements ParamTab {
     }
 
     //Internal Functions
+    /**
+     * Builds the initial creation components group
+     */
     private void createInitialCreationGroup() {
         // Initial Creation
         initialCreationLayoutGroup = new VerticalLayout();
@@ -313,6 +330,9 @@ public class KozaTab extends Tab implements ParamTab {
         initialCreationLayoutGroup.add(initialCreationTitle, initialCreationSubtitle, initialCreationLayout);
     }
 
+    /**
+     * Builds the pipelines components group
+     */
     private void createPipelinesGroup() {
         // Pipelines
         pipelinesLayoutGroup = new VerticalLayout();
@@ -368,6 +388,9 @@ public class KozaTab extends Tab implements ParamTab {
         pipelinesLayoutGroup.add(pipelinesTitle, pipelinesLayout);
     }
 
+    /**
+     * Builds the crossover pipelines components group
+     */
     private void createCrossoverPipelineGroup() {
         // Crossover Pipeline
         crossoverPipelineLayoutGroup = new VerticalLayout();
@@ -421,6 +444,9 @@ public class KozaTab extends Tab implements ParamTab {
         crossoverPipelineLayoutGroup.add(crossoverPipelineTitle, crossoverPipelineSubtitle, crossoverPipelineLayout);
     }
 
+    /**
+     * Builds the point mutation components group
+     */
     private void createPointMutationGroup() {
         // Point Mutation
         pointMutationLayoutGroup = new VerticalLayout();
@@ -474,6 +500,9 @@ public class KozaTab extends Tab implements ParamTab {
         pointMutationLayoutGroup.add(pointMutationTitle, pointMutationSubtitle, pointMutationLayout);
     }
 
+    /**
+     * Builds the tournament components group
+     */
     private void createTournamentGroup() {
         tournamentLayoutGroup = new VerticalLayout();
         tournamentLayoutGroup.setPadding(true);
@@ -501,6 +530,9 @@ public class KozaTab extends Tab implements ParamTab {
         tournamentLayoutGroup.add(tournamentTitle, tournamentSizeLayout);
     }
 
+    /**
+     * Builds the subtree mutation components group
+     */
     private void createSubtreeMutationGroup() {
         subtreeMutationLayoutGroup = new VerticalLayout();
         subtreeMutationLayoutGroup.setPadding(true);
@@ -553,6 +585,9 @@ public class KozaTab extends Tab implements ParamTab {
         subtreeMutationLayoutGroup.add(subtreeMutationTitle, subtreeMutationSubtitle, subtreeMutationLayout);
     }
 
+    /**
+     * Builds the koza node selection components group
+     */
     private void createKozaNodeSelectionGroup() {
         kozaNodeSelectionLayoutGroup = new VerticalLayout();
         kozaNodeSelectionLayoutGroup.setPadding(true);

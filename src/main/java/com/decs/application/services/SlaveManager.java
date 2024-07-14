@@ -24,21 +24,31 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * <b>Slave Manager Class</b>
+ * <p>
+ *     This class handles the connected DECS-Slave instances.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Service
 public class SlaveManager {
     // Constants
+    /**
+     * Network Port for the DECS-Slave registration
+     */
     private static final int PORT = 46000;
-
-    //Internal Data
-    private DatagramSocket socket;
-    private DatagramPacket packet;
     private ByteArrayInputStream byteIn;
     private ObjectInputStream objIn;
     private byte[] buffer;
     private volatile ArrayList<SlaveInfo> slaveList;
     private ObjectListDatabase objectListDatabase;
 
-    //Constructor
+    /**
+     * Class Constructor
+     * @param objectListDatabase Class containing global relevant objects
+     */
     public SlaveManager(ObjectListDatabase objectListDatabase) {
         this.slaveList = new ArrayList<>();
         this.objectListDatabase = objectListDatabase;
@@ -55,6 +65,11 @@ public class SlaveManager {
 
 
     //Methods
+    /**
+     * Initiates the Slave Listener service.
+     * This service is responsible for handling the DECS-Slave registration process.
+     * It also processes the heartbeat system which checks the liveliness of all connected slaves.
+     */
     public void startSlaveListener() {
         try {
             // Slave Listener
@@ -71,6 +86,10 @@ public class SlaveManager {
         }
     }
 
+    /**
+     * Initializes all connected slaves and sets up their individual environment with the required
+     * components. Relevant parameter files are sent to each slave for latter evolutionary execution.
+     */
     public void initializeSlaves() {
         // Send Slave Files
         try {
@@ -92,6 +111,9 @@ public class SlaveManager {
         }
     }
 
+    /**
+     * Initiates the inference process of all connected slaves
+     */
     public void startInference() {
         System.out.println("Start Inference");
         try {
@@ -118,6 +140,10 @@ public class SlaveManager {
         }
     }
 
+    /**
+     * Stops any ongoing inference process on all connected slaves.
+     * <p>(Not implemented yet)</p>
+     */
     public void stopInference() {
         System.out.println("STOP INFERENCE");
         try {
@@ -138,6 +164,10 @@ public class SlaveManager {
 
 
     //Internal Functions
+    /**
+     * Builds a problem files map
+     * @return list of all relevant parameter files for a specified Problem
+     */
     private ArrayList<JobFile> buildProblemFileMap() {
         ArrayList<JobFile> jobFiles = new ArrayList<>();
         File[] filesList = objectListDatabase.getSelectedProblem().getRootFolder().listFiles();
@@ -170,6 +200,13 @@ public class SlaveManager {
 
         return null;
     }
+
+    /**
+     * Locates and retrieves the remote interface of a registered slave.
+     * After a slave is registered in the system, it is necessary to retrieve its remote interface
+     * to latter invoke methods.
+     * @param slaveInfo Object which represents the registered Slave
+     */
     private void locateSlave(SlaveInfo slaveInfo) {
         System.out.println("LOCATE SLAVE");
         try {
@@ -192,6 +229,11 @@ public class SlaveManager {
         }
     }
 
+    /**
+     * Runnable for the Slave Listener service.
+     * Processes incoming slave registering requests and creates the SlaveInfo object which
+     * represents them.
+     */
     private Runnable slaveListenerRun = new Runnable() {
         @Override
         public void run() {
@@ -237,6 +279,11 @@ public class SlaveManager {
         }
     };
 
+    /**
+     * Runnable for the heartbeat system functioning.
+     * This system calls a remote method on all registered slaves and checks their response.
+     * If no response or error is received, the slave is removed from the slaves list.
+     */
     private Runnable slaveStatusCheckerRun = new Runnable() {
         @Override
         public void run() {
@@ -257,6 +304,9 @@ public class SlaveManager {
         }
     };
 
+    /**
+     * Vaadin data provider for the automatic updates of the dashboard slave list grid visual component
+     */
     private DataProvider<SlaveInfo, Void> slaveListDataProvider =
             DataProvider.fromCallbacks(
                     query -> {
@@ -267,6 +317,11 @@ public class SlaveManager {
                     query -> getConnectedSlaves()
             );
 
+    /**
+     * Shows a notification with the specified content
+     * @param ui UI object where the notification must be displayed
+     * @param content Textual content of the notification
+     */
     private void showNotification(UI ui, String content) {
         ui.access(() -> {
             Notification notification = Notification.show(content);

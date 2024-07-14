@@ -1,5 +1,14 @@
 package com.decs.application.utils.types;
 
+/**
+ * <b>Enhanced Boolean Enumeration</b>
+ * <p>
+ *     This enumeration represents an enhanced version of the boolean primitive data type.
+ *     It contains natural language translations for each possible value.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public enum EnhancedBoolean {
     TRUE,
     FALSE;

@@ -1,0 +1,6 @@
+DECS is a Distributed Evolutionary Computing System developed by Bruno Guiomar for his bachelor's thesis.
+Its implementation first started in March 2024, and it is an evolving project with the aim of creating
+a simple and intuitive platform for the distributed computing of evolutionary algorithms.
+It uses the ECJ framework as its main evolutionary engine.
+This system follows a Coordinator - Slave architecture where there is one Coordinator in the network
+and multiple Slaves that process the tasks delegated by the coordinator.

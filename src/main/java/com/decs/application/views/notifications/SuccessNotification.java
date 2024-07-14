@@ -10,16 +10,23 @@ import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
+/**
+ * <b>Success Notification Class</b>
+ * <p>
+ *     This class builds a success notification.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class SuccessNotification extends Notification {
     //Internal Data
 
-
-    //Constructor
-    public SuccessNotification(String message) {
-        this.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-        this.setText(message);
-        this.setDuration(3000);
-    }
+    /**
+     * Class Private Constructor
+     * <p>This class cannot be instantiated.</p>
+     */
+    private SuccessNotification() {}
 
     //Get Methods
 
@@ -28,6 +35,11 @@ public class SuccessNotification extends Notification {
 
 
     //Methods
+    /**
+     * Creates and displays a success notification
+     * <p>Configures the visual contents of the notification.</p>
+     * @param message Textual content to be displayed in the notification
+     */
     public static void showSuccessNotification(String message) {
         Notification notification = new Notification();
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);

@@ -5,6 +5,14 @@ import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
+/**
+ * <b>Playwright Interface Class</b>
+ * <p>
+ *     This class manages the playwright framework.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, args={"192.168.2.104"})
 public class PlaywrightIT {
     //Internal Data
@@ -15,9 +23,15 @@ public class PlaywrightIT {
     protected Page page;
     protected BrowserContext browserContext;
 
+    /**
+     * Retrieves the web application port
+     */
     @LocalServerPort
     protected int port;
 
+    /**
+     * Initializes the testing environment
+     */
     @BeforeAll
     static void beforeAll() {
         playwright = Playwright.create();
@@ -27,12 +41,18 @@ public class PlaywrightIT {
         browser = browserType.launch(launchOptions);
     }
 
+    /**
+     * Finalizes the testing environment
+     */
     @AfterAll
     static void afterAll() {
         browser.close();
         playwright.close();
     }
 
+    /**
+     * Resets the testing environment before each test
+     */
     @BeforeEach
     void beforeEach() {
         browserContext = browser.newContext();
@@ -41,6 +61,9 @@ public class PlaywrightIT {
         new LoginPO(page).login("user", "user");
     }
 
+    /**
+     * Cleans the testing environment after each test
+     */
     @AfterEach
     void afterEach() {
         page.close();

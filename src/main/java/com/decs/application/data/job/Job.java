@@ -10,6 +10,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * <b>Job Class</b>
+ * <p>
+ *     This class represents a DECS Job.
+ *     The complete process of computing a Problem in DECS is managed by the respective Job object.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ *
+ */
 public class Job {
     //Internal Data
     private static AtomicInteger uniqueId = new AtomicInteger();
@@ -20,13 +30,26 @@ public class Job {
     private File statsFile;
     private DistributionType distribution;
     private ArrayList<Generation> generationList;
-    private long wallClockTime; // Wall-Clock Time in nanoseconds
-    private long cpuTime; // CPU Time in nanoseconds
+    /**
+     * Wall-Clock Time in nanoseconds
+     */
+    private long wallClockTime;
+    /**
+     * CPU Time in nanoseconds
+     */
+    private long cpuTime;
     //private long heapMemoryUsage; // Heap memory used in bytes
     //private long nonHeapMemoryUsage; // Non heap memory used in bytes
 
-    //Constructor
+    /**
+     * Job Class default constructor
+     */
     public Job() {}
+    /**
+     * Job Class Constructor
+     * @param name Job Name
+     * @param distribution Distribution Type
+     */
     public Job(String name, DistributionType distribution) {
         this.name = name;
         this.id = uniqueId.getAndIncrement();
@@ -59,6 +82,11 @@ public class Job {
     //public void setNonHeapMemoryUsage(long nonHeapMemoryUsage) { this.nonHeapMemoryUsage = nonHeapMemoryUsage; }
 
     //Methods
+
+    /**
+     * Retrieves the Job log file content
+     * @return textual content of the Job Log file
+     */
     public String getJobLog() {
         try {
             Scanner scanner = new Scanner(this.logFile);
@@ -67,6 +95,11 @@ public class Job {
         } catch (IOException e) { e.printStackTrace(); }
         return "";
     }
+
+    /**
+     * Retrieves the statistics log file content
+     * @return textual content of te stats log file
+     */
     public String getStatisticsLog() {
         try {
             Scanner scanner = new Scanner(this.statsFile);
@@ -76,9 +109,17 @@ public class Job {
         return "";
     }
 
+    /**
+     * Includes a new Generation object in the generation list
+     * @param generation generation to include
+     */
     public void addGeneration(Generation generation) {
         generationList.add(generation);
     }
+
+    /**
+     * Generates a CSV file with the information of each Generation object in the generation list
+     */
     public void writeGenerationTableFile() {
         CSVGenerator.generateCSVFile(generationList, "job" + id + "_" + name + "_table.csv");
     }
@@ -87,8 +128,14 @@ public class Job {
 
 
     //Internal Functions
+
+    /**
+     * Removes the first part of ECJ's log output.
+     * This is done by replacing all text contained between a '|' and '\n' characters.
+     * @param text raw textual input
+     * @return the processed text
+     */
     private String processLogText(String text) {
-        return text
-                .replaceAll("\\|.*?\\n", "");
+        return text.replaceAll("\\|.*?\\n", "");
     }
 }

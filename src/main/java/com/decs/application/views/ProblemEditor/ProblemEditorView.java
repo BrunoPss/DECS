@@ -36,6 +36,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ * <b>Problem Editor View Class</b>
+ * <p>
+ *     This class implements the web application problem editor page.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @PageTitle("Problem Editor")
 @Route(value = "problem-editor", layout = MainLayout.class)
 @PermitAll
@@ -47,6 +55,10 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
     private DistributionType selectedDistMethod;
     private ObjectListDatabase objectListDatabase;
 
+    /**
+     * Class Constructor
+     * @param objectListDatabase Object list database
+     */
     public ProblemEditorView(ObjectListDatabase objectListDatabase) {
         this.objectListDatabase = objectListDatabase;
 
@@ -83,6 +95,10 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
     }
 
     // Event Listeners
+    /**
+     * Defines the behavior when a problem is selected in the problem editor
+     * @param event Source event
+     */
     private void problemChangeEvent(AbstractField.ComponentValueChangeEvent<Select<ProblemType>, ProblemType> event) {
         try {
             // Save Selected Problem
@@ -126,6 +142,10 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         }
     }
 
+    /**
+     * Defines the behavior when a distribution method is selected
+     * @param event Source event
+     */
     private void distributionChangeEvent(AbstractField.ComponentValueChangeEvent<Select<DistributionType>, DistributionType> event) {
         try {
 
@@ -170,6 +190,10 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
         }
     }
 
+    /**
+     * Defines the behavior when a problem needs to be saved
+     * @param event Source event
+     */
     private void saveProblem(SaveEvent event) {
         System.out.println("SAVE");
 
@@ -289,6 +313,11 @@ public class ProblemEditorView extends Composite<VerticalLayout> {
     }
 
     // Private Functions
+    /**
+     * Creates a parameter tab
+     * @param groupType Type of the parameter tab
+     * @return Parameter tab object
+     */
     private ParamTab createParamTab(ParameterGroupType groupType) {
         ParamTab newTab = switch (groupType) {
             case EC -> new GeneralTab(objectListDatabase);

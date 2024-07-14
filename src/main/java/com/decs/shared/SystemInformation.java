@@ -2,6 +2,14 @@ package com.decs.shared;
 
 import java.io.Serializable;
 
+/**
+ * <b>System Information Class</b>
+ * <p>
+ *     This class implements the extraction of system information.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class SystemInformation implements Serializable {
     //Internal Data
    private static final long serialVersionUID = 1L;
@@ -11,8 +19,14 @@ public class SystemInformation implements Serializable {
     private String OSArchitecture;
     private int CPUCoreNumber;
 
-
-    //Constructor
+    /**
+     * Class Constructor
+     * @param username System username
+     * @param OSName Operating system name
+     * @param OSVersion Operating system version
+     * @param OSArchitecture Operating system architecture
+     * @param CPUCoreNumber Number of CPU cores
+     */
     public SystemInformation(String username, String OSName, String OSVersion, String OSArchitecture, int CPUCoreNumber) {
         this.username = username;
         this.OSName = OSName;

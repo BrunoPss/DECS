@@ -22,8 +22,19 @@ import ec.util.ParameterDatabase;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * <b>Simple Tab Class</b>
+ * <p>
+ *     This class implements the problem editor Simple parameter tab.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class SimpleTab extends Tab implements ParamTab {
     //Internal Data
+    /**
+     * Name of the parameter file this tab will generate
+     */
     private static final String PARAMS_FILENAME = "simple.params";
     //Layouts
     private VerticalLayout simpleTabLayout;
@@ -85,7 +96,9 @@ public class SimpleTab extends Tab implements ParamTab {
     // Variable Lower Layout
     private HorizontalLayout statisticsVariableLayout;
 
-    //Constructor
+    /**
+     * Class Constructor
+     */
     public SimpleTab() {
         setLabel("Simple");
     }
@@ -96,7 +109,8 @@ public class SimpleTab extends Tab implements ParamTab {
     //Set Methods
 
 
-    //Methods
+    //Overrides
+    @Override
     public VerticalLayout buildLayout() {
         simpleTabLayout = new VerticalLayout();
 
@@ -110,7 +124,6 @@ public class SimpleTab extends Tab implements ParamTab {
         return simpleTabLayout;
     }
 
-    //Overrides
     @Override
     public String[] getFileName() { return new String[]{PARAMS_FILENAME}; }
 
@@ -152,6 +165,10 @@ public class SimpleTab extends Tab implements ParamTab {
     }
 
     //Internal Functions
+
+    /**
+     * Builds the stopping condition components group
+     */
     private void createStoppingConditionGroup() {
         // Stopping Condition
         stoppingCondLayoutGroup = new VerticalLayout();
@@ -192,6 +209,9 @@ public class SimpleTab extends Tab implements ParamTab {
         stoppingCondLayoutGroup.add(stoppingCondTitle, stoppingCondLayout);
     }
 
+    /**
+     * Builds the subpopulation components group
+     */
     private void createSubpopulationGroup() {
         // Subpopulation
         subpopulationLayoutGroup = new VerticalLayout();
@@ -240,6 +260,9 @@ public class SimpleTab extends Tab implements ParamTab {
         subpopulationLayoutGroup.add(subpopulationTitle, subpopulationLayout);
     }
 
+    /**
+     * Builds the breeder components group
+     */
     private void createBreederGroup() {
         // Breeder
         breederLayoutGroup = new VerticalLayout();
@@ -306,6 +329,9 @@ public class SimpleTab extends Tab implements ParamTab {
         breederLayoutGroup.add(breederTitle, breederLayout);
     }
 
+    /**
+     * Builds the statistics components group
+     */
     private void createStatisticsGroup() {
         // Statistics
         statisticsLayoutGroup = new VerticalLayout();

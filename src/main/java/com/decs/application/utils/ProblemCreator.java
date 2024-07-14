@@ -11,11 +11,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * <b>Problem Creator Class</b>
+ * <p>
+ *     This class handles the problem creation process.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public final class ProblemCreator {
     //Internal Data
 
 
-    //Constructor
+    /**
+     * Class Private Constructor
+     * <p>This class cannot be instantiated.</p>
+     */
     private ProblemCreator() {}
 
     //Get Methods
@@ -25,6 +36,11 @@ public final class ProblemCreator {
 
 
     //Methods
+    /**
+     * Scans for problems contained in the given path and includes them in a list of Problem objects
+     * @param path Root folder
+     * @return List of available Problem objects
+     */
     public static ArrayList<Problem> problemScanner(String path) {
         ArrayList<HashMap<FileConfigAttr, String>> configList = ProblemFileManager.getProblemList(path);
         ArrayList<Problem> problemList = new ArrayList<>();
@@ -70,12 +86,4 @@ public final class ProblemCreator {
 
 
     //Internal Functions
-    private static String[] filenameParser(File file) {
-        String[] parsedList = file.getName().replace(".params", "").split("_");
-
-        if (parsedList.length != 3) {
-            return new String[]{"", parsedList[0], ""};
-        }
-        return parsedList;
-    }
 }

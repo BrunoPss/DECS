@@ -9,6 +9,14 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 
+/**
+ * <b>Session Manager Class</b>
+ * <p>
+ *     This class establishes a bridge between the global system state and each user session.
+ *     The active queue system is implemented and managed, which restricts the execution of Jobs
+ *     to just one at a time.
+ * </p>
+ */
 @Service
 public class SessionManager {
     //Internal Data
@@ -18,7 +26,9 @@ public class SessionManager {
     private UI starterUI;
     private HashMap<UI, PropertyChangeListener> propertyChangeListenerMap;
 
-    //Constructor
+    /**
+     * Class Constructor
+     */
     public SessionManager() {
         this.pcs = new PropertyChangeSupport(this);
         this.evolutionEngineBusy = false;
@@ -38,9 +48,12 @@ public class SessionManager {
     }
 
     //Methods
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        pcs.addPropertyChangeListener(listener);
-    }
+    /**
+     * Add or replace a property change listener to the respective property change support
+     * @param property Property name
+     * @param newListener Property change listener object
+     * @param ui UI object of the user to be connected with the property change listener
+     */
     public void addPropertyChangeListener(String property, PropertyChangeListener newListener, UI ui) {
         // Search for a previous client entry (client is defined by its UI object)
         PropertyChangeListener oldListener;

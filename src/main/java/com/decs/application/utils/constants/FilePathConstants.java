@@ -1,5 +1,13 @@
 package com.decs.application.utils.constants;
 
+/**
+ * <b>File Path Constants Class</b>
+ * <p>
+ *     This class contains relevant constant values.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public final class FilePathConstants {
     //Internal Data
     public static final String FACTORY_PARAMS_FOLDER = "src/main/resources/ECJ/params/problems/factory";
@@ -11,7 +19,10 @@ public final class FilePathConstants {
     public static final String JOB_STATS_FOLDER = "src/main/resources/ECJ/stats";
     public static final String JOB_TABLES_FOLDER = "src/main/resources/ECJ/tables";
 
-    //Constructor
+    /**
+     * Class Private Constructor
+     * <p>This class cannot be instantiated.</p>
+     */
     private FilePathConstants() {}
 
     //Get Methods

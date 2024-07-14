@@ -7,7 +7,6 @@ import com.decs.application.services.SessionManager;
 import com.decs.application.services.SlaveManager;
 import com.decs.application.services.Timer;
 import com.decs.application.utils.constants.FilePathConstants;
-import com.decs.application.views.ProblemEditor.tabs.StatisticsType;
 import com.decs.application.views.jobdashboard.JobDashboardView;
 import com.decs.application.views.notifications.ErrorNotification;
 import com.vaadin.flow.component.UI;
@@ -23,6 +22,16 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
+/**
+ * <b>Evolution Engine Class</b>
+ * <p>
+ *     This class represents the system's evolution engine.
+ *     The engine manages all evolutionary operations and establishes a bridge between DECS and ECJ engine.
+ *     Since its operations are resource-intensive, it is processed concurrently.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class EvolutionEngine extends Thread {
     //Internal Data
     private ParameterDatabase paramDatabase;
@@ -37,7 +46,17 @@ public class EvolutionEngine extends Thread {
     private SessionManager sessionManager;
     private String[] args;
 
-    //Constructor
+    /**
+     * Evolution engine class constructor
+     * @param paramsFile Main parameters file
+     * @param job Job object to be processed
+     * @param ui Main Vaadin UI object
+     * @param jobDashboard Job dashboard view object
+     * @param slaveManager Slave manager object
+     * @param timer Timer object
+     * @param sessionManager Session manager object
+     * @param args Command line arguments
+     */
     public EvolutionEngine(File paramsFile, Job job, UI ui, JobDashboardView jobDashboard, SlaveManager slaveManager, Timer timer, SessionManager sessionManager, String[] args) {
         this.paramsFile = paramsFile;
         this.job = job;
@@ -56,6 +75,12 @@ public class EvolutionEngine extends Thread {
 
 
     //Methods
+    /**
+     * Engine thread starting point
+     * <p>
+     *     It is responsible for the initial configuration and inference initialization.
+     * </p>
+     */
     @Override
     public void run() {
         // Set Evolution Engine Busy
@@ -74,12 +99,19 @@ public class EvolutionEngine extends Thread {
         }
         System.out.println("Start Inference");
         startInference();
-        jobDashboard.updateInferenceResults(this.ui, evaluatedState);
+        jobDashboard.updateInferenceResults(this.ui);
 
         // Set Evolution Engine Free
         sessionManager.setEvolutionEngineBusy(false, this.ui);
     }
 
+    /**
+     * Inference initialization
+     * <p>
+     *     This method processes all internal evolutionary operations required for a solution
+     *     to be found and it interacts directly with ECJ's API.
+     * </p>
+     */
     public void startInference() {
         try {
             System.out.println(paramsFile);
@@ -168,19 +200,16 @@ public class EvolutionEngine extends Thread {
             ErrorNotification.showErrorNotification("Error in problem execution!");
         }
     }
-    public double getFitness(StatisticsType statType) {
-        switch (statType) {
-            case SIMPLE -> {
-                return ((SimpleStatistics)(evaluatedState.statistics)).getBestSoFar()[0].fitness.fitness();
-            }
-        }
-        return 0;
-    }
 
     //Overrides
 
 
     //Internal Functions
+
+    /**
+     * Cleans and resets the evolutionary engine
+     * @param evaluatedState Object that represents the evolution state
+     */
     private void cleanup(EvolutionState evaluatedState) {
         Evolve.cleanup(evaluatedState);
     }

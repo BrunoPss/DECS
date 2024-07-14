@@ -12,6 +12,15 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.textfield.TextField;
 import ec.util.ParameterDatabase;
 
+/**
+ * <b>Save Tab Class</b>
+ * <p>
+ *     This class implements the problem editor save tab.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class SaveTab extends Tab implements ParamTab {
     //Internal Data
     private String PARAMS_FILENAME;
@@ -25,7 +34,10 @@ public class SaveTab extends Tab implements ParamTab {
     private TextField problemType;
     private SaveButton saveProblemBtn;
 
-    //Constructor
+    /**
+     * Class Constructor
+     * @param objectListDatabase Object list database object
+     */
     public SaveTab(ObjectListDatabase objectListDatabase) {
         setLabel("Save");
         this.objectListDatabase = objectListDatabase;
@@ -44,7 +56,8 @@ public class SaveTab extends Tab implements ParamTab {
     //Set Methods
 
 
-    //Methods
+    //Overrides
+    @Override
     public VerticalLayout buildLayout() {
         // Save Tab Layout
         saveTabLayout = new VerticalLayout();
@@ -59,7 +72,6 @@ public class SaveTab extends Tab implements ParamTab {
         return saveTabLayout;
     }
 
-    //Overrides
     @Override
     public String[] getFileName() { return null; }
 
@@ -69,6 +81,9 @@ public class SaveTab extends Tab implements ParamTab {
     }
 
     //Internal Functions
+    /**
+     * Builds the problem save components group
+     */
     private void createProblemSaveGroup() {
         problemSaveGroupLayout = new VerticalLayout();
         problemSaveGroupLayout.setPadding(true);

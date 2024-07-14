@@ -8,6 +8,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+/**
+ * <b>Sample Person Repository Class</b>
+ * <p>
+ *     This class represents the repository service class for the system's persons.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Service
 public class SamplePersonService {
 

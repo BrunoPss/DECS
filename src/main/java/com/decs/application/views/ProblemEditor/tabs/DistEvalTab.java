@@ -21,9 +21,24 @@ import ec.util.ParameterDatabase;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * <b>Distributed Evaluation Tab Class</b>
+ * <p>
+ *     This class implements the problem editor DistEval parameter tab.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class DistEvalTab extends Tab implements ParamTab {
     //Internal Data
+    /**
+     * Name of the coordinator parameter file this tab will generate
+     */
     private static final String MASTER_PARAMS_FILENAME = "master.params";
+    /**
+     * Name of the slave parameter file this tab will generate
+     */
     private static final String SLAVE_PARAMS_FILENAME = "slave.params";
     // Slave Jobs
     private VerticalLayout slaveJobsGroupLayout;
@@ -63,7 +78,9 @@ public class DistEvalTab extends Tab implements ParamTab {
     private Tooltip returnIndsTooltip;
     private Button returnIndsHelpBtn;
 
-    //Constructor
+    /**
+     * Class Constructor
+     */
     public DistEvalTab() {
         setLabel("Distribution");
     }
@@ -74,7 +91,8 @@ public class DistEvalTab extends Tab implements ParamTab {
     //Set Methods
 
 
-    //Methods
+    //Overrides
+    @Override
     public VerticalLayout buildLayout() {
         // Distribution Tab
         VerticalLayout distributionTabLayout = new VerticalLayout();
@@ -93,7 +111,6 @@ public class DistEvalTab extends Tab implements ParamTab {
         return distributionTabLayout;
     }
 
-    //Overrides
     @Override
     public String[] getFileName() { return new String[]{MASTER_PARAMS_FILENAME, SLAVE_PARAMS_FILENAME}; }
 
@@ -142,6 +159,9 @@ public class DistEvalTab extends Tab implements ParamTab {
     }
 
     //Internal Functions
+    /**
+     * Builds the slave jobs components group
+     */
     private void createSlaveJobsGroup() {
         slaveJobsGroupLayout = new VerticalLayout();
         slaveJobsGroupLayout.setPadding(true);
@@ -195,6 +215,9 @@ public class DistEvalTab extends Tab implements ParamTab {
         slaveJobsGroupLayout.add(slaveJobsGroupTitle, slaveJobsGroup);
     }
 
+    /**
+     * Builds the compression components group
+     */
     private void createCompressionGroup() {
         compressionGroupLayout = new VerticalLayout();
         compressionGroupLayout.setPadding(true);
@@ -223,6 +246,9 @@ public class DistEvalTab extends Tab implements ParamTab {
         compressionGroupLayout.add(compressionGroupTitle, compression);
     }
 
+    /**
+     * Builds the opportunistic evolution components group
+     */
     private void createOpportunisticEvolutionGroup() {
         oppEvolGroupLayout = new VerticalLayout();
         oppEvolGroupLayout.setPadding(true);

@@ -1,0 +1,21 @@
+This is the main view of the web application, where the primary functionalities of the
+system are located.
+
+The upper panel displays a table of all available problems, offering basic information
+about each problem and the option to edit its parameter files.
+
+To execute a problem, it must first be selected from this list.
+
+A job progress bar provides a visual representation of the current status and completion
+percentage of the ongoing job. This value is calculated by comparing the current generation
+of the evolution process with the respective stopping condition. Since it is impossible to
+precisely estimate in which generation a solution will be found, predicting when a job will
+terminate is not feasible, as a job concludes only when a solution is identified.
+This means that the progress bar does not need to reach 100% completion for a solution to be found.
+
+The bottom panel displays job-specific components, such as a job activity list, where running
+and finished jobs are listed, distinguished by their status value, and their respective solutions
+can be accessed.
+
+On the right side, the currently executing job real-time metrics are displayed and updated for
+each generation, as the start/stop control buttons.

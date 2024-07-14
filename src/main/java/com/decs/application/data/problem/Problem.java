@@ -5,6 +5,14 @@ import com.decs.application.data.distribution.DistributionType;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * <b>Problem Class</b>
+ * <p>
+ *     This class represents an evolutionary problem.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class Problem {
     //Internal Data
     private File paramsFile;
@@ -16,12 +24,30 @@ public class Problem {
     private DistributionType distribution;
     private ArrayList<String> islandList;
 
-    //Constructor
+    /**
+     * Problem Class default constructor
+     */
     public Problem() {}
+
+    /**
+     * Problem Class simple constructor
+     * @param paramsFile Main parameters file
+     */
     public Problem(File paramsFile) {
         this.paramsFile = paramsFile;
         this.fullName = paramsFile.getName();
     }
+
+    /**
+     * Problem Class extensive constructor
+     * @param paramsFile Main parameters file
+     * @param code Short textual identification code
+     * @param fullName Full name
+     * @param type Evolutionary type
+     * @param origin Creation origin
+     * @param distribution Type of distribution
+     * @param rootFolder Problem main folder
+     */
     public Problem(File paramsFile, String code, String fullName, String type, String origin, DistributionType distribution, File rootFolder) {
         //System.out.println("PARAMS FLE : " + paramsFile);
         this.paramsFile = paramsFile;

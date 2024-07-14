@@ -2,6 +2,15 @@ package com.decs.application.data.distribution;
 
 import java.util.ArrayList;
 
+/**
+ * <b>Island Class</b>
+ * <p>
+ *     This class represents each island in the Island Distribution Model.
+ *     It stores all island configurations.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class Island {
     //Internal Data
     private String id;
@@ -13,7 +22,10 @@ public class Island {
     private int mailboxSize;
     private String seed;
 
-    //Constructor
+    /**
+     * Island Class Constructor
+     * @param id Identification number for the island object
+     */
     public Island(String id) {
         this.id = id;
     }
