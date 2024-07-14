@@ -35,3 +35,16 @@ There is a default user configured for development purposes with the following c
 
 User: `user`\
 Password: `user`
+
+## Other Information
+### Author
+**Name:** Bruno Guiomar\
+**Email:** [Bruno.guiomar33@gmail.com](mailto:bruno.guiomar33@gmail.com?subject=DECS%20Inquire)\
+**GitHub:** [BrunoPss](https://github.com/BrunoPss)
+
+### Repository
+[**DECS**](https://github.com/BrunoPss/DECS)\
+[**DECS-Slave**](https://github.com/BrunoPss/DECS-Slave)
+
+### Licence
+This software is licensed under the GPL-2.0 License.
