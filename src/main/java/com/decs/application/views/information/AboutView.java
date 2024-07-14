@@ -125,7 +125,7 @@ public class AboutView extends Composite<VerticalLayout> {
         licenceSection = new VerticalLayout();
         licenceSection.setSpacing(false);
         licenceSection.getThemeList().add("spacing-xs");
-        licenceName = new Span("This software is licensed under the GPL-2.0 License");
+        licenceName = new Span("This software is licensed under the GPL-2.0 License.");
         licenceSection.add(licenceName);
 
         aboutLayoutGroup.add(decsLogo, aboutText, buildInfo, authorSection, repositorySection, licenceSection);
