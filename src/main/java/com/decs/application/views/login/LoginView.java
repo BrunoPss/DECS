@@ -11,6 +11,15 @@ import com.vaadin.flow.router.internal.RouteUtil;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
+/**
+ * <b>Login View Class</b>
+ * <p>
+ *     This class implements the web application login page.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @AnonymousAllowed
 @PageTitle("Login")
 @Route(value = "login")
@@ -18,6 +27,10 @@ public class LoginView extends LoginOverlay implements BeforeEnterObserver {
 
     private final AuthenticatedUser authenticatedUser;
 
+    /**
+     * Class Constructor
+     * @param authenticatedUser User to be authenticated
+     */
     public LoginView(AuthenticatedUser authenticatedUser) {
         this.authenticatedUser = authenticatedUser;
         setAction(RouteUtil.getRoutePath(VaadinService.getCurrent().getContext(), getClass()));
@@ -33,6 +46,10 @@ public class LoginView extends LoginOverlay implements BeforeEnterObserver {
         setOpened(true);
     }
 
+    /**
+     * Checks if the user is already logged in to prevent this page to be shown
+     * @param event Event that is fired just before a user accesses the web app
+     */
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         if (authenticatedUser.get().isPresent()) {

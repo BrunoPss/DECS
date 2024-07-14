@@ -1,6 +1,19 @@
 package com.decs.application.utils.constants;
 
+/**
+ * <b>Tooltip Text Class</b>
+ * <p>
+ *     This class contains the textual content for each web app component tooltip.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public final class TooltipText {
+    /**
+     * Class Private Constructor
+     * <p>This class cannot be instantiated.</p>
+     */
+    private TooltipText() {}
     // Dist Eval Tab
     public static final String slaveJobQueueSizeTooltipText =
             """

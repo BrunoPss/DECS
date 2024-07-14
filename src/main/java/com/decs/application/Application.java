@@ -22,6 +22,17 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * and some desktop browsers.
  *
  */
+
+/**
+ * <b>Application Class</b>
+ * <p>
+ *     This class represents the entry point of the Spring Boot application.
+ *     In order to make the application installable on phones, tablets and some
+ *     desktop browsers, include the @PWA annotation.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @SpringBootApplication
 @Push
 @EnableAsync
@@ -29,8 +40,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @Theme(value = "decs")
 public class Application implements AppShellConfigurator {
 
+    /**
+     * Main method of the Java application
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
-        // Handle Initial Problem File Setup
+        // Uncomment to perform manual problem configuration file (.conf) management
         //ProblemFileManager.createFile();
 
         SpringApplication.run(Application.class, args);

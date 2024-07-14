@@ -16,6 +16,15 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import java.io.*;
 
+/**
+ * <b>About View Class</b>
+ * <p>
+ *     This class implements the web application about page.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @PageTitle("About")
 @Route(value = "about", layout = MainLayout.class)
 @AnonymousAllowed
@@ -36,14 +45,18 @@ public class AboutView extends Composite<VerticalLayout> {
     private VerticalLayout licenceSection;
     private Span licenceName;
 
-    //Constructor
+    /**
+     * Class Constructor
+     */
     public AboutView() {
         createAboutSection();
-
         getContent().add(aboutLayoutGroup);
     }
 
     //Internal Functions
+    /**
+     * Builds the about section view and its visual components
+     */
     private void createAboutSection() {
         // Layout Group
         aboutLayoutGroup = new VerticalLayout();
@@ -61,16 +74,14 @@ public class AboutView extends Composite<VerticalLayout> {
             String textContent = new String(textContentFile.readAllBytes());
             String buildContent = new String(buildContentFile.readAllBytes());
 
-            if (textContent != null && buildContent != null) {
-                aboutText = new Paragraph(textContent);
-                aboutText.getElement().getStyle().set("white-space", "pre");
-                aboutText.setWidth("53.5%");
+            aboutText = new Paragraph(textContent);
+            aboutText.getElement().getStyle().set("white-space", "pre");
+            aboutText.setWidth("53.5%");
 
-                buildInfo = new Paragraph();
-                buildInfo.setText(buildContent);
-                buildInfo.getElement().getStyle().set("white-space", "pre");
-                buildInfo.setWidth("53.5%");
-            }
+            buildInfo = new Paragraph();
+            buildInfo.setText(buildContent);
+            buildInfo.getElement().getStyle().set("white-space", "pre");
+            buildInfo.setWidth("53.5%");
         } catch (IOException e) {
             System.err.println("IO Exception");
             e.printStackTrace();
@@ -80,7 +91,7 @@ public class AboutView extends Composite<VerticalLayout> {
         }
 
         // Author Section
-        Anchor authorEmailLink = new Anchor("mailto:example@mail.com?subject=DECS%20Inquire", "example@mail.com");
+        Anchor authorEmailLink = new Anchor("mailto:bruno.guiomar33@gmail.com?subject=DECS%20Inquire", "bruno.guiomar33@gmail.com");
         authorEmailLink.setTarget("_blank");
         Anchor authorGithubLink = new Anchor("https://github.com/BrunoPss", "BrunoPss");
         authorGithubLink.setTarget("_blank");
@@ -114,7 +125,7 @@ public class AboutView extends Composite<VerticalLayout> {
         licenceSection = new VerticalLayout();
         licenceSection.setSpacing(false);
         licenceSection.getThemeList().add("spacing-xs");
-        licenceName = new Span("Dummy Licence...");
+        licenceName = new Span("This software is licensed under the GPL-2.0 License");
         licenceSection.add(licenceName);
 
         aboutLayoutGroup.add(decsLogo, aboutText, buildInfo, authorSection, repositorySection, licenceSection);

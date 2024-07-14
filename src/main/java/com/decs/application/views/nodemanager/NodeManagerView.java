@@ -26,6 +26,15 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import java.rmi.RemoteException;
 
+/**
+ * <b>Node Manager Class</b>
+ * <p>
+ *     This class implements the web application node manager page.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @PageTitle("Node Manager")
 @Route(value = "node-manager", layout = MainLayout.class)
 @AnonymousAllowed
@@ -44,7 +53,10 @@ public class NodeManagerView extends Composite<VerticalLayout> {
     private Span connectedSlaves;
     private GridListDataView<SlaveInfo> nodeListUpdater;
 
-    //Constructor
+    /**
+     * Class Constructor
+     * @param slaveManager Slave manager object
+     */
     public NodeManagerView(SlaveManager slaveManager) {
         this.slaveManager = slaveManager;
 
@@ -66,6 +78,9 @@ public class NodeManagerView extends Composite<VerticalLayout> {
 
 
     //Internal Functions
+    /**
+     * Builds the nodes list view and its visual components
+     */
     private void createNodeList() {
         // Node List
         nodeListLayoutGroup = new HorizontalLayout();
@@ -117,6 +132,10 @@ public class NodeManagerView extends Composite<VerticalLayout> {
     }
 
     // Event Handlers
+    /**
+     * Defines the event handler for updating the connected slaves list
+     * @param event Button click event
+     */
     private void updateSlaveList(ClickEvent<Button> event) {
         //System.out.println("Slave List Refresh");
         slaveManager.getSlaveListDataProvider().refreshAll();
@@ -124,9 +143,17 @@ public class NodeManagerView extends Composite<VerticalLayout> {
     }
 
     // Component Renderers
+    /**
+     * Creates a component renderer for the node info button
+     * @return Component renderer object
+     */
     private ComponentRenderer<Button, SlaveInfo> createNodeInfoRenderer() {
         return new ComponentRenderer<>(Button::new, nodeInfoButton);
     }
+
+    /**
+     * Creates the node info button and defines its behavior
+     */
     private final SerializableBiConsumer<Button, SlaveInfo> nodeInfoButton = ( button, currentSlave ) -> {
         Icon btnIcon = new Icon(VaadinIcon.INFO_CIRCLE);
         button.setIcon(btnIcon);
@@ -145,6 +172,12 @@ public class NodeManagerView extends Composite<VerticalLayout> {
     };
 
     // Dialogs
+    /**
+     * Builds a dialog component for the node info information
+     * @param currentSlave Slave object to be displayed
+     * @param systemInformation System information object
+     * @return Dialog object
+     */
     private Dialog buildSlaveInfoDialog(SlaveInfo currentSlave, SystemInformation systemInformation) {
         Dialog slaveInfoDialog = new Dialog();
         slaveInfoDialog.setHeaderTitle("Slave Info");

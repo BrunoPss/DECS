@@ -6,8 +6,19 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+/**
+ * <b>Job Dashboard Tests Class</b>
+ * <p>
+ *     This class implements end-to-end tests to the job dashboard page.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Tag("jobDashboardTests")
 public class JobDashboardTests extends PlaywrightIT {
+    /**
+     * Verifies if all expected components are visible in the client's browser
+     */
     @Test
     void visibleComponentsTest() {
         // Available Problems Grid
@@ -24,6 +35,9 @@ public class JobDashboardTests extends PlaywrightIT {
         assertThat(page.locator("//vaadin-button[@id='stopBtn']")).isVisible();
     }
 
+    /**
+     * Simulates a job execution and verifies its solution
+     */
     @Test
     void jobExecutionTest() {
         // Job Execution

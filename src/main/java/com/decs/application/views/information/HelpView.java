@@ -14,6 +14,15 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * <b>Help View Class</b>
+ * <p>
+ *     This class implements the web application help page.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @PageTitle("Help")
 @Route(value = "help", layout = MainLayout.class)
 @AnonymousAllowed
@@ -26,14 +35,18 @@ public class HelpView extends Composite<VerticalLayout> {
     private Paragraph nodeManagerGuide;
     private Paragraph problemEditorGuide;
 
-    //Constructor
+    /**
+     * Class Constructor
+     */
     public HelpView() {
         createHelpSection();
-
         getContent().add(helpLayoutGroup);
     }
 
     //Internal Functions
+    /**
+     * Builds the main help section view
+     */
     private void createHelpSection() {
         // Layout Group
         helpLayoutGroup = new VerticalLayout();
@@ -49,6 +62,10 @@ public class HelpView extends Composite<VerticalLayout> {
         helpLayoutGroup.add(guideTabSheet);
     }
 
+    /**
+     * Builds the job dashboard section of the help view
+     * @return Layout of the section
+     */
     private VerticalLayout createJobDashboardGuide() {
         VerticalLayout jobDashboardGuideLayout = new VerticalLayout();
 
@@ -68,6 +85,11 @@ public class HelpView extends Composite<VerticalLayout> {
 
         return jobDashboardGuideLayout;
     }
+
+    /**
+     * Builds the node manager section of the help view
+     * @return Layout of the section
+     */
     private VerticalLayout createNodeManagerGuide() {
         VerticalLayout nodeManagerGuideLayout = new VerticalLayout();
 
@@ -87,6 +109,11 @@ public class HelpView extends Composite<VerticalLayout> {
 
         return nodeManagerGuideLayout;
     }
+
+    /**
+     * Builds the problem editor section of the help view
+     * @return Layout of the section
+     */
     private VerticalLayout createProblemEditorGuide() {
         VerticalLayout problemEditorGuideLayout = new VerticalLayout();
 

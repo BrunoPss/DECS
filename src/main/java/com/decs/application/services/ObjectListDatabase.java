@@ -14,6 +14,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <b>Object List Database Class</b>
+ * <p>
+ *     This class contains a collection of objects that should be visible to all system classes.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Service
 public class ObjectListDatabase {
     //Internal Data
@@ -27,25 +35,39 @@ public class ObjectListDatabase {
     private ArrayList<Island> islandList;
     private MainLayout mainLayout;
 
-    //Constructor
+    /**
+     * Class Constructor
+     */
     public ObjectListDatabase() {
         availableProblemsList = initializeAvailableProblems();
         jobActivityList = new ArrayList<>();
     }
 
     //Fetch Methods
-    // Job Activity List
+    /**
+     * @return List of all Job objects
+     */
     public ArrayList<Job> fetchJobActivityList() {
         return jobActivityList;
     }
+    /**
+     * @return Size of the list containing all Job objects
+     */
     public int jobActivitySize() {
         return jobActivityList.size();
     }
 
     // Available Problems List
+
+    /**
+     * @return List of all available Problems
+     */
     public ArrayList<Problem> fetchAvailableProblemsList() {
         return availableProblemsList;
     }
+    /**
+     * @return Size of the list containing all available Problems
+     */
     public int availableProblemsListSize() {
         return availableProblemsList.size();
     }
@@ -74,7 +96,9 @@ public class ObjectListDatabase {
     public void setMainLayout(MainLayout mainLayout) { this.mainLayout = mainLayout; }
 
     //Data Providers
-    // Job Activity Data Provider
+    /**
+     * Vaadin data provider used for automatic updating of the web app Job Activity grid visual component
+     */
     private DataProvider<Job, Void> jobActivityDataProvider =
             DataProvider.fromCallbacks(
                     query -> {
@@ -85,7 +109,9 @@ public class ObjectListDatabase {
                     query -> jobActivitySize()
             );
 
-    // Available Problems Data Provider
+    /**
+     * Vaadin data provider used for automatic updating o the web app Available Problems grid visual component
+     */
     private DataProvider<Problem, Void> availableProblemsDataProvider =
             DataProvider.fromCallbacks(
                     query -> {
@@ -97,6 +123,9 @@ public class ObjectListDatabase {
             );
 
     //Methods
+    /**
+     * Refresh and update of the available problems list
+     */
     public void updateAvailableProblems() {
         availableProblemsList.clear();
         availableProblemsList.addAll(ProblemCreator.problemScanner(FilePathConstants.FACTORY_PARAMS_FOLDER));
@@ -107,6 +136,10 @@ public class ObjectListDatabase {
 
 
     //Internal Functions
+    /**
+     * Initializes the list of available problems
+     * @return List of available problems
+     */
     private ArrayList<Problem> initializeAvailableProblems() {
         ArrayList<Problem> problemsList = new ArrayList<>(ProblemCreator.problemScanner(FilePathConstants.FACTORY_PARAMS_FOLDER));
         problemsList.addAll(ProblemCreator.problemScanner(FilePathConstants.USER_PARAMS_FOLDER));

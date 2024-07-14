@@ -28,12 +28,27 @@ import com.vaadin.flow.theme.lumo.LumoUtility;
 
 import java.util.Optional;
 
+/**
+ * <b>Main Layout Class</b>
+ * <p>
+ *     This class implements the main layout of the web application.
+ *     It represents the higher level in the structure of the application's visual layouts.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class MainLayout extends AppLayout {
-
     private H2 viewTitle;
     private AuthenticatedUser authenticatedUser;
     private AccessAnnotationChecker accessChecker;
 
+    /**
+     * Class Constructor
+     * @param authenticatedUser Authenticated user object
+     * @param accessChecker Access Check object
+     * @param slaveManager Slave manager instance
+     * @param objectListDatabase Object list Database instance
+     */
     public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, SlaveManager slaveManager, ObjectListDatabase objectListDatabase) {
         this.authenticatedUser = authenticatedUser;
         this.accessChecker = accessChecker;
@@ -47,6 +62,9 @@ public class MainLayout extends AppLayout {
         addHeaderContent();
     }
 
+    /**
+     * Builds the header section of the layout
+     */
     private void addHeaderContent() {
         DrawerToggle toggle = new DrawerToggle();
         toggle.setAriaLabel("Menu toggle");
@@ -57,6 +75,9 @@ public class MainLayout extends AppLayout {
         addToNavbar(true, toggle, viewTitle);
     }
 
+    /**
+     * Builds the drawer content
+     */
     private void addDrawerContent() {
         StreamResource decsLogo = new StreamResource("DECS_logo.png",
                 () -> getClass().getResourceAsStream("/logos/DECS_logo.png"));
@@ -73,6 +94,10 @@ public class MainLayout extends AppLayout {
         addToDrawer(header, scroller, createFooter());
     }
 
+    /**
+     * Builds the navigation menu
+     * @return Side navigation object
+     */
     private SideNav[] createNavigation() {
         SideNav nav = new SideNav();
 
@@ -111,6 +136,10 @@ public class MainLayout extends AppLayout {
         return new SideNav[]{nav, infoNav};
     }
 
+    /**
+     * Builds the footer of the layout
+     * @return Footer object
+     */
     private Footer createFooter() {
         Footer layout = new Footer();
 

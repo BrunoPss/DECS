@@ -3,14 +3,24 @@ package com.decs.application.views.ProblemEditor.save;
 import com.decs.application.views.ProblemEditor.tabs.SaveTab;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.shared.Registration;
 
+/**
+ * <b>Save Button Class</b>
+ * <p>
+ *     This class represents the problem editor save button.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 public class SaveButton extends Button {
     //Internal Data
     private SaveTab saveTab;
 
-    //Constructor
-    public SaveButton(SaveTab saveTab) {}
+    /**
+     * Class Constructor
+     * @param saveTab Save tab instance
+     * @param label Textual label for the button
+     */
     public SaveButton(SaveTab saveTab, String label) {
         this.saveTab = saveTab;
         this.setText(label);
@@ -27,8 +37,13 @@ public class SaveButton extends Button {
 
 
     //Methods
-    public Registration addSaveListener(ComponentEventListener<SaveEvent> listener) {
-        return addListener(SaveEvent.class, listener);
+
+    /**
+     * Adds a component event listener to the button
+     * @param listener Listener object
+     */
+    public void addSaveListener(ComponentEventListener<SaveEvent> listener) {
+        addListener(SaveEvent.class, listener);
     }
 
     //Overrides

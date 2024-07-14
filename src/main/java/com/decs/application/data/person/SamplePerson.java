@@ -5,6 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import java.time.LocalDate;
 
+/**
+ * <b>Sample Person Class</b>
+ * <p>
+ *     This class represents a sample person.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Entity
 public class SamplePerson extends AbstractEntity {
 

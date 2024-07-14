@@ -43,7 +43,6 @@ import com.vaadin.flow.function.SerializableBiConsumer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-import ec.EvolutionState;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.boot.ApplicationArguments;
 
@@ -54,6 +53,15 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+/**
+ * <b>Job Dashboard View Class</b>
+ * <p>
+ *     This class implements the web application job dashboard page.
+ *     It is responsible for all visual components and their behavior.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @PageTitle("Job Dashboard")
 @Route(value = "job-dashboard", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
@@ -142,7 +150,14 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     private Notification busyNotification;
     private Button jobDialogBtn;
 
-    //Constructor
+    /**
+     * Class Constructor
+     * @param slaveManager Slave manager object
+     * @param objectListDatabase Object list database object
+     * @param timer Timer object
+     * @param sessionManager Session Manager object
+     * @param args Command line arguments
+     */
     public JobDashboardView(SlaveManager slaveManager, ObjectListDatabase objectListDatabase, Timer timer, SessionManager sessionManager, ApplicationArguments args) {
         this.slaveManager = slaveManager;
         this.objectListDatabase = objectListDatabase;
@@ -178,6 +193,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
 
     //Internal Functions
+    /**
+     * Builds the available problems section
+     */
     private void createAvailableProblems() {
         // Available Problems
         availableProblemsLayoutGroup = new HorizontalLayout();
@@ -232,6 +250,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         availableProblemsLayoutGroup.add(availableProblemsGridLayout);
     }
 
+    /**
+     * Builds the job progress bar component
+     */
     private void createJobProgressBar() {
         // Job Progress Bar
         jobProgressBar = new ProgressBar();
@@ -250,6 +271,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         jobProgressBarComp = new VerticalLayout(jobProgressBarLabel, jobProgressBar);
     }
 
+    /**
+     * Builds the lower widget group section
+     */
     private void createLowerWidgetGroup() {
         // Lower Widget Group
         lowerWidgetGroup = new HorizontalLayout();
@@ -347,6 +371,9 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         lowerWidgetGroup.add(jobActivity, verticalSeparator, jobMetrics, actionBtnGroup);
     }
 
+    /**
+     * Checks the system status and updates the visual components accordingly
+     */
     private void checkServerStatus() {
         // Start Btn
         startBtn.setEnabled(!sessionManager.getEvolutionEngineBusy());
@@ -355,7 +382,11 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         }
     }
 
-    public void updateInferenceResults(UI ui, EvolutionState evaluatedState) {
+    /**
+     * Updates the visual components with the respective inference results
+     * @param ui UI object to be updated
+     */
+    public void updateInferenceResults(UI ui) {
         ui.access(() -> {
             //System.out.println("UI results : " + ui);
             newJob.setStatus(JobStatus.FINISHED);
@@ -364,12 +395,25 @@ public class JobDashboardView extends Composite<VerticalLayout> {
             jobActivitySolutionBtn.setEnabled(true);
         });
     }
+
+    /**
+     * Updates the progress bar with the current Job's execution progress
+     * @param ui UI object to be updated
+     * @param progress Current Job's progress value
+     */
     public void updateProgressBar(UI ui, float progress) {
         ui.access(() -> {
             jobProgressBar.setValue(progress);
             jobProgressBarLabelValue.setText(String.valueOf((int) (progress * 100)));
         });
     }
+
+    /**
+     * Sets the initial values for the job metrics visual components
+     * @param ui UI object to be updated
+     * @param breedThreads Amount of CPU threads being used for the evolutionary breeding process
+     * @param evalThreads Amount of  CPU threads being used for the evolutionary evaluation process
+     */
     public void setJobMetrics(UI ui, int breedThreads, int evalThreads) {
         ui.access(() -> {
             breedThreadsValue.setText(String.valueOf(breedThreads));
@@ -377,6 +421,13 @@ public class JobDashboardView extends Composite<VerticalLayout> {
             //randomSeedValue.setText(String.valueOf(randomSeed));
         });
     }
+
+    /**
+     * Updates the job metrics visual components with fresh values
+     * @param ui UI object to be updated
+     * @param evaluations Number of performed evaluations
+     * @param generation Current generation
+     */
     public void updateJobMetrics(UI ui, int evaluations, int generation) {
         ui.access(() -> {
             evaluationsValue.setText(String.valueOf(evaluations));
@@ -386,6 +437,10 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     }
 
     // Event Handlers
+    /**
+     * Event handler for starting a new Job
+     * @param jobName Name for the new job
+     */
     private void startProblem(String jobName) {
         ui.access(() -> {
             try {
@@ -422,6 +477,10 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         });
     }
 
+    /**
+     * Updates the web application available problems grid component
+     * @param event Event object
+     */
     private void updateAvailableProblemsList(ClickEvent<Button> event) {
         this.ui.access(() -> {
             System.err.println("Available Problems Refresh");
@@ -430,6 +489,10 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         });
     }
 
+    /**
+     * Builds a dialog requesting the user to input a name for the job
+     * @return Dialog object
+     */
     private Dialog buildJobNameDialog() {
         Dialog jobNameDialog = new Dialog();
         jobNameDialog.setHeaderTitle("Job Name");
@@ -469,6 +532,11 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         return jobNameDialog;
     }
 
+    /**
+     * Builds a dialog with a job's solutions
+     * @param currentJob Respective Job for the solutions to be extracted
+     * @return Dialog object
+     */
     private Dialog buildSolutionsDialog(Job currentJob) {
         Dialog solutionDialog = new Dialog();
         solutionDialog.setHeaderTitle("Job Solution");
@@ -525,6 +593,11 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         return solutionDialog;
     }
 
+    /**
+     * Builds a dialog containing a problem file editor
+     * @param currentProblem Problem to be edited
+     * @return Dialog object
+     */
     private Dialog buildProblemEditor(Problem currentProblem) {
         problemEditorDialog = new Dialog();
         problemEditorDialog.setHeaderTitle("Problem Editor");
@@ -644,10 +717,22 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         return problemEditorDialog;
     }
 
+    /**
+     * Adds a property change listener to the session manager
+     */
     public void addEvolutionEngineBusyListener() {
-        sessionManager.addPropertyChangeListener(SessionManager.EVOLUTION_ENGINE_TYPE, this::evolutioEngineBusyEvent, this.ui);
+        sessionManager.addPropertyChangeListener(SessionManager.EVOLUTION_ENGINE_TYPE, this::evolutionEngineBusyEvent, this.ui);
     }
-    private void evolutioEngineBusyEvent(PropertyChangeEvent evt) {
+
+    /**
+     * Adapts the web app visual components to a busy system state
+     * <p>
+     *     This method is called whenever the system state transitions to 'busy' and the
+     *     web app must adapt itself to block the current user from starting another Job.
+     * </p>
+     * @param evt Fired event
+     */
+    private void evolutionEngineBusyEvent(PropertyChangeEvent evt) {
         this.ui.access(() -> {
             //System.out.println("UI Listener : " + this.ui);
             //System.out.println("UI STARTER: " + sessionManager.getStarterUI());
@@ -685,7 +770,7 @@ public class JobDashboardView extends Composite<VerticalLayout> {
                     freeNotification.setDuration(4000);
                     freeNotification.setPosition(Notification.Position.TOP_CENTER);
                     Icon freeIcon = VaadinIcon.CHECK_CIRCLE.create();
-                    HorizontalLayout freeNotLayout = new HorizontalLayout(freeIcon, new Text("Server is now free!"), createCloseNotificatonBtn(freeNotification));
+                    HorizontalLayout freeNotLayout = new HorizontalLayout(freeIcon, new Text("Server is now free!"), createCloseNotificationBtn(freeNotification));
                     freeNotLayout.setAlignItems(FlexComponent.Alignment.CENTER);
                     freeNotification.add(freeNotLayout);
                     freeNotification.open();
@@ -694,6 +779,10 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         });
     }
 
+    /**
+     * Builds a dialog informing the user about the new system state (Busy state)
+     * @return Dialog object
+     */
     private Dialog createBusyInfoDialog() {
         Dialog busyInfoDialog = new Dialog();
         busyInfoDialog.setId("busyInfoDialog");
@@ -712,7 +801,13 @@ public class JobDashboardView extends Composite<VerticalLayout> {
 
         return busyInfoDialog;
     }
-    private static Button createCloseNotificatonBtn(Notification notification) {
+
+    /**
+     * Creates a button specifically for closing a notification
+     * @param notification Notification to be closed
+     * @return Button object
+     */
+    private static Button createCloseNotificationBtn(Notification notification) {
         Button closeBtn = new Button(VaadinIcon.CLOSE_SMALL.create(), clickEvent -> {
             notification.close();
         });
@@ -722,18 +817,34 @@ public class JobDashboardView extends Composite<VerticalLayout> {
     }
 
     // Component Renderers
+    /**
+     * Creates a component renderer for the status badge in the job activity grid component
+     * @return Component renderer object
+     */
     private static ComponentRenderer<Span, Job> createJobActivityStatusRenderer() {
         return new ComponentRenderer<>(Span::new, jobActivityStatusUpdater);
     }
+
+    /**
+     * Creates the status badge for the job activity grid component and defines its behavior
+     */
     private static final SerializableBiConsumer<Span, Job> jobActivityStatusUpdater = ( span, job) -> {
         String theme = String.format("badge %s", job.getStatus().getBadgeType());
         span.getElement().setAttribute("theme", theme);
         span.setText(job.getStatus().toString());
     };
 
+    /**
+     * Creates a component renderer for the solution button in the job activity grid component
+     * @return Component renderer object
+     */
     private ComponentRenderer<Button, Job> createJobActivitySolutionRenderer() {
         return new ComponentRenderer<>(Button::new, jobActivitySolutionButton);
     }
+
+    /**
+     * Creates the solution button for the job activity grid component and defines its behavior
+     */
     private final SerializableBiConsumer<Button, Job> jobActivitySolutionButton = ( button, currentJob ) -> {
         jobActivitySolutionBtn = button;
         Icon btnIcon = new Icon(VaadinIcon.DASHBOARD);
@@ -745,10 +856,17 @@ public class JobDashboardView extends Composite<VerticalLayout> {
         });
     };
 
+    /**
+     * Creates a component renderer for the edit button in the available problems list component
+     * @return Component renderer object
+     */
     private ComponentRenderer<Button, Problem> createProblemEditorRenderer() {
         return new ComponentRenderer<>(Button::new, problemEditorButton);
     }
 
+    /**
+     * Creates the edit button for the job activity grid component and defines its behavior
+     */
     private final SerializableBiConsumer<Button, Problem> problemEditorButton = ( button, currentProblem ) -> {
         problemEditorBtn = button;
         problemEditorBtn.setText("Edit");

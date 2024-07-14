@@ -8,15 +8,29 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 import java.util.ArrayList;
 
+/**
+ * <b>Stress Tests Class</b>
+ * <p>
+ *     This class implements end-to-end stress tests to the global system.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Tag("jobDashboardTest")
 public class StressTests extends PlaywrightIT {
     private static final int CLIENTS = 2;
     private ArrayList<Client> clientList;
 
+    /**
+     * Class Constructor
+     */
     public StressTests() {
         this.clientList = new ArrayList<>();
     }
 
+    /**
+     * Simulates the execution of concurrent jobs and verifies the system's behavior
+     */
     @Test
     void concurrentJobsTest() {
         for (int i=0; i<CLIENTS; i++) {
@@ -55,6 +69,10 @@ public class StressTests extends PlaywrightIT {
         }
     }
 
+    /**
+     * Simulates the concurrent access to the web application and verifies if the system
+     * successfully handles the load.
+     */
     @Test
     void concurrentAccessTest() {
         for (int i=0; i<CLIENTS; i++) {

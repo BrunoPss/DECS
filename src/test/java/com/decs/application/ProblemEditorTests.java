@@ -14,11 +14,22 @@ import java.math.RoundingMode;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * <b>Problem Editor Tests Class</b>
+ * <p>
+ *     This class implements end-to-end tests to the problem editor page.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Tag("ProblemEditorTests")
 public class ProblemEditorTests extends PlaywrightIT {
     private static BigDecimal bd;
     private static OutputStream outStream;
 
+    /**
+     * Verifies if all expected components are visible in the client's browser
+     */
     @Test
     void visibleComponentsTest() {
         // Select Problem Editor View
@@ -89,6 +100,10 @@ public class ProblemEditorTests extends PlaywrightIT {
         assertThat(saveBtn).isEnabled();
     }
 
+    /**
+     * Simulates the creation and saving procedures of a new problem.
+     * <p>Verifies if the output corresponds to the selected values.</p>
+     */
     @Test
     void saveProblemTest() {
         Locator locator1;

@@ -5,8 +5,19 @@ import org.junit.jupiter.api.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+/**
+ * <b>Node Manager Tests Class</b>
+ * <p>
+ *     This class implements end-to-end tests to the node manager page.
+ * </p>
+ * @author Bruno Guiomar
+ * @version 1.0
+ */
 @Tag("NodeManagerTests")
 public class NodeManagerTests extends PlaywrightIT {
+    /**
+     * Verifies if all expected components are visible in the client's browser
+     */
     @Test
     void visibleComponentsTest() {
         // Select Node Manager View
