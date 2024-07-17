@@ -46,5 +46,8 @@ Password: `user`
 [**DECS**](https://github.com/BrunoPss/DECS)\
 [**DECS-Slave**](https://github.com/BrunoPss/DECS-Slave)
 
+### Further Documentation
+DECS JavaDocs can be found under this [**link**](https://brunopss.github.io/DECS/).
+
 ### Licence
 This software is licensed under the GPL-2.0 License.
