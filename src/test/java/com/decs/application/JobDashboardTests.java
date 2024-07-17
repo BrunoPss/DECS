@@ -43,7 +43,7 @@ public class JobDashboardTests extends PlaywrightIT {
         // Job Execution
         page.getByText("B11MFast", new Page.GetByTextOptions().setExact(true)).click();
         page.locator("//vaadin-button[@id='startBtn']").click();
-        page.locator("//input[@id='input-vaadin-text-field-13']").fill("Job1");
+        page.locator("//input[@id='input-vaadin-text-field-14']").fill("Job1");
         page.locator("//vaadin-button[@id='jobDialogBtn']").click();
 
         // Job Activity Verification
