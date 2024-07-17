@@ -1,7 +1,7 @@
 # DECS
 
 DECS is a Distributed Evolutionary Computing System developed by Bruno Guiomar
-for his bachelor's thesis.\
+for his final degree thesis.\
 This system follows a Coordinator - Slave architecture where there is one Coordinator
 in the network and multiple Slaves that process the tasks delegated by the coordinator.\
 This repository only contains the source code for the system Coordinator.\
