@@ -1,11 +1,3 @@
-# Copyright 2006 by Sean Luke and George Mason University
-# Licensed under the Academic Free License version 3.0
-# See the file "LICENSE" for more information
-
-# This file is used only by the slaves, not the master.  The shared
-# parameters between the master and slaves should instead be defined
-# in the master.params file.
-
 parent.0 = master.params
 
 
@@ -14,7 +6,7 @@ parent.0 = master.params
 # to connect.  Slaves need to be told this in their
 # parameter files.  The example below sets it to localhost,
 # which is probably not what you want.
-eval.master.host = 192.168.2.104
+eval.master.host = localhost
 
 
 # Specifies a slave's name for debugging purposes.  If this is not

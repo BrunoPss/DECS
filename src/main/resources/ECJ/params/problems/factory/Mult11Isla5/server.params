@@ -64,7 +64,7 @@ exch.island.4.start = 1
 
 exch.num-islands = 5
 exch.select = ec.select.TournamentSelection
-exch.server-addr = 192.168.2.104
+exch.server-addr = localhost
 exch.server-port = 8999
 exch.sync = false
 parent.0 = client.params
