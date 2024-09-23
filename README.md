@@ -5,7 +5,7 @@ for his final degree thesis.\
 This system follows a Coordinator - Slave architecture where there is one Coordinator
 in the network and multiple Slaves that process the tasks delegated by the coordinator.\
 This repository only contains the source code for the system Coordinator.\
-The Slave source code can be found in a separate repository (DECS-Slave).
+The Slave source code can be found in a separate repository [DECS-Slave](https://github.com/BrunoPss/DECS-Slave).
 
 ## Running the application
 
@@ -47,6 +47,7 @@ Password: `user`
 [**DECS-Slave**](https://github.com/BrunoPss/DECS-Slave)
 
 ### Further Documentation
+DECS thesis paper can be found [here](documentation/Thesis_DECS_2024_BrunoGuiomar.pdf).\
 DECS JavaDocs can be found under this [**link**](https://brunopss.github.io/DECS/).
 
 ### Licence
